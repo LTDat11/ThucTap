@@ -103,24 +103,24 @@ if(isset($_POST['register'])){
         </div>
     </div>
     <!-- bot nav -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-bottom">
-        <div class="container justify-content-center">
-            <div class="navbar-nav">
-                <span class="navbar-text">
-                    Địa chỉ: 123 Đường ABC, Thành phố XYZ
-                </span>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-top: 20px;">
+            <div class="container justify-content-center">
+                <div class="navbar-nav">
+                    <span class="navbar-text">
+                        Địa chỉ: 123 Đường ABC, Thành phố XYZ
+                    </span>
+                </div>  
+                <div class="navbar-nav ml-4">
+                    <span class="navbar-text">
+                        Số điện thoại: 0123456789
+                    </span>
+                </div>
+                <div class="navbar-nav ml-4">
+                    <span class="navbar-text">
+                        Email: example@example.com
+                    </span>
+                </div>
             </div>
-            <div class="navbar-nav ml-4">
-                <span class="navbar-text">
-                    Số điện thoại: 0123456789
-                </span>
-            </div>
-            <div class="navbar-nav ml-4">
-                <span class="navbar-text">
-                    Email: example@example.com
-                </span>
-            </div>
-        </div>
     </nav>
 </body>
 </html>
