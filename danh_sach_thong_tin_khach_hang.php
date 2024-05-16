@@ -14,11 +14,7 @@ if ($conn->connect_error) {
 }
 
 // Truy vấn thông tin khách hàng
-$sql = "SELECT KhachHang.Ten, KhachHang.SoDienThoai, KhachHang.DiaChi, DichVu.TenDichVu, GoiDichVu.TenGoiDichVu, ThongTinBanHang.SoLuong, ThongTinBanHang.NgayDangKy
-        FROM ThongTinBanHang
-        JOIN KhachHang ON ThongTinBanHang.ID_KhachHang = KhachHang.ID_KhachHang
-        JOIN GoiDichVu ON ThongTinBanHang.ID_GoiDichVu = GoiDichVu.ID_GoiDichVu
-        JOIN DichVu ON GoiDichVu.ID_DichVu = DichVu.ID_DichVu";
+$sql = "SELECT * FRom KhachHang";
 $result = $conn->query($sql);
 
 $conn->close();
@@ -41,10 +37,7 @@ $conn->close();
             <th>Tên Khách Hàng</th>
             <th>Số Điện Thoại</th>
             <th>Địa Chỉ</th>
-            <th>Tên Dịch Vụ</th>
-            <th>Tên Gói Dịch Vụ</th>
-            <th>Số Lượng</th>
-            <th>Ngày Đăng Ký</th>
+            <th>Lựa Chọn</th>
         </tr>
         </thead>
         <tbody>
@@ -55,10 +48,7 @@ $conn->close();
                 echo "<td>" . htmlspecialchars($row['Ten']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['SoDienThoai']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['DiaChi']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['TenDichVu']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['SoLuong']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['NgayDangKy']) . "</td>";
+                echo "<td><a href='chi_tiet.php?id=" . $row['ID_KhachHang'] . "'>Xem Chi Tiết</a></td>";
                 echo "</tr>";
             }
         } else {
