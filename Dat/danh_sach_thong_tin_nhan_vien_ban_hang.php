@@ -59,6 +59,7 @@ $conn->close();
         ?>
         </tbody>
     </table>
+    <a href="them_nhan_vien_ban_hang.php" class="btn btn-primary mt-3">Thêm Nhân Viên Bán Hàng Mới</a>
 </div>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
