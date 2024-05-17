@@ -3,7 +3,7 @@ session_start();
 
 // Kiểm tra nếu nhân viên đã đăng nhập
 if (!isset($_SESSION['ID_NhanVien'])) {
-    header("Location: dang_nhap.php"); // Redirect đến trang đăng nhập nếu chưa đăng nhập
+    header("Location: dang_nhap_nv.php"); // Redirect đến trang đăng nhập nếu chưa đăng nhập
     exit();
 }
 
@@ -126,7 +126,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         <div class="form-group">
             <label for="soLuong">Số Lượng</label>
-            <input type="number" class="form-control" id="soLuong" name="SoLuong" required>
+            <input type="number" class="form-control" id="soLuong" name="SoLuong" required min="1">
         </div>
         <div class="form-group">
             <label for="ngayDangKy">Ngày Đăng Ký</label>
