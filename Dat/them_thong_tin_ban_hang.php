@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         echo "<option value='" . $row['ID_KhachHang'] . "'>" . htmlspecialchars($row['Ten']) . "</option>";
                     }
                 } else {
-                    echo "<option>Không có khách hàng</option>";
+                    echo "<option></option>";
                 }
                 $conn->close();
                 ?>
@@ -96,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         echo "<option value='" . $row['ID_GoiDichVu'] . "'>" . htmlspecialchars($row['TenGoiDichVu']) . "</option>";
                     }
                 } else {
-                    echo "<option>Không có gói dịch vụ</option>";
+                    echo "<option></option>";
                 }
                 $conn->close();
                 ?>
@@ -118,7 +118,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         echo "<option value='" . $row['ID_TTNVBH'] . "'>" . htmlspecialchars($row['TenNhanVien']) . "</option>";
                     }
                 } else {
-                    echo "<option>Không có nhân viên bán hàng</option>";
+                    echo "<option></option>";
                 }
                 $conn->close();
                 ?>

@@ -57,12 +57,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="form-group">
             <label for="password">Mật Khẩu</label>
             <input type="password" class="form-control" id="password" name="password" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Đăng Nhập</button>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="showPassword">
+                <label class="form-check-label" for="showPassword">Hiển thị mật khẩu</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Đăng Nhập</button>
     </form>
 </div>
+<!-- bootstrap -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+                const passwordInput = document.getElementById('password');
+                const showPasswordCheckbox = document.getElementById('showPassword');
+
+                showPasswordCheckbox.addEventListener('change', function() {
+                    if (showPasswordCheckbox.checked) {
+                        passwordInput.type = 'text';
+                    } else {
+                        passwordInput.type = 'password';
+                    }
+                });
+            </script>
 </body>
 </html>

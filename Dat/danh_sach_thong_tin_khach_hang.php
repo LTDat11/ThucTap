@@ -48,7 +48,10 @@ $conn->close();
                 echo "<td>" . htmlspecialchars($row['Ten']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['SoDienThoai']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['DiaChi']) . "</td>";
-                echo "<td><a href='chi_tiet.php?id=" . $row['ID_KhachHang'] . "'>Xem Chi Tiết</a></td>";
+                echo "<td>
+                        <a href='chi_tiet.php?id=" . $row['ID_KhachHang'] . "' class='btn btn-info'>Xem Chi Tiết</a>
+                         <a href='sua_thong_tin_khach_hang.php?id=" . $row['ID_KhachHang'] . "' class='btn btn-warning'>Sửa</a>
+                    </td>";
                 echo "</tr>";
             }
         } else {
