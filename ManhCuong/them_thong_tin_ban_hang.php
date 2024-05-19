@@ -10,7 +10,7 @@ if (!isset($_SESSION['ID_NhanVien'])) {
 $message = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Kết nối cơ sở dữ liệu
-    $conn = new mysqli('localhost', 'root', '', 'tttt');
+    $conn = new mysqli('localhost', 'root', '', 'Congtyvienthong');
     if ($conn->connect_error) {
         die("Kết nối thất bại: " . $conn->connect_error);
     }
@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <select class="form-control" id="khachHang" name="ID_KhachHang" required>
                     <?php
                     // Kết nối cơ sở dữ liệu
-                    $conn = new mysqli('localhost', 'root', '', 'tttt');
+                    $conn = new mysqli('localhost', 'root', '', 'Congtyvienthong');
                     if ($conn->connect_error) {
                         die("Kết nối thất bại: " . $conn->connect_error);
                     }
@@ -87,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <select class="form-control" id="goiDichVu" name="ID_GoiDichVu" required>
                     <?php
                     // Kết nối cơ sở dữ liệu
-                    $conn = new mysqli('localhost', 'root', '', 'tttt');
+                    $conn = new mysqli('localhost', 'root', '', 'Congtyvienthong');
                     if ($conn->connect_error) {
                         die("Kết nối thất bại: " . $conn->connect_error);
                     }
@@ -109,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <select class="form-control" id="nhanVienBanHang" name="ID_TTNVBH" required>
                     <?php
                     // Kết nối cơ sở dữ liệu
-                    $conn = new mysqli('localhost', 'root', '', 'tttt');
+                    $conn = new mysqli('localhost', 'root', '', 'Congtyvienthong');
                     if ($conn->connect_error) {
                         die("Kết nối thất bại: " . $conn->connect_error);
                     }

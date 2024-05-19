@@ -2,7 +2,7 @@
 session_start();
 
 // Kết nối cơ sở dữ liệu
-$conn = new mysqli('localhost', 'root', '', 'tttt');
+$conn = new mysqli('localhost', 'root', '', 'Congtyvienthong');
 if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
 }

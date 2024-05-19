@@ -8,7 +8,7 @@ if (!isset($_SESSION['ID_KhachHang'])) {
 
 $ID_KhachHang = $_SESSION['ID_KhachHang'];
 
-$conn = new mysqli('localhost', 'root', '', 'tttt');
+$conn = new mysqli('localhost', 'root', '', 'Congtyvienthong');
 if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
 }
