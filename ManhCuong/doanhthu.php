@@ -158,6 +158,7 @@ if (isset($_POST['service']) && isset($_POST['period'])) {
                 <tr>
                     <th>Tên Dịch Vụ</th>
                     <th>Tổng Tiền Thu Được</th>
+                    <th>Lựa Chọn</th>
                 </tr>
             </thead>
             <tbody>
