@@ -3,7 +3,7 @@ session_start();
 
 // Kiểm tra nếu nhân viên đã đăng nhập
 if (!isset($_SESSION['ID_NhanVien'])) {
-    header("Location: dang_nhap.php"); // Redirect đến trang đăng nhập nếu chưa đăng nhập
+    header("Location: dang_nhap_nv.php"); // Redirect đến trang đăng nhập nếu chưa đăng nhập
     exit();
 }
 
@@ -50,7 +50,9 @@ $conn->close();
                 echo "<td>" . htmlspecialchars($row['DiaChi']) . "</td>";
                 echo "<td>
                         <a href='sua_thong_tin_nhan_vien.php?id=" . $row['ID_TTNVBH'] . "' class='btn btn-warning'>Sửa</a>
+                        <a href='chi_tiet_nvbh.php?id=" . $row['ID_TTNVBH'] . "' class='btn btn-info'>Xem Chi Tiết</a>
                       </td>";
+                
                 echo "</tr>";
             }
         } else {

@@ -1,0 +1,68 @@
+<?php
+session_start();
+
+// Kiểm tra nếu nhân viên đã đăng nhập
+if (!isset($_SESSION['ID_NhanVien'])) {
+    header("Location: dang_nhap_nv.php"); // Redirect đến trang đăng nhập nếu chưa đăng nhập
+    exit();
+}
+
+// Kết nối cơ sở dữ liệu
+$conn = new mysqli('localhost', 'root', '', 'Congtyvienthong');
+if ($conn->connect_error) {
+    die("Kết nối thất bại: " . $conn->connect_error);
+}
+
+// Truy vấn thông tin dịch vụ
+$sql = "SELECT * FROM DichVu";
+$result = $conn->query($sql);
+
+$conn->close();
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh Sách Thông Tin Dịch Vụ</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="mt-5">Danh Sách Thông Tin Dịch Vụ</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Tên Dịch Vụ</th>
+                    <th>Lựa Chọn</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>" . htmlspecialchars($row['TenDichVu']) . "</td>";
+                        echo "<td>
+                        <a href='chi_tiet_dich_vu.php?id=" . $row['ID_DichVu'] . "' class='btn btn-info'>Xem Chi Tiết</a>
+                        <a href='sua_ten_dich_vu.php?id=" . $row['ID_DichVu'] . "' class='btn btn-warning'>Sửa</a>
+                        <a href='xoa_dich_vu.php?id=" . $row['ID_DichVu'] . "' class='btn btn-danger'>Xóa</a>
+                    </td>";
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='2' class='text-center'>Không có dữ liệu</td></tr>";
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

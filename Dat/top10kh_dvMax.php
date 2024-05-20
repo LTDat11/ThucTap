@@ -47,13 +47,14 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Danh Sách Thông Tin Khách Hàng</title>
+    <title>Danh Sách TOP 10 Thông Tin Khách Hàng Sử Dụng Dịch Vụ Nhiều Nhất</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
     <div class="container">
-        <h2 class="mt-5">Danh Sách Top 10 Khách Hàng Sử Dụng Nhiều DV Nhất</h2>
+        <h2 class="mt-5">Danh Sách Top 10 Khách Hàng Sử Dụng Nhiều Dịch Vụ Nhất</h2>
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -67,6 +68,8 @@ $conn->close();
             <tbody>
                 <?php
                 if ($result->num_rows > 0) {
+                    $tenKhachHang = [];
+                    $soLuongDichVu = [];
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr>";
                         echo "<td>" . htmlspecialchars($row['Ten']) . "</td>";
@@ -75,21 +78,54 @@ $conn->close();
                         echo "<td>" . htmlspecialchars($row['SoLuongLoaiDichVu']) . "</td>";
                         echo "<td>
                         <a href='chi_tiet.php?id=" . $row['ID_KhachHang'] . "' class='btn btn-info'>Xem Chi Tiết</a>
-                         <a href='sua_thong_tin_khach_hang.php?id=" . $row['ID_KhachHang'] . "' class='btn btn-warning'>Sửa</a>
-                    </td>";
+                        </td>";
                         echo "</tr>";
+                        
+                        // Thêm dữ liệu vào mảng
+                        $tenKhachHang[] = $row['Ten'];
+                        $soLuongDichVu[] = $row['SoLuongLoaiDichVu'];
                     }
                 } else {
-                    echo "<tr><td colspan='7' class='text-center'>Không có dữ liệu</td></tr>";
+                    echo "<tr><td colspan='5' class='text-center'>Không có dữ liệu</td></tr>";
                 }
                 ?>
             </tbody>
         </table>
-        <a href="them_thong_tin_ban_hang.php" class="btn btn-primary">Thêm Thông Tin Bán Hàng Mới</a>
+        <a href="xuat_excel_top10_khach_hang_dung_nhieu_dv.php" class="btn btn-success">Xuất Excel</a>
+
+        <!-- Biểu đồ -->
+        <div class="mt-5">
+            <h2 class="mt-5">Biểu đồ Top 10 Khách Hàng Sử Dụng Nhiều Dịch Vụ Nhất</h2>
+            <canvas id="myChart"></canvas>
+        </div>
     </div>
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: <?php echo json_encode($tenKhachHang); ?>,
+                datasets: [{
+                    label: 'Số lượng dịch vụ sử dụng',
+                    data: <?php echo json_encode($soLuongDichVu); ?>,
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>

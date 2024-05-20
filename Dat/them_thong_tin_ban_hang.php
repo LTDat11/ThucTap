@@ -22,14 +22,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $SoLuong = $conn->real_escape_string($_POST['SoLuong']);
     $NgayDangKy = $conn->real_escape_string($_POST['NgayDangKy']);
 
+    // Lấy giá tiền từ bảng GoiDichVu
+    $sqlGiaTien = "SELECT GiaTien FROM GoiDichVu WHERE ID_GoiDichVu = $ID_GoiDichVu";
+    $resultGiaTien = $conn->query($sqlGiaTien);
+    $rowGiaTien = $resultGiaTien->fetch_assoc();
+    $GiaTien = $rowGiaTien['GiaTien'];
+
+    // Tính tổng tiền
+    $SoTien = $SoLuong * $GiaTien;
+
     // Chèn dữ liệu vào bảng ThongTinBanHang
     $sql = "INSERT INTO ThongTinBanHang (ID_KhachHang, ID_GoiDichVu, ID_TTNVBH, NgayDangKy, SoLuong) 
             VALUES ('$ID_KhachHang', '$ID_GoiDichVu', '$ID_TTNVBH', '$NgayDangKy', '$SoLuong')";
 
     if ($conn->query($sql) === TRUE) {
-        $message = "Thêm thông tin bán hàng thành công.";
+        // Lấy ID_ThongTinBanHang vừa thêm
+        $ID_ThongTinBanHang = $conn->insert_id;
+
+        // Thêm thông tin vào bảng DoanhThu
+        $sqlInsertDoanhThu = "INSERT INTO DoanhThu (ID_ThongTinBanHang, ThoiGian, SoTien) 
+                            VALUES ('$ID_ThongTinBanHang', '$NgayDangKy', '$SoTien')";
+        if ($conn->query($sqlInsertDoanhThu) === TRUE) {
+            $message = "Thêm thông tin bán hàng thành công.";
+        } else {
+            $message = "Lỗi khi thêm thông tin vào bảng DoanhThu: " . $conn->error;
+        }
     } else {
-        $message = "Lỗi: " . $sql . "<br>" . $conn->error;
+        $message = "Lỗi khi thêm thông tin vào bảng ThongTinBanHang: " . $conn->error;
     }
 
     $conn->close();

@@ -3,7 +3,7 @@ session_start();
 
 // Kiểm tra nếu nhân viên đã đăng nhập
 if (!isset($_SESSION['ID_NhanVien'])) {
-    header("Location: dang_nhap.php"); // Redirect đến trang đăng nhập nếu chưa đăng nhập
+    header("Location: dang_nhap_nv.php"); // Redirect đến trang đăng nhập nếu chưa đăng nhập
     exit();
 }
 
@@ -50,7 +50,7 @@ $conn->close();
                 echo "<td>" . htmlspecialchars($row['DiaChi']) . "</td>";
                 echo "<td>
                         <a href='chi_tiet.php?id=" . $row['ID_KhachHang'] . "' class='btn btn-info'>Xem Chi Tiết</a>
-                         <a href='sua_thong_tin_khach_hang.php?id=" . $row['ID_KhachHang'] . "' class='btn btn-warning'>Sửa</a>
+                        <a href='sua_thong_tin_khach_hang.php?id=" . $row['ID_KhachHang'] . "' class='btn btn-warning'>Sửa</a>
                     </td>";
                 echo "</tr>";
             }
@@ -60,7 +60,8 @@ $conn->close();
         ?>
         </tbody>
     </table>
-    <a href="them_thong_tin_ban_hang.php" class="btn btn-primary">Thêm Thông Tin Bán Hàng Mới</a>
+    <a href="xuat_excel_DS_thong_tin_khach_hang.php" class="btn btn-success">Xuất Excel</a>
+    <!-- <a href="them_thong_tin_ban_hang.php" class="btn btn-primary">Thêm Thông Tin Bán Hàng Mới</a> -->
 </div>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
