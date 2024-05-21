@@ -50,7 +50,7 @@ $conn->close();
             <ul class="navbar-nav">
                 <!-- Dropdown Menu Danh Sach -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="danh_sach_thong_tin_khach_hang.php" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Danh Sách
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -63,7 +63,7 @@ $conn->close();
                 </li>
                 <!-- Dropdown Menu Top 10 -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="top10_nvbh.php" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Top 10
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -74,7 +74,7 @@ $conn->close();
                 </li>
                 <!-- Other Menu Items -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Doanh Thu</a>
+                    <a class="nav-link" href="doanh_thu.php">Doanh Thu</a>
                 </li>
 
             </ul>
