@@ -34,7 +34,7 @@ ThongTinBanHang";
 $resultNam = $conn->query($sqlNam);
 
 // Truy vấn doanh thu
-$sql1 = "";
+// $sql1 = "";
 $message = "";
 $message2 = "";
 
@@ -55,22 +55,6 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
     switch ($timeOption) {
         case 'week':
             $message2 = "tuần này";
-            $sql1 = "SELECT 
-                dv.ID_DichVu,
-                dv.TenDichVu,
-                SUM(gdv.GiaTien * ttb.SoLuong) AS TongTienThuDuoc
-            FROM 
-                ThongTinBanHang AS ttb
-            JOIN 
-                GoiDichVu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
-            JOIN 
-                DichVu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
-            WHERE 
-                dv.ID_DichVu = $ID_DichVu
-                AND ttb.NgayDangKy BETWEEN DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY) 
-                AND DATE_ADD(DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY), INTERVAL 6 DAY)
-            GROUP BY 
-                dv.ID_DichVu, dv.TenDichVu";
 
             $sql2 = "SELECT 
             gdv.ID_GoiDichVu,
@@ -98,21 +82,6 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
             if (isset($_POST['yearSelect'])) {
                 $year = $_POST['yearSelect'];
                 $message2 = "năm $year";
-                $sql1 = "SELECT 
-                    dv.ID_DichVu,
-                    dv.TenDichVu,
-                    SUM(gdv.GiaTien * ttb.SoLuong) AS TongTienThuDuoc
-                FROM 
-                    ThongTinBanHang AS ttb
-                JOIN 
-                    GoiDichVu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
-                JOIN 
-                    DichVu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
-                WHERE 
-                    dv.ID_DichVu = $ID_DichVu
-                    AND YEAR(ttb.NgayDangKy) = $year
-                GROUP BY 
-                    dv.ID_DichVu, dv.TenDichVu";
 
                 $sql2 = "SELECT
                     gdv.ID_GoiDichVu,
@@ -144,23 +113,6 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
                 $message2 = "quý $quarter năm $year";
                 $startMonth = ($quarter - 1) * 3 + 1;
                 $endMonth = $startMonth + 2;
-                $sql1 = "SELECT 
-                        dv.ID_DichVu,
-                        dv.TenDichVu,
-                        SUM(gdv.GiaTien * ttb.SoLuong) AS TongTienThuDuoc
-                    FROM 
-                        ThongTinBanHang AS ttb
-                    JOIN 
-                        GoiDichVu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
-                    JOIN 
-                        DichVu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
-                    WHERE 
-                        dv.ID_DichVu = $ID_DichVu
-                        AND YEAR(ttb.NgayDangKy) = $year
-                        AND MONTH(ttb.NgayDangKy) BETWEEN $startMonth AND $endMonth 
-                    GROUP BY 
-                        dv.ID_DichVu, dv.TenDichVu";
-
                 $sql2 = "SELECT
                     gdv.ID_GoiDichVu,
                     gdv.TenGoiDichVu,
@@ -188,22 +140,6 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
                 $year = $_POST['yearSelect'];
                 $month = $_POST['monthSelect'];
                 $message2 = "tháng $month năm $year";
-                $sql1 = "SELECT 
-                    dv.ID_DichVu,
-                    dv.TenDichVu,
-                    SUM(gdv.GiaTien * ttb.SoLuong) AS TongTienThuDuoc
-                FROM 
-                    ThongTinBanHang AS ttb
-                JOIN 
-                    GoiDichVu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
-                JOIN 
-                    DichVu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
-                WHERE 
-                    dv.ID_DichVu = $ID_DichVu
-                    AND YEAR(ttb.NgayDangKy) = $year
-                    AND MONTH(ttb.NgayDangKy) = $month
-                GROUP BY 
-                    dv.ID_DichVu, dv.TenDichVu";
 
                 $sql2 = "SELECT
                     gdv.ID_GoiDichVu,
@@ -230,7 +166,7 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
     }
 
 
-    $result1 = $conn->query($sql1);
+    // $result1 = $conn->query($sql1);
     $result2 = $conn->query($sql2);
 
 }
@@ -361,6 +297,7 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
             <tbody>
                 <?php
                 if (isset($result2) && $result2->num_rows > 0) {
+                    $total = 0;
                     while ($row = $result2->fetch_assoc()) {
                         echo "<tr>";
                         echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
@@ -369,24 +306,16 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
                         echo "<td>" . htmlspecialchars($row['ThanhTien']) . "</td>";
 
                         echo "</tr>";
+                        $total += $row['ThanhTien'];
                     }
+                    echo "<br><h3>Tổng giá trị: " . htmlspecialchars($total) . "</h3> ";
                 } else {
                     echo "<tr><td colspan='4' class='text-center'>Không có dữ liệu</td></tr>";
                 }
                 ?>
             </tbody>
         </table>
-        <?php
-        if (isset($result1) && $result1->num_rows > 0) {
-            while ($row = $result1->fetch_assoc()) {
-                echo "<h3 class='mt-5'>Tổng
-        doanh thu: " . htmlspecialchars($row['TongTienThuDuoc']) . "</h3>";
 
-
-            }
-        }
-
-        ?>
     </div>
 
 </body>

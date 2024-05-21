@@ -43,27 +43,31 @@ $conn->close();
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Logo</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <!-- Dropdown Menu Danh Sach -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Danh Sách
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="danh_sach_thong_tin_khach_hang.php">Thông Tin Khách Hàng</a>
                         <a class="dropdown-item" href="danh_sach_thong_tin_dich_vu.php">Thông Tin Dịch Vụ</a>
-                        <a class="dropdown-item" href="danh_sach_thong_tin_nhan_vien_ban_hang.php">Thông Tin Nhân Viên</a>
+                        <a class="dropdown-item" href="danh_sach_thong_tin_nhan_vien_ban_hang.php">Thông Tin Nhân
+                            Viên</a>
                         <a class="dropdown-item" href="danh_sach_thong_tin_ban_hang.php">Thông Tin Bán Hàng</a>
                         <!-- Thêm các mục khác nếu cần -->
                     </div>
                 </li>
                 <!-- Dropdown Menu Top 10 -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Top 10
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -81,5 +85,6 @@ $conn->close();
         </div>
         <span class="navbar-text">
             Xin chào <?php echo $tenNhanVien; ?> | <a href="dang_xuat_nv.php">Đăng Xuất</a>
+        </span>
     </nav>
     <div class="container mt-3">
