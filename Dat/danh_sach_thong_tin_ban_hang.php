@@ -34,7 +34,7 @@ $conn->close();
 ?>
 
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -45,44 +45,46 @@ $conn->close();
 </head>
 
 <body>
-    <div class="container">
-        <h2 class="mt-5">Danh Sách Thông Tin Bán Hàng</h2>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Tên Nhân Viên</th>
-                    <th>Tên Khách Hàng</th>
-                    <th>Tên Gói Dịch Vụ</th>
-                    <th>Ngày Bán</th>
-                    <th>Lựa Chọn</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>" . htmlspecialchars($row['TenNhanVien']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['TenKhachHang']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['NgayDangKy']) . "</td>";
-                        echo "<td>
+    <div class="container"> -->
+<?php include 'menu.php'; ?>
+<h2 class="mt-3">Danh Sách Thông Tin Bán Hàng</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Tên Nhân Viên</th>
+            <th>Tên Khách Hàng</th>
+            <th>Tên Gói Dịch Vụ</th>
+            <th>Ngày Bán</th>
+            <th>Lựa Chọn</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . htmlspecialchars($row['TenNhanVien']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['TenKhachHang']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['NgayDangKy']) . "</td>";
+                echo "<td>
                             <a href='sua_thong_tin_ban_hang.php?id=" . $row['ID_ThongTinBanHang'] . "' class='btn btn-warning'>Sửa</a>
                             <a href='xoa_thong_tin_ban_hang.php?id=" . $row['ID_ThongTinBanHang'] . "' class='btn btn-danger' onclick='return confirm(\"Bạn có chắc chắn muốn xóa?\")'>Xóa</a>
                             </td>";
-                        echo "</tr>";
-                    }
-                } else {
-                    echo "<tr><td colspan='5' class='text-center'>Không có dữ liệu</td></tr>";
-                }
-                ?>
-            </tbody>
-        </table>
-        <a href="them_thong_tin_ban_hang.php" class="btn btn-primary">Thêm Thông Tin Bán Hàng Mới</a>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                echo "</tr>";
+            }
+        } else {
+            echo "<tr><td colspan='5' class='text-center'>Không có dữ liệu</td></tr>";
+        }
+        ?>
+    </tbody>
+</table>
+<a href="them_thong_tin_ban_hang.php" class="btn btn-primary mb-3">Thêm Thông Tin Bán Hàng Mới</a>
+<?php include 'footer.php'; ?>
+<!-- </div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
-</html>
+</html> -->

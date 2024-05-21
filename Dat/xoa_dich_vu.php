@@ -30,7 +30,7 @@ $resultCheck = $stmtCheck->get_result();
 
 if ($resultCheck->num_rows > 0) {
     echo "<script>alert('Không thể xóa dịch vụ này vì có các gói dịch vụ đang được sử dụng.');</script>";
-    header("refresh:1; url=danh_sach_thong_tin_dich_vu.php");
+    header("refresh:0.5; url=danh_sach_thong_tin_dich_vu.php");
     exit();
 } else {
     // Nếu không có ràng buộc khóa ngoại, tiến hành xóa dịch vụ
@@ -40,11 +40,11 @@ if ($resultCheck->num_rows > 0) {
 
     if ($stmtDelete->execute()) {
         echo "<script>alert('Xóa dịch vụ thành công.');</script>";
-        header("refresh:1; url=danh_sach_thong_tin_dich_vu.php");
+        header("refresh:0.5; url=danh_sach_thong_tin_dich_vu.php");
         exit();
     } else {
         echo "<script>alert('Xóa dịch vụ thất bại.');</script>";
-        header("refresh:1; url=danh_sach_thong_tin_dich_vu.php");
+        header("refresh:0.5; url=danh_sach_thong_tin_dich_vu.php");
         exit();
     }
 }

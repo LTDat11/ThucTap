@@ -89,14 +89,17 @@ $conn->close();
                     echo "<td>" . htmlspecialchars($row['GiaTien']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['MoTa']) . "</td>";
                     echo "<td>
-                    <a href='sua_goi_dich_vu.php?id=" . $row['ID_GoiDichVu'] . "' class='btn btn-warning'>Sửa</a>
-                    <a href='xoa_goi_dich_vu.php?id=" . $row['ID_GoiDichVu'] . "' class='btn btn-danger'>Xóa</a>
+                    <a href='sua_goi_cuoc.php?id=" . $row['ID_GoiDichVu'] . "' class='btn btn-warning'>Sửa</a>
+                    <a href='xoa_goi_cuoc.php?id=" . $row['ID_GoiDichVu'] . "' class='btn btn-danger'>Xóa</a>
                 </td>";
                     echo "</tr>";
                 }
                 ?>
             </tbody>
         </table>
+        <a href="them_goi_cuoc.php?idDichVu=<?php echo $id; ?>" class="btn btn-primary">Thêm Gói Cước</a>
+        <a href="danh_sach_thong_tin_dich_vu.php" class="btn btn-secondary">Quay Lại</a>
+
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>

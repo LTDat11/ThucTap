@@ -41,7 +41,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($stmtUpdate->execute()) {
         // Redirect đến trang chi tiết dịch vụ sau khi cập nhật thành công
-        header("Location: danh_sach_thong_tin_dich_vu.php?id=$id");
+        echo "<script>alert('Cập nhật thành công.');</script>";
+        header("refresh:0.5; url=danh_sach_thong_tin_dich_vu.php?id=$id");
+        // header("Location: danh_sach_thong_tin_dich_vu.php?id=$id");
         exit();
     } else {
         echo "Cập nhật thất bại: " . $conn->error;

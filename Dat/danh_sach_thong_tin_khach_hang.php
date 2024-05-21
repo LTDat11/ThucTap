@@ -15,12 +15,18 @@ if ($conn->connect_error) {
 
 // Truy vấn thông tin khách hàng
 $sql = "SELECT * FRom KhachHang";
+if (isset($_GET['search_query']) && !empty($_GET['search_query'])) {
+    $search_query = $_GET['search_query'];
+    // Thêm điều kiện tìm kiếm vào truy vấn SQL
+    $sql .= " WHERE Ten LIKE '%$search_query%' OR SoDienThoai LIKE '%$search_query%' OR DiaChi LIKE '%$search_query%'";
+}
+$sql .= " ORDER BY Ten ASC";
 $result = $conn->query($sql);
 
 $conn->close();
 ?>
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -29,18 +35,29 @@ $conn->close();
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<div class="container">
-    <h2 class="mt-5">Danh Sách Thông Tin Khách Hàng</h2>
-    <table class="table table-bordered">
-        <thead>
+<div class="container"> -->
+<?php include 'menu.php'; ?>
+<h2 class="mt-3">Danh Sách Thông Tin Khách Hàng</h2>
+<form action="" method="GET" class="mb-3">
+    <div class="form-row">
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Tìm kiếm..." name="search_query">
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary">Tìm Kiếm</button>
+        </div>
+    </div>
+</form>
+<table class="table table-bordered">
+    <thead>
         <tr>
             <th>Tên Khách Hàng</th>
             <th>Số Điện Thoại</th>
             <th>Địa Chỉ</th>
             <th>Lựa Chọn</th>
         </tr>
-        </thead>
-        <tbody>
+    </thead>
+    <tbody>
         <?php
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
@@ -58,13 +75,15 @@ $conn->close();
             echo "<tr><td colspan='7' class='text-center'>Không có dữ liệu</td></tr>";
         }
         ?>
-        </tbody>
-    </table>
-    <a href="xuat_excel_DS_thong_tin_khach_hang.php" class="btn btn-success">Xuất Excel</a>
-    <!-- <a href="them_thong_tin_ban_hang.php" class="btn btn-primary">Thêm Thông Tin Bán Hàng Mới</a> -->
-</div>
+    </tbody>
+</table>
+<a href="xuat_excel_DS_thong_tin_khach_hang.php" class="btn btn-success mb-3">Xuất Excel</a>
+<?php include 'footer.php'; ?>
+<!-- <a href="them_thong_tin_ban_hang.php" class="btn btn-primary">Thêm Thông Tin Bán Hàng Mới</a> -->
+<!-- </div>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-</html>
+
+</html> -->

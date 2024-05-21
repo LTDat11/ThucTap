@@ -86,7 +86,7 @@ $conn->close();
                 </tr>
             </tbody>
         </table> 
-
+        <h3 class="mt-5">Các Dịch Vụ Bán Được:</h3>
         <table class="table table-bordered">
             <thead>
             <tr>
@@ -117,6 +117,7 @@ $conn->close();
                 ?>
             </tbody>
         </table>
+        <a href="danh_sach_thong_tin_nhan_vien_ban_hang.php" class="btn btn-secondary">Quay Lại</a>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>

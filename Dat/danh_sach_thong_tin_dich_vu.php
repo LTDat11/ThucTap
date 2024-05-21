@@ -20,7 +20,7 @@ $result = $conn->query($sql);
 $conn->close();
 ?>
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -31,38 +31,41 @@ $conn->close();
 </head>
 
 <body>
-    <div class="container">
-        <h2 class="mt-5">Danh Sách Thông Tin Dịch Vụ</h2>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Tên Dịch Vụ</th>
-                    <th>Lựa Chọn</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>" . htmlspecialchars($row['TenDichVu']) . "</td>";
-                        echo "<td>
+    <div class="container"> -->
+<?php include 'menu.php'; ?>
+<h2 class="mt-3">Danh Sách Thông Tin Dịch Vụ</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Tên Dịch Vụ</th>
+            <th>Tùy Chọn</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . htmlspecialchars($row['TenDichVu']) . "</td>";
+                echo "<td>
                         <a href='chi_tiet_dich_vu.php?id=" . $row['ID_DichVu'] . "' class='btn btn-info'>Xem Chi Tiết</a>
                         <a href='sua_ten_dich_vu.php?id=" . $row['ID_DichVu'] . "' class='btn btn-warning'>Sửa</a>
-                        <a href='xoa_dich_vu.php?id=" . $row['ID_DichVu'] . "' class='btn btn-danger'>Xóa</a>
+                        <a href='#' onclick='confirmDelete_dv(" . $row['ID_DichVu'] . ")' class='btn btn-danger'>Xóa</a>
                     </td>";
-                        echo "</tr>";
-                    }
-                } else {
-                    echo "<tr><td colspan='2' class='text-center'>Không có dữ liệu</td></tr>";
-                }
-                ?>
-            </tbody>
-        </table>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                echo "</tr>";
+            }
+        } else {
+            echo "<tr><td colspan='2' class='text-center'>Không có dữ liệu</td></tr>";
+        }
+        ?>
+    </tbody>
+</table>
+<a href="them_dich_vu.php" class="btn btn-primary mb-3">Thêm Dịch Vụ</a>
+<?php include 'footer.php'; ?>
+<!-- </div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
-</html>
+</html> -->

@@ -34,7 +34,7 @@ $result = $conn->query($sql);
 $conn->close();
 ?>
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -46,57 +46,59 @@ $conn->close();
 </head>
 
 <body>
-    <div class="container">
-        <h2 class="mt-5">Top 10 Nhân Viên</h2>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Tên Nhân viên bán hàng</th>
-                    <th>Số Điện Thoại</th>
-                    <th>Địa Chỉ</th>
-                    <th>Tổng số dịch vụ bán được</th>
-                    <th>Lựa Chọn</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                if ($result->num_rows > 0) {
-                    $tenNhanVien = [];
-                    $soLuongDichVu = [];
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>" . htmlspecialchars($row['TenNhanVien']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['SoDienThoai']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['DiaChi']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['TongSoLuongDichVuBanDuoc']) . "</td>";
-                        echo "<td><a href='chi_tiet_nvbh.php?id=" . $row['ID_TTNVBH'] . "' class='btn btn-info'>Xem Chi Tiết</a></td>";
-                        echo "</tr>";
-                        
-                        // Thêm dữ liệu vào mảng
-                        $tenNhanVien[] = $row['TenNhanVien'];
-                        $soLuongDichVu[] = $row['TongSoLuongDichVuBanDuoc'];
-                    }
-                } else {
-                    echo "<tr><td colspan='5' class='text-center'>Không có dữ liệu</td></tr>";
-                }
-                ?>
-            </tbody>
-        </table>
-        <a href="xuat_excel_top10_nvbh_nhieu.php" class="btn btn-success">Xuất Excel</a>
-        <!-- <a href="them_thong_tin_ban_hang.php" class="btn btn-primary">Thêm Thông Tin Bán Hàng Mới</a> -->
+    <div class="container"> -->
+<?php include 'menu.php'; ?>
+<h2 class="mt-3">Top 10 Nhân Viên</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Tên Nhân viên bán hàng</th>
+            <th>Số Điện Thoại</th>
+            <th>Địa Chỉ</th>
+            <th>Tổng số dịch vụ bán được</th>
+            <th>Lựa Chọn</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        if ($result->num_rows > 0) {
+            $tenNhanVien = [];
+            $soLuongDichVu = [];
+            while ($row = $result->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . htmlspecialchars($row['TenNhanVien']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['SoDienThoai']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['DiaChi']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['TongSoLuongDichVuBanDuoc']) . "</td>";
+                echo "<td><a href='chi_tiet_nvbh.php?id=" . $row['ID_TTNVBH'] . "' class='btn btn-info'>Xem Chi Tiết</a></td>";
+                echo "</tr>";
 
-        <!-- Biểu đồ -->
-        <div class="mt-5">
-            <h2 class="mt-5">Biểu đồ TOP 10 Nhân Viên Bán Hàng Nhiều Nhất</h2>
-            <canvas id="myChart"></canvas>
-        </div>
-    </div>
+                // Thêm dữ liệu vào mảng
+                $tenNhanVien[] = $row['TenNhanVien'];
+                $soLuongDichVu[] = $row['TongSoLuongDichVuBanDuoc'];
+            }
+        } else {
+            echo "<tr><td colspan='5' class='text-center'>Không có dữ liệu</td></tr>";
+        }
+        ?>
+    </tbody>
+</table>
+<a href="xuat_excel_top10_nvbh_nhieu.php" class="btn btn-success">Xuất Excel</a>
+<!-- <a href="them_thong_tin_ban_hang.php" class="btn btn-primary">Thêm Thông Tin Bán Hàng Mới</a> -->
+
+<!-- Biểu đồ -->
+<div class="mt-5">
+    <h2 class="mt-5">Biểu đồ TOP 10 Nhân Viên Bán Hàng Nhiều Nhất</h2>
+    <canvas id="myChart_nvbh" class="mb-3"></canvas>
+</div>
+<?php include 'footer.php'; ?>
+<!-- </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script>
-        var ctx = document.getElementById('myChart').getContext('2d');
+        var ctx = document.getElementById('myChart_nvbh').getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
@@ -120,4 +122,4 @@ $conn->close();
     </script>
 </body>
 
-</html>
+</html> -->

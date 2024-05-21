@@ -41,7 +41,7 @@ $conn->close();
 
 ?>
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -53,79 +53,81 @@ $conn->close();
 </head>
 
 <body>
-    <div class="container">
-        <h2 class="mt-5">Danh Sách Top 10 Khách Hàng Sử Dụng Nhiều Dịch Vụ Nhất</h2>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Tên Khách Hàng</th>
-                    <th>Số Điện Thoại</th>
-                    <th>Địa Chỉ</th>
-                    <th>Số Dịch Vụ Sử Dụng</th>
-                    <th>Lựa Chọn</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                if ($result->num_rows > 0) {
-                    $tenKhachHang = [];
-                    $soLuongDichVu = [];
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>" . htmlspecialchars($row['Ten']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['SoDienThoai']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['DiaChi']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['SoLuongLoaiDichVu']) . "</td>";
-                        echo "<td>
+    <div class="container"> -->
+<?php include 'menu.php'; ?>
+<h2 class="mt-3">Danh Sách Top 10 Khách Hàng Sử Dụng Nhiều Dịch Vụ Nhất</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Tên Khách Hàng</th>
+            <th>Số Điện Thoại</th>
+            <th>Địa Chỉ</th>
+            <th>Số Dịch Vụ Sử Dụng</th>
+            <th>Lựa Chọn</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        if ($result->num_rows > 0) {
+            $tenKhachHang = [];
+            $soLuongDichVu = [];
+            while ($row = $result->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . htmlspecialchars($row['Ten']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['SoDienThoai']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['DiaChi']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['SoLuongLoaiDichVu']) . "</td>";
+                echo "<td>
                         <a href='chi_tiet.php?id=" . $row['ID_KhachHang'] . "' class='btn btn-info'>Xem Chi Tiết</a>
                         </td>";
-                        echo "</tr>";
-                        
-                        // Thêm dữ liệu vào mảng
-                        $tenKhachHang[] = $row['Ten'];
-                        $soLuongDichVu[] = $row['SoLuongLoaiDichVu'];
-                    }
-                } else {
-                    echo "<tr><td colspan='5' class='text-center'>Không có dữ liệu</td></tr>";
-                }
-                ?>
-            </tbody>
-        </table>
-        <a href="xuat_excel_top10_khach_hang_dung_nhieu_dv.php" class="btn btn-success">Xuất Excel</a>
+                echo "</tr>";
 
-        <!-- Biểu đồ -->
-        <div class="mt-5">
-            <h2 class="mt-5">Biểu đồ Top 10 Khách Hàng Sử Dụng Nhiều Dịch Vụ Nhất</h2>
-            <canvas id="myChart"></canvas>
-        </div>
-    </div>
+                // Thêm dữ liệu vào mảng
+                $tenKhachHang[] = $row['Ten'];
+                $soLuongDichVu[] = $row['SoLuongLoaiDichVu'];
+            }
+        } else {
+            echo "<tr><td colspan='5' class='text-center'>Không có dữ liệu</td></tr>";
+        }
+        ?>
+    </tbody>
+</table>
+<a href="xuat_excel_top10_khach_hang_dung_nhieu_dv.php" class="btn btn-success">Xuất Excel</a>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: <?php echo json_encode($tenKhachHang); ?>,
-                datasets: [{
-                    label: 'Số lượng dịch vụ sử dụng',
-                    data: <?php echo json_encode($soLuongDichVu); ?>,
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
+<!-- Biểu đồ -->
+<div class="mt-5">
+    <h2 class="mt-5">Biểu đồ Top 10 Khách Hàng Sử Dụng Nhiều Dịch Vụ Nhất</h2>
+    <canvas id="myChart_kh_dv_max" class="mb-3"></canvas>
+</div>
+<?php include 'footer.php'; ?>
+<!-- </div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    var ctx = document.getElementById('myChart_kh_dv_max').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: <?php echo json_encode($tenKhachHang); ?>,
+            datasets: [{
+                label: 'Số lượng dịch vụ sử dụng',
+                data: <?php echo json_encode($soLuongDichVu); ?>,
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
                 }
             }
-        });
-    </script>
+        }
+    });
+</script>
 </body>
 
-</html>
+</html> -->

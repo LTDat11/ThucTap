@@ -64,7 +64,7 @@ $conn->close();
                 <tr>
                     <th>Tên Dịch Vụ</th>
                     <th>Số gói dịch vụ bán được</th>
-                    <th>Xem chi tiết</th>
+                    <th>Tùy chọn</th>
                 </tr>
             </thead>
             <tbody>

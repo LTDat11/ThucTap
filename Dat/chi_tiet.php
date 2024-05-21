@@ -85,7 +85,7 @@ $conn->close();
     <?php else: ?>
         <p class="text-center">Không tìm thấy thông tin khách hàng.</p>
     <?php endif; ?>
-    <a href="danh_sach_thong_tin_khach_hang.php" class="btn btn-primary">Quay Lại Danh Sách Khách Hàng</a>
+    <a href="danh_sach_thong_tin_khach_hang.php" class="btn btn-secondary">Quay Lại Danh Sách Khách Hàng</a>
 </div>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
