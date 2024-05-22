@@ -2,7 +2,7 @@
 session_start();
 
 // Kết nối cơ sở dữ liệu
-$conn = new mysqli('localhost', 'root', '', 'Congtyvienthong');
+$conn = new mysqli('localhost', 'root', '', 'congtyvienthong');
 if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
 }
@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $conn->real_escape_string($_POST['password']);
 
     // Truy vấn kiểm tra thông tin đăng nhập
-    $sql = "SELECT ID_KhachHang, Password FROM khachhang WHERE Username='$username'";
+    $sql = "SELECT ID_NhanVien, Password FROM NhanVien WHERE Username='$username'";
     $result = $conn->query($sql);
 
     if ($result->num_rows == 1) {
@@ -21,24 +21,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // if (password_verify($password, $row['Password'])) {
         if ($password == $row['Password']) {
             // Lưu thông tin nhân viên vào session
-            $_SESSION['ID_KhachHang'] = $row['ID_KhachHang'];
-            header("Location: khachhang.php");
+            $_SESSION['ID_NhanVien'] = $row['ID_NhanVien'];
+            header("Location: ./danhsach/danh_sach_thong_tin_khach_hang.php");
             exit();
         } else {
             $error = "Tên đăng nhập hoặc mật khẩu không đúng.";
             echo "<script>alert('$error');</script>";
-            header("refresh:0.5; url=dangnhap.php");
+            header("refresh:0.5; url=dangnhap_NV.php");
             exit();
         }
     } else {
         $error = "Tên đăng nhập hoặc mật khẩu không đúng.";
         echo "<script>alert('$error');</script>";
-        header("refresh:0.5; url=dangnhap.php");
+        header("refresh:0.5; url=dangnhap_NV.php");
         exit();
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,13 +50,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Font Icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
     <!-- bootstrap -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
     <!-- Main css -->
     <link rel="stylesheet" href="assets/css/dangnhap.css">
 </head>
@@ -71,8 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="container">
                 <div class="signin-content">
                     <div class="signin-image">
-                        <figure><img src="assets/img/hinh3.jpg" alt="sign up image"></figure>
-                        <a href="dangky.php" class="signup-image-link">Tạo tài khoản</a>
+                        <figure><img src="assets/img/hinh1.jpg" alt="sign up image"></figure>
                     </div>
 
                     <div class="signin-form">
@@ -94,9 +90,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </form>
                         <div class="social-login">
                             <span class="social-label">Đăng Nhập Với:</span>
-                            <a href="dangnhap_NV.php" class="customer-account"><i class="fas fa-user"></i> Tài Khoản Nhân Viên</a>
+                            <a href="dangnhap.php" class="customer-account"><i class="fas fa-user"></i> Tài Khoản Khách Hàng</a>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -107,6 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
+
 </body>
 
 </html>
