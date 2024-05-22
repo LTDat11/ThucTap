@@ -58,7 +58,7 @@ $conn->close();
                 <tr>
                     <th>Tên Dịch Vụ</th>
                     <th>Tên Gói Dịch Vụ</th>
-                    <!-- <th>Tốc Độ</th> -->
+                    <th>Tốc Độ</th>
                     <th>Giá Tiền</th>
                     <th>Mô Tả</th>
                     <th>Ngày Đăng Kí</th>
@@ -73,7 +73,7 @@ $conn->close();
                         echo "<tr>";
                         echo "<td>" . htmlspecialchars($row['TenDichVu']) . "</td>";
                         echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
-                        // echo "<td>" . htmlspecialchars($row['TocDo']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['TocDo']) . "</td>";
                         echo "<td>" . htmlspecialchars($row['GiaTien']) . "</td>";
                         echo "<td>" . htmlspecialchars($row['MoTa']) . "</td>";
                         echo "<td>" . htmlspecialchars($row['NgayDangKy']) . "</td>";
@@ -88,7 +88,7 @@ $conn->close();
             </tbody>
         </table>
 
-        <a href="dangxuat_KH.php" class="btn btn-primary">LOGOUT</a>
+
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>

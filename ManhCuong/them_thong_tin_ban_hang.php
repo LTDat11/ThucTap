@@ -10,7 +10,7 @@ if (!isset($_SESSION['ID_NhanVien'])) {
 $message = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Kết nối cơ sở dữ liệu
-    $conn = new mysqli('localhost', 'root', '', 'Congtyvienthong');
+    $conn = new mysqli('localhost', 'root', '', 'congtyvienthong');
     if ($conn->connect_error) {
         die("Kết nối thất bại: " . $conn->connect_error);
     }
@@ -22,14 +22,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $SoLuong = $conn->real_escape_string($_POST['SoLuong']);
     $NgayDangKy = $conn->real_escape_string($_POST['NgayDangKy']);
 
+    // Lấy giá tiền từ bảng GoiDichVu
+    $sqlGiaTien = "SELECT GiaTien FROM GoiDichVu WHERE ID_GoiDichVu = $ID_GoiDichVu";
+    $resultGiaTien = $conn->query($sqlGiaTien);
+    $rowGiaTien = $resultGiaTien->fetch_assoc();
+    $GiaTien = $rowGiaTien['GiaTien'];
+
+    // Tính tổng tiền
+    $SoTien = $SoLuong * $GiaTien;
+
     // Chèn dữ liệu vào bảng ThongTinBanHang
     $sql = "INSERT INTO ThongTinBanHang (ID_KhachHang, ID_GoiDichVu, ID_TTNVBH, NgayDangKy, SoLuong) 
             VALUES ('$ID_KhachHang', '$ID_GoiDichVu', '$ID_TTNVBH', '$NgayDangKy', '$SoLuong')";
 
     if ($conn->query($sql) === TRUE) {
-        $message = "Thêm thông tin bán hàng thành công.";
+        // Lấy ID_ThongTinBanHang vừa thêm
+        $ID_ThongTinBanHang = $conn->insert_id;
+
+        // Thêm thông tin vào bảng DoanhThu
+        $sqlInsertDoanhThu = "INSERT INTO DoanhThu (ID_ThongTinBanHang, ThoiGian, SoTien) 
+                            VALUES ('$ID_ThongTinBanHang', '$NgayDangKy', '$SoTien')";
+        if ($conn->query($sqlInsertDoanhThu) === TRUE) {
+            $message = "Thêm thông tin bán hàng thành công.";
+        } else {
+            $message = "Lỗi khi thêm thông tin vào bảng DoanhThu: " . $conn->error;
+        }
     } else {
-        $message = "Lỗi: " . $sql . "<br>" . $conn->error;
+        $message = "Lỗi khi thêm thông tin vào bảng ThongTinBanHang: " . $conn->error;
     }
 
     $conn->close();
@@ -38,7 +57,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -55,92 +73,89 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     </script>
 </head>
-
 <body onload="handleSuccess('<?php echo $message; ?>')">
-    <div class="container">
-        <h2 class="mt-5">Thêm Thông Tin Bán Hàng</h2>
-        <form action="them_thong_tin_ban_hang.php" method="post">
-            <div class="form-group">
-                <label for="khachHang">Khách Hàng</label>
-                <select class="form-control" id="khachHang" name="ID_KhachHang" required>
-                    <?php
-                    // Kết nối cơ sở dữ liệu
-                    $conn = new mysqli('localhost', 'root', '', 'Congtyvienthong');
-                    if ($conn->connect_error) {
-                        die("Kết nối thất bại: " . $conn->connect_error);
+<div class="container">
+    <h2 class="mt-5">Thêm Thông Tin Bán Hàng</h2>
+    <form action="them_thong_tin_ban_hang.php" method="post">
+        <div class="form-group">
+            <label for="khachHang">Khách Hàng</label>
+            <select class="form-control" id="khachHang" name="ID_KhachHang" required>
+                <?php
+                // Kết nối cơ sở dữ liệu
+                $conn = new mysqli('localhost', 'root', '', 'Congtyvienthong');
+                if ($conn->connect_error) {
+                    die("Kết nối thất bại: " . $conn->connect_error);
+                }
+                $sql = "SELECT ID_KhachHang, Ten FROM KhachHang";
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<option value='" . $row['ID_KhachHang'] . "'>" . htmlspecialchars($row['Ten']) . "</option>";
                     }
-                    $sql = "SELECT ID_KhachHang, Ten FROM KhachHang";
-                    $result = $conn->query($sql);
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            echo "<option value='" . $row['ID_KhachHang'] . "'>" . htmlspecialchars($row['Ten']) . "</option>";
-                        }
-                    } else {
-                        echo "<option>Không có khách hàng</option>";
+                } else {
+                    echo "<option></option>";
+                }
+                $conn->close();
+                ?>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="goiDichVu">Gói Dịch Vụ</label>
+            <select class="form-control" id="goiDichVu" name="ID_GoiDichVu" required>
+                <?php
+                // Kết nối cơ sở dữ liệu
+                $conn = new mysqli('localhost', 'root', '', 'Congtyvienthong');
+                if ($conn->connect_error) {
+                    die("Kết nối thất bại: " . $conn->connect_error);
+                }
+                $sql = "SELECT ID_GoiDichVu, TenGoiDichVu FROM GoiDichVu";
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<option value='" . $row['ID_GoiDichVu'] . "'>" . htmlspecialchars($row['TenGoiDichVu']) . "</option>";
                     }
-                    $conn->close();
-                    ?>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="goiDichVu">Gói Dịch Vụ</label>
-                <select class="form-control" id="goiDichVu" name="ID_GoiDichVu" required>
-                    <?php
-                    // Kết nối cơ sở dữ liệu
-                    $conn = new mysqli('localhost', 'root', '', 'Congtyvienthong');
-                    if ($conn->connect_error) {
-                        die("Kết nối thất bại: " . $conn->connect_error);
+                } else {
+                    echo "<option></option>";
+                }
+                $conn->close();
+                ?>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="nhanVienBanHang">Nhân Viên Bán Hàng</label>
+            <select class="form-control" id="nhanVienBanHang" name="ID_TTNVBH" required>
+                <?php
+                // Kết nối cơ sở dữ liệu
+                $conn = new mysqli('localhost', 'root', '', 'Congtyvienthong');
+                if ($conn->connect_error) {
+                    die("Kết nối thất bại: " . $conn->connect_error);
+                }
+                $sql = "SELECT ID_TTNVBH, TenNhanVien FROM TTNhanVienBanHang";
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<option value='" . $row['ID_TTNVBH'] . "'>" . htmlspecialchars($row['TenNhanVien']) . "</option>";
                     }
-                    $sql = "SELECT ID_GoiDichVu, TenGoiDichVu FROM GoiDichVu";
-                    $result = $conn->query($sql);
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            echo "<option value='" . $row['ID_GoiDichVu'] . "'>" . htmlspecialchars($row['TenGoiDichVu']) . "</option>";
-                        }
-                    } else {
-                        echo "<option>Không có gói dịch vụ</option>";
-                    }
-                    $conn->close();
-                    ?>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="nhanVienBanHang">Nhân Viên Bán Hàng</label>
-                <select class="form-control" id="nhanVienBanHang" name="ID_TTNVBH" required>
-                    <?php
-                    // Kết nối cơ sở dữ liệu
-                    $conn = new mysqli('localhost', 'root', '', 'Congtyvienthong');
-                    if ($conn->connect_error) {
-                        die("Kết nối thất bại: " . $conn->connect_error);
-                    }
-                    $sql = "SELECT ID_TTNVBH, TenNhanVien FROM TTNhanVienBanHang";
-                    $result = $conn->query($sql);
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            echo "<option value='" . $row['ID_TTNVBH'] . "'>" . htmlspecialchars($row['TenNhanVien']) . "</option>";
-                        }
-                    } else {
-                        echo "<option>Không có nhân viên bán hàng</option>";
-                    }
-                    $conn->close();
-                    ?>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="soLuong">Số Lượng</label>
-                <input type="number" class="form-control" id="soLuong" name="SoLuong" required>
-            </div>
-            <div class="form-group">
-                <label for="ngayDangKy">Ngày Đăng Ký</label>
-                <input type="date" class="form-control" id="ngayDangKy" name="NgayDangKy" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Thêm Thông Tin Bán Hàng</button>
-            <a href="dangxuatNV.php" class="btn btn-primary">LOGOUT</a>
-        </form>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                } else {
+                    echo "<option></option>";
+                }
+                $conn->close();
+                ?>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="soLuong">Số Lượng</label>
+            <input type="number" class="form-control" id="soLuong" name="SoLuong" required min="1">
+        </div>
+        <div class="form-group">
+            <label for="ngayDangKy">Ngày Đăng Ký</label>
+            <input type="date" class="form-control" id="ngayDangKy" name="NgayDangKy" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Thêm Thông Tin Bán Hàng</button>
+    </form>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-
 </html>
