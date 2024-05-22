@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($password == $row['Password']) {
             // Lưu thông tin nhân viên vào session
             $_SESSION['ID_KhachHang'] = $row['ID_KhachHang'];
-            header("Location: dangkiDV_KH.php");
+            header("Location: khachhang.php");
             exit();
         } else {
             $error = "Tên đăng nhập hoặc mật khẩu không đúng.";
