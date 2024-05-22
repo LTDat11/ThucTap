@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['ID_KhachHang'])) {
-    header("Location: dangnhap_khachhang.php"); // Redirect đến trang đăng nhập nếu chưa đăng nhập
+    header("Location: dangnhap.php"); // Redirect đến trang đăng nhập nếu chưa đăng nhập
     exit();
 }
 
@@ -40,7 +40,7 @@ $conn->close();
 ?>
 
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -51,48 +51,43 @@ $conn->close();
 </head>
 
 <body>
-    <div class="container">
-        <h2 class="mt-5">Danh Sách Dịch Vụ Bạn Đăng Kí</h2>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Tên Dịch Vụ</th>
-                    <th>Tên Gói Dịch Vụ</th>
-                    <th>Tốc Độ</th>
-                    <th>Giá Tiền</th>
-                    <th>Mô Tả</th>
-                    <th>Ngày Đăng Kí</th>
-                    <th>Số Lượng</th>
+    <div class="container"> -->
+<?php include 'menu_kh.php'; ?>
+<h2 class="mt-3">Danh Sách Dịch Vụ Bạn Đăng Kí</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Tên Dịch Vụ</th>
+            <th>Tên Gói Dịch Vụ</th>
+            <th>Tốc Độ</th>
+            <th>Giá Tiền</th>
+            <th>Mô Tả</th>
+            <th>Ngày Đăng Kí</th>
+            <th>Số Lượng</th>
 
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>" . htmlspecialchars($row['TenDichVu']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['TocDo']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['GiaTien']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['MoTa']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['NgayDangKy']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['SoLuong']) . "</td>";
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . htmlspecialchars($row['TenDichVu']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['TocDo']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['GiaTien']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['MoTa']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['NgayDangKy']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['SoLuong']) . "</td>";
 
-                        echo "</tr>";
-                    }
-                } else {
-                    echo "<tr><td colspan='7' class='text-center'>Không có dữ liệu</td></tr>";
-                }
-                ?>
-            </tbody>
-        </table>
+                echo "</tr>";
+            }
+        } else {
+            echo "<tr><td colspan='7' class='text-center'>Không có dữ liệu</td></tr>";
+        }
+        ?>
+    </tbody>
+</table>
 
 
-    </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-
-</html>
+<?php include 'footer.php'; ?>

@@ -1,7 +1,7 @@
 <?php
 // Kiểm tra nếu nhân viên đã đăng nhập
 if (!isset($_SESSION['ID_NhanVien'])) {
-    header("Location: dang_nhap_nv.php"); // Redirect đến trang đăng nhập nếu chưa đăng nhập
+    header("Location: ../dangnhap_NV.php"); // Redirect đến trang đăng nhập nếu chưa đăng nhập
     exit();
 }
 
@@ -51,38 +51,39 @@ $conn->close();
             <ul class="navbar-nav">
                 <!-- Dropdown Menu Danh Sach -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="danh_sach_thong_tin_khach_hang.php" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="../danhsach/danh_sach_thong_tin_khach_hang.php" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Danh Sách
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="danh_sach_thong_tin_khach_hang.php">Thông Tin Khách Hàng</a>
-                        <a class="dropdown-item" href="danh_sach_thong_tin_dich_vu.php">Thông Tin Dịch Vụ</a>
-                        <a class="dropdown-item" href="danh_sach_thong_tin_nhan_vien_ban_hang.php">Thông Tin Nhân
+                        <a class="dropdown-item" href="../danhsach/danh_sach_thong_tin_khach_hang.php">Thông Tin Khách Hàng</a>
+                        <a class="dropdown-item" href="../danhsach/danh_sach_thong_tin_dich_vu.php">Thông Tin Dịch Vụ</a>
+                        <a class="dropdown-item" href="../danhsach/danh_sach_thong_tin_nhan_vien_ban_hang.php">Thông Tin Nhân
                             Viên</a>
-                        <a class="dropdown-item" href="danh_sach_thong_tin_ban_hang.php">Thông Tin Bán Hàng</a>
+                        <a class="dropdown-item" href="../danhsach/danh_sach_thong_tin_ban_hang.php">Thông Tin Bán Hàng</a>
                         <!-- Thêm các mục khác nếu cần -->
                     </div>
                 </li>
                 <!-- Dropdown Menu Top 10 -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="top10_nvbh.php" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="../top10/top10_nvbh.php" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Top 10
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="top10_nvbh.php">Nhân Viên Bán Hàng Nhiều</a>
-                        <a class="dropdown-item" href="top10kh_dvMax.php">Khách Hàng Sử Dụng Nhiều Dịch Vụ</a>
+                        <a class="dropdown-item" href="../top10/top10_nvbh.php">Nhân Viên Bán Hàng Nhiều</a>
+                        <a class="dropdown-item" href="../top10/top10kh_dvMax.php">Khách Hàng Sử Dụng Nhiều Dịch Vụ</a>
+                        <a class="dropdown-item" href="../top10/dich_vu_dang_ky_nhieu.php">Dịch Vụ Được Đăng Ký Nhiều</a>
                         <!-- Thêm các mục khác nếu cần -->
                     </div>
                 </li>
                 <!-- Other Menu Items -->
                 <li class="nav-item">
-                    <a class="nav-link" href="doanh_thu.php">Doanh Thu</a>
+                    <a class="nav-link" href="../danhsach/doanh_thu.php">Doanh Thu</a>
                 </li>
 
             </ul>
         </div>
         <span class="navbar-text">
-            Xin chào <?php echo $tenNhanVien; ?> | <a href="dang_xuat_nv.php">Đăng Xuất</a>
+            Xin chào <?php echo $tenNhanVien; ?> | <a href="../dang_xuat_nv.php">Đăng Xuất</a>
         </span>
     </nav>
     <div class="container mt-3">

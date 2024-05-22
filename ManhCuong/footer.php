@@ -7,14 +7,14 @@
     function confirmDelete_ttnv(id) {
         var confirmed = confirm("Bạn có chắc chắn muốn xóa nhân viên này?");
         if (confirmed) {
-            window.location.href = 'xoa_thong_tin_nhan_vien.php?id=' + id;
+            window.location.href = '../xoa/xoa_thong_tin_nhan_vien.php?id=' + id;
         }
     }
 
     function confirmDelete_dv(id) {
         var confirmed = confirm("Bạn có chắc chắn muốn xóa dịch vụ này?");
         if (confirmed) {
-            window.location.href = 'xoa_dich_vu.php?id=' + id;
+            window.location.href = '../xoa/xoa_dich_vu.php?id=' + id;
         }
     }
 </script>
