@@ -243,6 +243,38 @@ textarea {
     color: #0b72b9; /* Màu Google khi active */
 }
 
+.customer-account {
+    display: inline-block;
+display: inline-block;
+    background-color: #d3d4e7;
+    color: #381f1b;
+    padding: 10px 20px;
+    border-radius: 60px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.customer-account:hover {
+    background-color: #a3a6d2; /* Hover background color */
+    color: #fff; /* Hover text color */
+}
+
+employee-account{
+    background-color: #d3d4e7;
+    color: #381f1b;
+    padding: 10px 20px;
+    border-radius: 60px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.employee-account:hover {
+    background-color: #a3a6d2; /* Hover background color */
+    color: #fff; /* Hover text color */
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
     .signin-content {
