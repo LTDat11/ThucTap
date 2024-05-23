@@ -62,6 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thêm Thông Tin Bán Hàng</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script>
         function handleSuccess(message) {
             if (message) {
@@ -79,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <form action="../them/them_thong_tin_ban_hang.php" method="post">
         <div class="form-group">
             <label for="khachHang">Khách Hàng</label>
-            <select class="form-control" id="khachHang" name="ID_KhachHang" required>
+            <select class="form-control select2" id="khachHang" name="ID_KhachHang" required>
                 <?php
                 // Kết nối cơ sở dữ liệu
                 $conn = new mysqli('localhost', 'root', '', 'Congtyvienthong');
@@ -121,9 +122,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 ?>
             </select>
         </div>
+        <div class="form-group row">
+            <div class="col-sm-6">
+                <label for="soLuong">Số Lượng</label>
+                <input type="number" class="form-control" id="soLuong" name="SoLuong" required min="1">
+            </div>
+            <div class="col-sm-6">
+                <label for="ngayDangKy">Ngày Đăng Ký</label>
+                <input type="date" class="form-control" id="ngayDangKy" name="NgayDangKy" required>
+            </div>
+        </div>
         <div class="form-group">
             <label for="nhanVienBanHang">Nhân Viên Bán Hàng</label>
-            <select class="form-control" id="nhanVienBanHang" name="ID_TTNVBH" required>
+            <select class="form-control select2" id="nhanVienBanHang" name="ID_TTNVBH" required>
                 <?php
                 // Kết nối cơ sở dữ liệu
                 $conn = new mysqli('localhost', 'root', '', 'Congtyvienthong');
@@ -137,24 +148,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         echo "<option value='" . $row['ID_TTNVBH'] . "'>" . htmlspecialchars($row['TenNhanVien']) . "</option>";
                     }
                 } else {
-                    echo "<option></option>";
+                    echo "<option></ption>";
                 }
                 $conn->close();
                 ?>
             </select>
         </div>
-        <div class="form-group">
-            <label for="soLuong">Số Lượng</label>
-            <input type="number" class="form-control" id="soLuong" name="SoLuong" required min="1">
-        </div>
-        <div class="form-group">
-            <label for="ngayDangKy">Ngày Đăng Ký</label>
-            <input type="date" class="form-control" id="ngayDangKy" name="NgayDangKy" required>
-        </div>
         <button type="submit" class="btn btn-primary">Thêm Thông Tin Bán Hàng</button>
     </form>
 </div>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.select2').select2();
+    });
+</script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
