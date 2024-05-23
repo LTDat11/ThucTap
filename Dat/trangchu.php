@@ -44,7 +44,7 @@
       <div class="logo">
         <!-- Uncomment below if you prefer to use an text logo -->
         <!-- <h1><a href="index.html">NewBiz</a></h1> -->
-        <a href="index.html"><img src="assets/img/logovnpt.png" alt="" class="img-fluid"></a>
+        <a href="trangchu.php"><img src="assets/img/logovnpt.png" alt="" class="img-fluid"></a>
       </div>
 
       <nav id="navbar" class="navbar">
@@ -310,155 +310,93 @@
 
     <!-- ======= Portfolio Section ======= -->
     <section id="portfolio" class="clearfix">
-      <div class="container" data-aos="fade-up">
+  <div class="container" data-aos="fade-up">
 
-        <header class="section-header">
-          <h3 class="section-title">Dự Án Của Chúng Tôi</h3>
-        </header>
+    <header class="section-header">
+      <h3 class="section-title">Những Gói Cước Dịch Vụ Của Chúng Tôi</h3>
+    </header>
 
-        <div class="row" data-aos="fade-up" data-aos-delay="100">
-          <div class="col-lg-12">
-            <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active">Tất Cả</li>
-              <li data-filter=".filter-app">Ứng Dụng</li>
-              <li data-filter=".filter-card">Thẻ</li>
-              <li data-filter=".filter-web">Web</li>
-            </ul>
-          </div>
-        </div>
+    <div class="row" data-aos="fade-up" data-aos-delay="100">
+      <div class="col-lg-12">
+        <ul id="portfolio-flters">
+          <li data-filter="*" class="filter-active">Tất Cả</li>
+          <?php
+          // Connect to the database
+          $servername = "localhost";
+          $username = "root";
+          $password = "";
+          $dbname = "Congtyvienthong";
 
-        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+          $conn = new mysqli($servername, $username, $password, $dbname);
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+          // Check connection
+          if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+          }
+
+          // Query the database to get the service names
+          $sql = "SELECT * FROM dichvu";
+          $result = $conn->query($sql);
+
+          // Check if there are any results
+          if ($result->num_rows > 0) {
+            // Output each service name as a list item
+            while ($row = $result->fetch_assoc()) {
+              echo '<li data-filter=".filter-' . $row["ID_DichVu"] . '">' . $row["TenDichVu"] . '</li>';
+            }
+          } else {
+            echo "No services found.";
+          }
+          ?>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+      <?php
+      // Query the database to get the service package details
+      $sql = "SELECT goidichvu.ID_GoiDichVu, goidichvu.TenGoiDichVu, goidichvu.MoTa, goidichvu.TocDo, goidichvu.GiaTien, dichvu.TenDichVu, dichvu.ID_DichVu
+              FROM goidichvu
+              JOIN dichvu ON goidichvu.ID_DichVu = dichvu.ID_DichVu";
+      $result = $conn->query($sql);
+
+      // Check if there are any results
+      if ($result->num_rows > 0) {
+        // Output each service package
+        while ($row = $result->fetch_assoc()) {
+          echo '
+          <div class="col-lg-4 col-md-6 portfolio-item filter-' . $row["ID_DichVu"] . '">
             <div class="portfolio-wrap">
               <img src="assets/img/portfolio/app1.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
-                <h4><a href="portfolio-details.html">Ứng Dụng 1</a></h4>
-                <p>Ứng Dụng</p>
+                <h4><a href="portfolio-details.php?id=' . $row["ID_GoiDichVu"] . '">' . $row["TenGoiDichVu"] . '</a></h4>
+                <p>' . $row["MoTa"] . '</p>';
+          if (!is_null($row["TocDo"])) {
+            echo '<p>Tốc độ: ' . $row["TocDo"] . '</p>';
+          }
+          echo '
+                <p>Giá tiền: ' . $row["GiaTien"] . ' VND</p>
                 <div>
-                  <a href="assets/img/portfolio/app1.jpg" data-gallery="portfolioGallery" title="Ứng Dụng 1" class="portfolio-lightbox link-preview"><i class="bi bi-plus"></i></a>
-                  <a href="portfolio-details.html" class="link-details" title="Chi Tiết"><i class="bi bi-link"></i></a>
+                  <a href="assets/img/portfolio/app2.jpg" data-gallery="portfolioGallery" title="' . $row["TenGoiDichVu"] . '" class="portfolio-lightbox link-preview"><i class="bi bi-plus"></i></a>
+                  <a href="portfolio-details.php?id=' . $row["ID_GoiDichVu"] . '" class="link-details" title="Chi Tiết"><i class="bi bi-link"></i></a>
                 </div>
               </div>
             </div>
-          </div>
+          </div>';
+        }
+      } else {
+        echo "No service packages found.";
+      }
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/web3.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.html">Web 3</a></h4>
-                <p>Web</p>
-                <div>
-                  <a href="assets/img/portfolio/web3.jpg" class="portfolio-lightbox link-preview" data-gallery="portfolioGallery" title="Web 3"><i class="bi bi-plus"></i></a>
-                  <a href="portfolio-details.html" class="link-details" title="Chi Tiết"><i class="bi bi-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
+      // Close the database connection
+      $conn->close();
+      ?>
+    </div>
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/app2.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.html">Ứng Dụng 2</a></h4>
-                <p>Ứng Dụng</p>
-                <div>
-                  <a href="assets/img/portfolio/app2.jpg" class="portfolio-lightbox link-preview" data-gallery="portfolioGallery" title="Ứng Dụng 2"><i class="bi bi-plus"></i></a>
-                  <a href="portfolio-details.html" class="link-details" title="Chi Tiết"><i class="bi bi-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
+  </div>
+</section>
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/card2.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.html">Thẻ 2</a></h4>
-                <p>Thẻ</p>
-                <div>
-                  <a href="assets/img/portfolio/card2.jpg" class="portfolio-lightbox link-preview" data-gallery="portfolioGallery" title="Thẻ 2"><i class="bi bi-plus"></i></a>
-                  <a href="portfolio-details.html" class="link-details" title="Chi Tiết"><i class="bi bi-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/web2.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.html">Web 2</a></h4>
-                <p>Web</p>
-                <div>
-                  <a href="assets/img/portfolio/web2.jpg" class="portfolio-lightbox link-preview" data-gallery="portfolioGallery" title="Web 2"><i class="bi bi-plus"></i></a>
-                  <a href="portfolio-details.html" class="link-details" title="Chi Tiết"><i class="bi bi-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/app3.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.html">Ứng Dụng 3</a></h4>
-                <p>Ứng Dụng</p>
-                <div>
-                  <a href="assets/img/portfolio/app3.jpg" class="portfolio-lightbox link-preview" data-gallery="portfolioGallery" title="Ứng Dụng 3"><i class="bi bi-plus"></i></a>
-                  <a href="portfolio-details.html" class="link-details" title="Chi Tiết"><i class="bi bi-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/card1.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.html">Thẻ 1</a></h4>
-                <p>Thẻ</p>
-                <div>
-                  <a href="assets/img/portfolio/card1.jpg" class="portfolio-lightbox link-preview" data-gallery="portfolioGallery" title="Thẻ 1"><i class="bi bi-plus"></i></a>
-                  <a href="portfolio-details.html" class="link-details" title="Chi Tiết"><i class="bi bi-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/card3.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.html">Thẻ 3</a></h4>
-                <p>Thẻ</p>
-                <div>
-                  <a href="assets/img/portfolio/card3.jpg" class="portfolio-lightbox link-preview" data-gallery="portfolioGallery" title="Thẻ 3"><i class="bi bi-plus"></i></a>
-                  <a href="portfolio-details.html" class="link-details" title="Chi Tiết"><i class="bi bi-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/web1.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.html">Web 1</a></h4>
-                <p>Web</p>
-                <div>
-                  <a href="assets/img/portfolio/web1.jpg" class="portfolio-lightbox link-preview" data-gallery="portfolioGallery" title="Web 1"><i class="bi bi-plus"></i></a>
-                  <a href="portfolio-details.html" class="link-details" title="Chi Tiết"><i class="bi bi-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
     <!-- End Portfolio Section -->
 
 
