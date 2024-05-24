@@ -52,7 +52,7 @@
           <li><a class="nav-link scrollto active" href="#hero">Trang Chủ</a></li>
           <li><a class="nav-link scrollto" href="#about">Về Chúng Tôi</a></li>
           <li><a class="nav-link scrollto" href="#services">Dịch Vụ</a></li>
-          <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
+          <li><a class="nav-link scrollto " href="#portfolio">Gói Cước</a></li>
           <li><a class="nav-link scrollto" href="#team">Đội Ngũ</a></li>
           <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
@@ -785,11 +785,10 @@
             </p>
 
             <div class="social-links">
-              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+              <a href="https://www.youtube.com/@VNPTchannel" class="youtube"><i class="bi bi-youtube"></i></a>
+              <a href="https://www.facebook.com/vnptgroupofficial" class="facebook"><i class="bi bi-facebook"></i></a>
+              <a href="https://www.instagram.com/vnptvinaphone.official/" class="instagram"><i class="bi bi-instagram"></i></a>
+              <a href="https://www.linkedin.com/company/vnpt" class="linkedin"><i class="bi bi-linkedin"></i></a>
             </div>
 
           </div>
