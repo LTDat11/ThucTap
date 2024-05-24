@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sqlInsertDoanhThu = "INSERT INTO DoanhThu (ID_ThongTinBanHang, ThoiGian, SoTien) 
                             VALUES ('$ID_ThongTinBanHang', '$NgayDangKy', '$SoTien')";
         if ($conn->query($sqlInsertDoanhThu) === TRUE) {
-            echo "<script>alert('Thêm thông tin bán hàng thành công.');</script>";
+            $message = "Thêm thông tin bán hàng thành công.";
         } else {
             $message = "Lỗi khi thêm thông tin vào bảng DoanhThu: " . $conn->error;
         }
@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -74,9 +74,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     </script>
 </head>
-<body> -->
+<body onload="handleSuccess('<?php echo $message; ?>')">
 <?php include '../menu.php'; ?>
-<div class="container" onload="handleSuccess('<?php echo $message; ?>')">
+<div class="container">
     <h2 class="mt-5">Thêm Thông Tin Bán Hàng</h2>
     <form action="../them/them_thong_tin_ban_hang.php" method="post">
         <div class="form-group">
@@ -159,7 +159,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </form>
 </div>
 <?php include '../footer.php'; ?>
-<!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
     $(document).ready(function() {
@@ -169,5 +169,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-
-</html> -->
+</html>
