@@ -37,47 +37,49 @@ $conn->close();
 <body>
 <div class="container"> -->
 <?php include '../menu.php'; ?>
-<h2 class="mt-3">Danh Sách Thông Tin Khách Hàng</h2>
-<form action="" method="GET" class="mb-3">
-    <div class="form-row">
-        <div class="col">
-            <input type="text" class="form-control" placeholder="Tìm kiếm..." name="search_query">
+<div class="container">
+    <h2 class="mt-3">Danh Sách Thông Tin Khách Hàng</h2>
+    <form action="" method="GET" class="mb-3">
+        <div class="form-row">
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Tìm kiếm..." name="search_query">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary">Tìm Kiếm</button>
+            </div>
         </div>
-        <div class="col-auto">
-            <button type="submit" class="btn btn-primary">Tìm Kiếm</button>
-        </div>
-    </div>
-</form>
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Tên Khách Hàng</th>
-            <th>Số Điện Thoại</th>
-            <th>Địa Chỉ</th>
-            <th>Lựa Chọn</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo "<tr>";
-                echo "<td>" . htmlspecialchars($row['Ten']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['SoDienThoai']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['DiaChi']) . "</td>";
-                echo "<td>
+    </form>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Tên Khách Hàng</th>
+                <th>Số Điện Thoại</th>
+                <th>Địa Chỉ</th>
+                <th>Lựa Chọn</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . htmlspecialchars($row['Ten']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['SoDienThoai']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['DiaChi']) . "</td>";
+                    echo "<td>
                         <a href='../chitiet/chi_tiet2.php?id=" . $row['ID_KhachHang'] . "' class='btn btn-info'>Xem Chi Tiết</a>
                         <a href='../sua/sua_thong_tin_khach_hang.php?id=" . $row['ID_KhachHang'] . "' class='btn btn-warning'>Sửa</a>
                     </td>";
-                echo "</tr>";
+                    echo "</tr>";
+                }
+            } else {
+                echo "<tr><td colspan='7' class='text-center'>Không có dữ liệu</td></tr>";
             }
-        } else {
-            echo "<tr><td colspan='7' class='text-center'>Không có dữ liệu</td></tr>";
-        }
-        ?>
-    </tbody>
-</table>
-<a href="../xuat/xuat_excel_DS_thong_tin_khach_hang.php" class="btn btn-success mb-3">Xuất Excel</a>
+            ?>
+        </tbody>
+    </table>
+    <a href="../xuat/xuat_excel_DS_thong_tin_khach_hang.php" class="btn btn-success mb-3">Xuất Excel</a>
+</div>
 <?php include '../footer.php'; ?>
 <!-- <a href="them_thong_tin_ban_hang.php" class="btn btn-primary">Thêm Thông Tin Bán Hàng Mới</a> -->
 <!-- </div>

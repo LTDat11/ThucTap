@@ -45,51 +45,53 @@ $conn->close();
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body>
-    <div class="container"> -->
+<body>-->
+
 <?php include '../menu.php'; ?>
-<h2 class="mt-3">Top 10 Nhân Viên</h2>
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Tên Nhân viên bán hàng</th>
-            <th>Số Điện Thoại</th>
-            <th>Địa Chỉ</th>
-            <th>Tổng số dịch vụ bán được</th>
-            <th>Tùy Chọn</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        if ($result->num_rows > 0) {
-            $tenNhanVien = [];
-            $soLuongDichVu = [];
-            while ($row = $result->fetch_assoc()) {
-                echo "<tr>";
-                echo "<td>" . htmlspecialchars($row['TenNhanVien']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['SoDienThoai']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['DiaChi']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['TongSoLuongDichVuBanDuoc']) . "</td>";
-                echo "<td><a href='../chitiet/chi_tiet_nvbh.php?id=" . $row['ID_TTNVBH'] . "' class='btn btn-info'>Xem Chi Tiết</a></td>";
-                echo "</tr>";
+<div class="container">
+    <h2 class="mt-3">Top 10 Nhân Viên</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Tên Nhân viên bán hàng</th>
+                <th>Số Điện Thoại</th>
+                <th>Địa Chỉ</th>
+                <th>Tổng số dịch vụ bán được</th>
+                <th>Tùy Chọn</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            if ($result->num_rows > 0) {
+                $tenNhanVien = [];
+                $soLuongDichVu = [];
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . htmlspecialchars($row['TenNhanVien']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['SoDienThoai']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['DiaChi']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['TongSoLuongDichVuBanDuoc']) . "</td>";
+                    echo "<td><a href='../chitiet/chi_tiet_nvbh.php?id=" . $row['ID_TTNVBH'] . "' class='btn btn-info'>Xem Chi Tiết</a></td>";
+                    echo "</tr>";
 
-                // Thêm dữ liệu vào mảng
-                $tenNhanVien[] = $row['TenNhanVien'];
-                $soLuongDichVu[] = $row['TongSoLuongDichVuBanDuoc'];
+                    // Thêm dữ liệu vào mảng
+                    $tenNhanVien[] = $row['TenNhanVien'];
+                    $soLuongDichVu[] = $row['TongSoLuongDichVuBanDuoc'];
+                }
+            } else {
+                echo "<tr><td colspan='5' class='text-center'>Không có dữ liệu</td></tr>";
             }
-        } else {
-            echo "<tr><td colspan='5' class='text-center'>Không có dữ liệu</td></tr>";
-        }
-        ?>
-    </tbody>
-</table>
-<a href="../xuat/xuat_excel_top10_nvbh_nhieu.php" class="btn btn-success">Xuất Excel</a>
-<!-- <a href="them_thong_tin_ban_hang.php" class="btn btn-primary">Thêm Thông Tin Bán Hàng Mới</a> -->
+            ?>
+        </tbody>
+    </table>
+    <a href="../xuat/xuat_excel_top10_nvbh_nhieu.php" class="btn btn-success">Xuất Excel</a>
+    <!-- <a href="them_thong_tin_ban_hang.php" class="btn btn-primary">Thêm Thông Tin Bán Hàng Mới</a> -->
 
-<!-- Biểu đồ -->
-<div class="mt-5">
-    <h2 class="mt-5">Biểu đồ TOP 10 Nhân Viên Bán Hàng Nhiều Nhất</h2>
-    <canvas id="myChart_nvbh" class="mb-3"></canvas>
+    <!-- Biểu đồ -->
+    <div class="mt-5">
+        <h2 class="mt-5">Biểu đồ TOP 10 Nhân Viên Bán Hàng Nhiều Nhất</h2>
+        <canvas id="myChart_nvbh" class="mb-3"></canvas>
+    </div>
 </div>
 <?php include '../footer.php'; ?>
 <!-- </div>

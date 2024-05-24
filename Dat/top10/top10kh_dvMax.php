@@ -55,49 +55,51 @@ $conn->close();
 <body>
     <div class="container"> -->
 <?php include '../menu.php'; ?>
-<h2 class="mt-3">Danh Sách Top 10 Khách Hàng Sử Dụng Nhiều Dịch Vụ Nhất</h2>
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Tên Khách Hàng</th>
-            <th>Số Điện Thoại</th>
-            <th>Địa Chỉ</th>
-            <th>Số Dịch Vụ Sử Dụng</th>
-            <th>Tùy Chọn</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        if ($result->num_rows > 0) {
-            $tenKhachHang = [];
-            $soLuongDichVu = [];
-            while ($row = $result->fetch_assoc()) {
-                echo "<tr>";
-                echo "<td>" . htmlspecialchars($row['Ten']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['SoDienThoai']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['DiaChi']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['SoLuongLoaiDichVu']) . "</td>";
-                echo "<td>
+<div class="container">
+    <h2 class="mt-3">Danh Sách Top 10 Khách Hàng Sử Dụng Nhiều Dịch Vụ Nhất</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Tên Khách Hàng</th>
+                <th>Số Điện Thoại</th>
+                <th>Địa Chỉ</th>
+                <th>Số Dịch Vụ Sử Dụng</th>
+                <th>Tùy Chọn</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            if ($result->num_rows > 0) {
+                $tenKhachHang = [];
+                $soLuongDichVu = [];
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . htmlspecialchars($row['Ten']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['SoDienThoai']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['DiaChi']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['SoLuongLoaiDichVu']) . "</td>";
+                    echo "<td>
                         <a href='../chitiet/chi_tiet.php?id=" . $row['ID_KhachHang'] . "' class='btn btn-info'>Xem Chi Tiết</a>
                         </td>";
-                echo "</tr>";
+                    echo "</tr>";
 
-                // Thêm dữ liệu vào mảng
-                $tenKhachHang[] = $row['Ten'];
-                $soLuongDichVu[] = $row['SoLuongLoaiDichVu'];
+                    // Thêm dữ liệu vào mảng
+                    $tenKhachHang[] = $row['Ten'];
+                    $soLuongDichVu[] = $row['SoLuongLoaiDichVu'];
+                }
+            } else {
+                echo "<tr><td colspan='5' class='text-center'>Không có dữ liệu</td></tr>";
             }
-        } else {
-            echo "<tr><td colspan='5' class='text-center'>Không có dữ liệu</td></tr>";
-        }
-        ?>
-    </tbody>
-</table>
-<a href="../xuat/xuat_excel_top10_khach_hang_dung_nhieu_dv.php" class="btn btn-success">Xuất Excel</a>
+            ?>
+        </tbody>
+    </table>
+    <a href="../xuat/xuat_excel_top10_khach_hang_dung_nhieu_dv.php" class="btn btn-success">Xuất Excel</a>
 
-<!-- Biểu đồ -->
-<div class="mt-5">
-    <h2 class="mt-5">Biểu đồ Top 10 Khách Hàng Sử Dụng Nhiều Dịch Vụ Nhất</h2>
-    <canvas id="myChart_kh_dv_max" class="mb-3"></canvas>
+    <!-- Biểu đồ -->
+    <div class="mt-5">
+        <h2 class="mt-5">Biểu đồ Top 10 Khách Hàng Sử Dụng Nhiều Dịch Vụ Nhất</h2>
+        <canvas id="myChart_kh_dv_max" class="mb-3"></canvas>
+    </div>
 </div>
 <?php include '../footer.php'; ?>
 <!-- </div>

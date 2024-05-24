@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 $conn->close();
 ?>
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -85,53 +85,55 @@ $conn->close();
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 
-<body>
-    <div class="container">
-        <h2 class="mt-5">Sửa Thông Tin Bán Hàng</h2>
-        <form action="../sua/sua_thong_tin_ban_hang.php?id=<?php echo htmlspecialchars($id); ?>" method="post">
-            <div class="form-group">
-                <label for="ID_TTNVBH">Nhân viên bán hàng</label>
-                <select class="form-control select2" id="ID_TTNVBH" name="ID_TTNVBH" required>
-                    <?php while ($row = $resultNhanVien->fetch_assoc()): ?>
-                            <option value="<?php echo $row['ID_NhanVien']; ?>" <?php if ($row['ID_NhanVien'] == $thongTinBanHang['ID_TTNVBH'])
-                                   echo 'selected'; ?>><?php echo $row['TenNhanVien']; ?></option>
-                    <?php endwhile; ?>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="ID_KhachHang">Khách hàng</label>
-                <select class="form-control select2" id="ID_KhachHang" name="ID_KhachHang" required>
-                    <?php while ($row = $resultKhachHang->fetch_assoc()): ?>
-                            <option value="<?php echo $row['ID_KhachHang']; ?>" <?php if ($row['ID_KhachHang'] == $thongTinBanHang['ID_KhachHang'])
-                                   echo 'selected'; ?>><?php echo $row['Ten']; ?></option>
-                    <?php endwhile; ?>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="ID_GoiDichVu">Gói dịch vụ</label>
-                <select class="form-control" id="ID_GoiDichVu" name="ID_GoiDichVu" required>
-                    <?php while ($row = $resultGoiDichVu->fetch_assoc()): ?>
-                            <option value="<?php echo $row['ID_GoiDichVu']; ?>" <?php if ($row['ID_GoiDichVu'] == $thongTinBanHang['ID_GoiDichVu'])
-                                   echo 'selected'; ?>><?php echo $row['TenGoiDichVu']; ?></option>
-                    <?php endwhile; ?>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="NgayBan">Ngày Bán</label>
-                <input type="date" class="form-control" id="NgayBan" name="NgayBan" value="<?php echo htmlspecialchars($thongTinBanHang['NgayDangKy']); ?>" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Cập Nhật</button>
-            <a href="../danhsach/danh_sach_thong_tin_ban_hang.php" class="btn btn-secondary">Quay Lại</a>
-        </form>
-    </div>
+<body> -->
+<?php include '../menu.php'; ?>
+<div class="container">
+    <h2 class="mt-5">Sửa Thông Tin Bán Hàng</h2>
+    <form action="../sua/sua_thong_tin_ban_hang.php?id=<?php echo htmlspecialchars($id); ?>" method="post">
+        <div class="form-group">
+            <label for="ID_TTNVBH">Nhân viên bán hàng</label>
+            <select class="form-control select2" id="ID_TTNVBH" name="ID_TTNVBH" required>
+                <?php while ($row = $resultNhanVien->fetch_assoc()) : ?>
+                    <option value="<?php echo $row['ID_NhanVien']; ?>" <?php if ($row['ID_NhanVien'] == $thongTinBanHang['ID_TTNVBH'])
+                                                                            echo 'selected'; ?>><?php echo $row['TenNhanVien']; ?></option>
+                <?php endwhile; ?>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="ID_KhachHang">Khách hàng</label>
+            <select class="form-control select2" id="ID_KhachHang" name="ID_KhachHang" required>
+                <?php while ($row = $resultKhachHang->fetch_assoc()) : ?>
+                    <option value="<?php echo $row['ID_KhachHang']; ?>" <?php if ($row['ID_KhachHang'] == $thongTinBanHang['ID_KhachHang'])
+                                                                            echo 'selected'; ?>><?php echo $row['Ten']; ?></option>
+                <?php endwhile; ?>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="ID_GoiDichVu">Gói dịch vụ</label>
+            <select class="form-control" id="ID_GoiDichVu" name="ID_GoiDichVu" required>
+                <?php while ($row = $resultGoiDichVu->fetch_assoc()) : ?>
+                    <option value="<?php echo $row['ID_GoiDichVu']; ?>" <?php if ($row['ID_GoiDichVu'] == $thongTinBanHang['ID_GoiDichVu'])
+                                                                            echo 'selected'; ?>><?php echo $row['TenGoiDichVu']; ?></option>
+                <?php endwhile; ?>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="NgayBan">Ngày Bán</label>
+            <input type="date" class="form-control" id="NgayBan" name="NgayBan" value="<?php echo htmlspecialchars($thongTinBanHang['NgayDangKy']); ?>" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Cập Nhật</button>
+        <a href="../danhsach/danh_sach_thong_tin_ban_hang.php" class="btn btn-secondary">Quay Lại</a>
+    </form>
+</div>
+<?php include '../footer.php'; ?>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('.select2').select2();
-        });
-    </script>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.select2').select2();
+    });
+</script>
 </body>
 
-</html>
+</html> -->

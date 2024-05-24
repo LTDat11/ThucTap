@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -53,29 +53,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body>
-    <div class="container">
-        <h2 class="mt-5">Thêm Nhân Viên Bán Hàng Mới</h2>
-        <form method="POST" action="">
-            <div class="form-group">
-                <label for="TenNhanVien">Tên Nhân Viên</label>
-                <input type="text" class="form-control" id="TenNhanVien" name="TenNhanVien" required>
-            </div>
-            <div class="form-group">
-                <label for="SoDienThoai">Số Điện Thoại</label>
-                <input type="text" class="form-control" id="SoDienThoai" name="SoDienThoai" required>
-            </div>
-            <div class="form-group">
-                <label for="DiaChi">Địa Chỉ</label>
-                <input type="text" class="form-control" id="DiaChi" name="DiaChi" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Thêm Nhân Viên</button>
-        </form>
-        <a href="../danhsach/danh_sach_thong_tin_nhan_vien_ban_hang.php" class="btn btn-secondary mt-3">Quay Lại Danh Sách Nhân Viên</a>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<body> -->
+<?php include '../menu.php'; ?>
+<div class="container">
+    <h2 class="mt-5">Thêm Nhân Viên Bán Hàng Mới</h2>
+    <form method="POST" action="">
+        <div class="form-group">
+            <label for="TenNhanVien">Tên Nhân Viên</label>
+            <input type="text" class="form-control" id="TenNhanVien" name="TenNhanVien" required>
+        </div>
+        <div class="form-group">
+            <label for="SoDienThoai">Số Điện Thoại</label>
+            <input type="text" class="form-control" id="SoDienThoai" name="SoDienThoai" required>
+        </div>
+        <div class="form-group">
+            <label for="DiaChi">Địa Chỉ</label>
+            <input type="text" class="form-control" id="DiaChi" name="DiaChi" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Thêm Nhân Viên</button>
+    </form>
+    <a href="../danhsach/danh_sach_thong_tin_nhan_vien_ban_hang.php" class="btn btn-secondary mt-3">Quay Lại Danh Sách Nhân Viên</a>
+</div>
+<?php include '../footer.php'; ?>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
-</html>
+</html> -->

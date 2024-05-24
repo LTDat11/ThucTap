@@ -47,44 +47,80 @@ $conn->close();
 <body>
     <div class="container"> -->
 <?php include '../menu.php'; ?>
-<h2 class="mt-3">Danh Sách Thông Tin Bán Hàng</h2>
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Tên Nhân Viên</th>
-            <th>Tên Khách Hàng</th>
-            <th>Tên Gói Dịch Vụ</th>
-            <th>Ngày Bán</th>
-            <th>Lựa Chọn</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo "<tr>";
-                echo "<td>" . htmlspecialchars($row['TenNhanVien']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['TenKhachHang']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['NgayDangKy']) . "</td>";
-                echo "<td>
+<div class="container">
+    <h2 class="mt-3">Danh Sách Thông Tin Bán Hàng</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Tên Nhân Viên</th>
+                <th>Tên Khách Hàng</th>
+                <th>Tên Gói Dịch Vụ</th>
+                <th>Ngày Bán</th>
+                <th>Lựa Chọn</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . htmlspecialchars($row['TenNhanVien']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['TenKhachHang']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['NgayDangKy']) . "</td>";
+                    echo "<td>
                             <a href='../sua/sua_thong_tin_ban_hang.php?id=" . $row['ID_ThongTinBanHang'] . "' class='btn btn-warning'>Sửa</a>
                             <a href='../xoa/xoa_thong_tin_ban_hang.php?id=" . $row['ID_ThongTinBanHang'] . "' class='btn btn-danger' onclick='return confirm(\"Bạn có chắc chắn muốn xóa?\")'>Xóa</a>
                             </td>";
-                echo "</tr>";
+                    echo "</tr>";
+                }
+            } else {
+                echo "<tr><td colspan='5' class='text-center'>Không có dữ liệu</td></tr>";
             }
-        } else {
-            echo "<tr><td colspan='5' class='text-center'>Không có dữ liệu</td></tr>";
-        }
-        ?>
-    </tbody>
-</table>
-<a href="../them/them_thong_tin_ban_hang.php" class="btn btn-primary mb-3">Thêm Thông Tin Bán Hàng Mới</a>
+            ?>
+        </tbody>
+    </table>
+    <a href="../them/them_thong_tin_ban_hang.php" class="btn btn-primary mb-3">Thêm Thông Tin Bán Hàng Mới</a>
+</div>
 <?php include '../footer.php'; ?>
-<!-- </div>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<!-- </div>  -->
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
+<script>
+    // Hide submenus
+    $('#body-row .collapse').collapse('hide');
+
+    // Collapse/Expand icon
+    $('#collapse-icon').addClass('fa-angle-double-left');
+
+    // Collapse click
+    $('[data-toggle=sidebar-colapse]').click(function() {
+        SidebarCollapse();
+    });
+
+    function SidebarCollapse() {
+        $('.menu-collapsed').toggleClass('d-none');
+        $('.sidebar-submenu').toggleClass('d-none');
+        $('.submenu-icon').toggleClass('d-none');
+        $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
+
+        // Treating d-flex/d-none on separators with title
+        var SeparatorTitle = $('.sidebar-separator-title');
+        if (SeparatorTitle.hasClass('d-flex')) {
+            SeparatorTitle.removeClass('d-flex');
+        } else {
+            SeparatorTitle.addClass('d-flex');
+        }
+
+        // Collapse/Expand icon
+        $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
+    }
+</script>
+
 </body>
 
 </html> -->

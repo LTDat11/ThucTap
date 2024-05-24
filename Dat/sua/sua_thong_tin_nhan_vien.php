@@ -41,7 +41,7 @@ $nhanvien = $result_nhanvien->fetch_assoc();
 $conn->close();
 ?>
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -49,10 +49,11 @@ $conn->close();
     <title>Sửa Thông Tin Nhân Viên Bán Hàng</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body> -->
+<?php include '../menu.php'; ?>
 <div class="container">
     <h2 class="mt-5">Sửa Thông Tin Nhân Viên Bán Hàng</h2>
-    <?php if ($nhanvien): ?>
+    <?php if ($nhanvien) : ?>
         <form method="POST" action="">
             <div class="form-group">
                 <label for="TenNhanVien">Tên Nhân Viên</label>
@@ -68,13 +69,15 @@ $conn->close();
             </div>
             <button type="submit" class="btn btn-primary">Cập Nhật</button>
         </form>
-    <?php else: ?>
+    <?php else : ?>
         <p class="text-center">Không tìm thấy thông tin nhân viên bán hàng.</p>
     <?php endif; ?>
     <a href="../danhsach/danh_sach_thong_tin_nhan_vien_ban_hang.php" class="btn btn-secondary mt-3">Quay Lại Danh Sách Nhân Viên Bán Hàng</a>
 </div>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<?php include '../footer.php'; ?>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-</html>
+
+</html> -->

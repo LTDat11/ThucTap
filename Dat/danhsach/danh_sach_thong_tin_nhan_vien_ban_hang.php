@@ -37,49 +37,51 @@ $conn->close();
 <body>
 <div class="container"> -->
 <?php include '../menu.php'; ?>
-<h2 class="mt-3">Danh Sách Thông Tin Nhân Viên Bán Hàng</h2>
-<form action="" method="GET" class="mb-3">
-    <div class="form-row">
-        <div class="col">
-            <input type="text" class="form-control" placeholder="Tìm kiếm..." name="search_query">
+<div class="container">
+    <h2 class="mt-3">Danh Sách Thông Tin Nhân Viên Bán Hàng</h2>
+    <form action="" method="GET" class="mb-3">
+        <div class="form-row">
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Tìm kiếm..." name="search_query">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary">Tìm Kiếm</button>
+            </div>
         </div>
-        <div class="col-auto">
-            <button type="submit" class="btn btn-primary">Tìm Kiếm</button>
-        </div>
-    </div>
-</form>
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Tên Nhân Viên</th>
-            <th>Số Điện Thoại</th>
-            <th>Địa Chỉ</th>
-            <th>Lựa Chọn</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo "<tr>";
-                echo "<td>" . htmlspecialchars($row['TenNhanVien']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['SoDienThoai']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['DiaChi']) . "</td>";
-                echo "<td>
+    </form>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Tên Nhân Viên</th>
+                <th>Số Điện Thoại</th>
+                <th>Địa Chỉ</th>
+                <th>Lựa Chọn</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . htmlspecialchars($row['TenNhanVien']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['SoDienThoai']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['DiaChi']) . "</td>";
+                    echo "<td>
                         <a href='../chitiet/chi_tiet_nvbh2.php?id=" . $row['ID_TTNVBH'] . "' class='btn btn-info'>Xem Chi Tiết</a>
                         <a href='../sua/sua_thong_tin_nhan_vien.php?id=" . $row['ID_TTNVBH'] . "' class='btn btn-warning'>Sửa</a>
                         <a href='#' onclick='confirmDelete_ttnv(" . $row['ID_TTNVBH'] . ")' class='btn btn-danger'>Xóa</a>
                       </td>";
 
-                echo "</tr>";
+                    echo "</tr>";
+                }
+            } else {
+                echo "<tr><td colspan='4' class='text-center'>Không có dữ liệu</td></tr>";
             }
-        } else {
-            echo "<tr><td colspan='4' class='text-center'>Không có dữ liệu</td></tr>";
-        }
-        ?>
-    </tbody>
-</table>
-<a href="../them/them_nhan_vien_ban_hang.php" class="btn btn-primary mb-3">Thêm Nhân Viên Bán Hàng Mới</a>
+            ?>
+        </tbody>
+    </table>
+    <a href="../them/them_nhan_vien_ban_hang.php" class="btn btn-primary mb-3">Thêm Nhân Viên Bán Hàng Mới</a>
+</div>
 <?php include '../footer.php'; ?>
 <!-- </div>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

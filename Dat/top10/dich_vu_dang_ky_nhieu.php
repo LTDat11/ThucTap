@@ -55,53 +55,57 @@ $conn->close();
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body>
-    <div class="container"> -->
+<body>-->
+
 <?php include '../menu.php'; ?>
-<h2 class="mt-5">Dịch Vụ Được Bán Nhiều Nhất</h2>
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Tên Dịch Vụ</th>
-            <th>Số gói dịch vụ bán được</th>
-            <th>Tùy chọn</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        if ($result->num_rows > 0) {
-            $labels = [];
-            $data = [];
-            while ($row = $result->fetch_assoc()) {
-                echo "<tr>";
-                echo "<td>" . htmlspecialchars($row['TenDichVu']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['TongSoGoiDaBan']) . "</td>";
-                echo "<td><a href='../chitiet/chi_tiet_dich_vu_dang_ky_nhieu.php?id=" . $row['ID_DichVu'] . "' class='btn btn-info'>Xem chi tiết</a></td>";
-                echo "</tr>";
+<div class="container">
+    <h2 class="mt-5">Dịch Vụ Được Bán Nhiều Nhất</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Tên Dịch Vụ</th>
+                <th>Số gói dịch vụ bán được</th>
+                <th>Tùy chọn</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            if ($result->num_rows > 0) {
+                $labels = [];
+                $data = [];
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . htmlspecialchars($row['TenDichVu']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['TongSoGoiDaBan']) . "</td>";
+                    echo "<td><a href='../chitiet/chi_tiet_dich_vu_dang_ky_nhieu.php?id=" . $row['ID_DichVu'] . "' class='btn btn-info'>Xem chi tiết</a></td>";
+                    echo "</tr>";
 
-                $labels[] = $row['TenDichVu'];
-                $data[] = $row['TongSoGoiDaBan'];
+                    $labels[] = $row['TenDichVu'];
+                    $data[] = $row['TongSoGoiDaBan'];
+                }
+            } else {
+                echo "<tr><td colspan='7' class='text-center'>Không có dữ liệu</td></tr>";
             }
-        } else {
-            echo "<tr><td colspan='7' class='text-center'>Không có dữ liệu</td></tr>";
-        }
-        ?>
-    </tbody>
+            ?>
+        </tbody>
 
-</table>
+    </table>
 
-<div class="mt-3 mb-3">
-    <h2 class="mt-3">Biểu đồ Dịch Vụ Được Bán Nhiều Nhất</h2>
-    <canvas id="myChart"></canvas>
+    <div class="mt-3 mb-3">
+        <h2 class="mt-3">Biểu đồ Dịch Vụ Được Bán Nhiều Nhất</h2>
+        <canvas id="myChart"></canvas>
+    </div>
 </div>
-
-</div>
+<?php include '../footer.php'; ?>
+<!-- </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+
+
 
 <script>
     var ctx = document.getElementById('myChart').getContext('2d');
@@ -183,4 +187,4 @@ $conn->close();
 </script>
 </body>
 
-</html>
+</html> -->

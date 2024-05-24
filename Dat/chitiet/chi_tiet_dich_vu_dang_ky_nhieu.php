@@ -21,7 +21,6 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
-
 }
 
 // Thực hiện truy vấn
@@ -60,7 +59,7 @@ $result1 = $conn->query($ssql1);
 $conn->close();
 ?>
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -71,48 +70,52 @@ $conn->close();
 </head>
 
 <body>
-    <div class="container">
+    <div class="container"> -->
+<?php include '../menu.php'; ?>
+<div class="container">
+<?php
+// Fetch the result from the query
+$row = $result->fetch_assoc();
+$tenDichVu = $row['TenDichVu'];
+$TongSoGoiDaBan = $row['TongSoGoiDaBan'];
+?>
+
+<h2 class="mt-5">Chi tiết của dịch vụ <?php echo $tenDichVu; ?></h2>
+<p>Tổng số lượng bán được của dịch vụ: <?php echo $TongSoGoiDaBan; ?></p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Gói dịch vụ</th>
+            <th>Tổng số lượng bán được</th>
+        </tr>
+    </thead>
+    <tbody>
         <?php
-        // Fetch the result from the query
-        $row = $result->fetch_assoc();
-        $tenDichVu = $row['TenDichVu'];
-        $TongSoGoiDaBan = $row['TongSoGoiDaBan'];
+        if ($result1->num_rows > 0) {
+            while ($row1 = $result1->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . htmlspecialchars($row1['TenGoiDichVu']) . "</td>";
+                echo "<td>" . htmlspecialchars($row1['TongSoLuongBanDuoc']) . "</td>";
+
+                echo "</tr>";
+            }
+        } else {
+            echo "<tr><td colspan='7' class='text-center'>Không có dữ liệu</td></tr>";
+        }
         ?>
-
-        <h2 class="mt-5">Chi tiết của dịch vụ <?php echo $tenDichVu; ?></h2>
-        <p>Tổng số lượng bán được của dịch vụ: <?php echo $TongSoGoiDaBan; ?></p>
-
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Gói dịch vụ</th>
-                    <th>Tổng số lượng bán được</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                if ($result1->num_rows > 0) {
-                    while ($row1 = $result1->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>" . htmlspecialchars($row1['TenGoiDichVu']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row1['TongSoLuongBanDuoc']) . "</td>";
-
-                        echo "</tr>";
-                    }
-                } else {
-                    echo "<tr><td colspan='7' class='text-center'>Không có dữ liệu</td></tr>";
-                }
-                ?>
-            </tbody>
-        </table>
-        <a href="../top10/dich_vu_dang_ky_nhieu.php" class="btn btn-secondary">Quay Lại</a>
-    </div>
+    </tbody>
+</table>
+<a href="../top10/dich_vu_dang_ky_nhieu.php" class="btn btn-secondary">Quay Lại</a>
+</div> 
+<?php include '../footer.php'; ?>
+<!-- </div>
 
 
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
-</html>
+</html> -->

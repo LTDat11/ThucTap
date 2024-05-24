@@ -56,7 +56,7 @@ $result = $conn->query($sql);
 $conn->close();
 ?>
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -66,62 +66,64 @@ $conn->close();
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body>
-    <div class="container">
-        <h2 class="mt-5">Chi Tiết Nhân Viên Bán Hàng </h2>
+<body> -->
+<?php include '../menu.php'; ?>
+<div class="container">
+    <h2 class="mt-5">Chi Tiết Nhân Viên Bán Hàng </h2>
 
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Tên Nhân Viên</th>
-                    <th>Số Điện Thoại</th>
-                    <th>Địa Chỉ</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><?php echo htmlspecialchars($nhanvien['TenNhanVien']); ?></td>
-                    <td><?php echo htmlspecialchars($nhanvien['SoDienThoai']); ?></td>
-                    <td><?php echo htmlspecialchars($nhanvien['DiaChi']); ?></td>
-                </tr>
-            </tbody>
-        </table> 
-        <h3 class="mt-5">Các Dịch Vụ Bán Được:</h3>
-        <table class="table table-bordered">
-            <thead>
+    <table class="table table-bordered">
+        <thead>
             <tr>
-                    <th>Ngày Đăng Ký</th>
-                    <th>Tên Khách Hàng</th>
-                    <th>Tên Dịch Vụ</th>
-                    <th>Tên Gói Dịch Vụ</th>
-                    <th>Số Lượng</th>
-                    <th>Tổng Tiền</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>" . htmlspecialchars($row['NgayDangKy']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['TenKhachHang']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['TenDichVu']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['SoLuong']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['TongTien']) . "</td>";
-                        echo "</tr>";
-                    }
-                } else {
-                    echo "<tr><td colspan='6' class='text-center'>Không có dữ liệu</td></tr>";
+                <th>Tên Nhân Viên</th>
+                <th>Số Điện Thoại</th>
+                <th>Địa Chỉ</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><?php echo htmlspecialchars($nhanvien['TenNhanVien']); ?></td>
+                <td><?php echo htmlspecialchars($nhanvien['SoDienThoai']); ?></td>
+                <td><?php echo htmlspecialchars($nhanvien['DiaChi']); ?></td>
+            </tr>
+        </tbody>
+    </table>
+    <h3 class="mt-5">Các Dịch Vụ Bán Được:</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Ngày Đăng Ký</th>
+                <th>Tên Khách Hàng</th>
+                <th>Tên Dịch Vụ</th>
+                <th>Tên Gói Dịch Vụ</th>
+                <th>Số Lượng</th>
+                <th>Tổng Tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . htmlspecialchars($row['NgayDangKy']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['TenKhachHang']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['TenDichVu']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['SoLuong']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['TongTien']) . "</td>";
+                    echo "</tr>";
                 }
-                ?>
-            </tbody>
-        </table>
-        <a href="../top10/top10_nvbh.php" class="btn btn-secondary">Quay Lại</a>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+            } else {
+                echo "<tr><td colspan='6' class='text-center'>Không có dữ liệu</td></tr>";
+            }
+            ?>
+        </tbody>
+    </table>
+    <a href="../top10/top10_nvbh.php" class="btn btn-secondary">Quay Lại</a>
+</div>
+<?php include '../footer.php'; ?>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
-</html>
+</html> -->
