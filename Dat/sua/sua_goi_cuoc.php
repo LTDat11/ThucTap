@@ -104,11 +104,11 @@ $conn->close();
             <div class="form-group">
                 <label for="TocDo">Tốc Độ</label>
                 <input type="text" class="form-control" id="TocDo" name="TocDo"
-                    value="<?php echo htmlspecialchars($goiDichVu['TocDo']); ?>" required>
+                    value="<?php echo htmlspecialchars($goiDichVu['TocDo']); ?>">
             </div>
             <div class="form-group">
                 <label for="GiaTien">Giá Tiền</label>
-                <input type="text" class="form-control" id="GiaTien" name="GiaTien"
+                <input type="number" class="form-control" id="GiaTien" name="GiaTien"
                     value="<?php echo htmlspecialchars($goiDichVu['GiaTien']); ?>" required>
             </div>
             <div class="form-group">

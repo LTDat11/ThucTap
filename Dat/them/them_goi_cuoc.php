@@ -96,7 +96,7 @@ $conn->close();
             </div>
             <div class="form-group">
                 <label for="GiaTien">Giá Tiền</label>
-                <input type="text" class="form-control" id="GiaTien" name="GiaTien" required>
+                <input type="number" class="form-control" id="GiaTien" name="GiaTien" required>
             </div>
             <div class="form-group">
                 <label for="MoTa">Mô Tả</label>
