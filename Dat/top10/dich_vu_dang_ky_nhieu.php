@@ -104,72 +104,82 @@ $conn->close();
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 
 <script>
-   var ctx = document.getElementById('myChart').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: <?php echo json_encode($labels); ?>,
-        datasets: [{
-            label: 'Số lượng dịch vụ sử dụng',
-            data: <?php echo json_encode($data); ?>,
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: <?php echo json_encode($labels); ?>,
+            datasets: [{
+                label: 'Số lượng dịch vụ sử dụng',
+                data: <?php echo json_encode($data); ?>,
+                backgroundColor: 'rgba(141, 182, 205, 0.6)', // Thay đổi màu nền
+                borderColor: 'rgba(92, 147, 180, 1)', // Thay đổi màu viền
+                borderWidth: 1,
+                borderRadius: 5, // Thêm bo góc cho thanh
+                hoverBackgroundColor: 'rgba(92, 147, 180, 0.8)' // Thay đổi màu khi di chuột qua
+            }]
         },
-        plugins: {
-            tooltip: {
-                callbacks: {
-                    label: function(context) {
-                        let label = context.dataset.label || '';
-                        if (label) {
-                            label += ': ';
-                        }
-                        if (context.parsed.y !== null) {
-                            label += new Intl.NumberFormat('en-US').format(context.parsed.y);
-                        }
-                        return label;
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        fontSize: 14 // Thay đổi kích thước chữ trục y
                     }
-                }
-            },
-            datalabels: {
-                anchor: 'center',
-                align: 'center',
-                color: 'black',
-                font: {
-                    weight: 'bold',
-                    size: 14
                 },
-                formatter: function(value, context) {
-                    return value.toLocaleString();
+                x: {
+                    ticks: {
+                        fontSize: 14 // Thay đổi kích thước chữ trục x
+                    }
                 }
             },
-            legend: {
-                position: 'bottom',
-                align: 'center',
-                labels: {
-                    font: {
-                        size: 14
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            let label = context.dataset.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            if (context.parsed.y !== null) {
+                                label += new Intl.NumberFormat('en-US').format(context.parsed.y);
+                            }
+                            return label;
+                        }
                     }
+                },
+                datalabels: {
+                    anchor: 'center',
+                    align: 'center',
+                    color: 'white', // Thay đổi màu chữ
+                    font: {
+                        weight: 'bold',
+                        size: 14
+                    },
+                    formatter: function(value, context) {
+                        return value.toLocaleString();
+                    }
+                },
+                legend: {
+                    position: 'bottom',
+                    align: 'center',
+                    labels: {
+                        font: {
+                            size: 14
+                        }
+                    }
+                }
+            },
+            layout: {
+                padding: {
+                    bottom: 80
                 }
             }
         },
-        layout: {
-            padding: {
-                bottom: 80
-            }
-        }
-    },
-    plugins: [
-        ChartDataLabels
-    ]
-});
+        plugins: [
+            ChartDataLabels
+        ]
+    });
 </script>
 </body>
 

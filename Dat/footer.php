@@ -22,7 +22,7 @@
 </script>
 
 <script>
-    var ctx_nvbh = document.getElementById('myChart_nvbh').getContext('2d');
+var ctx_nvbh = document.getElementById('myChart_nvbh').getContext('2d');
 var myChart_nvbh = new Chart(ctx_nvbh, {
     type: 'bar',
     data: {
@@ -30,9 +30,11 @@ var myChart_nvbh = new Chart(ctx_nvbh, {
         datasets: [{
             label: 'Tổng số dịch vụ bán được',
             data: <?php echo json_encode($soLuongDichVu); ?>,
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1
+            backgroundColor: 'rgba(141, 182, 205, 0.6)', // Thay đổi màu nền
+            borderColor: 'rgba(92, 147, 180, 1)', // Thay đổi màu viền
+            borderWidth: 1,
+            borderRadius: 5,
+            hoverBackgroundColor: 'rgba(92, 147, 180, 0.8)' // Thay đổi màu khi di chuột qua
         }]
     },
     options: {
@@ -40,7 +42,7 @@ var myChart_nvbh = new Chart(ctx_nvbh, {
             datalabels: {
                 anchor: 'center',
                 align: 'top',
-                color: 'black',
+                color: 'white', // Màu chữ
                 font: {
                     weight: 'bold',
                     size: 14
@@ -61,7 +63,15 @@ var myChart_nvbh = new Chart(ctx_nvbh, {
         },
         scales: {
             y: {
-                beginAtZero: true
+                beginAtZero: true,
+                ticks: {
+                    fontSize: 14
+                }
+            },
+            x: {
+                ticks: {
+                    fontSize: 14
+                }
             }
         },
         layout: {
@@ -77,7 +87,7 @@ var myChart_nvbh = new Chart(ctx_nvbh, {
 </script>
 
 <script>
-   var ctx = document.getElementById('myChart_kh_dv_max').getContext('2d');
+var ctx = document.getElementById('myChart_kh_dv_max').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
@@ -85,20 +95,30 @@ var myChart = new Chart(ctx, {
         datasets: [{
             label: 'Số lượng dịch vụ sử dụng',
             data: <?php echo json_encode($soLuongDichVu); ?>,
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1
+            backgroundColor: 'rgba(205, 160, 141, 0.6)', // Thay đổi màu nền
+            borderColor: 'rgba(180, 119, 92, 1)', // Thay đổi màu viền
+            borderWidth: 1,
+            borderRadius: 5,
+            hoverBackgroundColor: 'rgba(180, 119, 92, 0.8)' // Thay đổi màu khi di chuột qua
         }]
     },
     options: {
         scales: {
             y: {
-                beginAtZero: true
+                beginAtZero: true,
+                ticks: {
+                    fontSize: 14
+                }
+            },
+            x: {
+                ticks: {
+                    fontSize: 14
+                }
             }
         },
         layout: {
             padding: {
-                bottom: 80 // Add extra padding on the bottom to accommodate the legend
+                bottom: 80
             }
         },
         plugins: {
@@ -108,7 +128,7 @@ var myChart = new Chart(ctx, {
                 formatter: function(value, context) {
                     return value;
                 },
-                color: 'black',
+                color: 'white', // Màu chữ
                 font: {
                     weight: 'bold',
                     size: 14
