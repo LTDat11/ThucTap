@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $GiaTien = $_POST['GiaTien'];
     $MoTa = $_POST['MoTa'];
     //cap nhat anh
-    $target_dir = "../image/";
+    $target_dir = "./image/";
     $target_file = $target_dir . basename($_FILES["ImgURL"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
@@ -93,7 +93,8 @@ $conn->close();
             </div>
             <div class="form-group">
                 <label for="ImgURL">Ảnh ban đầu:</label> <br>
-                <img src="<?php echo htmlspecialchars($goiDichVu['ImgURL']); ?>" class="blurred" alt="Hình ảnh">
+                <!-- nối chuỗi cho link ảnh -->
+                <img src="<?php echo "." . htmlspecialchars($goiDichVu['ImgURL']); ?>" class="blurred" alt="Hình ảnh">
                 <br>
                 <label for="ImgURL">Chọn ảnh mới:</label>
                 <br>

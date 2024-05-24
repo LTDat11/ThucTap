@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $MoTa = $_POST['MoTa'];
     // $hinhAnh = $_POST['ImgURL'];
     //xu li hinh anh
-    $target_dir = "../image/";
+    $target_dir = "./image/";
     $target_file = $target_dir . basename($_FILES["ImgURL"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
