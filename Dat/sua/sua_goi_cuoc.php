@@ -108,7 +108,7 @@ $conn->close();
             </div>
             <div class="form-group">
                 <label for="GiaTien">Giá Tiền</label>
-                <input type="text" class="form-control" id="GiaTien" name="GiaTien"
+                <input type="number" class="form-control" id="GiaTien" name="GiaTien"
                     value="<?php echo htmlspecialchars($goiDichVu['GiaTien']); ?>" required>
             </div>
             <div class="form-group">
