@@ -52,7 +52,7 @@
           <li><a class="nav-link scrollto active" href="#hero">Trang Chủ</a></li>
           <li><a class="nav-link scrollto" href="#about">Về Chúng Tôi</a></li>
           <li><a class="nav-link scrollto" href="#services">Dịch Vụ</a></li>
-          <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
+          <li><a class="nav-link scrollto " href="#portfolio">Gói Cước</a></li>
           <li><a class="nav-link scrollto" href="#team">Đội Ngũ</a></li>
           <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
