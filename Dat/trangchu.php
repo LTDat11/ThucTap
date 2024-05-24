@@ -113,32 +113,39 @@
 
         <header class="section-header">
           <h3>Về VNPT</h3>
-          <p>Tập đoàn Bưu chính Viễn thông Việt Nam (tên giao dịch quốc tế: Vietnam Posts and Telecommunications Group, viết tắt: VNPT) là một doanh nghiệp của nhà nước chuyên về đầu tư, sản xuất,kinh doanh trong lĩnh vực Viễn thông và Công nghệ thông tin tại Việt Nam.</p>
+          <p>Tập đoàn Bưu chính Viễn thông Việt Nam (tên giao dịch quốc tế: Vietnam Posts and Telecommunications Group,
+            viết tắt: VNPT) là một doanh nghiệp của nhà nước chuyên về đầu tư, sản xuất,kinh doanh trong lĩnh vực Viễn
+            thông và Công nghệ thông tin tại Việt Nam.</p>
         </header>
 
         <div class="row about-container">
 
           <div class="col-lg-6 content order-lg-1 order-2">
             <p>
-              VNPT là tập đoàn kinh tế nhà nước đứng số 2 về lĩnh vực Bưu chính, Viễn thông tại Việt Nam, được Chính phủ Việt Nam giao trọng trách là chủ đầu tư và là doanh nghiệp được quyền kinh doanh, vận hành và khai thác vệ tinh đầu tiên của Việt Nam
+              VNPT là tập đoàn kinh tế nhà nước đứng số 2 về lĩnh vực Bưu chính, Viễn thông tại Việt Nam, được Chính phủ
+              Việt Nam giao trọng trách là chủ đầu tư và là doanh nghiệp được quyền kinh doanh, vận hành và khai thác vệ
+              tinh đầu tiên của Việt Nam
             </p>
 
             <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
               <div class="icon"><i class="bi bi-briefcase"></i></div>
               <h4 class="title"><a href="">Kinh doanh</a></h4>
-              <p class="description">Các sản phẩm, dịch vụ viễn thông, công nghệ thông tin, truyền thông đa phương tiện.</p>
+              <p class="description">Các sản phẩm, dịch vụ viễn thông, công nghệ thông tin, truyền thông đa phương tiện.
+              </p>
             </div>
 
             <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
               <div class="icon"><i class="bi bi-gear"></i></div>
               <h4 class="title"><a href="">Đa ngành nghề</a></h4>
-              <p class="description">Nghiên cứu, phát triển, chế tạo, kinh doanh, xuất khẩu, nhập khẩu thiết bị, sản phẩm viễn thông, CNTT, truyền thông đa phương tiện.</p>
+              <p class="description">Nghiên cứu, phát triển, chế tạo, kinh doanh, xuất khẩu, nhập khẩu thiết bị, sản
+                phẩm viễn thông, CNTT, truyền thông đa phương tiện.</p>
             </div>
 
             <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
               <div class="icon"><i class="bi bi-tools"></i></div>
               <h4 class="title"><a href="">Tư vấn khảo sát</a></h4>
-              <p class="description">Thiết kế, lắp đặt, khai thác, bảo dưỡng, sửa chữa, cho thuê công trình, thiết bị viễn thông, công nghệ thông tin.</p>
+              <p class="description">Thiết kế, lắp đặt, khai thác, bảo dưỡng, sửa chữa, cho thuê công trình, thiết bị
+                viễn thông, công nghệ thông tin.</p>
             </div>
 
 
@@ -156,10 +163,14 @@
           <div class="col-lg-6 pt-5 pt-lg-0" data-aos="fade-left">
             <h4>Đội ngũ tư vấn hỗ trợ</h4>
             <p>
-              Chúng tôi có một đội ngũ chuyên gia tư vấn giàu kinh nghiệm, luôn sẵn sàng hỗ trợ khách hàng trong mọi tình huống. Các chuyên gia của chúng tôi đều được đào tạo bài bản và có kiến thức sâu rộng trong lĩnh vực viễn thông và công nghệ thông tin.
+              Chúng tôi có một đội ngũ chuyên gia tư vấn giàu kinh nghiệm, luôn sẵn sàng hỗ trợ khách hàng trong mọi
+              tình huống. Các chuyên gia của chúng tôi đều được đào tạo bài bản và có kiến thức sâu rộng trong lĩnh vực
+              viễn thông và công nghệ thông tin.
             </p>
             <p>
-              Đội ngũ tư vấn của chúng tôi không chỉ giúp bạn giải quyết các vấn đề kỹ thuật mà còn đưa ra các giải pháp tối ưu nhằm nâng cao hiệu quả hoạt động kinh doanh. Chúng tôi cam kết mang đến cho khách hàng những trải nghiệm dịch vụ tốt nhất, với sự tận tâm và chuyên nghiệp trong từng bước hỗ trợ.
+              Đội ngũ tư vấn của chúng tôi không chỉ giúp bạn giải quyết các vấn đề kỹ thuật mà còn đưa ra các giải pháp
+              tối ưu nhằm nâng cao hiệu quả hoạt động kinh doanh. Chúng tôi cam kết mang đến cho khách hàng những trải
+              nghiệm dịch vụ tốt nhất, với sự tận tâm và chuyên nghiệp trong từng bước hỗ trợ.
             </p>
           </div>
         </div>
@@ -172,13 +183,19 @@
           <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-right">
             <h4>Chúng tôi sẵn sàng giúp bạn biết dịch vụ nào phù hợp</h4>
             <p>
-              Đội ngũ tư vấn của chúng tôi luôn sẵn sàng lắng nghe và phân tích nhu cầu của bạn để đề xuất những dịch vụ phù hợp nhất. Chúng tôi hiểu rằng mỗi khách hàng đều có những yêu cầu và mục tiêu riêng, vì vậy chúng tôi tận tâm cung cấp giải pháp tối ưu nhất.
+              Đội ngũ tư vấn của chúng tôi luôn sẵn sàng lắng nghe và phân tích nhu cầu của bạn để đề xuất những dịch vụ
+              phù hợp nhất. Chúng tôi hiểu rằng mỗi khách hàng đều có những yêu cầu và mục tiêu riêng, vì vậy chúng tôi
+              tận tâm cung cấp giải pháp tối ưu nhất.
             </p>
             <p>
-              Với kinh nghiệm dày dặn và hiểu biết sâu rộng về ngành viễn thông và công nghệ thông tin, chúng tôi tự tin mang lại những giá trị thiết thực và hiệu quả cho bạn. Chúng tôi sẽ đồng hành cùng bạn trong việc chọn lựa dịch vụ, đảm bảo rằng bạn sẽ có được sự hỗ trợ tốt nhất.
+              Với kinh nghiệm dày dặn và hiểu biết sâu rộng về ngành viễn thông và công nghệ thông tin, chúng tôi tự tin
+              mang lại những giá trị thiết thực và hiệu quả cho bạn. Chúng tôi sẽ đồng hành cùng bạn trong việc chọn lựa
+              dịch vụ, đảm bảo rằng bạn sẽ có được sự hỗ trợ tốt nhất.
             </p>
             <p>
-              Hãy để chúng tôi giúp bạn khám phá các giải pháp công nghệ hiện đại, từ đó nâng cao hiệu quả hoạt động và đạt được những mục tiêu kinh doanh mà bạn mong muốn. Chúng tôi cam kết mang đến sự hài lòng và thành công cho khách hàng của mình.
+              Hãy để chúng tôi giúp bạn khám phá các giải pháp công nghệ hiện đại, từ đó nâng cao hiệu quả hoạt động và
+              đạt được những mục tiêu kinh doanh mà bạn mong muốn. Chúng tôi cam kết mang đến sự hài lòng và thành công
+              cho khách hàng của mình.
             </p>
           </div>
 
@@ -202,14 +219,16 @@
             <div class="box">
               <div class="icon"><i class="bi bi-wifi" style="color: #ff689b;"></i></div>
               <h4 class="title"><a href="">Dịch Vụ WiFi</a></h4>
-              <p class="description">Cung cấp kết nối internet nhanh chóng và ổn định cho gia đình và doanh nghiệp của bạn.</p>
+              <p class="description">Cung cấp kết nối internet nhanh chóng và ổn định cho gia đình và doanh nghiệp của
+                bạn.</p>
             </div>
           </div>
           <div class="col-md-6 col-lg-5" data-aos="zoom-in" data-aos-delay="200">
             <div class="box">
               <div class="icon"><i class="bi bi-tv" style="color: #e9bf06;"></i></div>
               <h4 class="title"><a href="">Truyền Hình TV</a></h4>
-              <p class="description">Trải nghiệm hàng trăm kênh truyền hình với chất lượng hình ảnh và âm thanh tuyệt vời.</p>
+              <p class="description">Trải nghiệm hàng trăm kênh truyền hình với chất lượng hình ảnh và âm thanh tuyệt
+                vời.</p>
             </div>
           </div>
 
@@ -224,7 +243,8 @@
             <div class="box">
               <div class="icon"><i class="bi bi-shield-lock" style="color:#41cf2e;"></i></div>
               <h4 class="title"><a href="">Mạng Riêng Ảo (VPN)</a></h4>
-              <p class="description">Đảm bảo an toàn và bảo mật cho dữ liệu của bạn với dịch vụ mạng riêng ảo chất lượng cao.</p>
+              <p class="description">Đảm bảo an toàn và bảo mật cho dữ liệu của bạn với dịch vụ mạng riêng ảo chất lượng
+                cao.</p>
             </div>
           </div>
 
@@ -249,7 +269,8 @@
               <i class="bi bi-calendar4-week"></i>
               <div class="card-body">
                 <h5 class="card-title">Dịch Vụ Uy Tín</h5>
-                <p class="card-text">Chúng tôi đảm bảo cung cấp dịch vụ chất lượng và đúng hẹn, đáp ứng mọi nhu cầu của khách hàng.</p>
+                <p class="card-text">Chúng tôi đảm bảo cung cấp dịch vụ chất lượng và đúng hẹn, đáp ứng mọi nhu cầu của
+                  khách hàng.</p>
                 <a href="#" class="readmore">Xem thêm </a>
               </div>
             </div>
@@ -260,7 +281,8 @@
               <i class="bi bi-camera-reels"></i>
               <div class="card-body">
                 <h5 class="card-title">Giải Pháp Sáng Tạo</h5>
-                <p class="card-text">Chúng tôi luôn đổi mới và sáng tạo để mang lại những giải pháp tối ưu và hiệu quả cho khách hàng.</p>
+                <p class="card-text">Chúng tôi luôn đổi mới và sáng tạo để mang lại những giải pháp tối ưu và hiệu quả
+                  cho khách hàng.</p>
                 <a href="#" class="readmore">Xem thêm </a>
               </div>
             </div>
@@ -271,7 +293,8 @@
               <i class="bi bi-chat-square-text"></i>
               <div class="card-body">
                 <h5 class="card-title">Hỗ Trợ Tận Tâm</h5>
-                <p class="card-text">Đội ngũ hỗ trợ của chúng tôi luôn sẵn sàng lắng nghe và giải quyết mọi vấn đề của khách hàng một cách nhanh chóng.</p>
+                <p class="card-text">Đội ngũ hỗ trợ của chúng tôi luôn sẵn sàng lắng nghe và giải quyết mọi vấn đề của
+                  khách hàng một cách nhanh chóng.</p>
                 <a href="#" class="readmore">Xem thêm </a>
               </div>
             </div>
@@ -310,71 +333,71 @@
 
     <!-- ======= Portfolio Section ======= -->
     <section id="portfolio" class="clearfix">
-  <div class="container" data-aos="fade-up">
+      <div class="container" data-aos="fade-up">
 
-    <header class="section-header">
-      <h3 class="section-title">Những Gói Cước Dịch Vụ Của Chúng Tôi</h3>
-    </header>
+        <header class="section-header">
+          <h3 class="section-title">Những Gói Cước Dịch Vụ Của Chúng Tôi</h3>
+        </header>
 
-    <div class="row" data-aos="fade-up" data-aos-delay="100">
-      <div class="col-lg-12">
-        <ul id="portfolio-flters">
-          <li data-filter="*" class="filter-active">Tất Cả</li>
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-12">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">Tất Cả</li>
+              <?php
+              // Connect to the database
+              $servername = "localhost";
+              $username = "root";
+              $password = "";
+              $dbname = "Congtyvienthong";
+
+              $conn = new mysqli($servername, $username, $password, $dbname);
+
+              // Check connection
+              if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+              }
+
+              // Query the database to get the service names
+              $sql = "SELECT * FROM dichvu";
+              $result = $conn->query($sql);
+
+              // Check if there are any results
+              if ($result->num_rows > 0) {
+                // Output each service name as a list item
+                while ($row = $result->fetch_assoc()) {
+                  echo '<li data-filter=".filter-' . $row["ID_DichVu"] . '">' . $row["TenDichVu"] . '</li>';
+                }
+              } else {
+                echo "No services found.";
+              }
+              ?>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
           <?php
-          // Connect to the database
-          $servername = "localhost";
-          $username = "root";
-          $password = "";
-          $dbname = "Congtyvienthong";
-
-          $conn = new mysqli($servername, $username, $password, $dbname);
-
-          // Check connection
-          if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-          }
-
-          // Query the database to get the service names
-          $sql = "SELECT * FROM dichvu";
+          // Query the database to get the service package details
+          $sql = "SELECT goidichvu.ID_GoiDichVu, goidichvu.TenGoiDichVu, goidichvu.MoTa, goidichvu.TocDo, goidichvu.GiaTien, goidichvu.ImgURL, dichvu.TenDichVu, dichvu.ID_DichVu
+              FROM goidichvu
+              JOIN dichvu ON goidichvu.ID_DichVu = dichvu.ID_DichVu";
           $result = $conn->query($sql);
 
           // Check if there are any results
           if ($result->num_rows > 0) {
-            // Output each service name as a list item
+            // Output each service package
             while ($row = $result->fetch_assoc()) {
-              echo '<li data-filter=".filter-' . $row["ID_DichVu"] . '">' . $row["TenDichVu"] . '</li>';
-            }
-          } else {
-            echo "No services found.";
-          }
-          ?>
-        </ul>
-      </div>
-    </div>
-
-    <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-      <?php
-      // Query the database to get the service package details
-      $sql = "SELECT goidichvu.ID_GoiDichVu, goidichvu.TenGoiDichVu, goidichvu.MoTa, goidichvu.TocDo, goidichvu.GiaTien, dichvu.TenDichVu, dichvu.ID_DichVu
-              FROM goidichvu
-              JOIN dichvu ON goidichvu.ID_DichVu = dichvu.ID_DichVu";
-      $result = $conn->query($sql);
-
-      // Check if there are any results
-      if ($result->num_rows > 0) {
-        // Output each service package
-        while ($row = $result->fetch_assoc()) {
-          echo '
+              echo '
           <div class="col-lg-4 col-md-6 portfolio-item filter-' . $row["ID_DichVu"] . '">
             <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/app1.jpg" class="img-fluid" alt="">
+              <img src="' . $row["ImgURL"] . '" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4><a href="portfolio-details.php?id=' . $row["ID_GoiDichVu"] . '">' . $row["TenGoiDichVu"] . '</a></h4>
                 <p>' . $row["MoTa"] . '</p>';
-          if (!is_null($row["TocDo"])) {
-            echo '<p>Tốc độ: ' . $row["TocDo"] . '</p>';
-          }
-          echo '
+              if (!empty($row['TocDo']) && $row['TocDo'] != 0) {
+                echo '<p>Tốc độ: ' . $row["TocDo"] . '</p>';
+              }
+              echo '
                 <p>Giá tiền: ' . $row["GiaTien"] . ' VND</p>
                 <div>
                   <a href="assets/img/portfolio/app2.jpg" data-gallery="portfolioGallery" title="' . $row["TenGoiDichVu"] . '" class="portfolio-lightbox link-preview"><i class="bi bi-plus"></i></a>
@@ -383,18 +406,18 @@
               </div>
             </div>
           </div>';
-        }
-      } else {
-        echo "No service packages found.";
-      }
+            }
+          } else {
+            echo "No service packages found.";
+          }
 
-      // Close the database connection
-      $conn->close();
-      ?>
-    </div>
+          // Close the database connection
+          $conn->close();
+          ?>
+        </div>
 
-  </div>
-</section>
+      </div>
+    </section>
 
 
     <!-- End Portfolio Section -->
@@ -421,7 +444,9 @@
                     <h4>Bí thư Đảng ủy, Chủ tịch HĐTV
                       Tập đoàn</h4>
                     <p>
-                      “Tôi nhận thức rõ trách nhiệm cá nhân của mình phải cùng tập thể lãnh đạo Tập đoàn và toàn thể CBCNV của VNPT bắt nhịp với sự thay đổi nhanh chóng của xã hội, sự phát triển thần tốc của công nghệ để đưa Tập đoàn phát triển mạnh mẽ”.
+                      “Tôi nhận thức rõ trách nhiệm cá nhân của mình phải cùng tập thể lãnh đạo Tập đoàn và toàn thể
+                      CBCNV của VNPT bắt nhịp với sự thay đổi nhanh chóng của xã hội, sự phát triển thần tốc của công
+                      nghệ để đưa Tập đoàn phát triển mạnh mẽ”.
                     </p>
                   </div>
                 </div><!-- End testimonial item -->
@@ -433,7 +458,9 @@
                     <h4>Thành viên HĐTV
                       Tập đoàn</h4>
                     <p>
-                      "Đoàn Thanh niên VNPT cần xây dựng đội ngũ thanh niên có bản lĩnh, dám nghĩ, dám làm; có tinh thần sáng tạo, đổi mới; có khát vọng cống hiến vì lợi ích chung, góp sức trẻ đưa VNPT hiện thực hóa khát vọng trở thành Nhà cung cấp dịch vụ số hàng đầu Việt Nam vào năm 2025".
+                      "Đoàn Thanh niên VNPT cần xây dựng đội ngũ thanh niên có bản lĩnh, dám nghĩ, dám làm; có tinh thần
+                      sáng tạo, đổi mới; có khát vọng cống hiến vì lợi ích chung, góp sức trẻ đưa VNPT hiện thực hóa
+                      khát vọng trở thành Nhà cung cấp dịch vụ số hàng đầu Việt Nam vào năm 2025".
                     </p>
                   </div>
                 </div><!-- End testimonial item -->
@@ -445,7 +472,12 @@
                     <h4>Thành viên HĐTV
                       Tập đoàn</h4>
                     <p>
-                      "Với trọng trách là Thành viên Hội đồng thành viên Tập đoàn VNPT, sẽ nỗ lực hơn nữa, tận tâm tận lực cùng Ban lãnh đạo Tập đoàn lãnh đạo VNPT vượt qua mọi khó khăn, thử thách để hoàn thành các nhiệm vụ chính trị được giao, bảo đảm tăng trưởng lợi nhuận, nộp ngân sách Nhà nước và đảm bảo thu nhập, đời sống của cán bộ nhân viên. Đồng thời, tiếp tục dẫn dắt để VNPT thực hiện thành công các mục tiêu của chiến lược VNPT 4.0, trở thành Tập đoàn công nghệ số, tiên phong trong chuyển đổi số quốc gia".
+                      "Với trọng trách là Thành viên Hội đồng thành viên Tập đoàn VNPT, sẽ nỗ lực hơn nữa, tận tâm tận
+                      lực cùng Ban lãnh đạo Tập đoàn lãnh đạo VNPT vượt qua mọi khó khăn, thử thách để hoàn thành các
+                      nhiệm vụ chính trị được giao, bảo đảm tăng trưởng lợi nhuận, nộp ngân sách Nhà nước và đảm bảo thu
+                      nhập, đời sống của cán bộ nhân viên. Đồng thời, tiếp tục dẫn dắt để VNPT thực hiện thành công các
+                      mục tiêu của chiến lược VNPT 4.0, trở thành Tập đoàn công nghệ số, tiên phong trong chuyển đổi số
+                      quốc gia".
                     </p>
                   </div>
                 </div><!-- End testimonial item -->
@@ -457,7 +489,12 @@
                     <h4>Thành viên HĐTV
                       Tập đoàn</h4>
                     <p>
-                      "Với trọng trách là Thành viên Hội đồng thành viên Tập đoàn VNPT, sẽ nỗ lực hơn nữa, tận tâm tận lực cùng Ban lãnh đạo Tập đoàn lãnh đạo VNPT vượt qua mọi khó khăn, thử thách để hoàn thành các nhiệm vụ chính trị được giao, bảo đảm tăng trưởng lợi nhuận, nộp ngân sách Nhà nước và đảm bảo thu nhập, đời sống của cán bộ nhân viên. Đồng thời, tiếp tục dẫn dắt để VNPT thực hiện thành công các mục tiêu của chiến lược VNPT 4.0, trở thành Tập đoàn công nghệ số, tiên phong trong chuyển đổi số quốc gia".
+                      "Với trọng trách là Thành viên Hội đồng thành viên Tập đoàn VNPT, sẽ nỗ lực hơn nữa, tận tâm tận
+                      lực cùng Ban lãnh đạo Tập đoàn lãnh đạo VNPT vượt qua mọi khó khăn, thử thách để hoàn thành các
+                      nhiệm vụ chính trị được giao, bảo đảm tăng trưởng lợi nhuận, nộp ngân sách Nhà nước và đảm bảo thu
+                      nhập, đời sống của cán bộ nhân viên. Đồng thời, tiếp tục dẫn dắt để VNPT thực hiện thành công các
+                      mục tiêu của chiến lược VNPT 4.0, trở thành Tập đoàn công nghệ số, tiên phong trong chuyển đổi số
+                      quốc gia".
                     </p>
                   </div>
                 </div><!-- End testimonial item -->
@@ -469,7 +506,12 @@
                     <h4>Thành viên HĐTV
                       Tập đoàn</h4>
                     <p>
-                      "Với trọng trách là Thành viên Hội đồng thành viên Tập đoàn VNPT, sẽ nỗ lực hơn nữa, tận tâm tận lực cùng Ban lãnh đạo Tập đoàn lãnh đạo VNPT vượt qua mọi khó khăn, thử thách để hoàn thành các nhiệm vụ chính trị được giao, bảo đảm tăng trưởng lợi nhuận, nộp ngân sách Nhà nước và đảm bảo thu nhập, đời sống của cán bộ nhân viên. Đồng thời, tiếp tục dẫn dắt để VNPT thực hiện thành công các mục tiêu của chiến lược VNPT 4.0, trở thành Tập đoàn công nghệ số, tiên phong trong chuyển đổi số quốc gia".
+                      "Với trọng trách là Thành viên Hội đồng thành viên Tập đoàn VNPT, sẽ nỗ lực hơn nữa, tận tâm tận
+                      lực cùng Ban lãnh đạo Tập đoàn lãnh đạo VNPT vượt qua mọi khó khăn, thử thách để hoàn thành các
+                      nhiệm vụ chính trị được giao, bảo đảm tăng trưởng lợi nhuận, nộp ngân sách Nhà nước và đảm bảo thu
+                      nhập, đời sống của cán bộ nhân viên. Đồng thời, tiếp tục dẫn dắt để VNPT thực hiện thành công các
+                      mục tiêu của chiến lược VNPT 4.0, trở thành Tập đoàn công nghệ số, tiên phong trong chuyển đổi số
+                      quốc gia".
                     </p>
                   </div>
                 </div><!-- End testimonial item -->
@@ -717,7 +759,8 @@
 
           <div class="col-lg-4 col-md-6 footer-info">
             <h3>VNPT</h3>
-            <p>Với nhiều năm hình thành, phát triển và gắn bó với thị trường viễn thông tại Việt Nam, Tập đoàn Bưu chính Viễn thông VNPT hiện là một trong những nhà cung cấp các dịch vụ internet uy tín hàng đầu.</p>
+            <p>Với nhiều năm hình thành, phát triển và gắn bó với thị trường viễn thông tại Việt Nam, Tập đoàn Bưu chính
+              Viễn thông VNPT hiện là một trong những nhà cung cấp các dịch vụ internet uy tín hàng đầu.</p>
           </div>
 
           <div class="col-lg-2 col-md-6 footer-links">
@@ -753,7 +796,9 @@
 
           <div class="col-lg-3 col-md-6 footer-newsletter">
             <h4>Bản Tin Của Chúng Tôi</h4>
-            <p>VNPT là nhà cung cấp mạng uy tín hàng đầu tại Việt Nam với hơn 60 năm kinh nghiệm phát triển, đi đầu về công nghệ, chất lượng dịch vụ và chăm sóc khách hàng. Cáp quang VNPT ứng dụng công nghệ mới nhất trên thế giới là Gpon/AON cho chất lượng đường truyền nhanh và ổn định.</p>
+            <p>VNPT là nhà cung cấp mạng uy tín hàng đầu tại Việt Nam với hơn 60 năm kinh nghiệm phát triển, đi đầu về
+              công nghệ, chất lượng dịch vụ và chăm sóc khách hàng. Cáp quang VNPT ứng dụng công nghệ mới nhất trên thế
+              giới là Gpon/AON cho chất lượng đường truyền nhanh và ổn định.</p>
             <form action="" method="post">
               <input type="email" name="email"><input type="submit" value="Đăng Ký">
             </form>

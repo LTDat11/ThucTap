@@ -58,21 +58,7 @@ $conn->close();
             <thead>
                 <tr>
                     <th>Tên Gói Dịch Vụ</th>
-                    <?php
-                    $showTocDo = false;
-                    $tempResult = $resultGoiDichVu->fetch_all(MYSQLI_ASSOC);
-                    foreach ($tempResult as $row) {
-                        if (!empty($row['TocDo'])) {
-                            $showTocDo = true;
-                            break;
-                        }
-                    }
-
-                    $resultGoiDichVu->data_seek(0);
-                    if ($showTocDo) {
-                        echo '<th>Tốc Độ</th>';
-                    }
-                    ?>
+                    <th>Tốc Độ</th>
                     <th>Giá Tiền</th>
                     <th>Mô Tả</th>
                     <th>Tùy Chọn</th>
@@ -83,8 +69,10 @@ $conn->close();
                 while ($row = $resultGoiDichVu->fetch_assoc()) {
                     echo "<tr>";
                     echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
-                    if (!empty($row['TocDo'])) {
+                    if (!empty($row['TocDo']) && $row['TocDo'] != 0) {
                         echo "<td>" . htmlspecialchars($row['TocDo']) . "</td>";
+                    } else {
+                        echo "<td>0</td>";
                     }
                     echo "<td>" . htmlspecialchars($row['GiaTien']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['MoTa']) . "</td>";

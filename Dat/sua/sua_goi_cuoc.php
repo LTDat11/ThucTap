@@ -45,19 +45,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $TocDo = $_POST['TocDo'];
     $GiaTien = $_POST['GiaTien'];
     $MoTa = $_POST['MoTa'];
+    //cap nhat anh
+    $target_dir = "./image/";
+    $target_file = $target_dir . basename($_FILES["ImgURL"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    $anhCapNhap = $target_file;
+
 
     // Cập nhật thông tin gói dịch vụ vào CSDL
-    $sqlUpdate = "UPDATE GoiDichVu SET TenGoiDichVu = ?, TocDo = ?, GiaTien = ?, MoTa = ? WHERE ID_GoiDichVu = ?";
+    $sqlUpdate = "UPDATE GoiDichVu SET TenGoiDichVu = ?, TocDo = ?, GiaTien = ?, MoTa = ?, ImgURL = ?  WHERE ID_GoiDichVu = ?";
     $stmtUpdate = $conn->prepare($sqlUpdate);
-    $stmtUpdate->bind_param("siisi", $TenGoiDichVu, $TocDo, $GiaTien, $MoTa, $id);
+    $stmtUpdate->bind_param("sisssi", $TenGoiDichVu, $TocDo, $GiaTien, $MoTa, $anhCapNhap, $id);
 
     if ($stmtUpdate->execute()) {
-        echo "<script>alert('Cập nhật thành công.');</script>";
+        $message = "Cập nhật thông tin gói cước thành công.";
         header("refresh:0.5; url=../chitiet/chi_tiet_dich_vu.php?id=$idDichVu");
         exit();
     } else {
-        echo "<script>alert('Cập nhật thất bại.');</script>";
-        exit();
+        $message = "Lỗi: " . $stmtUpdate->error;
     }
 }
 
@@ -78,11 +84,22 @@ $conn->close();
 <body>
     <div class="container">
         <h2 class="mt-5">Sửa Gói Cước</h2>
-        <form action="../sua/sua_goi_cuoc.php?id=<?php echo htmlspecialchars($id); ?>" method="post">
+        <form action="../sua/sua_goi_cuoc.php?id=<?php echo htmlspecialchars($id); ?>" method="post"
+            enctype="multipart/form-data">
             <div class="form-group">
                 <label for="TenGoiDichVu">Tên Gói Cước</label>
                 <input type="text" class="form-control" id="TenGoiDichVu" name="TenGoiDichVu"
                     value="<?php echo htmlspecialchars($goiDichVu['TenGoiDichVu']); ?>" required>
+            </div>
+            <div class="form-group">
+                <label for="ImgURL">Ảnh ban đầu:</label> <br>
+                <!-- nối chuỗi cho link ảnh -->
+                <img src="<?php echo "." . htmlspecialchars($goiDichVu['ImgURL']); ?>" class="blurred" alt="Hình ảnh">
+                <br>
+                <label for="ImgURL">Chọn ảnh mới:</label>
+                <br>
+                <input type="file" class="form-control" id="ImgURL" name="ImgURL" onchange="previewImage(this);">
+                <img id="preview" src="#" alt="Preview Image" style="display: none;">
             </div>
             <div class="form-group">
                 <label for="TocDo">Tốc Độ</label>
@@ -91,7 +108,7 @@ $conn->close();
             </div>
             <div class="form-group">
                 <label for="GiaTien">Giá Tiền</label>
-                <input type="number" class="form-control" id="GiaTien" name="GiaTien"
+                <input type="text" class="form-control" id="GiaTien" name="GiaTien"
                     value="<?php echo htmlspecialchars($goiDichVu['GiaTien']); ?>" required>
             </div>
             <div class="form-group">
@@ -100,7 +117,8 @@ $conn->close();
                     rows="3"><?php echo htmlspecialchars($goiDichVu['MoTa']); ?></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Lưu</button>
-            <a href="../chitiet/chi_tiet_dich_vu.php?id=<?php echo htmlspecialchars($idDichVu); ?>" class="btn btn-secondary">Quay
+            <a href="../chitiet/chi_tiet_dich_vu.php?id=<?php echo htmlspecialchars($idDichVu); ?>"
+                class="btn btn-secondary">Quay
                 Lại</a>
         </form>
         <?php if (!empty($message)): ?>
@@ -111,5 +129,24 @@ $conn->close();
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+<script>
+    function previewImage(input) {
+        const preview = document.getElementById('preview');
+        const file = input.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+            preview.src = e.target.result;
+            preview.style.display = 'block';
+
+        }
+
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            preview.style.display = 'none';
+        }
+    }
+</script>
 
 </html>
