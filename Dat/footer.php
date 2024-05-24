@@ -2,6 +2,8 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 
 <script>
     function confirmDelete_ttnv(id) {
@@ -20,51 +22,113 @@
 </script>
 
 <script>
-    var ctx = document.getElementById('myChart_nvbh').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: <?php echo json_encode($tenNhanVien); ?>,
-            datasets: [{
-                label: 'Tổng số dịch vụ bán được',
-                data: <?php echo json_encode($soLuongDichVu); ?>,
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
+    var ctx_nvbh = document.getElementById('myChart_nvbh').getContext('2d');
+var myChart_nvbh = new Chart(ctx_nvbh, {
+    type: 'bar',
+    data: {
+        labels: <?php echo json_encode($tenNhanVien); ?>,
+        datasets: [{
+            label: 'Tổng số dịch vụ bán được',
+            data: <?php echo json_encode($soLuongDichVu); ?>,
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        plugins: {
+            datalabels: {
+                anchor: 'center',
+                align: 'top',
+                color: 'black',
+                font: {
+                    weight: 'bold',
+                    size: 14
+                },
+                formatter: function(value, context) {
+                    return value;
+                }
+            },
+            legend: {
+                position: 'bottom',
+                align: 'center',
+                labels: {
+                    font: {
+                        size: 14
+                    }
                 }
             }
+        },
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        },
+        layout: {
+            padding: {
+                bottom: 80
+            }
         }
-    });
+    },
+    plugins: [
+        ChartDataLabels
+    ]
+});
 </script>
 
 <script>
-    var ctx = document.getElementById('myChart_kh_dv_max').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: <?php echo json_encode($tenKhachHang); ?>,
-            datasets: [{
-                label: 'Số lượng dịch vụ sử dụng',
-                data: <?php echo json_encode($soLuongDichVu); ?>,
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1
-            }]
+   var ctx = document.getElementById('myChart_kh_dv_max').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: <?php echo json_encode($tenKhachHang); ?>,
+        datasets: [{
+            label: 'Số lượng dịch vụ sử dụng',
+            data: <?php echo json_encode($soLuongDichVu); ?>,
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
         },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
+        layout: {
+            padding: {
+                bottom: 80 // Add extra padding on the bottom to accommodate the legend
+            }
+        },
+        plugins: {
+            datalabels: {
+                anchor: 'center',
+                align: 'top',
+                formatter: function(value, context) {
+                    return value;
+                },
+                color: 'black',
+                font: {
+                    weight: 'bold',
+                    size: 14
+                }
+            },
+            legend: {
+                position: 'bottom',
+                align: 'center',
+                labels: {
+                    font: {
+                        size: 14
+                    }
                 }
             }
         }
-    });
+    },
+    plugins: [
+        ChartDataLabels
+    ]
+});
 </script>
 </body>
 
