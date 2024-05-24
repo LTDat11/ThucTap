@@ -408,7 +408,7 @@
               <div class="portfolio-info">
                 <h4><a href="portfolio-details.php?id=' . $row["ID_GoiDichVu"] . '">' . $row["TenGoiDichVu"] . '</a></h4>
                 <p>' . $row["MoTa"] . '</p>';
-              if (!is_null($row["TocDo"])) {
+              if (!empty($row['TocDo']) && $row['TocDo'] != 0) {
                 echo '<p>Tốc độ: ' . $row["TocDo"] . '</p>';
               }
               echo '
