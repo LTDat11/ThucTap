@@ -62,7 +62,7 @@
           }
 
           // Query the database to get the service package details
-          $sql = "SELECT goidichvu.TenGoiDichVu, goidichvu.MoTa, goidichvu.TocDo, goidichvu.GiaTien, goidichvu.ImgURL, dichvu.TenDichVu
+          $sql = "SELECT goidichvu.TenGoiDichVu, goidichvu.MoTa, goidichvu.TocDo, goidichvu.GiaTien, dichvu.TenDichVu
                   FROM goidichvu
                   JOIN dichvu ON goidichvu.ID_DichVu = dichvu.ID_DichVu
                   WHERE goidichvu.ID_GoiDichVu = ?";
@@ -83,7 +83,15 @@
                     <div class="swiper-wrapper align-items-center">
 
                       <div class="swiper-slide">
-                        <img src="' . $row["ImgURL"] . '" alt="">
+                        <img src="assets/img/portfolio/portfolio-details-1.jpg" alt="">
+                      </div>
+
+                      <div class="swiper-slide">
+                        <img src="assets/img/portfolio/portfolio-details-2.jpg" alt="">
+                      </div>
+
+                      <div class="swiper-slide">
+                        <img src="assets/img/portfolio/portfolio-details-3.jpg" alt="">
                       </div>
 
                     </div>
