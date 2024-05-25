@@ -147,7 +147,7 @@ $conn->close();
             </ul>
         </div>
         <span class="navbar-text">
-            Xin chào <?php echo $tenKhachHang; ?> | <a href="../dang_xuat_nv.php" class="btn btn-dark bi bi-box-arrow-left"> Đăng Xuất</a>
+            Xin chào <?php echo $tenKhachHang; ?> | <a href="dang_xuat_nv.php" class="btn btn-dark bi bi-box-arrow-left"> Đăng Xuất</a>
         </span>
     </nav><!-- NavBar END -->
     <!-- Bootstrap row -->
