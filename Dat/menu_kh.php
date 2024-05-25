@@ -140,7 +140,7 @@ $conn->close();
                 <li class="nav-item dropdown d-sm-block d-md-none">
                     <a class="nav-link dropdown-toggle" href="#" id="smallerscreenmenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Danh Sách </a>
                     <div class="dropdown-menu" aria-labelledby="smallerscreenmenu">
-                        <a class="dropdown-item" href="../danhsach/danh_sach_thong_tin_khach_hang.php">Dịch Vụ Đã Đăng Ký</a>
+                        <a class="dropdown-item" href="khachhang.php">Dịch Vụ Đã Đăng Ký</a>
                     </div>
                 </li>
                 <!-- Smaller devices menu END -->
