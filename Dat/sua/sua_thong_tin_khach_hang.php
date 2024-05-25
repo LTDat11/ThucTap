@@ -23,15 +23,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $SoDienThoai = $conn->real_escape_string($_POST['SoDienThoai']);
     $DiaChi = $conn->real_escape_string($_POST['DiaChi']);
 
-    // Cập nhật thông tin khách hàng
-    $sql_update = "UPDATE KhachHang SET Ten='$Ten', SoDienThoai='$SoDienThoai', DiaChi='$DiaChi' WHERE ID_KhachHang=$ID_KhachHang";
+    // Kiểm tra nếu số điện thoại đã tồn tại cho khách hàng khác
+    $sql_check = "SELECT * FROM KhachHang WHERE SoDienThoai='$SoDienThoai' AND ID_KhachHang != $ID_KhachHang";
+    $result_check = $conn->query($sql_check);
 
-    if ($conn->query($sql_update) === TRUE) {
-        echo "<script>alert('Cập nhật thành công.');</script>";
-        header("refresh:0.5; url=../danhsach/danh_sach_thong_tin_khach_hang.php");
-        exit();
+    if ($result_check->num_rows > 0) {
+        echo "<script>alert('Số điện thoại đã tồn tại.');</script>";
     } else {
-        echo "Lỗi: " . $sql_update . "<br>" . $conn->error;
+        // Cập nhật thông tin khách hàng
+        $sql_update = "UPDATE KhachHang SET Ten='$Ten', SoDienThoai='$SoDienThoai', DiaChi='$DiaChi' WHERE ID_KhachHang=$ID_KhachHang";
+
+        if ($conn->query($sql_update) === TRUE) {
+            echo "<script>alert('Cập nhật thành công.');</script>";
+            header("refresh:0.5; url=../danhsach/danh_sach_thong_tin_khach_hang.php");
+            exit();
+        } else {
+            echo "Lỗi: " . $sql_update . "<br>" . $conn->error;
+        }
     }
 }
 
@@ -75,7 +83,7 @@ $conn->close();
     <?php else : ?>
         <p class="text-center">Không tìm thấy thông tin khách hàng.</p>
     <?php endif; ?>
-    
+
 </div>
 <?php include '../footer.php'; ?>
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
