@@ -37,6 +37,7 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Menu</title>
 </head>
@@ -112,9 +113,9 @@ $conn->close();
     }
 </style>
 
-<body>
+<body id="top">
     <nav class="navbar navbar-expand-md navbar-dark bg-primary">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="#">
@@ -134,19 +135,36 @@ $conn->close();
                 </li>
                 <!-- This menu is hidden in bigger devices with d-sm-none. 
            The sidebar isn't proper for smaller screens imo, so this dropdown menu can keep all the useful sidebar itens exclusively for smaller screens  -->
+                <!-- dropdown Danh Sach -->
                 <li class="nav-item dropdown d-sm-block d-md-none">
-                    <a class="nav-link dropdown-toggle" href="#" id="smallerscreenmenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Menu </a>
+                    <a class="nav-link dropdown-toggle" href="#" id="smallerscreenmenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Danh Sách </a>
                     <div class="dropdown-menu" aria-labelledby="smallerscreenmenu">
-                        <a class="dropdown-item" href="#top">hjsahgjsa</a>
-                        <a class="dropdown-item" href="#top">Profile</a>
-                        <a class="dropdown-item" href="#top">Tasks</a>
-                        <a class="dropdown-item" href="#top">Etc ...</a>
+                        <a class="dropdown-item" href="../danhsach/danh_sach_thong_tin_khach_hang.php">Thông Tin Khách Hàng </a>
+                        <a class="dropdown-item" href="../danhsach/danh_sach_thong_tin_dich_vu.php">Thông Tin Dịch Vụ</a>
+                        <a class="dropdown-item" href="../danhsach/danh_sach_thong_tin_nhan_vien_ban_hang.php">Thông Tin Nhân Viên</a>
+                        <a class="dropdown-item" href="../danhsach/danh_sach_thong_tin_ban_hang.php">Thông Tin Bán Hàng</a>
+                    </div>
+                </li>
+                <!-- dropdown Top 10 -->
+                <li class="nav-item dropdown d-sm-block d-md-none">
+                    <a class="nav-link dropdown-toggle" href="#" id="smallerscreenmenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Top 10 </a>
+                    <div class="dropdown-menu" aria-labelledby="smallerscreenmenu">
+                        <a class="dropdown-item" href="../top10/top10_nvbh.php">Nhân Viên Bán Hàng Nhiều</a>
+                        <a class="dropdown-item" href="../top10/top10kh_dvMax.php">Khách Hàng Dùng Nhiều Dịch Vụ</a>
+                        <a class="dropdown-item" href="../top10/dich_vu_dang_ky_nhieu.php">Dịch Vụ Đăng Ký Nhiều</a>
+                    </div>
+                </li>
+                <!-- dropdown Thong ke -->
+                <li class="nav-item dropdown d-sm-block d-md-none">
+                    <a class="nav-link dropdown-toggle" href="#" id="smallerscreenmenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Thống Kê </a>
+                    <div class="dropdown-menu" aria-labelledby="smallerscreenmenu">
+                        <a class="dropdown-item" href="../thongke/doanh_thu.php">Doanh Thu</a>
                     </div>
                 </li><!-- Smaller devices menu END -->
             </ul>
         </div>
         <span class="navbar-text">
-            Xin chào <?php echo $tenNhanVien; ?> | <a href="../dang_xuat_nv.php">Đăng Xuất</a>
+            Xin chào <?php echo $tenNhanVien; ?> | <a href="../dang_xuat_nv.php" class="btn btn-dark bi bi-box-arrow-left"> Đăng Xuất</a>
         </span>
     </nav><!-- NavBar END -->
     <!-- Bootstrap row -->

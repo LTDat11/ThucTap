@@ -77,7 +77,7 @@ $conn->close();
                     echo "<tr>";
                     echo "<td>" . htmlspecialchars($row['TenDichVu']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['TongSoGoiDaBan']) . "</td>";
-                    echo "<td><a href='../chitiet/chi_tiet_dich_vu_dang_ky_nhieu.php?id=" . $row['ID_DichVu'] . "' class='btn btn-info'>Xem chi tiết</a></td>";
+                    echo "<td><a href='../chitiet/chi_tiet_dich_vu_dang_ky_nhieu.php?id=" . $row['ID_DichVu'] . "' class='btn btn-info bi bi-info-circle'> Xem chi tiết</a></td>";
                     echo "</tr>";
 
                     $labels[] = $row['TenDichVu'];

@@ -79,7 +79,7 @@ $conn->close();
                     echo "<td>" . htmlspecialchars($row['DiaChi']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['SoLuongLoaiDichVu']) . "</td>";
                     echo "<td>
-                        <a href='../chitiet/chi_tiet.php?id=" . $row['ID_KhachHang'] . "' class='btn btn-info'>Xem Chi Tiết</a>
+                        <a href='../chitiet/chi_tiet.php?id=" . $row['ID_KhachHang'] . "' class='btn btn-info bi bi-info-circle'> Xem Chi Tiết</a>
                         </td>";
                     echo "</tr>";
 
@@ -93,7 +93,7 @@ $conn->close();
             ?>
         </tbody>
     </table>
-    <a href="../xuat/xuat_excel_top10_khach_hang_dung_nhieu_dv.php" class="btn btn-success">Xuất Excel</a>
+    <a href="../xuat/xuat_excel_top10_khach_hang_dung_nhieu_dv.php" class="btn btn-success bi bi-file-earmark-arrow-down"> Xuất Excel</a>
 
     <!-- Biểu đồ -->
     <div class="mt-5">

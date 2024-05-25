@@ -72,8 +72,8 @@ $conn->close();
             <label for="tenMoi">Tên Dịch Vụ Mới:</label>
             <input type="text" class="form-control" id="tenMoi" name="tenMoi" value="<?php echo htmlspecialchars($dichVu['TenDichVu']); ?>" required>
         </div>
-        <button type="submit" class="btn btn-primary">Lưu</button>
-        <a href="../danhsach/danh_sach_thong_tin_dich_vu.php?id=<?php echo $id; ?>" class="btn btn-secondary">Hủy</a>
+        <button type="submit" class="btn btn-primary bi bi-floppy mr-2"> Lưu</button>
+        <a href="../danhsach/danh_sach_thong_tin_dich_vu.php?id=<?php echo $id; ?>" class="btn btn-secondary bi bi-backspace"> Quay Lại</a>
     </form>
 </div>
 <?php include '../footer.php'; ?>

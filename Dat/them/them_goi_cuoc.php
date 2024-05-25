@@ -103,8 +103,8 @@ $conn->close();
             <label for="MoTa">Mô Tả</label>
             <textarea class="form-control" id="MoTa" name="MoTa" rows="3"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Lưu</button>
-        <a href="../chitiet/chi_tiet_dich_vu.php?id=<?php echo htmlspecialchars($idDichVu); ?>" class="btn btn-secondary">Quay
+        <button type="submit" class="btn btn-primary bi bi-floppy mr-2"> Lưu</button>
+        <a href="../chitiet/chi_tiet_dich_vu.php?id=<?php echo htmlspecialchars($idDichVu); ?>" class="btn btn-secondary bi bi-backspace"> Quay
             Lại</a>
     </form>
     <?php if (!empty($message)) : ?>

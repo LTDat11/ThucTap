@@ -70,9 +70,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="DiaChi">Địa Chỉ</label>
             <input type="text" class="form-control" id="DiaChi" name="DiaChi" required>
         </div>
-        <button type="submit" class="btn btn-primary">Thêm Nhân Viên</button>
+        <button type="submit" class="btn btn-primary bi bi-floppy mr-2"> Lưu</button>
+        <a href="../danhsach/danh_sach_thong_tin_nhan_vien_ban_hang.php" class="btn btn-secondary bi bi-backspace"> Quay Lại</a>
     </form>
-    <a href="../danhsach/danh_sach_thong_tin_nhan_vien_ban_hang.php" class="btn btn-secondary mt-3">Quay Lại Danh Sách Nhân Viên</a>
 </div>
 <?php include '../footer.php'; ?>
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

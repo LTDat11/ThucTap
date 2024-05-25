@@ -45,7 +45,7 @@ $conn->close();
                 <input type="text" class="form-control" placeholder="Tìm kiếm..." name="search_query">
             </div>
             <div class="col-auto">
-                <button type="submit" class="btn btn-primary">Tìm Kiếm</button>
+                <button type="submit" class="btn btn-primary bi bi-search"> Tìm Kiếm</button>
             </div>
         </div>
     </form>
@@ -67,8 +67,8 @@ $conn->close();
                     echo "<td>" . htmlspecialchars($row['SoDienThoai']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['DiaChi']) . "</td>";
                     echo "<td>
-                        <a href='../chitiet/chi_tiet2.php?id=" . $row['ID_KhachHang'] . "' class='btn btn-info'>Xem Chi Tiết</a>
-                        <a href='../sua/sua_thong_tin_khach_hang.php?id=" . $row['ID_KhachHang'] . "' class='btn btn-warning'>Sửa</a>
+                        <a href='../chitiet/chi_tiet2.php?id=" . $row['ID_KhachHang'] . "' class='btn btn-info bi bi-info-circle'> Xem Chi Tiết</a>
+                        <a href='../sua/sua_thong_tin_khach_hang.php?id=" . $row['ID_KhachHang'] . "' class='btn btn-warning bi bi-pencil ml-2'> Sửa</a>
                     </td>";
                     echo "</tr>";
                 }
@@ -78,7 +78,7 @@ $conn->close();
             ?>
         </tbody>
     </table>
-    <a href="../xuat/xuat_excel_DS_thong_tin_khach_hang.php" class="btn btn-success mb-3">Xuất Excel</a>
+    <a href="../xuat/xuat_excel_DS_thong_tin_khach_hang.php" class="btn btn-success bi bi-file-earmark-arrow-down mb-3"> Xuất Excel</a>
 </div>
 <?php include '../footer.php'; ?>
 <!-- <a href="them_thong_tin_ban_hang.php" class="btn btn-primary">Thêm Thông Tin Bán Hàng Mới</a> -->

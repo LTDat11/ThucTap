@@ -88,7 +88,7 @@ $conn->close();
     <?php else : ?>
         <p class="text-center">Không tìm thấy thông tin khách hàng.</p>
     <?php endif; ?>
-    <a href="../danhsach/danh_sach_thong_tin_khach_hang.php" class="btn btn-secondary">Quay Lại</a>
+    <a href="../danhsach/danh_sach_thong_tin_khach_hang.php" class="btn btn-secondary bi bi-backspace"> Quay Lại</a>
 </div>
 <?php include '../footer.php'; ?>
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

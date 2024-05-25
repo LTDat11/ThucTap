@@ -27,7 +27,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql_update = "UPDATE TTNhanVienBanHang SET TenNhanVien='$TenNhanVien', SoDienThoai='$SoDienThoai', DiaChi='$DiaChi' WHERE ID_TTNVBH=$ID_TTNVBH";
 
     if ($conn->query($sql_update) === TRUE) {
-        echo "Cập nhật thông tin thành công.";
+        echo "<script>alert('Cập nhật thành công.');</script>";
+        header("refresh:0.5; url=../danhsach/danh_sach_thong_tin_nhan_vien_ban_hang.php");
+        exit();
     } else {
         echo "Lỗi: " . $sql_update . "<br>" . $conn->error;
     }

@@ -55,8 +55,8 @@ $conn->close();
             <label for="TenDichVu">Tên Dịch Vụ</label>
             <input type="text" class="form-control" id="TenDichVu" name="TenDichVu" required>
         </div>
-        <button type="submit" class="btn btn-primary">Thêm</button>
-        <a href="../danhsach/danh_sach_thong_tin_dich_vu.php" class="btn btn-secondary">Quay Lại</a>
+        <button type="submit" class="btn btn-primary bi bi-floppy mr-2"> Lưu</button>
+        <a href="../danhsach/danh_sach_thong_tin_dich_vu.php" class="btn btn-secondary bi bi-backspace"> Quay Lại</a>
     </form>
 </div>
 <?php include '../footer.php'; ?>

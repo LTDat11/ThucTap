@@ -79,16 +79,16 @@ $conn->close();
                 echo "<td>" . htmlspecialchars($row['GiaTien']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['MoTa']) . "</td>";
                 echo "<td>
-                    <a href='../sua/sua_goi_cuoc.php?id=" . $row['ID_GoiDichVu'] . "' class='btn btn-warning'>Sửa</a>
-                    <a href='../xoa/xoa_goi_cuoc.php?id=" . $row['ID_GoiDichVu'] . "' class='btn btn-danger'>Xóa</a>
+                    <a href='../sua/sua_goi_cuoc.php?id=" . $row['ID_GoiDichVu'] . "' class='btn btn-warning bi bi-pencil'> Sửa</a>
+                    <a href='../xoa/xoa_goi_cuoc.php?id=" . $row['ID_GoiDichVu'] . "' class='btn btn-danger bi bi-trash ml-2'> Xóa</a>
                 </td>";
                 echo "</tr>";
             }
             ?>
         </tbody>
     </table>
-    <a href="../them/them_goi_cuoc.php?idDichVu=<?php echo $id; ?>" class="btn btn-primary">Thêm Gói Cước</a>
-    <a href="../danhsach/danh_sach_thong_tin_dich_vu.php" class="btn btn-secondary">Quay Lại</a>
+    <a href="../them/them_goi_cuoc.php?idDichVu=<?php echo $id; ?>" class="btn btn-primary bi bi-plus-circle"> Thêm Gói Cước</a>
+    <a href="../danhsach/danh_sach_thong_tin_dich_vu.php" class="btn btn-secondary bi bi-backspace ml-2"> Quay Lại</a>
 </div>
 <?php include '../footer.php'; ?>
 <!-- </div>

@@ -69,12 +69,13 @@ $conn->close();
                 <label for="DiaChi">Địa Chỉ</label>
                 <input type="text" class="form-control" id="DiaChi" name="DiaChi" value="<?php echo htmlspecialchars($khachhang['DiaChi']); ?>" required>
             </div>
-            <button type="submit" class="btn btn-primary">Cập Nhật</button>
+            <button type="submit" class="btn btn-primary bi bi-floppy mr-2"> Lưu</button>
+            <a href="../danhsach/danh_sach_thong_tin_khach_hang.php" class="btn btn-secondary bi bi-backspace"> Quay Lại</a>
         </form>
     <?php else : ?>
         <p class="text-center">Không tìm thấy thông tin khách hàng.</p>
     <?php endif; ?>
-    <a href="../danhsach/danh_sach_thong_tin_khach_hang.php" class="btn btn-secondary mt-3">Quay Lại Danh Sách Khách Hàng</a>
+    
 </div>
 <?php include '../footer.php'; ?>
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

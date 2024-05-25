@@ -88,7 +88,7 @@ $conn->close();
     <?php else : ?>
         <p class="text-center">Không tìm thấy thông tin khách hàng.</p>
     <?php endif; ?>
-    <a href="../top10/top10kh_dvMax.php" class="btn btn-secondary">Quay Lại</a>
+    <a href="../top10/top10kh_dvMax.php" class="btn btn-secondary bi bi-backspace"> Quay Lại</a>
 </div>
 <?php include '../footer.php'; ?>
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

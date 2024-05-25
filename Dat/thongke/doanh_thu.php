@@ -337,7 +337,7 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
                 </select>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary ml-2">Xem</button>
+        <button type="submit" class="btn btn-primary bi bi-search"> Tra Cứu</button>
     </form>
 </div>
 
@@ -384,7 +384,7 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
             echo "<h3 class='mt-3'>Tổng
         doanh thu: " . htmlspecialchars($row['TongTienThuDuoc']) . "</h3>";
             // echo "<a href=\"xuat_excel_doanh_thu.php\" class=\"btn btn-success\">Xuất Excel</a>";
-            echo "<button onclick=\"exportTableToExcel()\" class=\"btn btn-success\">Xuất Excel</button>";
+            echo "<button onclick=\"exportTableToExcel()\" class=\"btn btn-success bi bi-file-earmark-arrow-down\"> Xuất Excel</button>";
         }
     }
     ?>

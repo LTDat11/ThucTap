@@ -28,7 +28,30 @@ JOIN TTNhanVienBanHang AS nv ON ttb.ID_TTNVBH = nv.ID_TTNVBH
 JOIN KhachHang AS kh ON ttb.ID_KhachHang = kh.ID_KhachHang
 JOIN GoiDichVu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
 ORDER BY ttb.NgayDangKy DESC";
+
 $result = $conn->query($sql);
+
+//truy search
+if (isset($_GET['search_query']) && !empty($_GET['search_query'])) {
+    $search_query = $_GET['search_query'];
+    $sql = "SELECT 
+    ttb.ID_ThongTinBanHang,
+    ttb.ID_TTNVBH,
+    ttb.ID_KhachHang,
+    ttb.ID_GoiDichVu,
+    ttb.NgayDangKy,
+    nv.TenNhanVien,
+    kh.Ten AS TenKhachHang,
+    gdv.TenGoiDichVu
+FROM ThongTinBanHang AS ttb
+JOIN TTNhanVienBanHang AS nv ON ttb.ID_TTNVBH = nv.ID_TTNVBH
+JOIN KhachHang AS kh ON ttb.ID_KhachHang = kh.ID_KhachHang
+JOIN GoiDichVu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
+WHERE nv.TenNhanVien LIKE '%$search_query%' OR kh.Ten LIKE '%$search_query%' OR gdv.TenGoiDichVu LIKE '%$search_query%' OR ttb.NgayDangKy LIKE '%$search_query%'
+ORDER BY ttb.NgayDangKy DESC";
+    $result = $conn->query($sql);
+}
+
 
 $conn->close();
 ?>
@@ -49,6 +72,16 @@ $conn->close();
 <?php include '../menu.php'; ?>
 <div class="container">
     <h2 class="mt-3">Danh Sách Thông Tin Bán Hàng</h2>
+    <form action="" method="GET" class="mb-3">
+        <div class="form-row">
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Tìm kiếm..." name="search_query">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary bi bi-search"> Tìm Kiếm</button>
+            </div>
+        </div>
+    </form>
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -69,8 +102,8 @@ $conn->close();
                     echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['NgayDangKy']) . "</td>";
                     echo "<td>
-                            <a href='../sua/sua_thong_tin_ban_hang.php?id=" . $row['ID_ThongTinBanHang'] . "' class='btn btn-warning'>Sửa</a>
-                            <a href='../xoa/xoa_thong_tin_ban_hang.php?id=" . $row['ID_ThongTinBanHang'] . "' class='btn btn-danger' onclick='return confirm(\"Bạn có chắc chắn muốn xóa?\")'>Xóa</a>
+                            <a href='../sua/sua_thong_tin_ban_hang.php?id=" . $row['ID_ThongTinBanHang'] . "' class='btn btn-warning bi bi-pencil'> Sửa</a>
+                            <a href='../xoa/xoa_thong_tin_ban_hang.php?id=" . $row['ID_ThongTinBanHang'] . "' class='btn btn-danger bi bi-trash ml-2' onclick='return confirm(\"Bạn có chắc chắn muốn xóa?\")'> Xóa</a>
                             </td>";
                     echo "</tr>";
                 }
@@ -80,7 +113,7 @@ $conn->close();
             ?>
         </tbody>
     </table>
-    <a href="../them/them_thong_tin_ban_hang.php" class="btn btn-primary mb-3">Thêm Thông Tin Bán Hàng Mới</a>
+    <a href="../them/them_thong_tin_ban_hang.php" class="btn btn-primary bi bi-plus-circle mb-3"> Thêm Thông Tin Bán Hàng Mới</a>
 </div>
 <?php include '../footer.php'; ?>
 <!-- </div>  -->

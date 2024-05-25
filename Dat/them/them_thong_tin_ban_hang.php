@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (message) {
                 let continueAdding = confirm(message + "\nBạn có muốn tiếp tục thêm thông tin mới không?");
                 if (!continueAdding) {
-                    window.location.href = '../danhsach/danh_sach_thong_tin_khach_hang.php';
+                    window.location.href = '../danhsach/danh_sach_thong_tin_ban_hang.php';
                 }
             }
         }

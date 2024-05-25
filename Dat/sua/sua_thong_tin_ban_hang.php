@@ -127,8 +127,8 @@ $conn->close();
             <label for="NgayBan">Ngày Bán</label>
             <input type="date" class="form-control" id="NgayBan" name="NgayBan" value="<?php echo htmlspecialchars($thongTinBanHang['NgayDangKy']); ?>" required>
         </div>
-        <button type="submit" class="btn btn-primary">Cập Nhật</button>
-        <a href="../danhsach/danh_sach_thong_tin_ban_hang.php" class="btn btn-secondary">Quay Lại</a>
+        <button type="submit" class="btn btn-primary bi bi-floppy mr-2"> Lưu</button>
+        <a href="../danhsach/danh_sach_thong_tin_ban_hang.php" class="btn btn-secondary bi bi-backspace"> Quay Lại</a>
     </form>
 </div>
 <?php include '../footer.php'; ?>

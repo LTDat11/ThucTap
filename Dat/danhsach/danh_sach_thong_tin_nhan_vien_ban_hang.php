@@ -45,7 +45,7 @@ $conn->close();
                 <input type="text" class="form-control" placeholder="Tìm kiếm..." name="search_query">
             </div>
             <div class="col-auto">
-                <button type="submit" class="btn btn-primary">Tìm Kiếm</button>
+                <button type="submit" class="btn btn-primary bi bi-search">Tìm Kiếm</button>
             </div>
         </div>
     </form>
@@ -67,9 +67,9 @@ $conn->close();
                     echo "<td>" . htmlspecialchars($row['SoDienThoai']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['DiaChi']) . "</td>";
                     echo "<td>
-                        <a href='../chitiet/chi_tiet_nvbh2.php?id=" . $row['ID_TTNVBH'] . "' class='btn btn-info'>Xem Chi Tiết</a>
-                        <a href='../sua/sua_thong_tin_nhan_vien.php?id=" . $row['ID_TTNVBH'] . "' class='btn btn-warning'>Sửa</a>
-                        <a href='#' onclick='confirmDelete_ttnv(" . $row['ID_TTNVBH'] . ")' class='btn btn-danger'>Xóa</a>
+                        <a href='../chitiet/chi_tiet_nvbh2.php?id=" . $row['ID_TTNVBH'] . "' class='btn btn-info bi bi-info-circle'> Xem Chi Tiết</a>
+                        <a href='../sua/sua_thong_tin_nhan_vien.php?id=" . $row['ID_TTNVBH'] . "' class='btn btn-warning bi bi-pencil ml-2 mr-2'> Sửa</a>
+                        <a href='#' onclick='confirmDelete_ttnv(" . $row['ID_TTNVBH'] . ")' class='btn btn-danger bi bi-trash'> Xóa</a>
                       </td>";
 
                     echo "</tr>";
@@ -80,7 +80,7 @@ $conn->close();
             ?>
         </tbody>
     </table>
-    <a href="../them/them_nhan_vien_ban_hang.php" class="btn btn-primary mb-3">Thêm Nhân Viên Bán Hàng Mới</a>
+    <a href="../them/them_nhan_vien_ban_hang.php" class="btn btn-primary bi bi-person-add mb-3"> Thêm Nhân Viên Bán Hàng Mới</a>
 </div>
 <?php include '../footer.php'; ?>
 <!-- </div>

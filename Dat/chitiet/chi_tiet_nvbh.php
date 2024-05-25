@@ -118,7 +118,7 @@ $conn->close();
             ?>
         </tbody>
     </table>
-    <a href="../top10/top10_nvbh.php" class="btn btn-secondary">Quay Lại</a>
+    <a href="../top10/top10_nvbh.php" class="btn btn-secondary bi bi-backspace"> Quay Lại</a>
 </div>
 <?php include '../footer.php'; ?>
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

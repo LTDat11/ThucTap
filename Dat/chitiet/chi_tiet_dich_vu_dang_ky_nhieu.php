@@ -106,7 +106,7 @@ $TongSoGoiDaBan = $row['TongSoGoiDaBan'];
         ?>
     </tbody>
 </table>
-<a href="../top10/dich_vu_dang_ky_nhieu.php" class="btn btn-secondary">Quay Lại</a>
+<a href="../top10/dich_vu_dang_ky_nhieu.php" class="btn btn-secondary bi bi-backspace"> Quay Lại</a>
 </div> 
 <?php include '../footer.php'; ?>
 <!-- </div>

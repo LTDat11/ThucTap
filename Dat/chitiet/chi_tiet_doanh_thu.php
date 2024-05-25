@@ -148,7 +148,7 @@ $result = $conn->query($sql);
     <form action="../xuat/xuat_excel_doanh_thu.php" method="post">
         <input type="hidden" name="service" value="<?php echo htmlspecialchars($ID_DichVu); ?>">
         <input type="hidden" name="period" value="<?php echo htmlspecialchars($period); ?>">
-        <button type="submit" class="btn btn-success">Xuất Excel</button>
+        <button type="submit" class="btn btn-success bi bi-file-earmark-arrow-down"> Xuất Excel</button>
     </form>
 </div>
 <?php include '../footer.php'; ?>

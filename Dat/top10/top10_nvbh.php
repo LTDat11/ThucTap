@@ -71,7 +71,7 @@ $conn->close();
                     echo "<td>" . htmlspecialchars($row['SoDienThoai']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['DiaChi']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['TongSoLuongDichVuBanDuoc']) . "</td>";
-                    echo "<td><a href='../chitiet/chi_tiet_nvbh.php?id=" . $row['ID_TTNVBH'] . "' class='btn btn-info'>Xem Chi Tiết</a></td>";
+                    echo "<td><a href='../chitiet/chi_tiet_nvbh.php?id=" . $row['ID_TTNVBH'] . "' class='btn btn-info bi bi-info-circle'> Xem Chi Tiết</a></td>";
                     echo "</tr>";
 
                     // Thêm dữ liệu vào mảng
@@ -84,7 +84,7 @@ $conn->close();
             ?>
         </tbody>
     </table>
-    <a href="../xuat/xuat_excel_top10_nvbh_nhieu.php" class="btn btn-success">Xuất Excel</a>
+    <a href="../xuat/xuat_excel_top10_nvbh_nhieu.php" class="btn btn-success bi bi-file-earmark-arrow-down"> Xuất Excel</a>
     <!-- <a href="them_thong_tin_ban_hang.php" class="btn btn-primary">Thêm Thông Tin Bán Hàng Mới</a> -->
 
     <!-- Biểu đồ -->

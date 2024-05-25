@@ -49,9 +49,9 @@ $conn->close();
                     echo "<tr>";
                     echo "<td>" . htmlspecialchars($row['TenDichVu']) . "</td>";
                     echo "<td>
-                        <a href='../chitiet/chi_tiet_dich_vu.php?id=" . $row['ID_DichVu'] . "' class='btn btn-info'>Xem Chi Tiết</a>
-                        <a href='../sua/sua_ten_dich_vu.php?id=" . $row['ID_DichVu'] . "' class='btn btn-warning'>Sửa</a>
-                        <a href='#' onclick='confirmDelete_dv(" . $row['ID_DichVu'] . ")' class='btn btn-danger'>Xóa</a>
+                        <a href='../chitiet/chi_tiet_dich_vu.php?id=" . $row['ID_DichVu'] . "' class='btn btn-info bi bi-info-circle'> Xem Chi Tiết</a>
+                        <a href='../sua/sua_ten_dich_vu.php?id=" . $row['ID_DichVu'] . "' class='btn btn-warning bi bi-pencil ml-2 mr-2'> Sửa</a>
+                        <a href='#' onclick='confirmDelete_dv(" . $row['ID_DichVu'] . ")' class='btn btn-danger bi bi-trash'> Xóa</a>
                     </td>";
                     echo "</tr>";
                 }
@@ -61,7 +61,7 @@ $conn->close();
             ?>
         </tbody>
     </table>
-    <a href="../them/them_dich_vu.php" class="btn btn-primary mb-3">Thêm Dịch Vụ</a>
+    <a href="../them/them_dich_vu.php" class="btn btn-primary bi bi-plus-circle mb-3"> Thêm Dịch Vụ</a>
 </div>
 <?php include '../footer.php'; ?>
 <!-- </div>

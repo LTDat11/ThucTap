@@ -53,41 +53,42 @@ $conn->close();
 <body>
     <div class="container"> -->
 <?php include 'menu_kh.php'; ?>
-<h2 class="mt-3">Danh Sách Dịch Vụ Bạn Đăng Kí</h2>
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Tên Dịch Vụ</th>
-            <th>Tên Gói Dịch Vụ</th>
-            <th>Tốc Độ</th>
-            <th>Giá Tiền</th>
-            <th>Mô Tả</th>
-            <th>Ngày Đăng Kí</th>
-            <th>Số Lượng</th>
+<div class="container">
+    <h2 class="mt-3">Danh Sách Dịch Vụ Bạn Đăng Kí</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Tên Dịch Vụ</th>
+                <th>Tên Gói Dịch Vụ</th>
+                <th>Tốc Độ</th>
+                <th>Giá Tiền</th>
+                <th>Mô Tả</th>
+                <th>Ngày Đăng Kí</th>
+                <th>Số Lượng</th>
 
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo "<tr>";
-                echo "<td>" . htmlspecialchars($row['TenDichVu']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['TocDo']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['GiaTien']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['MoTa']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['NgayDangKy']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['SoLuong']) . "</td>";
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . htmlspecialchars($row['TenDichVu']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['TocDo']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['GiaTien']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['MoTa']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['NgayDangKy']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['SoLuong']) . "</td>";
 
-                echo "</tr>";
+                    echo "</tr>";
+                }
+            } else {
+                echo "<tr><td colspan='7' class='text-center'>Không có dữ liệu</td></tr>";
             }
-        } else {
-            echo "<tr><td colspan='7' class='text-center'>Không có dữ liệu</td></tr>";
-        }
-        ?>
-    </tbody>
-</table>
+            ?>
+        </tbody>
+    </table>
 
-
+</div>
 <?php include 'footer.php'; ?>
