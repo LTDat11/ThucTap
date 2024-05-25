@@ -4,58 +4,46 @@ require '../vendor/autoload.php';
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
-// Kết nối cơ sở dữ liệu
-$conn = new mysqli('localhost', 'root', '', 'Congtyvienthong');
-if ($conn->connect_error) {
-    die("Kết nối thất bại: " . $conn->connect_error);
+if (isset($_POST['data'])) {
+    $data = json_decode($_POST['data'], true);
+    // $h2Content = $_POST['h2Content'];
+
+    $spreadsheet = new Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+
+    // Set the header (H2 content) and make it bold
+    // $sheet->setCellValue('A1', $h2Content);
+    // $sheet->mergeCells('A1:D1');
+    // $sheet->getStyle('A1')->getFont()->setBold(true);
+
+    // Set headers for the columns
+    // $headers = ['TenGoiDichVu', 'GiaTien', 'TongSoLuong', 'ThanhTien'];
+    // $sheet->fromArray($headers, NULL, 'A2');
+
+    // Set data starting from row 3
+    $sheet->fromArray($data, NULL, 'A1');
+
+    // Calculate total
+    // $totalRow = count($data) + 3; // Data starts at row 3
+    // $sheet->setCellValue('C' . $totalRow, 'Tổng tiền:');
+    // $sheet->setCellValue('D' . $totalRow, '=SUM(D3:D' . ($totalRow - 1) . ')');
+
+    // Set headers to be bold
+    $headerStyle = [
+        'font' => [
+            'bold' => true,
+        ],
+    ];
+    $sheet->getStyle('A1:D1')->applyFromArray($headerStyle);
+    // $sheet->getStyle('C' . $totalRow . ':D' . $totalRow)->applyFromArray($headerStyle);
+
+    // Set Content-Type and file name for download
+    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    header('Content-Disposition: attachment;filename="top10nv.xlsx"');
+    header('Cache-Control: max-age=0');
+
+    $writer = new Xlsx($spreadsheet);
+    $writer->save('php://output');
+    exit;
 }
-
-// Truy vấn thông tin nhân viên
-$sql = "SELECT 
-ttbh.TenNhanVien,
-ttbh.SoDienThoai,
-ttbh.DiaChi,
-COUNT(ttb.ID_TTNVBH) AS TongSoLuongDichVuBanDuoc
-FROM 
-ThongTinBanHang AS ttb
-JOIN 
-TTNhanVienBanHang AS ttbh ON ttb.ID_TTNVBH = ttbh.ID_TTNVBH
-GROUP BY 
-ttbh.ID_TTNVBH, ttbh.TenNhanVien, ttbh.SoDienThoai, ttbh.DiaChi
-ORDER BY 
-TongSoLuongDichVuBanDuoc DESC
-LIMIT 10";
-$result = $conn->query($sql);
-
-// Tạo đối tượng Spreadsheet mới
-$spreadsheet = new Spreadsheet();
-$sheet = $spreadsheet->getActiveSheet();
-
-// Đặt tên tiêu đề cột
-$sheet->setCellValue('A1', 'Tên Nhân viên bán hàng');
-$sheet->setCellValue('B1', 'Số Điện Thoại');
-$sheet->setCellValue('C1', 'Địa Chỉ');
-$sheet->setCellValue('D1', 'Tổng số dịch vụ bán được');
-
-// Thêm dữ liệu vào bảng
-$rowNumber = 2; // Bắt đầu từ dòng thứ 2
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $sheet->setCellValue('A' . $rowNumber, $row['TenNhanVien']);
-        $sheet->setCellValue('B' . $rowNumber, $row['SoDienThoai']);
-        $sheet->setCellValue('C' . $rowNumber, $row['DiaChi']);
-        $sheet->setCellValue('D' . $rowNumber, $row['TongSoLuongDichVuBanDuoc']);
-        $rowNumber++;
-    }
-}
-
-// Đặt tên file và xuất file
-$writer = new Xlsx($spreadsheet);
-$filename = 'Danh_Sach_Nhan_Vien_Ban_Hang.xlsx';
-
-header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-header('Content-Disposition: attachment;filename="' . $filename . '"');
-header('Cache-Control: max-age=0');
-$writer->save('php://output');
-exit();
 ?>
