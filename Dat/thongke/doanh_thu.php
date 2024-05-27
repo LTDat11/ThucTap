@@ -54,7 +54,9 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
 
     switch ($timeOption) {
         case 'week':
-            $message2 = "tuần này";
+            $weekStartSelect = $_POST['weekStartSelect'];
+            $weekEndSelect = $_POST['weekEndSelect'];
+            $message2 = "Tuần Này";
             $sql1 = "SELECT 
                 dv.ID_DichVu,
                 dv.TenDichVu,
@@ -67,8 +69,7 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
                 DichVu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
             WHERE 
                 dv.ID_DichVu = $ID_DichVu
-                AND ttb.NgayDangKy BETWEEN DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY) 
-                AND DATE_ADD(DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY), INTERVAL 6 DAY)
+                AND ttb.NgayDangKy BETWEEN '$weekStartSelect' AND '$weekEndSelect' 
             GROUP BY 
                 dv.ID_DichVu, dv.TenDichVu";
 
@@ -86,8 +87,7 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
             DichVu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
         WHERE 
             dv.ID_DichVu = $ID_DichVu
-            AND ttb.NgayDangKy BETWEEN DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY) 
-            AND DATE_ADD(DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY), INTERVAL 6 DAY)
+            AND ttb.NgayDangKy BETWEEN '$weekStartSelect' AND '$weekEndSelect'
         GROUP BY 
             gdv.ID_GoiDichVu, gdv.TenGoiDichVu, gdv.GiaTien;
         ";
@@ -141,7 +141,7 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
             if (isset($_POST['quarterSelect']) && isset($_POST['yearSelect'])) {
                 $year = $_POST['yearSelect'];
                 $quarter = $_POST['quarterSelect'];
-                $message2 = "quý $quarter năm $year";
+                $message2 = "Quý $quarter Năm $year";
                 $startMonth = ($quarter - 1) * 3 + 1;
                 $endMonth = $startMonth + 2;
                 $sql1 = "SELECT 
@@ -187,7 +187,7 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
             if (isset($_POST['monthSelect']) && isset($_POST['yearSelect'])) {
                 $year = $_POST['yearSelect'];
                 $month = $_POST['monthSelect'];
-                $message2 = "tháng $month năm $year";
+                $message2 = "Tháng $month Năm $year";
                 $sql1 = "SELECT 
                     dv.ID_DichVu,
                     dv.TenDichVu,
@@ -246,7 +246,7 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
     <div class="container"> -->
 <?php include '../menu.php'; ?>
 <div class="container">
-    <h1>Doanh thu</h1>
+    <h1>Doanh thu <?php echo "$message $message2" ?></h1>
     <form action="" method="post">
         <div class="form-group">
             <label for="service">Chọn dịch vụ:</label>
@@ -337,7 +337,19 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
                 </select>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary bi bi-search"> Tra Cứu</button>
+        <div class="form-group" id="weekForm">
+            <div class="d-flex">
+                <label for="ngayDangKy">Ngày bắt đầu</label>
+                <input type="date" class="form-control" id="weekStartSelect" name="weekStartSelect">
+            </div>
+
+            <div class="d-flex">
+                <label for="ngayDangKy">Ngày kết thúc</label>
+                <input type="date" class="form-control" id="weekEndSelect" name="weekEndSelect">
+            </div>
+
+        </div>
+        <button type="submit" class="btn btn-primary bi bi-funnel"> Lọc</button>
     </form>
 </div>
 
@@ -392,9 +404,6 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
     </body>
 </div>
 <?php include '../footer.php'; ?>
-<!-- </div>
-
-</body> -->
 
 <!-- <script>
     function exportTableToExcel() {
@@ -431,28 +440,57 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
         form.submit();
     }
 
-    function updateFormDisplay() {
-        const yearChecked = document.getElementById('year').checked;
-        const quarterChecked = document.getElementById('quarter').checked;
-        const monthChecked = document.getElementById('month').checked;
+    // function exportTableToExcel() {
+    //     var table = document.getElementById("dataTable");
+    //     var rows = [];
+    //     for (var i = 0, row; row = table.rows[i]; i++) {
+    //         var cols = [];
+    //         for (var j = 0, col; col = row.cells[j]; j++) {
+    //             cols.push(col.innerText);
+    //         }
+    //         rows.push(cols);
+    //     }
+    //     var data = JSON.stringify(rows);
 
-        document.getElementById('yearForm').style.display = (yearChecked || quarterChecked || monthChecked) ? 'block' : 'none';
-        document.getElementById('quaterForm').style.display = quarterChecked ? 'block' : 'none';
-        document.getElementById('monthForm').style.display = monthChecked ? 'block' : 'none';
+    //     var form = document.createElement("form");
+    //     form.method = "POST";
+    //     form.action = "xuat_excel_doanh_thu.php";
+
+    //     var input = document.createElement("input");
+    //     input.type = "hidden";
+    //     input.name = "data";
+    //     input.value = data;
+
+    //     form.appendChild(input);
+    //     document.body.appendChild(form);
+    //     form.submit();
+    // }
+
+    function capNhatHienThiForm() {
+        const namDuocChon = document.getElementById('year').checked;
+        const quyDuocChon = document.getElementById('quarter').checked;
+        const thangDuocChon = document.getElementById('month').checked;
+        const tuanDuocChon = document.getElementById('week').checked;
+
+
+        document.getElementById('yearForm').style.display = (namDuocChon || quyDuocChon || thangDuocChon) ? 'block' : 'none';
+        document.getElementById('quaterForm').style.display = quyDuocChon ? 'block' : 'none';
+        document.getElementById('monthForm').style.display = thangDuocChon ? 'block' : 'none';
+        document.getElementById('weekForm').style.display = tuanDuocChon ? 'block' : 'none';
     }
 
-    function validateForm() {
-        const yearChecked = document.getElementById('year').checked;
-        const quarterChecked = document.getElementById('quarter').checked;
-        const monthChecked = document.getElementById('month').checked;
-        const weekChecked = document.getElementById('week').checked;
+    function kiemTraForm() {
+        const namDuocChon = document.getElementById('year').checked;
+        const quyDuocChon = document.getElementById('quarter').checked;
+        const thangDuocChon = document.getElementById('month').checked;
+        const tuanDuocChon = document.getElementById('week').checked;
 
-        if (yearChecked && document.getElementById('yearSelect').value === '') {
+        if (namDuocChon && document.getElementById('yearSelect').value === '') {
             alert('Vui lòng chọn năm');
             return false;
         }
 
-        if (quarterChecked) {
+        if (quyDuocChon) {
             if (document.getElementById('yearSelect').value === '') {
                 alert('Vui lòng chọn năm');
                 return false;
@@ -463,7 +501,7 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
             }
         }
 
-        if (monthChecked) {
+        if (thangDuocChon) {
             if (document.getElementById('yearSelect').value === '') {
                 alert('Vui lòng chọn năm');
                 return false;
@@ -473,46 +511,65 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
                 return false;
             }
         }
+        if (tuanDuocChon) {
+            if (document.getElementById('weekStartSelect').value === '') {
+                alert('Vui lòng chọn ngày bắt đầu');
+                return false;
+            }
+            if (document.getElementById('weekEndSelect').value === '') {
+                alert('Vui lòng chọn ngày kết thúc');
+                return false;
+            }
+            if (document.getElementById('weekStartSelect').value !== '' && document.getElementById('weekEndSelect').value !== '') {
+                var startDate = new Date(document.getElementById('weekStartSelect').value);
+                var endDate = new Date(document.getElementById('weekEndSelect').value);
+
+                if (endDate <= startDate) {
+                    alert('Ngày kết thúc phải là sau ngày bắt đầu');
+                    return false;
+                }
+            }
+        }
         return true;
     }
 
-    document.getElementById('year').addEventListener('change', function() {
+    document.getElementById('year').addEventListener('change', function () {
         document.getElementById('quarterSelect').selectedIndex = 0;
         document.getElementById('monthSelect').selectedIndex = 0;
         document.getElementById('yearSelect').selectedIndex = 0;
-        updateFormDisplay();
+        capNhatHienThiForm();
     });
 
-    document.getElementById('quarter').addEventListener('change', function() {
+    document.getElementById('quarter').addEventListener('change', function () {
         document.getElementById('quarterSelect').selectedIndex = 0;
         document.getElementById('monthSelect').selectedIndex = 0;
         document.getElementById('yearSelect').selectedIndex = 0;
-        updateFormDisplay();
+        capNhatHienThiForm();
     });
 
-    document.getElementById('month').addEventListener('change', function() {
+    document.getElementById('month').addEventListener('change', function () {
         document.getElementById('quarterSelect').selectedIndex = 0;
         document.getElementById('monthSelect').selectedIndex = 0;
         document.getElementById('yearSelect').selectedIndex = 0;
-        updateFormDisplay();
+        capNhatHienThiForm();
     });
 
-    document.getElementById('week').addEventListener('change', function() {
+    document.getElementById('week').addEventListener('change', function () {
         document.getElementById('quarterSelect').selectedIndex = 0;
         document.getElementById('monthSelect').selectedIndex = 0;
         document.getElementById('yearSelect').selectedIndex = 0;
-        updateFormDisplay();
+        capNhatHienThiForm();
     });
 
-    // Attach validateForm to the form's submit event
-    document.querySelector('form').addEventListener('submit', function(e) {
-        if (!validateForm()) {
-            e.preventDefault(); // Prevent the form from submitting
+    // Đính kèm kiemTraForm vào sự kiện submit của biểu mẫu
+    document.querySelector('form').addEventListener('submit', function (e) {
+        if (!kiemTraForm()) {
+            e.preventDefault(); // Ngăn biểu mẫu gửi đi
         }
     });
 
-    // Initial call to ensure forms are hidden if no checkbox is selected
-    updateFormDisplay();
-</script> -->
+    // Gọi ban đầu để đảm bảo các form bị ẩn nếu không có checkbox nào được chọn
+    capNhatHienThiForm();
+</script>
 
-<!-- </html> -->
+</html> -->

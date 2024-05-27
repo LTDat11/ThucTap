@@ -97,7 +97,7 @@
         $('.select2').select2();
     });
 </script>
-
+<!-- excel Doanh Thu sql Chitiet-->
 <script>
     function exportTableToExcel() {
         var table = document.getElementById("dataTable");
@@ -132,29 +132,187 @@
         document.body.appendChild(form);
         form.submit();
     }
+</script>
 
-    function updateFormDisplay() {
-        const yearChecked = document.getElementById('year').checked;
-        const quarterChecked = document.getElementById('quarter').checked;
-        const monthChecked = document.getElementById('month').checked;
+<!-- excel Top 10 nvbh và sql Chitiet-->
+<script>
+    function exportTableToExcel1() {
 
-        document.getElementById('yearForm').style.display = (yearChecked || quarterChecked || monthChecked) ? 'block' : 'none';
-        document.getElementById('quaterForm').style.display = quarterChecked ? 'block' : 'none';
-        document.getElementById('monthForm').style.display = monthChecked ? 'block' : 'none';
+        var table = document.getElementById("dataTable");
+        var rows = [];
+        for (var i = 0, row; row = table.rows[i]; i++) {
+            var cols = [];
+            for (var j = 0, col; col = row.cells[j]; j++) {
+                if (j !== row.cells.length - 1) {
+                    cols.push(col.innerText);
+                }
+            }
+            rows.push(cols);
+        }
+        var data = JSON.stringify(rows);
+
+        // var h2Content = document.getElementById("Header").innerText;
+
+        var form = document.createElement("form");
+        form.method = "POST";
+        form.action = "../xuat/xuat_excel_top10_nvbh_nhieu.php";
+
+        var inputData = document.createElement("input");
+        inputData.type = "hidden";
+        inputData.name = "data";
+        inputData.value = data;
+
+        // var inputH2 = document.createElement("input");
+        // inputH2.type = "hidden";
+        // inputH2.name = "h2Content";
+        // inputH2.value = h2Content;
+
+        form.appendChild(inputData);
+        // form.appendChild(inputH2);
+        document.body.appendChild(form);
+        form.submit();
     }
 
-    function validateForm() {
-        const yearChecked = document.getElementById('year').checked;
-        const quarterChecked = document.getElementById('quarter').checked;
-        const monthChecked = document.getElementById('month').checked;
-        const weekChecked = document.getElementById('week').checked;
+    //sql chitiet
+    function exportQueryToFile1(id) {
+        const sqlChitiet = <?= json_encode($sqlChitiet) ?>;
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '../chitiet/chi_tiet_nvbh.php';
 
-        if (yearChecked && document.getElementById('yearSelect').value === '') {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'sqlChitiet';
+        input.value = sqlChitiet;
+
+        const idInput = document.createElement('input');
+        idInput.type = 'hidden';
+        idInput.name = 'id';
+        idInput.value = id;
+
+        form.appendChild(input);
+        form.appendChild(idInput);
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>
+
+<!-- excel Top 10 kh và sql Chitiet-->
+<script>
+    function exportTableToExcel2() {
+
+        var table = document.getElementById("dataTable");
+        var rows = [];
+        for (var i = 0, row; row = table.rows[i]; i++) {
+            var cols = [];
+            for (var j = 0, col; col = row.cells[j]; j++) {
+                if (j !== row.cells.length - 1) {
+                    cols.push(col.innerText);
+                }
+            }
+            rows.push(cols);
+        }
+        var data = JSON.stringify(rows);
+
+        // var h2Content = document.getElementById("Header").innerText;
+
+        var form = document.createElement("form");
+        form.method = "POST";
+        form.action = "../xuat/xuat_excel_top10_khach_hang_dung_nhieu_dv.php";
+
+        var inputData = document.createElement("input");
+        inputData.type = "hidden";
+        inputData.name = "data";
+        inputData.value = data;
+
+        // var inputH2 = document.createElement("input");
+        // inputH2.type = "hidden";
+        // inputH2.name = "h2Content";
+        // inputH2.value = h2Content;
+
+        form.appendChild(inputData);
+        // form.appendChild(inputH2);
+        document.body.appendChild(form);
+        form.submit();
+    }
+
+    //sql chitiet
+    function exportQueryToFile2(id) {
+        const sqlChitiet = <?= json_encode($sqlChitiet) ?>;
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '../chitiet/chi_tiet.php';
+
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'sqlChitiet';
+        input.value = sqlChitiet;
+
+        const idInput = document.createElement('input');
+        idInput.type = 'hidden';
+        idInput.name = 'id';
+        idInput.value = id;
+
+        form.appendChild(input);
+        form.appendChild(idInput);
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>
+
+<!-- Top 10 dịch vụ max với sql Chitiet-->
+<script>
+    //sql chitiet
+    function exportQueryToFile3(id) {
+        const sqlChitiet = <?= json_encode($sqlChitiet) ?>;
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '../chitiet/chi_tiet_dich_vu_dang_ky_nhieu.php';
+
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'sqlChitiet';
+        input.value = sqlChitiet;
+
+        const idInput = document.createElement('input');
+        idInput.type = 'hidden';
+        idInput.name = 'id';
+        idInput.value = id;
+
+        form.appendChild(input);
+        form.appendChild(idInput);
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>
+
+<!-- kiểm tra thống kê form -->
+<script>
+    function capNhatHienThiForm() {
+        const namDuocChon = document.getElementById('year').checked;
+        const quyDuocChon = document.getElementById('quarter').checked;
+        const thangDuocChon = document.getElementById('month').checked;
+        const tuanDuocChon = document.getElementById('week').checked;
+
+
+        document.getElementById('yearForm').style.display = (namDuocChon || quyDuocChon || thangDuocChon) ? 'block' : 'none';
+        document.getElementById('quaterForm').style.display = quyDuocChon ? 'block' : 'none';
+        document.getElementById('monthForm').style.display = thangDuocChon ? 'block' : 'none';
+        document.getElementById('weekForm').style.display = tuanDuocChon ? 'block' : 'none';
+    }
+
+    function kiemTraForm() {
+        const namDuocChon = document.getElementById('year').checked;
+        const quyDuocChon = document.getElementById('quarter').checked;
+        const thangDuocChon = document.getElementById('month').checked;
+        const tuanDuocChon = document.getElementById('week').checked;
+
+        if (namDuocChon && document.getElementById('yearSelect').value === '') {
             alert('Vui lòng chọn năm');
             return false;
         }
 
-        if (quarterChecked) {
+        if (quyDuocChon) {
             if (document.getElementById('yearSelect').value === '') {
                 alert('Vui lòng chọn năm');
                 return false;
@@ -165,7 +323,7 @@
             }
         }
 
-        if (monthChecked) {
+        if (thangDuocChon) {
             if (document.getElementById('yearSelect').value === '') {
                 alert('Vui lòng chọn năm');
                 return false;
@@ -175,6 +333,25 @@
                 return false;
             }
         }
+        if (tuanDuocChon) {
+            if (document.getElementById('weekStartSelect').value === '') {
+                alert('Vui lòng chọn ngày bắt đầu');
+                return false;
+            }
+            if (document.getElementById('weekEndSelect').value === '') {
+                alert('Vui lòng chọn ngày kết thúc');
+                return false;
+            }
+            if (document.getElementById('weekStartSelect').value !== '' && document.getElementById('weekEndSelect').value !== '') {
+                var startDate = new Date(document.getElementById('weekStartSelect').value);
+                var endDate = new Date(document.getElementById('weekEndSelect').value);
+
+                if (endDate <= startDate) {
+                    alert('Ngày kết thúc phải là sau ngày bắt đầu');
+                    return false;
+                }
+            }
+        }
         return true;
     }
 
@@ -182,39 +359,39 @@
         document.getElementById('quarterSelect').selectedIndex = 0;
         document.getElementById('monthSelect').selectedIndex = 0;
         document.getElementById('yearSelect').selectedIndex = 0;
-        updateFormDisplay();
+        capNhatHienThiForm();
     });
 
     document.getElementById('quarter').addEventListener('change', function() {
         document.getElementById('quarterSelect').selectedIndex = 0;
         document.getElementById('monthSelect').selectedIndex = 0;
         document.getElementById('yearSelect').selectedIndex = 0;
-        updateFormDisplay();
+        capNhatHienThiForm();
     });
 
     document.getElementById('month').addEventListener('change', function() {
         document.getElementById('quarterSelect').selectedIndex = 0;
         document.getElementById('monthSelect').selectedIndex = 0;
         document.getElementById('yearSelect').selectedIndex = 0;
-        updateFormDisplay();
+        capNhatHienThiForm();
     });
 
     document.getElementById('week').addEventListener('change', function() {
         document.getElementById('quarterSelect').selectedIndex = 0;
         document.getElementById('monthSelect').selectedIndex = 0;
         document.getElementById('yearSelect').selectedIndex = 0;
-        updateFormDisplay();
+        capNhatHienThiForm();
     });
 
-    // Attach validateForm to the form's submit event
+    // Đính kèm kiemTraForm vào sự kiện submit của biểu mẫu
     document.querySelector('form').addEventListener('submit', function(e) {
-        if (!validateForm()) {
-            e.preventDefault(); // Prevent the form from submitting
+        if (!kiemTraForm()) {
+            e.preventDefault(); // Ngăn biểu mẫu gửi đi
         }
     });
 
-    // Initial call to ensure forms are hidden if no checkbox is selected
-    updateFormDisplay();
+    // Gọi ban đầu để đảm bảo các form bị ẩn nếu không có checkbox nào được chọn
+    capNhatHienThiForm();
 </script>
 
 
@@ -235,212 +412,218 @@
 </script>
 
 <script>
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: <?php echo json_encode($labels); ?>,
-            datasets: [{
-                label: 'Số lượng dịch vụ sử dụng',
-                data: <?php echo json_encode($data); ?>,
-                backgroundColor: 'rgba(141, 182, 205, 0.6)', // Thay đổi màu nền
-                borderColor: 'rgba(92, 147, 180, 1)', // Thay đổi màu viền
-                borderWidth: 1,
-                borderRadius: 5, // Thêm bo góc cho thanh
-                hoverBackgroundColor: 'rgba(92, 147, 180, 0.8)' // Thay đổi màu khi di chuột qua
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        fontSize: 14 // Thay đổi kích thước chữ trục y
-                    }
-                },
-                x: {
-                    ticks: {
-                        fontSize: 14 // Thay đổi kích thước chữ trục x
-                    }
-                }
+    <?php if (isset($labels) && isset($data)) { ?>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: <?php echo json_encode($labels); ?>,
+                datasets: [{
+                    label: 'Số lượng dịch vụ sử dụng',
+                    data: <?php echo json_encode($data); ?>,
+                    backgroundColor: 'rgba(141, 182, 205, 0.6)', // Thay đổi màu nền
+                    borderColor: 'rgba(92, 147, 180, 1)', // Thay đổi màu viền
+                    borderWidth: 1,
+                    borderRadius: 5, // Thêm bo góc cho thanh
+                    hoverBackgroundColor: 'rgba(92, 147, 180, 0.8)' // Thay đổi màu khi di chuột qua
+                }]
             },
-            plugins: {
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            let label = context.dataset.label || '';
-                            if (label) {
-                                label += ': ';
-                            }
-                            if (context.parsed.y !== null) {
-                                label += new Intl.NumberFormat('en-US').format(context.parsed.y);
-                            }
-                            return label;
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            fontSize: 14 // Thay đổi kích thước chữ trục y
                         }
-                    }
-                },
-                datalabels: {
-                    anchor: 'center',
-                    align: 'center',
-                    color: 'white', // Thay đổi màu chữ
-                    font: {
-                        weight: 'bold',
-                        size: 14
                     },
-                    formatter: function(value, context) {
-                        return value.toLocaleString();
+                    x: {
+                        ticks: {
+                            fontSize: 14 // Thay đổi kích thước chữ trục x
+                        }
                     }
                 },
-                legend: {
-                    position: 'bottom',
-                    align: 'center',
-                    labels: {
-                        font: {
-                            size: 14
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    label += new Intl.NumberFormat('en-US').format(context.parsed.y);
+                                }
+                                return label;
+                            }
                         }
+                    },
+                    datalabels: {
+                        anchor: 'center',
+                        align: 'center',
+                        color: 'white', // Thay đổi màu chữ
+                        font: {
+                            weight: 'bold',
+                            size: 14
+                        },
+                        formatter: function(value, context) {
+                            return value.toLocaleString();
+                        }
+                    },
+                    legend: {
+                        position: 'bottom',
+                        align: 'center',
+                        labels: {
+                            font: {
+                                size: 14
+                            }
+                        }
+                    }
+                },
+                layout: {
+                    padding: {
+                        bottom: 80
                     }
                 }
             },
-            layout: {
-                padding: {
-                    bottom: 80
-                }
-            }
-        },
-        plugins: [
-            ChartDataLabels
-        ]
-    });
+            plugins: [
+                ChartDataLabels
+            ]
+        });
+    <?php } ?>
 </script>
 
 <script>
-    var ctx_nvbh = document.getElementById('myChart_nvbh').getContext('2d');
-    var myChart_nvbh = new Chart(ctx_nvbh, {
-        type: 'bar',
-        data: {
-            labels: <?php echo json_encode($tenNhanVien); ?>,
-            datasets: [{
-                label: 'Tổng số dịch vụ bán được',
-                data: <?php echo json_encode($soLuongDichVu); ?>,
-                backgroundColor: 'rgba(141, 182, 205, 0.6)', // Thay đổi màu nền
-                borderColor: 'rgba(92, 147, 180, 1)', // Thay đổi màu viền
-                borderWidth: 1,
-                borderRadius: 5,
-                hoverBackgroundColor: 'rgba(92, 147, 180, 0.8)' // Thay đổi màu khi di chuột qua
-            }]
-        },
-        options: {
-            plugins: {
-                datalabels: {
-                    anchor: 'center',
-                    align: 'top',
-                    color: 'white', // Màu chữ
-                    font: {
-                        weight: 'bold',
-                        size: 14
-                    },
-                    formatter: function(value, context) {
-                        return value;
-                    }
-                },
-                legend: {
-                    position: 'bottom',
-                    align: 'center',
-                    labels: {
+    <?php if (isset($tenNhanVien) && isset($soLuongDichVu)) { ?>
+        var ctx_nvbh = document.getElementById('myChart_nvbh').getContext('2d');
+        var myChart_nvbh = new Chart(ctx_nvbh, {
+            type: 'bar',
+            data: {
+                labels: <?php echo json_encode($tenNhanVien); ?>,
+                datasets: [{
+                    label: 'Tổng số dịch vụ bán được',
+                    data: <?php echo json_encode($soLuongDichVu); ?>,
+                    backgroundColor: 'rgba(141, 182, 205, 0.6)', // Thay đổi màu nền
+                    borderColor: 'rgba(92, 147, 180, 1)', // Thay đổi màu viền
+                    borderWidth: 1,
+                    borderRadius: 5,
+                    hoverBackgroundColor: 'rgba(92, 147, 180, 0.8)' // Thay đổi màu khi di chuột qua
+                }]
+            },
+            options: {
+                plugins: {
+                    datalabels: {
+                        anchor: 'center',
+                        align: 'top',
+                        color: 'white', // Màu chữ
                         font: {
+                            weight: 'bold',
                             size: 14
+                        },
+                        formatter: function(value, context) {
+                            return value;
+                        }
+                    },
+                    legend: {
+                        position: 'bottom',
+                        align: 'center',
+                        labels: {
+                            font: {
+                                size: 14
+                            }
                         }
                     }
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        fontSize: 14
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            fontSize: 14
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            fontSize: 14
+                        }
                     }
                 },
-                x: {
-                    ticks: {
-                        fontSize: 14
+                layout: {
+                    padding: {
+                        bottom: 80
                     }
                 }
             },
-            layout: {
-                padding: {
-                    bottom: 80
-                }
-            }
-        },
-        plugins: [
-            ChartDataLabels
-        ]
-    });
+            plugins: [
+                ChartDataLabels
+            ]
+        });
+    <?php } ?>
 </script>
 
 <script>
-    var ctx = document.getElementById('myChart_kh_dv_max').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: <?php echo json_encode($tenKhachHang); ?>,
-            datasets: [{
-                label: 'Số lượng dịch vụ sử dụng',
-                data: <?php echo json_encode($soLuongDichVu); ?>,
-                backgroundColor: 'rgba(205, 160, 141, 0.6)', // Thay đổi màu nền
-                borderColor: 'rgba(180, 119, 92, 1)', // Thay đổi màu viền
-                borderWidth: 1,
-                borderRadius: 5,
-                hoverBackgroundColor: 'rgba(180, 119, 92, 0.8)' // Thay đổi màu khi di chuột qua
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        fontSize: 14
-                    }
-                },
-                x: {
-                    ticks: {
-                        fontSize: 14
-                    }
-                }
+    <?php if (isset($tenKhachHang) && isset($soLuongDichVu)) { ?>
+        var ctx = document.getElementById('myChart_kh_dv_max').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: <?php echo json_encode($tenKhachHang); ?>,
+                datasets: [{
+                    label: 'Số lượng dịch vụ sử dụng',
+                    data: <?php echo json_encode($soLuongDichVu); ?>,
+                    backgroundColor: 'rgba(205, 160, 141, 0.6)', // Thay đổi màu nền
+                    borderColor: 'rgba(180, 119, 92, 1)', // Thay đổi màu viền
+                    borderWidth: 1,
+                    borderRadius: 5,
+                    hoverBackgroundColor: 'rgba(180, 119, 92, 0.8)' // Thay đổi màu khi di chuột qua
+                }]
             },
-            layout: {
-                padding: {
-                    bottom: 80
-                }
-            },
-            plugins: {
-                datalabels: {
-                    anchor: 'center',
-                    align: 'top',
-                    formatter: function(value, context) {
-                        return value;
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            fontSize: 14
+                        }
                     },
-                    color: 'white', // Màu chữ
-                    font: {
-                        weight: 'bold',
-                        size: 14
+                    x: {
+                        ticks: {
+                            fontSize: 14
+                        }
                     }
                 },
-                legend: {
-                    position: 'bottom',
-                    align: 'center',
-                    labels: {
+                layout: {
+                    padding: {
+                        bottom: 80
+                    }
+                },
+                plugins: {
+                    datalabels: {
+                        anchor: 'center',
+                        align: 'top',
+                        formatter: function(value, context) {
+                            return value;
+                        },
+                        color: 'white', // Màu chữ
                         font: {
+                            weight: 'bold',
                             size: 14
+                        }
+                    },
+                    legend: {
+                        position: 'bottom',
+                        align: 'center',
+                        labels: {
+                            font: {
+                                size: 14
+                            }
                         }
                     }
                 }
-            }
-        },
-        plugins: [
-            ChartDataLabels
-        ]
-    });
+            },
+            plugins: [
+                ChartDataLabels
+            ]
+        });
+    <?php } ?>
 </script>
 </body>
 

@@ -13,24 +13,32 @@ if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
 }
 
-// Lấy ID Khách Hàng từ URL
-$ID_KhachHang = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+// Kiểm tra và nhận giá trị sqlChitiet
+if (isset($_POST['sqlChitiet']) && isset($_POST['id'])) {
+    $sqlChitiet = $_POST['sqlChitiet'];
+    $ID_KhachHang = $_POST['id'];
+    $noiString = "AND ThongTinBanHang.ID_KhachHang = $ID_KhachHang;";
+    // echo "Giá trị sqlChitiet nhận được: " . htmlspecialchars($sqlChitiet);
+    // echo "Giá trị id khách hàng  nhận được: " . htmlspecialchars($ID_KhachHang);
+    // Thực hiện truy vấn với giá trị sqlChitiet ở đây
+    $sqlChitietFull = $sqlChitiet . $noiString;
+    $result_dichvu = $conn->query($sqlChitietFull);
 
-// Truy vấn thông tin chi tiết của khách hàng
-$sql_khachhang = "SELECT * FROM KhachHang WHERE ID_KhachHang = $ID_KhachHang";
-$result_khachhang = $conn->query($sql_khachhang);
-$khachhang = $result_khachhang->fetch_assoc();
+    // Truy vấn thông tin chi tiết của khách hàng
+    $sql_khachhang = "SELECT * FROM KhachHang WHERE ID_KhachHang = $ID_KhachHang";
+    $result_khachhang = $conn->query($sql_khachhang);
+    $khachhang = $result_khachhang->fetch_assoc();
+    // if ($result_nhanvien->num_rows == 0) {
+    //     die("Nhân viên không tồn tại.");
+    // }
+    // $nhanvien = $result_nhanvien->fetch_assoc();
 
-// Truy vấn thông tin các dịch vụ mà khách hàng đã đăng ký
-$sql_dichvu = "SELECT DichVu.TenDichVu, GoiDichVu.TenGoiDichVu, GoiDichVu.GiaTien, ThongTinBanHang.SoLuong, ThongTinBanHang.NgayDangKy, TTNhanVienBanHang.TenNhanVien
-               FROM ThongTinBanHang
-               JOIN GoiDichVu ON ThongTinBanHang.ID_GoiDichVu = GoiDichVu.ID_GoiDichVu
-               JOIN DichVu ON GoiDichVu.ID_DichVu = DichVu.ID_DichVu
-               JOIN TTNhanVienBanHang ON ThongTinBanHang.ID_TTNVBH = TTNhanVienBanHang.ID_TTNVBH
-               WHERE ThongTinBanHang.ID_KhachHang = $ID_KhachHang";
-$result_dichvu = $conn->query($sql_dichvu);
 
-$conn->close();
+
+    $conn->close();
+} else {
+    echo "Không nhận được giá trị sqlChitiet";
+}
 ?>
 
 <!-- <!DOCTYPE html>

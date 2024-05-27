@@ -66,7 +66,7 @@ LIMIT 10;
     ";
         $sqlChitiet .= "WHERE 
         YEAR(ttb.NgayDangKy) = $yearSelect ";
-        $message = " năm $yearSelect";
+        $message = " Năm $yearSelect";
     } elseif ($time == 'quarter') {     //quý
         $sql .= "WHERE 
         YEAR(ttb.NgayDangKy) = $yearSelect
@@ -81,7 +81,7 @@ LIMIT 10;
         $sqlChitiet .= "WHERE 
         YEAR(ttb.NgayDangKy) = $yearSelect
         AND QUARTER(ttb.NgayDangKy) = $quarterSelect ";
-        $message = " quý $quarterSelect năm $yearSelect";
+        $message = " Quý $quarterSelect Năm $yearSelect";
     } elseif ($time == 'month') {       //tháng
         $sql .= "WHERE 
         YEAR(ttb.NgayDangKy) = $yearSelect
@@ -95,7 +95,7 @@ LIMIT 10;
         $sqlChitiet .= "WHERE 
         YEAR(ttb.NgayDangKy) = $yearSelect
         AND MONTH(ttb.NgayDangKy) = $monthSelect ";
-        $message = " tháng $monthSelect năm $yearSelect";
+        $message = " Tháng $monthSelect Năm $yearSelect";
     } elseif ($time == 'week') {        //tuần
         $sql .= "WHERE 
         ttb.NgayDangKy BETWEEN '$weekStartSelect' AND '$weekEndSelect' 
@@ -107,12 +107,11 @@ LIMIT 10;
     ";
         $sqlChitiet .= "WHERE 
         ttb.NgayDangKy BETWEEN '$weekStartSelect' AND '$weekEndSelect' ";
-        $message = " tuần này";
+        $message = " Tuần Này";
     }
     if ($time != '') {
         $result = $conn->query($sql);
     }
-
 }
 
 $conn->close();
@@ -134,7 +133,7 @@ $conn->close();
     <div class="container"> -->
 <?php include '../menu.php'; ?>
 <div class="container">
-    <h2 class="mt-3">Dịch Vụ Được Bán Nhiều Nhất</h2>
+    <h2 class="mt-3">Dịch Vụ Được Bán Nhiều Nhất <?php echo "$message" ?></h2>
     <form action="" method="post">
 
         <div class="form-group">
@@ -222,7 +221,7 @@ $conn->close();
             </div>
 
         </div>
-        <button type="submit" class="btn btn-primary ml-2">Xem</button>
+        <button type="submit" class="btn btn-primary bi bi-funnel"> Lọc</button>
     </form>
     <br>
     <table class="table table-bordered" id="dataTable">
@@ -245,7 +244,7 @@ $conn->close();
                     // echo "<td>
                     //         <a href='../chitiet/chi_tiet.php?id=" . $row['ID_KhachHang'] . "' class='btn btn-info'>Xem Chi Tiết</a>
                     //         </td>";
-                    echo '<td><a class="btn btn-info bi bi-info-circle" href="#" onclick="event.preventDefault(); exportQueryToFile3(' . $row["ID_DichVu"] . ')">Xem Chi Tiết</a></td>';
+                    echo '<td><a class="btn btn-info bi bi-info-circle" href="#" onclick="event.preventDefault(); exportQueryToFile3(' . $row["ID_DichVu"] . ')"> Xem Chi Tiết</a></td>';
 
                     echo "</tr>";
 
@@ -266,7 +265,7 @@ $conn->close();
         // echo "<input type='hidden' id='sqlChitiet' value='" . htmlspecialchars($sqlChitiet) . "'>";
         // echo "<button onclick=\"exportTableToExcel()\" class=\"btn btn-success\">Xuất Excel</button>";
         echo '<div class="mt-5">
-        <h2 class="mt-5">Biểu đồ Dịch Vụ Được Bán Nhiều Nhất Trong ' . $message . ' </h2>
+        <h2 class="mt-5 mb-5">Biểu đồ Dịch Vụ Được Bán Nhiều Nhất Trong ' . $message . ' </h2>
         <canvas id="myChart" class="mb-3"></canvas>
     </div>';
         // }

@@ -7,53 +7,36 @@ if (!isset($_SESSION['ID_NhanVien'])) {
     exit();
 }
 
-if (!isset($_GET['id'])) {
-    die("ID nhân viên không hợp lệ.");
-}
-
-$ID_TTNVBH = intval($_GET['id']);
-
-// Kết nối cơ sở dữ liệu
 $conn = new mysqli('localhost', 'root', '', 'Congtyvienthong');
 if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
 }
 
-// Truy vấn chi tiết nhân viên bán hàng
-$sql_nhanvien = "SELECT TenNhanVien, SoDienThoai, DiaChi FROM TTNhanVienBanHang WHERE ID_TTNVBH = $ID_TTNVBH";
-$result_nhanvien = $conn->query($sql_nhanvien);
+// Kiểm tra và nhận giá trị sqlChitiet
+if (isset($_POST['sqlChitiet']) && isset($_POST['id'])) {
+    $sqlChitiet = $_POST['sqlChitiet'];
+    $ID_TTNVBH = $_POST['id'];
+    $noiString = "AND ttb.ID_TTNVBH = $ID_TTNVBH";
+    // echo "Giá trị sqlChitiet nhận được: " . htmlspecialchars($sqlChitiet);
+    // echo "Giá trị id nhân viên nhận được: " . htmlspecialchars($ID_TTNVBH);
+    // Thực hiện truy vấn với giá trị sqlChitiet ở đây
+    $sqlChitietFull = $sqlChitiet . $noiString;
+    $result = $conn->query($sqlChitietFull);
+    // Truy vấn chi tiết nhân viên bán hàng
+    $sql_nhanvien = "SELECT TenNhanVien, SoDienThoai, DiaChi FROM TTNhanVienBanHang WHERE ID_TTNVBH = $ID_TTNVBH";
+    $result_nhanvien = $conn->query($sql_nhanvien);
 
-if ($result_nhanvien->num_rows == 0) {
-    die("Nhân viên không tồn tại.");
+    if ($result_nhanvien->num_rows == 0) {
+        die("Nhân viên không tồn tại.");
+    }
+    $nhanvien = $result_nhanvien->fetch_assoc();
+
+
+
+    $conn->close();
+} else {
+    echo "Không nhận được giá trị sqlChitiet";
 }
-
-$nhanvien = $result_nhanvien->fetch_assoc();
-
-// Truy vấn chi tiết nhân viên bán hàng
-$sql = "SELECT 
-    ttb.ID_ThongTinBanHang,
-    ttb.NgayDangKy,
-    kh.Ten AS TenKhachHang,
-    dv.TenDichVu,
-    gdv.TenGoiDichVu,
-    ttb.SoLuong,
-    (gdv.GiaTien * ttb.SoLuong) AS TongTien
-FROM 
-    ThongTinBanHang AS ttb
-JOIN 
-    TTNhanVienBanHang AS nv ON ttb.ID_TTNVBH = nv.ID_TTNVBH
-JOIN 
-    KhachHang AS kh ON ttb.ID_KhachHang = kh.ID_KhachHang
-JOIN 
-    GoiDichVu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
-JOIN 
-    DichVu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
-WHERE 
-    ttb.ID_TTNVBH = $ID_TTNVBH";
-
-$result = $conn->query($sql);
-
-$conn->close();
 ?>
 
 <!-- <!DOCTYPE html>
