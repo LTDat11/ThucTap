@@ -102,52 +102,57 @@ switch ($period) {
 $result = $conn->query($sql);
 ?>
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <title>Chi Tiết Doanh Thu</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Chi Tiết Doanh Thu</h1>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Ngày Đăng Ký</th>
-                    <th>Tên Dịch Vụ</th>
-                    <th>Tên Gói Dịch Vụ</th>
-                    <th>Giá Tiền</th>
-                    <th>Số Lượng</th>
-                    <th>Tên Nhân Viên</th>
-                    <th>Tổng Tiền</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>" . htmlspecialchars($row['NgayDangKy']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['TenDichVu']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['GiaTien']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['SoLuong']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['TenNhanVien']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['TongTien']) . "</td>";
-                        echo "</tr>";
-                    }
-                } else {
-                    echo "<tr><td colspan='7' class='text-center'>Không có dữ liệu</td></tr>";
+    <div class="container"> -->
+<?php include '../menu.php'; ?>
+<div class="container">
+    <h1>Chi Tiết Doanh Thu</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Ngày Đăng Ký</th>
+                <th>Tên Dịch Vụ</th>
+                <th>Tên Gói Dịch Vụ</th>
+                <th>Giá Tiền</th>
+                <th>Số Lượng</th>
+                <th>Tên Nhân Viên</th>
+                <th>Tổng Tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . htmlspecialchars($row['NgayDangKy']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['TenDichVu']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['GiaTien']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['SoLuong']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['TenNhanVien']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['TongTien']) . "</td>";
+                    echo "</tr>";
                 }
-                ?>
-            </tbody>
-        </table>
-        <form action="../xuat/xuat_excel_doanh_thu.php" method="post">
-            <input type="hidden" name="service" value="<?php echo htmlspecialchars($ID_DichVu); ?>">
-            <input type="hidden" name="period" value="<?php echo htmlspecialchars($period); ?>">
-            <button type="submit" class="btn btn-success">Xuất Excel</button>
-        </form>
-    </div>
+            } else {
+                echo "<tr><td colspan='7' class='text-center'>Không có dữ liệu</td></tr>";
+            }
+            ?>
+        </tbody>
+    </table>
+    <form action="../xuat/xuat_excel_doanh_thu.php" method="post">
+        <input type="hidden" name="service" value="<?php echo htmlspecialchars($ID_DichVu); ?>">
+        <input type="hidden" name="period" value="<?php echo htmlspecialchars($period); ?>">
+        <button type="submit" class="btn btn-success bi bi-file-earmark-arrow-down"> Xuất Excel</button>
+    </form>
+</div>
+<?php include '../footer.php'; ?>
+<!-- </div>
 </body>
-</html>
+
+</html> -->

@@ -23,15 +23,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $SoDienThoai = $conn->real_escape_string($_POST['SoDienThoai']);
     $DiaChi = $conn->real_escape_string($_POST['DiaChi']);
 
-    // Cập nhật thông tin khách hàng
-    $sql_update = "UPDATE KhachHang SET Ten='$Ten', SoDienThoai='$SoDienThoai', DiaChi='$DiaChi' WHERE ID_KhachHang=$ID_KhachHang";
+    // Kiểm tra nếu số điện thoại đã tồn tại cho khách hàng khác
+    $sql_check = "SELECT * FROM KhachHang WHERE SoDienThoai='$SoDienThoai' AND ID_KhachHang != $ID_KhachHang";
+    $result_check = $conn->query($sql_check);
 
-    if ($conn->query($sql_update) === TRUE) {
-        echo "<script>alert('Cập nhật thành công.');</script>";
-        header("refresh:0.5; url=../danhsach/danh_sach_thong_tin_khach_hang.php");
-        exit();
+    if ($result_check->num_rows > 0) {
+        echo "<script>alert('Số điện thoại đã tồn tại.');</script>";
     } else {
-        echo "Lỗi: " . $sql_update . "<br>" . $conn->error;
+        // Cập nhật thông tin khách hàng
+        $sql_update = "UPDATE KhachHang SET Ten='$Ten', SoDienThoai='$SoDienThoai', DiaChi='$DiaChi' WHERE ID_KhachHang=$ID_KhachHang";
+
+        if ($conn->query($sql_update) === TRUE) {
+            echo "<script>alert('Cập nhật thành công.');</script>";
+            header("refresh:0.5; url=../danhsach/danh_sach_thong_tin_khach_hang.php");
+            exit();
+        } else {
+            echo "Lỗi: " . $sql_update . "<br>" . $conn->error;
+        }
     }
 }
 
@@ -43,7 +51,7 @@ $khachhang = $result_khachhang->fetch_assoc();
 $conn->close();
 ?>
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -51,10 +59,11 @@ $conn->close();
     <title>Sửa Thông Tin Khách Hàng</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body> -->
+<?php include '../menu.php'; ?>
 <div class="container">
     <h2 class="mt-5">Sửa Thông Tin Khách Hàng</h2>
-    <?php if ($khachhang): ?>
+    <?php if ($khachhang) : ?>
         <form method="POST" action="">
             <div class="form-group">
                 <label for="Ten">Tên Khách Hàng</label>
@@ -68,15 +77,17 @@ $conn->close();
                 <label for="DiaChi">Địa Chỉ</label>
                 <input type="text" class="form-control" id="DiaChi" name="DiaChi" value="<?php echo htmlspecialchars($khachhang['DiaChi']); ?>" required>
             </div>
-            <button type="submit" class="btn btn-primary">Cập Nhật</button>
+            <button type="submit" class="btn btn-primary bi bi-floppy mr-2"> Lưu</button>
+            <a href="../danhsach/danh_sach_thong_tin_khach_hang.php" class="btn btn-secondary bi bi-backspace"> Quay Lại</a>
         </form>
-    <?php else: ?>
+    <?php else : ?>
         <p class="text-center">Không tìm thấy thông tin khách hàng.</p>
     <?php endif; ?>
-    <a href="../danhsach/danh_sach_thong_tin_khach_hang.php" class="btn btn-secondary mt-3">Quay Lại Danh Sách Khách Hàng</a>
+
 </div>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<?php include '../footer.php'; ?>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-</html>
+</html> -->

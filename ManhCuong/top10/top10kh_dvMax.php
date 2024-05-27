@@ -28,10 +28,12 @@ $sqlChitiet = "";
 // Xử lý form
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $time = $_POST['time'];
+    $time = $_POST['time'] ?? '';
     $yearSelect = $_POST['yearSelect'] ?? '';
     $quarterSelect = $_POST['quarterSelect'] ?? '';
     $monthSelect = $_POST['monthSelect'] ?? '';
+    $weekStartSelect = $_POST['weekStartSelect'] ?? '';
+    $weekEndSelect = $_POST['weekEndSelect'] ?? '';
 
     $sql = "SELECT
     kh.ID_KhachHang,
@@ -106,8 +108,7 @@ JOIN
         $message = " tháng $monthSelect năm $yearSelect";
     } elseif ($time == 'week') {        //tuần
         $sql .= "WHERE
-        ttb.NgayDangKy BETWEEN DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY) 
-                          AND DATE_ADD(DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY), INTERVAL 6 DAY)
+        ttb.NgayDangKy BETWEEN '$weekStartSelect' AND '$weekEndSelect'
     GROUP BY
         kh.ID_KhachHang, kh.Ten, kh.SoDienThoai, kh.DiaChi
     ORDER BY
@@ -115,12 +116,12 @@ JOIN
     LIMIT 10;
     ";
         $sqlChitiet .= "WHERE
-        ThongTinBanHang.NgayDangKy BETWEEN DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY) 
-        AND DATE_ADD(DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY), INTERVAL 6 DAY) ";
+        ThongTinBanHang.NgayDangKy BETWEEN '$weekStartSelect' AND '$weekEndSelect' ";
         $message = " tuần này";
     }
-
-    $result = $conn->query($sql);
+    if ($time != '') {
+        $result = $conn->query($sql);
+    }
 
 }
 
@@ -142,136 +143,151 @@ $conn->close();
 <body>
     <div class="container"> -->
 <?php include '../menu.php'; ?>
-<h2 class="mt-3">Danh Sách Top 10 Khách Hàng Sử Dụng Nhiều Dịch Vụ Nhất</h2>
-<form action="" method="post">
+<div class="container">
+    <h2 class="mt-3">Danh Sách Top 10 Khách Hàng Sử Dụng Nhiều Dịch Vụ Nhất</h2>
+    <form action="" method="post">
 
-    <div class="form-group">
-        <label for="period">Chọn kiểu thống kê:</label>
-        <br>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="time" id="year" value="year">
-            <label class="form-check-label" for="year">Năm</label>
+        <div class="form-group">
+            <label for="period">Chọn kiểu thống kê:</label>
+            <br>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="time" id="year" value="year">
+                <label class="form-check-label" for="year">Năm</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="time" id="quarter" value="quarter">
+                <label class="form-check-label" for="quarter">Quý</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="time" id="month" value="month">
+                <label class="form-check-label" for="month">Tháng</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="time" id="week" value="week">
+                <label class="form-check-label" for="week">Tuần</label>
+            </div>
         </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="time" id="quarter" value="quarter">
-            <label class="form-check-label" for="quarter">Quý</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="time" id="month" value="month">
-            <label class="form-check-label" for="month">Tháng</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="time" id="week" value="week">
-            <label class="form-check-label" for="week">Tuần</label>
-        </div>
-    </div>
-    <div class="form-group" id="yearForm">
-        <div class="d-flex">
-            <label for="year">Chọn năm:</label>
-            <select class="form-control" id="yearSelect" name="yearSelect">
-                <option value="" selected disabled>Chọn năm</option>
-                <?php
-                if ($resultNam->num_rows > 0) {
-                    while ($row = $resultNam->fetch_assoc()) {
-                        $namMin = $row['NamDangKyXaNhat'];
-                        $namMax = $row['NamDangKyGanNhat'];
-                        for ($i = $namMin; $i <= $namMax; $i++) {
-                            echo '<option value="' . $i . '">' . $i . '</option>';
+        <div class="form-group" id="yearForm">
+            <div class="d-flex">
+                <label for="year">Chọn năm:</label>
+                <select class="form-control" id="yearSelect" name="yearSelect">
+                    <option value="" selected disabled>Chọn năm</option>
+                    <?php
+                    if ($resultNam->num_rows > 0) {
+                        while ($row = $resultNam->fetch_assoc()) {
+                            $namMin = $row['NamDangKyXaNhat'];
+                            $namMax = $row['NamDangKyGanNhat'];
+                            for ($i = $namMin; $i <= $namMax; $i++) {
+                                echo '<option value="' . $i . '">' . $i . '</option>';
+                            }
                         }
+                    } else {
+                        echo "Chưa có dữ liệu";
                     }
-                } else {
-                    echo "Chưa có dữ liệu";
+                    ?>
+                </select>
+            </div>
+        </div>
+        <div class="form-group" id="quaterForm">
+            <div class="d-flex">
+                <label for="quarter">Chọn quý:</label>
+                <select class="form-control" id="quarterSelect" name="quarterSelect">
+                    <option value="" selected disabled>Chọn quý</option>
+                    <option value="1">Quý 1</option>
+                    <option value="2">Quý 2</option>
+                    <option value="3">Quý 3</option>
+                    <option value="4">Quý 4</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group" id="monthForm">
+            <div class="d-flex">
+                <label for="month">Chọn tháng:</label>
+                <select class="form-control" id="monthSelect" name="monthSelect">
+                    <option value="" selected disabled>Chọn tháng</option>
+                    <option value="1">Tháng 1</option>
+                    <option value="2">Tháng 2</option>
+                    <option value="3">Tháng 3</option>
+                    <option value="4">Tháng 4</option>
+                    <option value="5">Tháng 5</option>
+                    <option value="6">Tháng 6</option>
+                    <option value="7">Tháng 7</option>
+                    <option value="8">Tháng 8</option>
+                    <option value="9">Tháng 9</option>
+                    <option value="10">Tháng 10</option>
+                    <option value="11">Tháng 11</option>
+                    <option value="12">Tháng 12</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group" id="weekForm">
+            <div class="d-flex">
+                <label for="ngayDangKy">Ngày bắt đầu</label>
+                <input type="date" class="form-control" id="weekStartSelect" name="weekStartSelect">
+            </div>
+
+            <div class="d-flex">
+                <label for="ngayDangKy">Ngày kết thúc</label>
+                <input type="date" class="form-control" id="weekEndSelect" name="weekEndSelect">
+            </div>
+
+        </div>
+        <button type="submit" class="btn btn-primary ml-2">Xem</button>
+    </form>
+    <br>
+    <table class="table table-bordered" id="dataTable">
+        <thead>
+            <tr>
+                <th>Tên Khách Hàng</th>
+                <th>Số Điện Thoại</th>
+                <th>Địa Chỉ</th>
+                <th>Số Dịch Vụ Sử Dụng</th>
+                <th>Tùy Chọn</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            if (isset($result) && $result->num_rows > 0) {
+                $tenKhachHang = [];
+                $soLuongDichVu = [];
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . htmlspecialchars($row['Ten']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['SoDienThoai']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['DiaChi']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['SoLuongLoaiDichVu']) . "</td>";
+                    // echo "<td>
+                    //         <a href='../chitiet/chi_tiet.php?id=" . $row['ID_KhachHang'] . "' class='btn btn-info'>Xem Chi Tiết</a>
+                    //         </td>";
+                    echo '<td><a class="btn btn-info bi bi-info-circle" href="#" onclick="event.preventDefault(); exportQueryToFile2(' . $row["ID_KhachHang"] . ')">Xem Chi Tiết</a></td>';
+
+                    echo "</tr>";
+
+                    // Thêm dữ liệu vào mảng
+                    $tenKhachHang[] = $row['Ten'];
+                    $soLuongDichVu[] = $row['SoLuongLoaiDichVu'];
                 }
-                ?>
-            </select>
-        </div>
-    </div>
-    <div class="form-group" id="quaterForm">
-        <div class="d-flex">
-            <label for="quarter">Chọn quý:</label>
-            <select class="form-control" id="quarterSelect" name="quarterSelect">
-                <option value="" selected disabled>Chọn quý</option>
-                <option value="1">Quý 1</option>
-                <option value="2">Quý 2</option>
-                <option value="3">Quý 3</option>
-                <option value="4">Quý 4</option>
-            </select>
-        </div>
-    </div>
-    <div class="form-group" id="monthForm">
-        <div class="d-flex">
-            <label for="month">Chọn tháng:</label>
-            <select class="form-control" id="monthSelect" name="monthSelect">
-                <option value="" selected disabled>Chọn tháng</option>
-                <option value="1">Tháng 1</option>
-                <option value="2">Tháng 2</option>
-                <option value="3">Tháng 3</option>
-                <option value="4">Tháng 4</option>
-                <option value="5">Tháng 5</option>
-                <option value="6">Tháng 6</option>
-                <option value="7">Tháng 7</option>
-                <option value="8">Tháng 8</option>
-                <option value="9">Tháng 9</option>
-                <option value="10">Tháng 10</option>
-                <option value="11">Tháng 11</option>
-                <option value="12">Tháng 12</option>
-            </select>
-        </div>
-    </div>
-    <button type="submit" class="btn btn-primary ml-2">Xem</button>
-</form>
-<br>
-<table class="table table-bordered" id="dataTable">
-    <thead>
-        <tr>
-            <th>Tên Khách Hàng</th>
-            <th>Số Điện Thoại</th>
-            <th>Địa Chỉ</th>
-            <th>Số Dịch Vụ Sử Dụng</th>
-            <th>Tùy Chọn</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        if (isset($result) && $result->num_rows > 0) {
-            $tenKhachHang = [];
-            $soLuongDichVu = [];
-            while ($row = $result->fetch_assoc()) {
-                echo "<tr>";
-                echo "<td>" . htmlspecialchars($row['Ten']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['SoDienThoai']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['DiaChi']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['SoLuongLoaiDichVu']) . "</td>";
-                // echo "<td>
-                //         <a href='../chitiet/chi_tiet.php?id=" . $row['ID_KhachHang'] . "' class='btn btn-info'>Xem Chi Tiết</a>
-                //         </td>";
-                echo '<td><a href="#" onclick="event.preventDefault(); exportQueryToFile(' . $row["ID_KhachHang"] . ')">Xem Chi Tiết</a></td>';
-
-                echo "</tr>";
-
-                // Thêm dữ liệu vào mảng
-                $tenKhachHang[] = $row['Ten'];
-                $soLuongDichVu[] = $row['SoLuongLoaiDichVu'];
+            } else {
+                echo "<tr><td colspan='5' class='text-center'>Không có dữ liệu</td></tr>";
             }
-        } else {
-            echo "<tr><td colspan='5' class='text-center'>Không có dữ liệu</td></tr>";
-        }
-        ?>
-    </tbody>
-</table>
-<?php
+            ?>
+        </tbody>
+    </table>
+    <?php
 
-if (isset($result) && $result->num_rows > 0) {
-    // while ($row = $result->fetch_assoc()) {
-    // echo "<input type='hidden' id='sqlChitiet' value='" . htmlspecialchars($sqlChitiet) . "'>";
-    echo "<button onclick=\"exportTableToExcel()\" class=\"btn btn-success\">Xuất Excel</button>";
-    echo '<div class="mt-5">
+    if (isset($result) && $result->num_rows > 0) {
+        // while ($row = $result->fetch_assoc()) {
+        // echo "<input type='hidden' id='sqlChitiet' value='" . htmlspecialchars($sqlChitiet) . "'>";
+        echo "<button onclick=\"exportTableToExcel2()\" class=\"btn btn-success\">Xuất Excel</button>";
+        echo '<div class="mt-5">
         <h2 class="mt-5">Biểu đồ Top 10 Khách Hàng Sử Dụng Nhiều Dịch Vụ Nhất' . $message . ' </h2>
         <canvas id="myChart_kh_dv_max" class="mb-3"></canvas>
     </div>';
-    // }
-}
-?>
+        // }
+    }
+    ?>
+</div>
+<?php include '../footer.php'; ?>
 
 <!-- </div>
 
@@ -305,7 +321,7 @@ if (isset($result) && $result->num_rows > 0) {
 
 </html> -->
 
-</div>
+<!-- </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
@@ -313,7 +329,7 @@ if (isset($result) && $result->num_rows > 0) {
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-    function exportTableToExcel() {
+    function exportTableToExcel2() {
 
         var table = document.getElementById("dataTable");
         var rows = [];
@@ -351,7 +367,7 @@ if (isset($result) && $result->num_rows > 0) {
     }
 
     //sql chitiet
-    function exportQueryToFile(id) {
+    function exportQueryToFile2(id) {
         const sqlChitiet = <?= json_encode($sqlChitiet) ?>;
         const form = document.createElement('form');
         form.method = 'POST';
@@ -380,15 +396,18 @@ if (isset($result) && $result->num_rows > 0) {
         const thangDuocChon = document.getElementById('month').checked;
         const tuanDuocChon = document.getElementById('week').checked;
 
+
         document.getElementById('yearForm').style.display = (namDuocChon || quyDuocChon || thangDuocChon) ? 'block' : 'none';
         document.getElementById('quaterForm').style.display = quyDuocChon ? 'block' : 'none';
         document.getElementById('monthForm').style.display = thangDuocChon ? 'block' : 'none';
+        document.getElementById('weekForm').style.display = tuanDuocChon ? 'block' : 'none';
     }
 
     function kiemTraForm() {
         const namDuocChon = document.getElementById('year').checked;
         const quyDuocChon = document.getElementById('quarter').checked;
         const thangDuocChon = document.getElementById('month').checked;
+        const tuanDuocChon = document.getElementById('week').checked;
 
         if (namDuocChon && document.getElementById('yearSelect').value === '') {
             alert('Vui lòng chọn năm');
@@ -414,6 +433,25 @@ if (isset($result) && $result->num_rows > 0) {
             if (document.getElementById('monthSelect').value === '') {
                 alert('Vui lòng chọn tháng');
                 return false;
+            }
+        }
+        if (tuanDuocChon) {
+            if (document.getElementById('weekStartSelect').value === '') {
+                alert('Vui lòng chọn ngày bắt đầu');
+                return false;
+            }
+            if (document.getElementById('weekEndSelect').value === '') {
+                alert('Vui lòng chọn ngày kết thúc');
+                return false;
+            }
+            if (document.getElementById('weekStartSelect').value !== '' && document.getElementById('weekEndSelect').value !== '') {
+                var startDate = new Date(document.getElementById('weekStartSelect').value);
+                var endDate = new Date(document.getElementById('weekEndSelect').value);
+
+                if (endDate <= startDate) {
+                    alert('Ngày kết thúc phải là sau ngày bắt đầu');
+                    return false;
+                }
             }
         }
         return true;
@@ -458,7 +496,7 @@ if (isset($result) && $result->num_rows > 0) {
     capNhatHienThiForm();
 
     // Hiển thị biểu đồ nếu có dữ liệu
-    <?php if (isset($tenNhanVien) && isset($soLuongDichVu)) { ?>
+    <?php if (isset($tenKhachHang) && isset($soLuongDichVu)) { ?>
         var ctx = document.getElementById('myChart_kh_dv_max').getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'bar',
@@ -481,6 +519,6 @@ if (isset($result) && $result->num_rows > 0) {
             }
         });
     <?php } ?>
-</script>
+</script> -->
 
-</html>
+<!-- </html> -->

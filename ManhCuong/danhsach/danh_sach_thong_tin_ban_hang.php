@@ -13,7 +13,28 @@ if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
 }
 
-// Truy vấn thông tin bán hàng
+// Pagination setup
+$limit = 10; // Number of entries to show in a page.
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$offset = ($page - 1) * $limit;
+
+// Prepare the search query if provided
+$search_query = isset($_GET['search_query']) ? $conn->real_escape_string($_GET['search_query']) : '';
+$sql_search = '';
+if (!empty($search_query)) {
+    $sql_search = " WHERE nv.TenNhanVien LIKE '%$search_query%' OR kh.Ten LIKE '%$search_query%' OR gdv.TenGoiDichVu LIKE '%$search_query%' OR ttb.NgayDangKy LIKE '%$search_query%'";
+}
+
+// Fetch total number of rows in the table
+$sql_total = "SELECT COUNT(*) AS total FROM ThongTinBanHang AS ttb
+JOIN TTNhanVienBanHang AS nv ON ttb.ID_TTNVBH = nv.ID_TTNVBH
+JOIN KhachHang AS kh ON ttb.ID_KhachHang = kh.ID_KhachHang
+JOIN GoiDichVu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu" . $sql_search;
+$total_result = $conn->query($sql_total);
+$total_row = $total_result->fetch_assoc();
+$total_rows = $total_row['total'];
+
+// Fetch the data for the current page
 $sql = "SELECT 
     ttb.ID_ThongTinBanHang,
     ttb.ID_TTNVBH,
@@ -26,13 +47,16 @@ $sql = "SELECT
 FROM ThongTinBanHang AS ttb
 JOIN TTNhanVienBanHang AS nv ON ttb.ID_TTNVBH = nv.ID_TTNVBH
 JOIN KhachHang AS kh ON ttb.ID_KhachHang = kh.ID_KhachHang
-JOIN GoiDichVu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
-ORDER BY ttb.NgayDangKy DESC";
+JOIN GoiDichVu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu" . $sql_search . "
+ORDER BY ttb.NgayDangKy DESC
+LIMIT $limit OFFSET $offset";
 $result = $conn->query($sql);
+
+// Calculate total pages
+$total_pages = ceil($total_rows / $limit);
 
 $conn->close();
 ?>
-
 
 <!-- <!DOCTYPE html>
 <html lang="en">
@@ -47,44 +71,113 @@ $conn->close();
 <body>
     <div class="container"> -->
 <?php include '../menu.php'; ?>
-<h2 class="mt-3">Danh Sách Thông Tin Bán Hàng</h2>
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Tên Nhân Viên</th>
-            <th>Tên Khách Hàng</th>
-            <th>Tên Gói Dịch Vụ</th>
-            <th>Ngày Bán</th>
-            <th>Lựa Chọn</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo "<tr>";
-                echo "<td>" . htmlspecialchars($row['TenNhanVien']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['TenKhachHang']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['NgayDangKy']) . "</td>";
-                echo "<td>
-                            <a href='../sua/sua_thong_tin_ban_hang.php?id=" . $row['ID_ThongTinBanHang'] . "' class='btn btn-warning'>Sửa</a>
-                            <a href='../xoa/xoa_thong_tin_ban_hang.php?id=" . $row['ID_ThongTinBanHang'] . "' class='btn btn-danger' onclick='return confirm(\"Bạn có chắc chắn muốn xóa?\")'>Xóa</a>
+<div class="container">
+    <h2 class="mt-3">Danh Sách Thông Tin Bán Hàng</h2>
+    <form action="" method="GET" class="mb-3">
+        <div class="form-row">
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Tìm kiếm..." name="search_query" value="<?php echo htmlspecialchars($search_query); ?>">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary bi bi-search"> Tìm Kiếm</button>
+            </div>
+        </div>
+    </form>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Tên Nhân Viên</th>
+                <th>Tên Khách Hàng</th>
+                <th>Tên Gói Dịch Vụ</th>
+                <th>Ngày Bán</th>
+                <th>Lựa Chọn</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . htmlspecialchars($row['TenNhanVien']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['TenKhachHang']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['NgayDangKy']) . "</td>";
+                    echo "<td>
+                            <a href='../sua/sua_thong_tin_ban_hang.php?id=" . $row['ID_ThongTinBanHang'] . "' class='btn btn-warning bi bi-pencil'> Sửa</a>
+                            <a href='../xoa/xoa_thong_tin_ban_hang.php?id=" . $row['ID_ThongTinBanHang'] . "' class='btn btn-danger bi bi-trash ml-2' onclick='return confirm(\"Bạn có chắc chắn muốn xóa?\")'> Xóa</a>
                             </td>";
-                echo "</tr>";
+                    echo "</tr>";
+                }
+            } else {
+                echo "<tr><td colspan='5' class='text-center'>Không có dữ liệu</td></tr>";
             }
-        } else {
-            echo "<tr><td colspan='5' class='text-center'>Không có dữ liệu</td></tr>";
-        }
-        ?>
-    </tbody>
-</table>
-<a href="../them/them_thong_tin_ban_hang.php" class="btn btn-primary mb-3">Thêm Thông Tin Bán Hàng Mới</a>
+            ?>
+        </tbody>
+    </table>
+    <a href="../them/them_thong_tin_ban_hang.php" class="btn btn-primary bi bi-plus-circle mb-3"> Thêm Thông Tin Bán Hàng Mới</a>
+
+    <!-- Pagination Links -->
+    <nav>
+        <ul class="pagination justify-content-center">
+            <?php
+            if ($page > 1) {
+                echo "<li class='page-item'><a class='page-link' href='?page=" . ($page - 1) . "&search_query=" . urlencode($search_query) . "'>Trước Đó</a></li>";
+            }
+
+            for ($i = 1; $i <= $total_pages; $i++) {
+                if ($i == $page) {
+                    echo "<li class='page-item active'><a class='page-link' href='#'>$i</a></li>";
+                } else {
+                    echo "<li class='page-item'><a class='page-link' href='?page=$i&search_query=" . urlencode($search_query) . "'>$i</a></li>";
+                }
+            }
+
+            if ($page < $total_pages) {
+                echo "<li class='page-item'><a class='page-link' href='?page=" . ($page + 1) . "&search_query=" . urlencode($search_query) . "'>Kế Tiếp</a></li>";
+            }
+            ?>
+        </ul>
+    </nav>
+</div>
 <?php include '../footer.php'; ?>
-<!-- </div>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<!-- </div>  -->
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
+<script>
+    // Hide submenus
+    $('#body-row .collapse').collapse('hide');
+
+    // Collapse/Expand icon
+    $('#collapse-icon').addClass('fa-angle-double-left');
+
+    // Collapse click
+    $('[data-toggle=sidebar-colapse]').click(function() {
+        SidebarCollapse();
+    });
+
+    function SidebarCollapse() {
+        $('.menu-collapsed').toggleClass('d-none');
+        $('.sidebar-submenu').toggleClass('d-none');
+        $('.submenu-icon').toggleClass('d-none');
+        $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
+
+        // Treating d-flex/d-none on separators with title
+        var SeparatorTitle = $('.sidebar-separator-title');
+        if (SeparatorTitle.hasClass('d-flex')) {
+            SeparatorTitle.removeClass('d-flex');
+        } else {
+            SeparatorTitle.addClass('d-flex');
+        }
+
+        // Collapse/Expand icon
+        $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
+    }
+</script>
+
 </body>
 
 </html> -->

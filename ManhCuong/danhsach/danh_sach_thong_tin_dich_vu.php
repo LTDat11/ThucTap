@@ -33,34 +33,36 @@ $conn->close();
 <body>
     <div class="container"> -->
 <?php include '../menu.php'; ?>
-<h2 class="mt-3">Danh Sách Thông Tin Dịch Vụ</h2>
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Tên Dịch Vụ</th>
-            <th>Tùy Chọn</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo "<tr>";
-                echo "<td>" . htmlspecialchars($row['TenDichVu']) . "</td>";
-                echo "<td>
-                        <a href='../chitiet/chi_tiet_dich_vu.php?id=" . $row['ID_DichVu'] . "' class='btn btn-info'>Xem Chi Tiết</a>
-                        <a href='../sua/sua_ten_dich_vu.php?id=" . $row['ID_DichVu'] . "' class='btn btn-warning'>Sửa</a>
-                        <a href='#' onclick='confirmDelete_dv(" . $row['ID_DichVu'] . ")' class='btn btn-danger'>Xóa</a>
+<div class="container">
+    <h2 class="mt-3">Danh Sách Thông Tin Dịch Vụ</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Tên Dịch Vụ</th>
+                <th>Tùy Chọn</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . htmlspecialchars($row['TenDichVu']) . "</td>";
+                    echo "<td>
+                        <a href='../chitiet/chi_tiet_dich_vu.php?id=" . $row['ID_DichVu'] . "' class='btn btn-info bi bi-info-circle'> Xem Chi Tiết</a>
+                        <a href='../sua/sua_ten_dich_vu.php?id=" . $row['ID_DichVu'] . "' class='btn btn-warning bi bi-pencil ml-2 mr-2'> Sửa</a>
+                        <a href='#' onclick='confirmDelete_dv(" . $row['ID_DichVu'] . ")' class='btn btn-danger bi bi-trash'> Xóa</a>
                     </td>";
-                echo "</tr>";
+                    echo "</tr>";
+                }
+            } else {
+                echo "<tr><td colspan='2' class='text-center'>Không có dữ liệu</td></tr>";
             }
-        } else {
-            echo "<tr><td colspan='2' class='text-center'>Không có dữ liệu</td></tr>";
-        }
-        ?>
-    </tbody>
-</table>
-<a href="../them/them_dich_vu.php" class="btn btn-primary mb-3">Thêm Dịch Vụ</a>
+            ?>
+        </tbody>
+    </table>
+    <a href="../them/them_dich_vu.php" class="btn btn-primary bi bi-plus-circle mb-3"> Thêm Dịch Vụ</a>
+</div>
 <?php include '../footer.php'; ?>
 <!-- </div>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

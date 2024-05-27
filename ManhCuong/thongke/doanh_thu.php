@@ -54,6 +54,8 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
 
     switch ($timeOption) {
         case 'week':
+            $weekStartSelect = $_POST['weekStartSelect'];
+            $weekEndSelect = $_POST['weekEndSelect'];
             $message2 = "tuần này";
             $sql1 = "SELECT 
                 dv.ID_DichVu,
@@ -67,8 +69,7 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
                 DichVu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
             WHERE 
                 dv.ID_DichVu = $ID_DichVu
-                AND ttb.NgayDangKy BETWEEN DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY) 
-                AND DATE_ADD(DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY), INTERVAL 6 DAY)
+                AND ttb.NgayDangKy BETWEEN '$weekStartSelect' AND '$weekEndSelect' 
             GROUP BY 
                 dv.ID_DichVu, dv.TenDichVu";
 
@@ -86,8 +87,7 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
             DichVu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
         WHERE 
             dv.ID_DichVu = $ID_DichVu
-            AND ttb.NgayDangKy BETWEEN DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY) 
-            AND DATE_ADD(DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY), INTERVAL 6 DAY)
+            AND ttb.NgayDangKy BETWEEN '$weekStartSelect' AND '$weekEndSelect'
         GROUP BY 
             gdv.ID_GoiDichVu, gdv.TenGoiDichVu, gdv.GiaTien;
         ";
@@ -245,99 +245,112 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
 <body>
     <div class="container"> -->
 <?php include '../menu.php'; ?>
-<h1>Doanh thu</h1>
-<form action="" method="post">
-    <div class="form-group">
-        <label for="service">Chọn dịch vụ:</label>
-        <div class="d-flex">
-            <select class="form-control" id="service" name="service">
-                <?php
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        echo '<option value="' . $row['ID_DichVu'] . '">' . $row['TenDichVu'] . '</option>';
-                    }
-                } else {
-                    echo "Không có dịch vụ nào";
-                }
-                ?>
-            </select>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="period">Chọn kiểu kết toán:</label>
-        <br>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="time" id="year" value="year">
-            <label class="form-check-label" for="year">Năm</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="time" id="quarter" value="quarter">
-            <label class="form-check-label" for="quarter">Quý</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="time" id="month" value="month">
-            <label class="form-check-label" for="month">Tháng</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="time" id="week" value="week">
-            <label class="form-check-label" for="week">Tuần</label>
-        </div>
-    </div>
-    <div class="form-group" id="yearForm">
-        <div class="d-flex">
-            <label for="year">Chọn năm:</label>
-            <select class="form-control" id="yearSelect" name="yearSelect">
-                <option value="" selected disabled>Chọn năm</option>
-                <?php
-                if ($resultNam->num_rows > 0) {
-                    while ($row = $resultNam->fetch_assoc()) {
-                        $namMin = $row['NamDangKyXaNhat'];
-                        $namMax = $row['NamDangKyGanNhat'];
-                        for ($i = $namMin; $i <= $namMax; $i++) {
-                            echo '<option value="' . $i . '">' . $i . '</option>';
+<div class="container">
+    <h1>Doanh thu</h1>
+    <form action="" method="post">
+        <div class="form-group">
+            <label for="service">Chọn dịch vụ:</label>
+            <div class="d-flex">
+                <select class="form-control" id="service" name="service">
+                    <?php
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo '<option value="' . $row['ID_DichVu'] . '">' . $row['TenDichVu'] . '</option>';
                         }
+                    } else {
+                        echo "Không có dịch vụ nào";
                     }
-                } else {
-                    echo "Chưa có dữ liệu";
-                }
-                ?>
-            </select>
+                    ?>
+                </select>
+            </div>
         </div>
-    </div>
-    <div class="form-group" id="quaterForm">
-        <div class="d-flex">
-            <label for="quarter">Chọn quý:</label>
-            <select class="form-control" id="quarterSelect" name="quarterSelect">
-                <option value="" selected disabled>Chọn quý</option>
-                <option value="1">Quý 1</option>
-                <option value="2">Quý 2</option>
-                <option value="3">Quý 3</option>
-                <option value="4">Quý 4</option>
-            </select>
+        <div class="form-group">
+            <label for="period">Chọn kiểu kết toán:</label>
+            <br>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="time" id="year" value="year">
+                <label class="form-check-label" for="year">Năm</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="time" id="quarter" value="quarter">
+                <label class="form-check-label" for="quarter">Quý</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="time" id="month" value="month">
+                <label class="form-check-label" for="month">Tháng</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="time" id="week" value="week">
+                <label class="form-check-label" for="week">Tuần</label>
+            </div>
         </div>
-    </div>
-    <div class="form-group" id="monthForm">
-        <div class="d-flex">
-            <label for="month">Chọn tháng:</label>
-            <select class="form-control" id="monthSelect" name="monthSelect">
-                <option value="" selected disabled>Chọn tháng</option>
-                <option value="1">Tháng 1</option>
-                <option value="2">Tháng 2</option>
-                <option value="3">Tháng 3</option>
-                <option value="4">Tháng 4</option>
-                <option value="5">Tháng 5</option>
-                <option value="6">Tháng 6</option>
-                <option value="7">Tháng 7</option>
-                <option value="8">Tháng 8</option>
-                <option value="9">Tháng 9</option>
-                <option value="10">Tháng 10</option>
-                <option value="11">Tháng 11</option>
-                <option value="12">Tháng 12</option>
-            </select>
+        <div class="form-group" id="yearForm">
+            <div class="d-flex">
+                <label for="year">Chọn năm:</label>
+                <select class="form-control" id="yearSelect" name="yearSelect">
+                    <option value="" selected disabled>Chọn năm</option>
+                    <?php
+                    if ($resultNam->num_rows > 0) {
+                        while ($row = $resultNam->fetch_assoc()) {
+                            $namMin = $row['NamDangKyXaNhat'];
+                            $namMax = $row['NamDangKyGanNhat'];
+                            for ($i = $namMin; $i <= $namMax; $i++) {
+                                echo '<option value="' . $i . '">' . $i . '</option>';
+                            }
+                        }
+                    } else {
+                        echo "Chưa có dữ liệu";
+                    }
+                    ?>
+                </select>
+            </div>
         </div>
-    </div>
-    <button type="submit" class="btn btn-primary ml-2">Xem</button>
-</form>
+        <div class="form-group" id="quaterForm">
+            <div class="d-flex">
+                <label for="quarter">Chọn quý:</label>
+                <select class="form-control" id="quarterSelect" name="quarterSelect">
+                    <option value="" selected disabled>Chọn quý</option>
+                    <option value="1">Quý 1</option>
+                    <option value="2">Quý 2</option>
+                    <option value="3">Quý 3</option>
+                    <option value="4">Quý 4</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group" id="monthForm">
+            <div class="d-flex">
+                <label for="month">Chọn tháng:</label>
+                <select class="form-control" id="monthSelect" name="monthSelect">
+                    <option value="" selected disabled>Chọn tháng</option>
+                    <option value="1">Tháng 1</option>
+                    <option value="2">Tháng 2</option>
+                    <option value="3">Tháng 3</option>
+                    <option value="4">Tháng 4</option>
+                    <option value="5">Tháng 5</option>
+                    <option value="6">Tháng 6</option>
+                    <option value="7">Tháng 7</option>
+                    <option value="8">Tháng 8</option>
+                    <option value="9">Tháng 9</option>
+                    <option value="10">Tháng 10</option>
+                    <option value="11">Tháng 11</option>
+                    <option value="12">Tháng 12</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group" id="weekForm">
+            <div class="d-flex">
+                <label for="ngayDangKy">Ngày bắt đầu</label>
+                <input type="date" class="form-control" id="weekStartSelect" name="weekStartSelect">
+            </div>
+
+            <div class="d-flex">
+                <label for="ngayDangKy">Ngày kết thúc</label>
+                <input type="date" class="form-control" id="weekEndSelect" name="weekEndSelect">
+            </div>
+
+        </div>
+        <button type="submit" class="btn btn-primary ml-2">Xem</button>
+    </form>
 </div>
 
 <div class="container">
@@ -389,12 +402,10 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
     ?>
 
     </body>
-
 </div>
+<?php include '../footer.php'; ?>
 
-</body>
-
-<script>
+<!-- <script>
     function exportTableToExcel() {
         var table = document.getElementById("dataTable");
         var rows = [];
@@ -455,29 +466,31 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
     //     form.submit();
     // }
 
+    function capNhatHienThiForm() {
+        const namDuocChon = document.getElementById('year').checked;
+        const quyDuocChon = document.getElementById('quarter').checked;
+        const thangDuocChon = document.getElementById('month').checked;
+        const tuanDuocChon = document.getElementById('week').checked;
 
-    function updateFormDisplay() {
-        const yearChecked = document.getElementById('year').checked;
-        const quarterChecked = document.getElementById('quarter').checked;
-        const monthChecked = document.getElementById('month').checked;
 
-        document.getElementById('yearForm').style.display = (yearChecked || quarterChecked || monthChecked) ? 'block' : 'none';
-        document.getElementById('quaterForm').style.display = quarterChecked ? 'block' : 'none';
-        document.getElementById('monthForm').style.display = monthChecked ? 'block' : 'none';
+        document.getElementById('yearForm').style.display = (namDuocChon || quyDuocChon || thangDuocChon) ? 'block' : 'none';
+        document.getElementById('quaterForm').style.display = quyDuocChon ? 'block' : 'none';
+        document.getElementById('monthForm').style.display = thangDuocChon ? 'block' : 'none';
+        document.getElementById('weekForm').style.display = tuanDuocChon ? 'block' : 'none';
     }
 
-    function validateForm() {
-        const yearChecked = document.getElementById('year').checked;
-        const quarterChecked = document.getElementById('quarter').checked;
-        const monthChecked = document.getElementById('month').checked;
-        const weekChecked = document.getElementById('week').checked;
+    function kiemTraForm() {
+        const namDuocChon = document.getElementById('year').checked;
+        const quyDuocChon = document.getElementById('quarter').checked;
+        const thangDuocChon = document.getElementById('month').checked;
+        const tuanDuocChon = document.getElementById('week').checked;
 
-        if (yearChecked && document.getElementById('yearSelect').value === '') {
+        if (namDuocChon && document.getElementById('yearSelect').value === '') {
             alert('Vui lòng chọn năm');
             return false;
         }
 
-        if (quarterChecked) {
+        if (quyDuocChon) {
             if (document.getElementById('yearSelect').value === '') {
                 alert('Vui lòng chọn năm');
                 return false;
@@ -488,7 +501,7 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
             }
         }
 
-        if (monthChecked) {
+        if (thangDuocChon) {
             if (document.getElementById('yearSelect').value === '') {
                 alert('Vui lòng chọn năm');
                 return false;
@@ -498,46 +511,65 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
                 return false;
             }
         }
+        if (tuanDuocChon) {
+            if (document.getElementById('weekStartSelect').value === '') {
+                alert('Vui lòng chọn ngày bắt đầu');
+                return false;
+            }
+            if (document.getElementById('weekEndSelect').value === '') {
+                alert('Vui lòng chọn ngày kết thúc');
+                return false;
+            }
+            if (document.getElementById('weekStartSelect').value !== '' && document.getElementById('weekEndSelect').value !== '') {
+                var startDate = new Date(document.getElementById('weekStartSelect').value);
+                var endDate = new Date(document.getElementById('weekEndSelect').value);
+
+                if (endDate <= startDate) {
+                    alert('Ngày kết thúc phải là sau ngày bắt đầu');
+                    return false;
+                }
+            }
+        }
         return true;
     }
 
-    document.getElementById('year').addEventListener('change', function() {
+    document.getElementById('year').addEventListener('change', function () {
         document.getElementById('quarterSelect').selectedIndex = 0;
         document.getElementById('monthSelect').selectedIndex = 0;
         document.getElementById('yearSelect').selectedIndex = 0;
-        updateFormDisplay();
+        capNhatHienThiForm();
     });
 
-    document.getElementById('quarter').addEventListener('change', function() {
+    document.getElementById('quarter').addEventListener('change', function () {
         document.getElementById('quarterSelect').selectedIndex = 0;
         document.getElementById('monthSelect').selectedIndex = 0;
         document.getElementById('yearSelect').selectedIndex = 0;
-        updateFormDisplay();
+        capNhatHienThiForm();
     });
 
-    document.getElementById('month').addEventListener('change', function() {
+    document.getElementById('month').addEventListener('change', function () {
         document.getElementById('quarterSelect').selectedIndex = 0;
         document.getElementById('monthSelect').selectedIndex = 0;
         document.getElementById('yearSelect').selectedIndex = 0;
-        updateFormDisplay();
+        capNhatHienThiForm();
     });
 
-    document.getElementById('week').addEventListener('change', function() {
+    document.getElementById('week').addEventListener('change', function () {
         document.getElementById('quarterSelect').selectedIndex = 0;
         document.getElementById('monthSelect').selectedIndex = 0;
         document.getElementById('yearSelect').selectedIndex = 0;
-        updateFormDisplay();
+        capNhatHienThiForm();
     });
 
-    // Attach validateForm to the form's submit event
-    document.querySelector('form').addEventListener('submit', function(e) {
-        if (!validateForm()) {
-            e.preventDefault(); // Prevent the form from submitting
+    // Đính kèm kiemTraForm vào sự kiện submit của biểu mẫu
+    document.querySelector('form').addEventListener('submit', function (e) {
+        if (!kiemTraForm()) {
+            e.preventDefault(); // Ngăn biểu mẫu gửi đi
         }
     });
 
-    // Initial call to ensure forms are hidden if no checkbox is selected
-    updateFormDisplay();
+    // Gọi ban đầu để đảm bảo các form bị ẩn nếu không có checkbox nào được chọn
+    capNhatHienThiForm();
 </script>
 
-</html>
+</html> -->

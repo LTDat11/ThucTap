@@ -33,7 +33,7 @@ $result_dichvu = $conn->query($sql_dichvu);
 $conn->close();
 ?>
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -41,10 +41,11 @@ $conn->close();
     <title>Thông Tin Chi Tiết Khách Hàng</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body> -->
+<?php include '../menu.php'; ?>
 <div class="container">
     <h2 class="mt-5">Thông Tin Chi Tiết Khách Hàng</h2>
-    <?php if ($khachhang): ?>
+    <?php if ($khachhang) : ?>
         <div class="card mb-3">
             <div class="card-body">
                 <h4 class="card-title"><?php echo htmlspecialchars($khachhang['Ten']); ?></h4>
@@ -52,43 +53,47 @@ $conn->close();
                 <p class="card-text"><strong>Địa Chỉ:</strong> <?php echo htmlspecialchars($khachhang['DiaChi']); ?></p>
             </div>
         </div>
-        
+
         <h3>Dịch Vụ Đã Đăng Ký</h3>
         <table class="table table-bordered">
             <thead>
-            <tr>
-                <th>Tên Dịch Vụ</th>
-                <th>Tên Gói Dịch Vụ</th>
-                <th>Giá</th>
-                <th>Số Lượng</th>
-                <th>Ngày Đăng Ký</th>
-                <th>Nhân Viên Bán</th>
-            </tr>
+                <tr>
+                    <th>Tên Dịch Vụ</th>
+                    <th>Tên Gói Dịch Vụ</th>
+                    <th>Giá</th>
+                    <th>Số Lượng</th>
+                    <th>Ngày Đăng Ký</th>
+                    <th>Nhân Viên Bán</th>
+                </tr>
             </thead>
             <tbody>
-            <?php if ($result_dichvu->num_rows > 0): ?>
-                <?php while ($row = $result_dichvu->fetch_assoc()): ?>
+                <?php if ($result_dichvu->num_rows > 0) : ?>
+                    <?php while ($row = $result_dichvu->fetch_assoc()) : ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($row['TenDichVu']); ?></td>
+                            <td><?php echo htmlspecialchars($row['TenGoiDichVu']); ?></td>
+                            <td><?php echo htmlspecialchars($row['GiaTien']); ?></td>
+                            <td><?php echo htmlspecialchars($row['SoLuong']); ?></td>
+                            <td><?php echo htmlspecialchars($row['NgayDangKy']); ?></td>
+                            <td><?php echo htmlspecialchars($row['TenNhanVien']); ?></td>
+                        </tr>
+                    <?php endwhile; ?>
+                <?php else : ?>
                     <tr>
-                        <td><?php echo htmlspecialchars($row['TenDichVu']); ?></td>
-                        <td><?php echo htmlspecialchars($row['TenGoiDichVu']); ?></td>
-                        <td><?php echo htmlspecialchars($row['GiaTien']); ?></td>
-                        <td><?php echo htmlspecialchars($row['SoLuong']); ?></td>
-                        <td><?php echo htmlspecialchars($row['NgayDangKy']); ?></td>
-                        <td><?php echo htmlspecialchars($row['TenNhanVien']); ?></td>
+                        <td colspan="6" class="text-center">Khách hàng chưa đăng ký dịch vụ nào.</td>
                     </tr>
-                <?php endwhile; ?>
-            <?php else: ?>
-                <tr><td colspan="6" class="text-center">Khách hàng chưa đăng ký dịch vụ nào.</td></tr>
-            <?php endif; ?>
+                <?php endif; ?>
             </tbody>
         </table>
-    <?php else: ?>
+    <?php else : ?>
         <p class="text-center">Không tìm thấy thông tin khách hàng.</p>
     <?php endif; ?>
-    <a href="../danhsach/danh_sach_thong_tin_khach_hang.php" class="btn btn-secondary">Quay Lại</a>
+    <a href="../danhsach/danh_sach_thong_tin_khach_hang.php" class="btn btn-secondary bi bi-backspace"> Quay Lại</a>
 </div>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<?php include '../footer.php'; ?>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-</html>
+
+</html> -->

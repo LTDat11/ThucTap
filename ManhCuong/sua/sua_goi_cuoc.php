@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $conn->close();
 ?>
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -81,53 +81,49 @@ $conn->close();
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body>
-    <div class="container">
-        <h2 class="mt-5">Sửa Gói Cước</h2>
-        <form action="../sua/sua_goi_cuoc.php?id=<?php echo htmlspecialchars($id); ?>" method="post"
-            enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="TenGoiDichVu">Tên Gói Cước</label>
-                <input type="text" class="form-control" id="TenGoiDichVu" name="TenGoiDichVu"
-                    value="<?php echo htmlspecialchars($goiDichVu['TenGoiDichVu']); ?>" required>
-            </div>
-            <div class="form-group">
-                <label for="ImgURL">Ảnh ban đầu:</label> <br>
-                <!-- nối chuỗi cho link ảnh -->
-                <img src="<?php echo "." . htmlspecialchars($goiDichVu['ImgURL']); ?>" class="blurred" alt="Hình ảnh">
-                <br>
-                <label for="ImgURL">Chọn ảnh mới:</label>
-                <br>
-                <input type="file" class="form-control" id="ImgURL" name="ImgURL" onchange="previewImage(this);">
-                <img id="preview" src="#" alt="Preview Image" style="display: none;">
-            </div>
-            <div class="form-group">
-                <label for="TocDo">Tốc Độ</label>
-                <input type="text" class="form-control" id="TocDo" name="TocDo"
-                    value="<?php echo htmlspecialchars($goiDichVu['TocDo']); ?>" required>
-            </div>
-            <div class="form-group">
-                <label for="GiaTien">Giá Tiền</label>
-                <input type="number" class="form-control" id="GiaTien" name="GiaTien"
-                    value="<?php echo htmlspecialchars($goiDichVu['GiaTien']); ?>" required>
-            </div>
-            <div class="form-group">
-                <label for="MoTa">Mô Tả</label>
-                <textarea class="form-control" id="MoTa" name="MoTa"
-                    rows="3"><?php echo htmlspecialchars($goiDichVu['MoTa']); ?></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Lưu</button>
-            <a href="../chitiet/chi_tiet_dich_vu.php?id=<?php echo htmlspecialchars($idDichVu); ?>"
-                class="btn btn-secondary">Quay
-                Lại</a>
-        </form>
-        <?php if (!empty($message)): ?>
-            <div class="mt-3 alert alert-success"><?php echo htmlspecialchars($message); ?></div>
-        <?php endif; ?>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<body> -->
+<?php include '../menu.php'; ?>
+<div class="container">
+    <h2 class="mt-5">Sửa Gói Cước</h2>
+    <form action="../sua/sua_goi_cuoc.php?id=<?php echo htmlspecialchars($id); ?>" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="TenGoiDichVu">Tên Gói Cước</label>
+            <input type="text" class="form-control" id="TenGoiDichVu" name="TenGoiDichVu" value="<?php echo htmlspecialchars($goiDichVu['TenGoiDichVu']); ?>" required>
+        </div>
+        <div class="form-group">
+            <label for="ImgURL">Ảnh ban đầu:</label> <br>
+            <!-- nối chuỗi cho link ảnh -->
+            <img src="<?php echo "." . htmlspecialchars($goiDichVu['ImgURL']); ?>" class="blurred" alt="Hình ảnh">
+            <br>
+            <label for="ImgURL">Chọn ảnh mới:</label>
+            <br>
+            <input type="file" class="form-control" id="ImgURL" name="ImgURL" onchange="previewImage(this);">
+            <img id="preview" src="#" alt="Preview Image" style="display: none;">
+        </div>
+        <div class="form-group">
+            <label for="TocDo">Tốc Độ</label>
+            <input type="text" class="form-control" id="TocDo" name="TocDo" value="<?php echo htmlspecialchars($goiDichVu['TocDo']); ?>">
+        </div>
+        <div class="form-group">
+            <label for="GiaTien">Giá Tiền</label>
+            <input type="number" class="form-control" id="GiaTien" name="GiaTien" value="<?php echo htmlspecialchars($goiDichVu['GiaTien']); ?>" required>
+        </div>
+        <div class="form-group">
+            <label for="MoTa">Mô Tả</label>
+            <textarea class="form-control" id="MoTa" name="MoTa" rows="3"><?php echo htmlspecialchars($goiDichVu['MoTa']); ?></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary bi bi-floppy mr-2"> Lưu</button>
+        <a href="../chitiet/chi_tiet_dich_vu.php?id=<?php echo htmlspecialchars($idDichVu); ?>" class="btn btn-secondary bi bi-backspace"> Quay
+            Lại</a>
+    </form>
+    <?php if (!empty($message)) : ?>
+        <div class="mt-3 alert alert-success"><?php echo htmlspecialchars($message); ?></div>
+    <?php endif; ?>
+</div>
+<?php include '../footer.php'; ?>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 <script>
     function previewImage(input) {
@@ -135,7 +131,7 @@ $conn->close();
         const file = input.files[0];
         const reader = new FileReader();
 
-        reader.onload = function (e) {
+        reader.onload = function(e) {
             preview.src = e.target.result;
             preview.style.display = 'block';
 
@@ -149,4 +145,4 @@ $conn->close();
     }
 </script>
 
-</html>
+</html> -->

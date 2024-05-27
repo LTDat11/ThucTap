@@ -1,4 +1,5 @@
 <?php
+//nhân viên phải đăng nhập mới xem được
 session_start();
 
 // Kiểm tra nếu nhân viên đã đăng nhập
@@ -23,209 +24,108 @@ $resultNam = $conn->query($sqlNam);
 
 $message = '';
 $sqlChitiet = "";
-if (isset($_POST['time'])) {
-    $time = $_POST['time'];
 
-    switch ($time) {
-        case 'year':
-            $yearSelect = $_POST['yearSelect'];
-            //
-            $message = "Năm " . $yearSelect;
-            $sql = "SELECT 
-                ttbh.ID_TTNVBH,
-                ttbh.TenNhanVien,
-                ttbh.SoDienThoai,
-                ttbh.DiaChi,
-                COUNT(ttb.ID_TTNVBH) AS TongSoLuongDichVuBanDuoc
-                FROM 
-                ThongTinBanHang AS ttb
-                JOIN 
-                TTNhanVienBanHang AS ttbh ON ttb.ID_TTNVBH = ttbh.ID_TTNVBH
-                WHERE 
-                YEAR(ttb.NgayDangKy) = $yearSelect
-                GROUP BY 
-                ttbh.ID_TTNVBH, ttbh.TenNhanVien, ttbh.SoDienThoai, ttbh.DiaChi
-                ORDER BY 
-                TongSoLuongDichVuBanDuoc DESC
-                LIMIT 10;
-                ";
-            //post sql chitiet
-            $sqlChitiet = "SELECT 
-            ttb.ID_ThongTinBanHang,
-            ttb.NgayDangKy,
-            kh.Ten AS TenKhachHang,
-            dv.TenDichVu,
-            gdv.TenGoiDichVu,
-            ttb.SoLuong,
-            (gdv.GiaTien * ttb.SoLuong) AS TongTien
-        FROM 
-            ThongTinBanHang AS ttb
-        JOIN 
-            TTNhanVienBanHang AS nv ON ttb.ID_TTNVBH = nv.ID_TTNVBH
-        JOIN 
-            KhachHang AS kh ON ttb.ID_KhachHang = kh.ID_KhachHang
-        JOIN 
-            GoiDichVu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
-        JOIN 
-            DichVu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
-        WHERE 
-            YEAR(ttb.NgayDangKy) = $yearSelect ";
+// Xử lý form
 
-            break;
-        case 'quarter':
-            $yearSelect = $_POST['yearSelect'];
-            $quarterSelect = $_POST['quarterSelect'];
-            $message = "Quý " . $quarterSelect . " năm " . $yearSelect;
-            $sql = "SELECT 
-                ttbh.ID_TTNVBH,
-                ttbh.TenNhanVien,
-                ttbh.SoDienThoai,
-                ttbh.DiaChi,
-                COUNT(ttb.ID_TTNVBH) AS TongSoLuongDichVuBanDuoc
-                FROM 
-                ThongTinBanHang AS ttb
-                JOIN 
-                TTNhanVienBanHang AS ttbh ON ttb.ID_TTNVBH = ttbh.ID_TTNVBH
-                WHERE 
-                YEAR(ttb.NgayDangKy) = $yearSelect
-                AND QUARTER(ttb.NgayDangKy) = $quarterSelect
-                GROUP BY 
-                ttbh.ID_TTNVBH, ttbh.TenNhanVien, ttbh.SoDienThoai, ttbh.DiaChi
-                ORDER BY 
-                TongSoLuongDichVuBanDuoc DESC
-                LIMIT 10;
-                ";
-            //post sql chitiet
-            $sqlChitiet = "SELECT 
-            ttb.ID_ThongTinBanHang,
-            ttb.NgayDangKy,
-            kh.Ten AS TenKhachHang,
-            dv.TenDichVu,
-            gdv.TenGoiDichVu,
-            ttb.SoLuong,
-            (gdv.GiaTien * ttb.SoLuong) AS TongTien
-        FROM 
-            ThongTinBanHang AS ttb
-        JOIN 
-            TTNhanVienBanHang AS nv ON ttb.ID_TTNVBH = nv.ID_TTNVBH
-        JOIN 
-            KhachHang AS kh ON ttb.ID_KhachHang = kh.ID_KhachHang
-        JOIN 
-            GoiDichVu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
-        JOIN 
-            DichVu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
-        WHERE 
-            YEAR(ttb.NgayDangKy) = $yearSelect
-            AND QUARTER(ttb.NgayDangKy) = $quarterSelect ";
-            break;
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $time = $_POST['time'] ?? '';
+    $yearSelect = $_POST['yearSelect'] ?? '';
+    $quarterSelect = $_POST['quarterSelect'] ?? '';
+    $monthSelect = $_POST['monthSelect'] ?? '';
+    $weekStartSelect = $_POST['weekStartSelect'] ?? '';
+    $weekEndSelect = $_POST['weekEndSelect'] ?? '';
 
-        case 'month':
-            $yearSelect = $_POST['yearSelect'];
-            $monthSelect = $_POST['monthSelect'];
-            $message = "Tháng " . $monthSelect . " năm " . $yearSelect;
-            $sql = "SELECT 
-                ttbh.ID_TTNVBH,
-                ttbh.TenNhanVien,
-                ttbh.SoDienThoai,
-                ttbh.DiaChi,
-                COUNT(ttb.ID_TTNVBH) AS TongSoLuongDichVuBanDuoc
-                FROM 
-                ThongTinBanHang AS ttb
-                JOIN 
-                TTNhanVienBanHang AS ttbh ON ttb.ID_TTNVBH = ttbh.ID_TTNVBH
-                WHERE 
-                YEAR(ttb.NgayDangKy) = $yearSelect
-                AND MONTH(ttb.NgayDangKy) = $monthSelect
-                GROUP BY 
-                ttbh.ID_TTNVBH, ttbh.TenNhanVien, ttbh.SoDienThoai, ttbh.DiaChi
-                ORDER BY 
-                TongSoLuongDichVuBanDuoc DESC
-                LIMIT 10;
-                ";
+    $sql = "SELECT 
+    ttbh.ID_TTNVBH,
+    ttbh.TenNhanVien,
+    ttbh.SoDienThoai,
+    ttbh.DiaChi,
+    COUNT(ttb.ID_TTNVBH) AS TongSoLuongDichVuBanDuoc
+    FROM 
+    ThongTinBanHang AS ttb
+    JOIN 
+    TTNhanVienBanHang AS ttbh ON ttb.ID_TTNVBH = ttbh.ID_TTNVBH ";
+    //dành cho chi tiết các khách hàng
+    $sqlChitiet = "SELECT 
+    ttb.ID_ThongTinBanHang,
+    ttb.NgayDangKy,
+    kh.Ten AS TenKhachHang,
+    dv.TenDichVu,
+    gdv.TenGoiDichVu,
+    ttb.SoLuong,
+    (gdv.GiaTien * ttb.SoLuong) AS TongTien
+FROM 
+    ThongTinBanHang AS ttb
+JOIN 
+    TTNhanVienBanHang AS nv ON ttb.ID_TTNVBH = nv.ID_TTNVBH
+JOIN 
+    KhachHang AS kh ON ttb.ID_KhachHang = kh.ID_KhachHang
+JOIN 
+    GoiDichVu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
+JOIN 
+    DichVu AS dv ON gdv.ID_DichVu = dv.ID_DichVu ";
 
-            //post sql chitiet tháng
-            $sqlChitiet = "SELECT 
-            ttb.ID_ThongTinBanHang,
-            ttb.NgayDangKy,
-            kh.Ten AS TenKhachHang,
-            dv.TenDichVu,
-            gdv.TenGoiDichVu,
-            ttb.SoLuong,
-            (gdv.GiaTien * ttb.SoLuong) AS TongTien
-        FROM 
-            ThongTinBanHang AS ttb
-        JOIN 
-            TTNhanVienBanHang AS nv ON ttb.ID_TTNVBH = nv.ID_TTNVBH
-        JOIN 
-            KhachHang AS kh ON ttb.ID_KhachHang = kh.ID_KhachHang
-        JOIN 
-            GoiDichVu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
-        JOIN 
-            DichVu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
-        WHERE 
-            YEAR(ttb.NgayDangKy) = $yearSelect
-            AND MONTH(ttb.NgayDangKy) = $monthSelect ";
-            break;
-
-
-        case 'week':
-            $message = "Tuần này";
-            $sql = "SELECT 
-                ttbh.ID_TTNVBH,
-                ttbh.TenNhanVien,
-                ttbh.SoDienThoai,
-                ttbh.DiaChi,
-                COUNT(ttb.ID_TTNVBH) AS TongSoLuongDichVuBanDuoc
-                FROM 
-                ThongTinBanHang AS ttb
-                JOIN 
-                TTNhanVienBanHang AS ttbh ON ttb.ID_TTNVBH = ttbh.ID_TTNVBH
-                WHERE 
-                ttb.NgayDangKy BETWEEN DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY) 
-                AND DATE_ADD(DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY), INTERVAL 6 DAY)
-                GROUP BY 
-                ttbh.ID_TTNVBH, ttbh.TenNhanVien, ttbh.SoDienThoai, ttbh.DiaChi
-                ORDER BY 
-                TongSoLuongDichVuBanDuoc DESC
-                LIMIT 10;
-                ";
-            $sqlChitiet = "SELECT 
-            ttb.ID_ThongTinBanHang,
-            ttb.NgayDangKy,
-            kh.Ten AS TenKhachHang,
-            dv.TenDichVu,
-            gdv.TenGoiDichVu,
-            ttb.SoLuong,
-            (gdv.GiaTien * ttb.SoLuong) AS TongTien
-        FROM 
-            ThongTinBanHang AS ttb
-        JOIN 
-            TTNhanVienBanHang AS nv ON ttb.ID_TTNVBH = nv.ID_TTNVBH
-        JOIN 
-            KhachHang AS kh ON ttb.ID_KhachHang = kh.ID_KhachHang
-        JOIN 
-            GoiDichVu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
-        JOIN 
-            DichVu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
-        WHERE 
-            ttb.NgayDangKy BETWEEN DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY) 
-            AND DATE_ADD(DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY), INTERVAL 6 DAY) ";
-            break;
-
-
+    if ($time == 'year') {               //năm
+        $sql .= "WHERE 
+        YEAR(ttb.NgayDangKy) = $yearSelect
+        GROUP BY 
+        ttbh.ID_TTNVBH, ttbh.TenNhanVien, ttbh.SoDienThoai, ttbh.DiaChi
+        ORDER BY 
+        TongSoLuongDichVuBanDuoc DESC
+        LIMIT 10;
+    ";
+        $sqlChitiet .= "WHERE 
+        YEAR(ttb.NgayDangKy) = $yearSelect ";
+        $message = " năm $yearSelect";
+    } elseif ($time == 'quarter') {     //quý
+        $sql .= "WHERE 
+        YEAR(ttb.NgayDangKy) = $yearSelect
+        AND QUARTER(ttb.NgayDangKy) = $quarterSelect
+        GROUP BY 
+        ttbh.ID_TTNVBH, ttbh.TenNhanVien, ttbh.SoDienThoai, ttbh.DiaChi
+        ORDER BY 
+        TongSoLuongDichVuBanDuoc DESC
+        LIMIT 10;
+    ";
+        $sqlChitiet .= "WHERE 
+        YEAR(ttb.NgayDangKy) = $yearSelect
+        AND QUARTER(ttb.NgayDangKy) = $quarterSelect ";
+        $message = " quý $quarterSelect năm $yearSelect";
+    } elseif ($time == 'month') {       //tháng
+        $sql .= "WHERE 
+        YEAR(ttb.NgayDangKy) = $yearSelect
+        AND MONTH(ttb.NgayDangKy) = $monthSelect
+        GROUP BY 
+        ttbh.ID_TTNVBH, ttbh.TenNhanVien, ttbh.SoDienThoai, ttbh.DiaChi
+        ORDER BY 
+        TongSoLuongDichVuBanDuoc DESC
+        LIMIT 10;
+    ";
+        $sqlChitiet .= "WHERE 
+        YEAR(ttb.NgayDangKy) = $yearSelect
+        AND MONTH(ttb.NgayDangKy) = $monthSelect ";
+        $message = " tháng $monthSelect năm $yearSelect";
+    } elseif ($time == 'week') {        //tuần
+        $sql .= "WHERE 
+        ttb.NgayDangKy BETWEEN '$weekStartSelect' AND '$weekEndSelect' 
+        GROUP BY 
+        ttbh.ID_TTNVBH, ttbh.TenNhanVien, ttbh.SoDienThoai, ttbh.DiaChi
+        ORDER BY 
+        TongSoLuongDichVuBanDuoc DESC
+        LIMIT 10;
+    ";
+        $sqlChitiet .= "WHERE 
+        ttb.NgayDangKy BETWEEN '$weekStartSelect' AND '$weekEndSelect' ";
+        $message = " tuần này";
+    }
+    if ($time != '') {
+        $result = $conn->query($sql);
     }
 
-    //kết quả truy vấn
-    $result = $conn->query($sql);
-    // if ($result && $result->num_rows > 0) {
-    //     while ($row = $result->fetch_assoc()) {
-    //         // Thêm dữ liệu vào mảng
-    //         $tenNhanVien[] = $row['TenNhanVien'];
-    //         $soLuongDichVu[] = $row['TongSoLuongDichVuBanDuoc'];
-    //     }
-    // }
-    $conn->close();
 }
+
+$conn->close();
+
 ?>
 
 <!-- <!DOCTYPE html>
@@ -234,7 +134,7 @@ if (isset($_POST['time'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Danh Sách TOP 10 Nhân Viên Bán Hàng Nhiều</title>
+    <title>Danh Sách TOP 10 Thông Tin Khách Hàng Sử Dụng Dịch Vụ Nhiều Nhất</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -242,141 +142,190 @@ if (isset($_POST['time'])) {
 <body>
     <div class="container"> -->
 <?php include '../menu.php'; ?>
-<h2 class="mt-3">Top 10 Nhân Viên</h2>
-<form action="" method="post">
+<div class="container">
+    <h2 class="mt-3">Top 10 Nhân Viên</h2>
+    <form action="" method="post">
 
-    <div class="form-group">
-        <label for="period">Chọn kiểu thống kê:</label>
-        <br>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="time" id="year" value="year">
-            <label class="form-check-label" for="year">Năm</label>
+        <div class="form-group">
+            <label for="period">Chọn kiểu thống kê:</label>
+            <br>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="time" id="year" value="year">
+                <label class="form-check-label" for="year">Năm</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="time" id="quarter" value="quarter">
+                <label class="form-check-label" for="quarter">Quý</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="time" id="month" value="month">
+                <label class="form-check-label" for="month">Tháng</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="time" id="week" value="week">
+                <label class="form-check-label" for="week">Tuần</label>
+            </div>
         </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="time" id="quarter" value="quarter">
-            <label class="form-check-label" for="quarter">Quý</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="time" id="month" value="month">
-            <label class="form-check-label" for="month">Tháng</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="time" id="week" value="week">
-            <label class="form-check-label" for="week">Tuần</label>
-        </div>
-    </div>
-    <div class="form-group" id="yearForm">
-        <div class="d-flex">
-            <label for="year">Chọn năm:</label>
-            <select class="form-control" id="yearSelect" name="yearSelect">
-                <option value="" selected disabled>Chọn năm</option>
-                <?php
-                if ($resultNam->num_rows > 0) {
-                    while ($row = $resultNam->fetch_assoc()) {
-                        $namMin = $row['NamDangKyXaNhat'];
-                        $namMax = $row['NamDangKyGanNhat'];
-                        for ($i = $namMin; $i <= $namMax; $i++) {
-                            echo '<option value="' . $i . '">' . $i . '</option>';
+        <div class="form-group" id="yearForm">
+            <div class="d-flex">
+                <label for="year">Chọn năm:</label>
+                <select class="form-control" id="yearSelect" name="yearSelect">
+                    <option value="" selected disabled>Chọn năm</option>
+                    <?php
+                    if ($resultNam->num_rows > 0) {
+                        while ($row = $resultNam->fetch_assoc()) {
+                            $namMin = $row['NamDangKyXaNhat'];
+                            $namMax = $row['NamDangKyGanNhat'];
+                            for ($i = $namMin; $i <= $namMax; $i++) {
+                                echo '<option value="' . $i . '">' . $i . '</option>';
+                            }
                         }
+                    } else {
+                        echo "Chưa có dữ liệu";
                     }
-                } else {
-                    echo "Chưa có dữ liệu";
+                    ?>
+                </select>
+            </div>
+        </div>
+        <div class="form-group" id="quaterForm">
+            <div class="d-flex">
+                <label for="quarter">Chọn quý:</label>
+                <select class="form-control" id="quarterSelect" name="quarterSelect">
+                    <option value="" selected disabled>Chọn quý</option>
+                    <option value="1">Quý 1</option>
+                    <option value="2">Quý 2</option>
+                    <option value="3">Quý 3</option>
+                    <option value="4">Quý 4</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group" id="monthForm">
+            <div class="d-flex">
+                <label for="month">Chọn tháng:</label>
+                <select class="form-control" id="monthSelect" name="monthSelect">
+                    <option value="" selected disabled>Chọn tháng</option>
+                    <option value="1">Tháng 1</option>
+                    <option value="2">Tháng 2</option>
+                    <option value="3">Tháng 3</option>
+                    <option value="4">Tháng 4</option>
+                    <option value="5">Tháng 5</option>
+                    <option value="6">Tháng 6</option>
+                    <option value="7">Tháng 7</option>
+                    <option value="8">Tháng 8</option>
+                    <option value="9">Tháng 9</option>
+                    <option value="10">Tháng 10</option>
+                    <option value="11">Tháng 11</option>
+                    <option value="12">Tháng 12</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group" id="weekForm">
+            <div class="d-flex">
+                <label for="ngayDangKy">Ngày bắt đầu</label>
+                <input type="date" class="form-control" id="weekStartSelect" name="weekStartSelect">
+            </div>
+
+            <div class="d-flex">
+                <label for="ngayDangKy">Ngày kết thúc</label>
+                <input type="date" class="form-control" id="weekEndSelect" name="weekEndSelect">
+            </div>
+
+        </div>
+        <button type="submit" class="btn btn-primary ml-2">Xem</button>
+    </form>
+    <br>
+    <table class="table table-bordered" id="dataTable">
+        <thead>
+            <tr>
+                <th>Tên Nhân viên bán hàng</th>
+                <th>Số Điện Thoại</th>
+                <th>Địa Chỉ</th>
+                <th>Tổng số dịch vụ bán được</th>
+                <th>Tùy Chọn</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            if (isset($result) && $result->num_rows > 0) {
+                $tenNhanVien = [];
+                $soLuongDichVu = [];
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . htmlspecialchars($row['TenNhanVien']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['SoDienThoai']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['DiaChi']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['TongSoLuongDichVuBanDuoc']) . "</td>";
+                    // echo "<td>
+                    //         <a href='../chitiet/chi_tiet.php?id=" . $row['ID_KhachHang'] . "' class='btn btn-info'>Xem Chi Tiết</a>
+                    //         </td>";
+                    echo '<td><a class="btn btn-info bi bi-info-circle" href="#" onclick="event.preventDefault(); exportQueryToFile1(' . $row["ID_TTNVBH"] . ')">Xem Chi Tiết</a></td>';
+
+                    echo "</tr>";
+
+                    // Thêm dữ liệu vào mảng
+                    $tenNhanVien[] = $row['TenNhanVien'];
+                    $soLuongDichVu[] = $row['TongSoLuongDichVuBanDuoc'];
                 }
-                ?>
-            </select>
-        </div>
-    </div>
-    <div class="form-group" id="quaterForm">
-        <div class="d-flex">
-            <label for="quarter">Chọn quý:</label>
-            <select class="form-control" id="quarterSelect" name="quarterSelect">
-                <option value="" selected disabled>Chọn quý</option>
-                <option value="1">Quý 1</option>
-                <option value="2">Quý 2</option>
-                <option value="3">Quý 3</option>
-                <option value="4">Quý 4</option>
-            </select>
-        </div>
-    </div>
-    <div class="form-group" id="monthForm">
-        <div class="d-flex">
-            <label for="month">Chọn tháng:</label>
-            <select class="form-control" id="monthSelect" name="monthSelect">
-                <option value="" selected disabled>Chọn tháng</option>
-                <option value="1">Tháng 1</option>
-                <option value="2">Tháng 2</option>
-                <option value="3">Tháng 3</option>
-                <option value="4">Tháng 4</option>
-                <option value="5">Tháng 5</option>
-                <option value="6">Tháng 6</option>
-                <option value="7">Tháng 7</option>
-                <option value="8">Tháng 8</option>
-                <option value="9">Tháng 9</option>
-                <option value="10">Tháng 10</option>
-                <option value="11">Tháng 11</option>
-                <option value="12">Tháng 12</option>
-            </select>
-        </div>
-    </div>
-    <button type="submit" class="btn btn-primary ml-2">Xem</button>
-</form>
-<br>
-<?php
-// if (isset($sqlChitiet) && $sqlChitiet !== "") {
-//     echo "<input type='hidden' id='sqlChitiet' value='" . htmlspecialchars($sqlChitiet) . "'>";
-// }
-?>
-<table class="table table-bordered" id="dataTable">
-    <thead>
-        <tr>
-            <th>Tên Nhân viên bán hàng</th>
-            <th>Số Điện Thoại</th>
-            <th>Địa Chỉ</th>
-            <th>Tổng số dịch vụ bán được</th>
-            <th>Tùy Chọn</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        if (isset($result) && $result->num_rows > 0) {
-            $tenNhanVien = [];
-            $soLuongDichVu = [];
-            while ($row = $result->fetch_assoc()) {
-                echo "<tr>";
-                echo "<td>" . htmlspecialchars($row['TenNhanVien']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['SoDienThoai']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['DiaChi']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['TongSoLuongDichVuBanDuoc']) . "</td>";
-                // echo "<td><a  onclick='exportQueryToFile()'  href='../chitiet/check.php?id=" . $row['ID_TTNVBH'] . "' class='btn btn-info'>Xem Chi Tiết</a></td>";
-                echo '<td><a href="#" onclick="event.preventDefault(); exportQueryToFile(' . $row["ID_TTNVBH"] . ')">Xem Chi Tiết</a></td>';
-
-
-                echo "</tr>";
-
-                // Thêm dữ liệu vào mảng
-                $tenNhanVien[] = $row['TenNhanVien'];
-                $soLuongDichVu[] = $row['TongSoLuongDichVuBanDuoc'];
+            } else {
+                echo "<tr><td colspan='5' class='text-center'>Không có dữ liệu</td></tr>";
             }
-        } else {
-            echo "<tr><td colspan='5' class='text-center'>Không có dữ liệu</td></tr>";
-        }
-        ?>
-    </tbody>
-</table>
-<?php
+            ?>
+        </tbody>
+    </table>
 
-if (isset($result) && $result->num_rows > 0) {
-    // while ($row = $result->fetch_assoc()) {
-    // echo "<input type='hidden' id='sqlChitiet' value='" . htmlspecialchars($sqlChitiet) . "'>";
-    echo "<button onclick=\"exportTableToExcel()\" class=\"btn btn-success\">Xuất Excel</button>";
-    echo '<div class="mt-5">
-        <h2 class="mt-5">Biểu đồ TOP 10 Nhân Viên Bán Hàng Nhiều Nhất Trong ' . $message . ' </h2>
-        <canvas id="myChart_nvbh" class="mb-3"></canvas>
-    </div>';
-    // }
-}
-?>
+    <?php
+
+    if (isset($result) && $result->num_rows > 0) {
+        // while ($row = $result->fetch_assoc()) {
+        // echo "<input type='hidden' id='sqlChitiet' value='" . htmlspecialchars($sqlChitiet) . "'>";
+        echo "<button onclick=\"exportTableToExcel1()\" class=\"btn btn-success\">Xuất Excel</button>";
+        echo '<div class="mt-5">
+            <h2 class="mt-5">Biểu đồ TOP 10 Nhân Viên Bán Hàng Nhiều Nhất Trong ' . $message . ' </h2>
+            <canvas id="myChart_nvbh" class="mb-3"></canvas>
+        </div>';
+        // }
+    }
+    ?>
 </div>
+<?php include '../footer.php'; ?>
+
+<!-- </div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    var ctx = document.getElementById('myChart_kh_dv_max').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: 
+            datasets: [{
+                label: 'Số lượng dịch vụ sử dụng',
+                data: ,
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+</body>
+
+</html> -->
+
+
+
+
+
+<!-- </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
@@ -384,7 +333,7 @@ if (isset($result) && $result->num_rows > 0) {
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-    function exportTableToExcel() {
+    function exportTableToExcel1() {
 
         var table = document.getElementById("dataTable");
         var rows = [];
@@ -420,8 +369,9 @@ if (isset($result) && $result->num_rows > 0) {
         document.body.appendChild(form);
         form.submit();
     }
+
     //sql chitiet
-    function exportQueryToFile(id) {
+    function exportQueryToFile1(id) {
         const sqlChitiet = <?= json_encode($sqlChitiet) ?>;
         const form = document.createElement('form');
         form.method = 'POST';
@@ -443,21 +393,25 @@ if (isset($result) && $result->num_rows > 0) {
         form.submit();
     }
 
+
     function capNhatHienThiForm() {
         const namDuocChon = document.getElementById('year').checked;
         const quyDuocChon = document.getElementById('quarter').checked;
         const thangDuocChon = document.getElementById('month').checked;
         const tuanDuocChon = document.getElementById('week').checked;
 
+
         document.getElementById('yearForm').style.display = (namDuocChon || quyDuocChon || thangDuocChon) ? 'block' : 'none';
         document.getElementById('quaterForm').style.display = quyDuocChon ? 'block' : 'none';
         document.getElementById('monthForm').style.display = thangDuocChon ? 'block' : 'none';
+        document.getElementById('weekForm').style.display = tuanDuocChon ? 'block' : 'none';
     }
 
     function kiemTraForm() {
         const namDuocChon = document.getElementById('year').checked;
         const quyDuocChon = document.getElementById('quarter').checked;
         const thangDuocChon = document.getElementById('month').checked;
+        const tuanDuocChon = document.getElementById('week').checked;
 
         if (namDuocChon && document.getElementById('yearSelect').value === '') {
             alert('Vui lòng chọn năm');
@@ -483,6 +437,25 @@ if (isset($result) && $result->num_rows > 0) {
             if (document.getElementById('monthSelect').value === '') {
                 alert('Vui lòng chọn tháng');
                 return false;
+            }
+        }
+        if (tuanDuocChon) {
+            if (document.getElementById('weekStartSelect').value === '') {
+                alert('Vui lòng chọn ngày bắt đầu');
+                return false;
+            }
+            if (document.getElementById('weekEndSelect').value === '') {
+                alert('Vui lòng chọn ngày kết thúc');
+                return false;
+            }
+            if (document.getElementById('weekStartSelect').value !== '' && document.getElementById('weekEndSelect').value !== '') {
+                var startDate = new Date(document.getElementById('weekStartSelect').value);
+                var endDate = new Date(document.getElementById('weekEndSelect').value);
+
+                if (endDate <= startDate) {
+                    alert('Ngày kết thúc phải là sau ngày bắt đầu');
+                    return false;
+                }
             }
         }
         return true;
@@ -552,4 +525,4 @@ if (isset($result) && $result->num_rows > 0) {
     <?php } ?>
 </script>
 
-</html>
+</html> -->
