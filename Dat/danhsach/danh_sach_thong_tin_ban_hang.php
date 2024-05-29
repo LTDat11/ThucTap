@@ -15,7 +15,7 @@ if ($conn->connect_error) {
 
 // Pagination setup
 $limit = 10; // Number of entries to show in a page.
-$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
 $offset = ($page - 1) * $limit;
 
 // Prepare the search query if provided
@@ -120,16 +120,35 @@ $conn->close();
     <nav>
         <ul class="pagination justify-content-center">
             <?php
+            // Define the range of pages to display
+            $range = 2;
+            $start = max(1, $page - $range);
+            $end = min($total_pages, $page + $range);
+
             if ($page > 1) {
                 echo "<li class='page-item'><a class='page-link' href='?page=" . ($page - 1) . "&search_query=" . urlencode($search_query) . "'>Trước Đó</a></li>";
             }
 
-            for ($i = 1; $i <= $total_pages; $i++) {
+            if ($start > 1) {
+                echo "<li class='page-item'><a class='page-link' href='?page=1&search_query=" . urlencode($search_query) . "'>1</a></li>";
+                if ($start > 2) {
+                    echo "<li class='page-item'><span class='page-link'>...</span></li>";
+                }
+            }
+
+            for ($i = $start; $i <= $end; $i++) {
                 if ($i == $page) {
                     echo "<li class='page-item active'><a class='page-link' href='#'>$i</a></li>";
                 } else {
                     echo "<li class='page-item'><a class='page-link' href='?page=$i&search_query=" . urlencode($search_query) . "'>$i</a></li>";
                 }
+            }
+
+            if ($end < $total_pages) {
+                if ($end < $total_pages - 1) {
+                    echo "<li class='page-item'><span class='page-link'>...</span></li>";
+                }
+                echo "<li class='page-item'><a class='page-link' href='?page=$total_pages&search_query=" . urlencode($search_query) . "'>$total_pages</a></li>";
             }
 
             if ($page < $total_pages) {
@@ -140,44 +159,3 @@ $conn->close();
     </nav>
 </div>
 <?php include '../footer.php'; ?>
-<!-- </div>  -->
-<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> -->
-<!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
-
-<script>
-    // Hide submenus
-    $('#body-row .collapse').collapse('hide');
-
-    // Collapse/Expand icon
-    $('#collapse-icon').addClass('fa-angle-double-left');
-
-    // Collapse click
-    $('[data-toggle=sidebar-colapse]').click(function() {
-        SidebarCollapse();
-    });
-
-    function SidebarCollapse() {
-        $('.menu-collapsed').toggleClass('d-none');
-        $('.sidebar-submenu').toggleClass('d-none');
-        $('.submenu-icon').toggleClass('d-none');
-        $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
-
-        // Treating d-flex/d-none on separators with title
-        var SeparatorTitle = $('.sidebar-separator-title');
-        if (SeparatorTitle.hasClass('d-flex')) {
-            SeparatorTitle.removeClass('d-flex');
-        } else {
-            SeparatorTitle.addClass('d-flex');
-        }
-
-        // Collapse/Expand icon
-        $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
-    }
-</script>
-
-</body>
-
-</html> -->
