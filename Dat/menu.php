@@ -132,6 +132,11 @@ $conn->close();
     #myBtn:hover {
         background-color: #555;
     }
+    #myChart_nvbh_pie, #myChart_pie, #myChart_kh_dv_max_pie {
+        margin: 0 auto; 
+        max-width: 600px;
+        max-height: 600px;
+    }
 </style>
 
 <body id="top">

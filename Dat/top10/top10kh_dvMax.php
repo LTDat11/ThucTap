@@ -281,6 +281,7 @@ $conn->close();
         echo '<div class="mt-5">
         <h2 class="mt-5 mb-5">Biểu đồ Top 10 Khách Hàng Sử Dụng Nhiều Dịch Vụ Nhất' . $message . ' </h2>
         <canvas id="myChart_kh_dv_max" class="mb-3"></canvas>
+        <canvas id="myChart_kh_dv_max_pie" width="500" height="500"></canvas>
     </div>';
         // }
     }

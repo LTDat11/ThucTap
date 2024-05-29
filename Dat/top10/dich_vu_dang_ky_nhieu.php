@@ -267,6 +267,7 @@ $conn->close();
         echo '<div class="mt-5">
         <h2 class="mt-5 mb-5">Biểu đồ Dịch Vụ Được Bán Nhiều Nhất Trong ' . $message . ' </h2>
         <canvas id="myChart" class="mb-3"></canvas>
+        <canvas id="myChart_pie" width="500" height="500" class=""></canvas>
     </div>';
         // }
     }
