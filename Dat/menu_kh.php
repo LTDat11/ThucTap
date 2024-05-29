@@ -203,6 +203,20 @@ $conn->close();
                         <span class="menu-collapsed">Dịch Vụ Đã Đăng Ký</span>
                     </a>
                 </div>
+
+                <a href="#submenu2" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa-solid fa-gears fa-fw mr-3"></span>
+                        <span class="menu-collapsed">Tùy Chọn</span>
+                        <span class="submenu-icon ml-auto"></span>
+                    </div>
+                </a>
+                <!-- Submenu content -->
+                <div id='submenu2' class="collapse sidebar-submenu">
+                    <a href="sua_thong_tin_kh.php" class="list-group-item list-group-item-action bg-dark text-white">
+                        <span class="menu-collapsed">Sửa Thông Tin</span>
+                    </a>
+                </div>
                 <!-- Separator without title -->
                 <li class="list-group-item sidebar-separator menu-collapsed"></li>
                 <!-- /END Separator -->
