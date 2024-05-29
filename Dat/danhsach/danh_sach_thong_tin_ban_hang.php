@@ -71,7 +71,7 @@ $conn->close();
 <body>
     <div class="container"> -->
 <?php include '../menu.php'; ?>
-<div class="container">
+<div class="content container-fluid">
     <h2 class="mt-3">Danh Sách Thông Tin Bán Hàng</h2>
     <form action="" method="GET" class="mb-3">
         <div class="form-row">
@@ -83,7 +83,7 @@ $conn->close();
             </div>
         </div>
     </form>
-    <table class="table table-bordered">
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th>Tên Nhân Viên</th>

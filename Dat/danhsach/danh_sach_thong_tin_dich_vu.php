@@ -33,9 +33,9 @@ $conn->close();
 <body>
     <div class="container"> -->
 <?php include '../menu.php'; ?>
-<div class="container">
+<div class="content container-fluid">
     <h2 class="mt-3">Danh Sách Thông Tin Dịch Vụ</h2>
-    <table class="table table-bordered">
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th>Tên Dịch Vụ</th>
