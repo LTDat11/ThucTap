@@ -264,8 +264,10 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
                 </select>
             </div>
         </div>
-        <div class="form-group">
-            <label for="period">Chọn kiểu kết toán:</label>
+        <!-- <div class="container mt-5"> -->
+        <!-- <form action="" method="post"> -->
+        <div class="form-group period">
+            <label for="period">Chọn kiểu thống kê:</label>
             <br>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="time" id="year" value="year">
@@ -284,9 +286,10 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
                 <label class="form-check-label" for="week">Tuần</label>
             </div>
         </div>
-        <div class="form-group" id="yearForm">
-            <div class="d-flex">
-                <label for="year">Chọn năm:</label>
+
+        <div class="form-row">
+            <div class="form-group col-md-3 hidden" id="yearForm">
+                <label for="yearSelect">Chọn năm:</label>
                 <select class="form-control" id="yearSelect" name="yearSelect">
                     <option value="" selected disabled>Chọn năm</option>
                     <?php
@@ -304,10 +307,9 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
                     ?>
                 </select>
             </div>
-        </div>
-        <div class="form-group" id="quaterForm">
-            <div class="d-flex">
-                <label for="quarter">Chọn quý:</label>
+
+            <div class="form-group col-md-3 hidden" id="quarterForm">
+                <label for="quarterSelect">Chọn quý:</label>
                 <select class="form-control" id="quarterSelect" name="quarterSelect">
                     <option value="" selected disabled>Chọn quý</option>
                     <option value="1">Quý 1</option>
@@ -316,10 +318,9 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
                     <option value="4">Quý 4</option>
                 </select>
             </div>
-        </div>
-        <div class="form-group" id="monthForm">
-            <div class="d-flex">
-                <label for="month">Chọn tháng:</label>
+
+            <div class="form-group col-md-3 hidden" id="monthForm">
+                <label for="monthSelect">Chọn tháng:</label>
                 <select class="form-control" id="monthSelect" name="monthSelect">
                     <option value="" selected disabled>Chọn tháng</option>
                     <option value="1">Tháng 1</option>
@@ -336,20 +337,26 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
                     <option value="12">Tháng 12</option>
                 </select>
             </div>
-        </div>
-        <div class="form-group" id="weekForm">
-            <div class="d-flex">
-                <label for="ngayDangKy">Ngày bắt đầu</label>
-                <input type="date" class="form-control" id="weekStartSelect" name="weekStartSelect">
-            </div>
 
-            <div class="d-flex">
-                <label for="ngayDangKy">Ngày kết thúc</label>
-                <input type="date" class="form-control" id="weekEndSelect" name="weekEndSelect">
+            <div class="form-group hidden" id="weekForm">
+                <div class="form-row">
+                    <div class="col">
+                        <label for="weekStartSelect">Ngày bắt đầu</label>
+                        <input type="date" class="form-control" id="weekStartSelect" name="weekStartSelect">
+                    </div>
+                    <div class="col">
+                        <label for="weekEndSelect">Ngày kết thúc</label>
+                        <input type="date" class="form-control" id="weekEndSelect" name="weekEndSelect">
+                    </div>
+                </div>
             </div>
-
         </div>
-        <button type="submit" class="btn btn-primary ml-2">Xem</button>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Lọc</button>
+        </div>
+        <!-- </form> -->
+        <!-- </div> -->
     </form>
 </div>
 
