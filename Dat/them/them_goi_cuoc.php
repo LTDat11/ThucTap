@@ -93,7 +93,7 @@ $conn->close();
 
         <div class="form-group">
             <label for="TocDo">Tốc Độ</label>
-            <input type="text" class="form-control" id="TocDo" name="TocDo">
+            <input type="number" class="form-control" id="TocDo" name="TocDo">
         </div>
         <div class="form-group">
             <label for="GiaTien">Giá Tiền</label>
