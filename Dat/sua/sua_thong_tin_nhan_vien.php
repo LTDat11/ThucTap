@@ -16,12 +16,30 @@ if ($conn->connect_error) {
 // Lấy ID Nhân Viên Bán Hàng từ URL
 $ID_TTNVBH = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
+// Truy vấn thông tin nhân viên đăng nhập
+$ID_NhanVien = $_SESSION['ID_NhanVien'];
+$sql_user = "SELECT TenNhanVien FROM NhanVien WHERE ID_NhanVien='$ID_NhanVien'";
+$result_user = $conn->query($sql_user);
+
+if ($result_user->num_rows == 1) {
+    $row_user = $result_user->fetch_assoc();
+    $nguoisua = $row_user['TenNhanVien'];
+} else {
+    // Xử lý khi không tìm thấy thông tin nhân viên
+    $nguoisua = "Không tìm thấy thông tin nhân viên";
+}
+
 // Kiểm tra nếu form đã submit để cập nhật thông tin nhân viên bán hàng
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Lấy dữ liệu từ biểu mẫu
     $TenNhanVien = $conn->real_escape_string($_POST['TenNhanVien']);
     $SoDienThoai = $conn->real_escape_string($_POST['SoDienThoai']);
     $DiaChi = $conn->real_escape_string($_POST['DiaChi']);
+
+    // Đặt múi giờ Việt Nam
+    date_default_timezone_set('Asia/Ho_Chi_Minh');
+    // Lấy ngày hiện tại
+    $ngaysua = date("Y-m-d H:i:s");
 
     // Kiểm tra nếu số điện thoại đã tồn tại cho nhân viên khác
     $sql_check = "SELECT * FROM TTNhanVienBanHang WHERE SoDienThoai='$SoDienThoai' AND ID_TTNVBH != $ID_TTNVBH";
@@ -31,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<script>alert('Số điện thoại đã tồn tại.');</script>";
     } else {
         // Cập nhật thông tin nhân viên bán hàng
-        $sql_update = "UPDATE TTNhanVienBanHang SET TenNhanVien='$TenNhanVien', SoDienThoai='$SoDienThoai', DiaChi='$DiaChi' WHERE ID_TTNVBH=$ID_TTNVBH";
+        $sql_update = "UPDATE TTNhanVienBanHang SET TenNhanVien='$TenNhanVien', SoDienThoai='$SoDienThoai', DiaChi='$DiaChi', nguoisua='$nguoisua', ngaysua='$ngaysua' WHERE ID_TTNVBH=$ID_TTNVBH";
 
         if ($conn->query($sql_update) === TRUE) {
             echo "<script>alert('Cập nhật thành công.');</script>";
@@ -50,6 +68,7 @@ $nhanvien = $result_nhanvien->fetch_assoc();
 
 $conn->close();
 ?>
+
 
 <!-- <!DOCTYPE html>
 <html lang="en">

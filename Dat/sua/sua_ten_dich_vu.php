@@ -19,6 +19,19 @@ if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
 }
 
+// Truy vấn SQL để lấy tên nhân viên dựa trên ID_NhanVien
+$ID_NhanVien = $_SESSION['ID_NhanVien']; // Lấy ID_NhanVien từ session
+$sql_user = "SELECT TenNhanVien FROM NhanVien WHERE ID_NhanVien='$ID_NhanVien'";
+$result_user = $conn->query($sql_user);
+
+if ($result_user->num_rows == 1) {
+    $row_user = $result_user->fetch_assoc();
+    $tenNhanVien = $row_user['TenNhanVien'];
+} else {
+    // Xử lý khi không tìm thấy thông tin nhân viên
+    $tenNhanVien = "Không tìm thấy thông tin nhân viên";
+}
+
 // Lấy ID dịch vụ từ URL
 $id = $_GET['id'];
 
@@ -34,10 +47,15 @@ $dichVu = $resultDichVu->fetch_assoc();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $tenMoi = $_POST['tenMoi'];
 
+    // Đặt múi giờ Việt Nam
+    date_default_timezone_set('Asia/Ho_Chi_Minh');
+    // Lấy ngày hiện tại
+    $ngaySua = date("Y-m-d H:i:s");
+
     // Cập nhật tên dịch vụ trong cơ sở dữ liệu
-    $sqlUpdate = "UPDATE DichVu SET TenDichVu = ? WHERE ID_DichVu = ?";
+    $sqlUpdate = "UPDATE DichVu SET TenDichVu = ?, nguoisua = ?, ngaysua = ? WHERE ID_DichVu = ?";
     $stmtUpdate = $conn->prepare($sqlUpdate);
-    $stmtUpdate->bind_param("si", $tenMoi, $id);
+    $stmtUpdate->bind_param("sssi", $tenMoi, $tenNhanVien, $ngaySua, $id);
 
     if ($stmtUpdate->execute()) {
         // Redirect đến trang chi tiết dịch vụ sau khi cập nhật thành công

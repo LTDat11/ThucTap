@@ -72,7 +72,7 @@ $conn->close();
                 echo "<tr>";
                 echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
                 if (!empty($row['TocDo']) && $row['TocDo'] != 0) {
-                    echo "<td>" . htmlspecialchars($row['TocDo']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['TocDo']." Mbps") . "</td>";
                 } else {
                     echo "<td>0</td>";
                 }
