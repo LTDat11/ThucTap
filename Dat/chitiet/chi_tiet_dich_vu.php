@@ -53,12 +53,13 @@ $conn->close();
 <body>
     <div class="container"> -->
 <?php include '../menu.php'; ?>
-<div class="container">
-    <h2 class="mt-5">Chi Tiết Dịch Vụ: <?php echo htmlspecialchars($dichVu['TenDichVu']); ?></h2>
-    <h4>Các Gói Cước Hiện Có:</h4>
-    <table class="table table-bordered">
-        <thead>
+<div class="content container-fluid">
+    <h2 class="mt-5">Dịch Vụ <?php echo htmlspecialchars($dichVu['TenDichVu']); ?> Hiện Có Các Gói Cước:</h2> <br>
+    <!-- <h4>Các Gói Cước Hiện Có:</h4> -->
+    <table class="table table-hover">
+        <thead class="thead-light"> 
             <tr>
+                <th>STT</th>
                 <th>Tên Gói Dịch Vụ</th>
                 <th>Tốc Độ</th>
                 <th>Giá Tiền</th>
@@ -67,9 +68,10 @@ $conn->close();
             </tr>
         </thead>
         <tbody>
-            <?php
+            <?php $count=1;
             while ($row = $resultGoiDichVu->fetch_assoc()) {
                 echo "<tr>";
+                echo "<td>" . $count++ ."</td>";
                 echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
                 if (!empty($row['TocDo']) && $row['TocDo'] != 0) {
                     echo "<td>" . htmlspecialchars($row['TocDo']." Mbps") . "</td>";

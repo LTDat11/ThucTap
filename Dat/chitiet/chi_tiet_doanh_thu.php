@@ -111,10 +111,10 @@ $result = $conn->query($sql);
 <body>
     <div class="container"> -->
 <?php include '../menu.php'; ?>
-<div class="container">
+<div class="content container-fluid">
     <h1>Chi Tiết Doanh Thu</h1>
-    <table class="table table-bordered">
-        <thead>
+    <table class="table table-hover">
+        <thead class="thead-light">
             <tr>
                 <th>Ngày Đăng Ký</th>
                 <th>Tên Dịch Vụ</th>

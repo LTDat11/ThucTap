@@ -353,9 +353,9 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
     </form>
 </div>
 
-<div class="container">
+<div class="content container-fluid">
 
-    <table class="table table-bordered" id="dataTable">
+    <table class="table table-hover" id="dataTable">
 
         <?php
         if (isset($message) && isset($message2)) {
@@ -364,8 +364,9 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
             echo "<h2 class='mt-5'>Kết quả doanh thu</h2>";
         }
         ?>
-        <thead>
+        <thead class="thead-light">
             <tr>
+                <th>STT</th>
                 <th>Tên Gói Dịch Vụ</th>
                 <th>Giá Tiền</th>
                 <th>Số Lượng</th>
@@ -373,10 +374,11 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
             </tr>
         </thead>
         <tbody>
-            <?php
+            <?php $count=1;
             if (isset($result2) && $result2->num_rows > 0) {
                 while ($row = $result2->fetch_assoc()) {
                     echo "<tr>";
+                    echo "<td>" . $count++ . "</td>";
                     echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['GiaTien']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['TongSoLuong']) . "</td>";

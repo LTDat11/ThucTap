@@ -87,7 +87,7 @@ if (isset($_POST['sqlChitiet']) && isset($_POST['id'])) {
 <body>
     <div class="container"> -->
 <?php include '../menu.php'; ?>
-<div class="container">
+<div class="content container-fluid">
     <?php
     // Fetch the result from the query
     $row = $result->fetch_assoc();
@@ -98,18 +98,20 @@ if (isset($_POST['sqlChitiet']) && isset($_POST['id'])) {
     <h2 class="mt-5">Chi tiết của dịch vụ <?php echo $tenDichVu; ?></h2>
     <p>Tổng số lượng bán được của dịch vụ: <?php echo $TongSoGoiDaBan; ?></p>
 
-    <table class="table table-bordered">
-        <thead>
+    <table class="table table-hover">
+        <thead class="thead-light">
             <tr>
+                <th>STT</th>
                 <th>Gói dịch vụ</th>
                 <th>Tổng số lượng bán được</th>
             </tr>
         </thead>
         <tbody>
-            <?php
+            <?php $count=1;
             if ($result1->num_rows > 0) {
                 while ($row1 = $result1->fetch_assoc()) {
                     echo "<tr>";
+                    echo "<td>" . $count++ ."</td>";
                     echo "<td>" . htmlspecialchars($row1['TenGoiDichVu']) . "</td>";
                     echo "<td>" . htmlspecialchars($row1['TongSoLuongBanDuoc']) . "</td>";
 

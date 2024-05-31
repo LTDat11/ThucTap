@@ -87,7 +87,7 @@ $conn->close();
     <h2 class="mt-5">Sửa Tên Dịch Vụ</h2>
     <form method="post">
         <div class="form-group">
-            <label for="tenMoi">Tên Dịch Vụ Mới:</label>
+            <label for="tenMoi">Tên Dịch Vụ Mới</label>
             <input type="text" class="form-control" id="tenMoi" name="tenMoi" value="<?php echo htmlspecialchars($dichVu['TenDichVu']); ?>" required>
         </div>
         <button type="submit" class="btn btn-primary bi bi-floppy mr-2"> Lưu</button>

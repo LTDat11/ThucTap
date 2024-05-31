@@ -72,7 +72,7 @@ $conn->close();
     <div class="container"> -->
 <?php include '../menu.php'; ?>
 <div class="content container-fluid">
-    <h2 class="mt-3">Danh Sách Thông Tin Bán Hàng</h2>
+    <h2 class="mt-3">Danh Sách Thông Tin Bán Hàng</h2> <br>
     <form action="" method="GET" class="mb-3">
         <div class="form-row">
             <div class="col">
@@ -84,7 +84,7 @@ $conn->close();
         </div>
     </form>
     <table class="table table-hover">
-        <thead>
+        <thead class="thead-light">
             <tr>
                 <th>Tên Nhân Viên</th>
                 <th>Tên Khách Hàng</th>

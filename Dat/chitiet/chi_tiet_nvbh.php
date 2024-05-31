@@ -51,29 +51,23 @@ if (isset($_POST['sqlChitiet']) && isset($_POST['id'])) {
 
 <body> -->
 <?php include '../menu.php'; ?>
-<div class="container">
-    <h2 class="mt-5">Chi Tiết Nhân Viên Bán Hàng </h2>
+<div class="content container-fluid">
+    <h2 class="mt-5">Chi Tiết Nhân Viên Bán Hàng </h2> <br>
+    <div class="card mb-3">
+            <div class="card-header">
+                <h4><i class="fa-solid fa-user-tie"></i> <strong><?php echo htmlspecialchars($nhanvien['TenNhanVien']); ?></strong></h4>
+            </div>
+            <div class="card-body">
+                <p class="card-text"><strong>Số Điện Thoại:</strong> <?php echo htmlspecialchars($nhanvien['SoDienThoai']); ?></p>
+                <p class="card-text"><strong>Địa Chỉ:</strong> <?php echo htmlspecialchars($nhanvien['DiaChi']); ?></p>
+            </div>
+    </div>
 
-    <table class="table table-bordered">
-        <thead>
+    <h3 class="mt-5">Các Dịch Vụ Bán Được</h3>
+    <table class="table table-hover">
+        <thead class="thead-light">
             <tr>
-                <th>Tên Nhân Viên</th>
-                <th>Số Điện Thoại</th>
-                <th>Địa Chỉ</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><?php echo htmlspecialchars($nhanvien['TenNhanVien']); ?></td>
-                <td><?php echo htmlspecialchars($nhanvien['SoDienThoai']); ?></td>
-                <td><?php echo htmlspecialchars($nhanvien['DiaChi']); ?></td>
-            </tr>
-        </tbody>
-    </table>
-    <h3 class="mt-5">Các Dịch Vụ Bán Được:</h3>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
+                <th>STT</th>
                 <th>Ngày Đăng Ký</th>
                 <th>Tên Khách Hàng</th>
                 <th>Tên Dịch Vụ</th>
@@ -83,10 +77,11 @@ if (isset($_POST['sqlChitiet']) && isset($_POST['id'])) {
             </tr>
         </thead>
         <tbody>
-            <?php
+            <?php $count=1;
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
+                    echo "<td>" . $count++ ."</td>";
                     echo "<td>" . htmlspecialchars($row['NgayDangKy']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['TenKhachHang']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['TenDichVu']) . "</td>";

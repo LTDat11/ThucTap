@@ -109,12 +109,13 @@ $conn->close();
             <input type="text" class="form-control" id="TenGoiDichVu" name="TenGoiDichVu" value="<?php echo htmlspecialchars($goiDichVu['TenGoiDichVu']); ?>" required>
         </div>
         <div class="form-group">
-            <label for="ImgURL">Ảnh ban đầu:</label> <br>
+            <label for="ImgURL">Ảnh ban đầu</label> <br>
             <!-- nối chuỗi cho link ảnh -->
             <img src="<?php echo "." . htmlspecialchars($goiDichVu['ImgURL']); ?>" class="blurred" alt="Hình ảnh">
             <br>
-            <label for="ImgURL">Chọn ảnh mới:</label>
+            <label for="ImgURL" class="form-label">Chọn ảnh mới</label>
             <br>
+            
             <input type="file" class="form-control" id="ImgURL" name="ImgURL" onchange="previewImage(this);">
             <img id="preview" src="#" alt="Preview Image" style="display: none;">
         </div>

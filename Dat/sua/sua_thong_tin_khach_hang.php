@@ -84,7 +84,7 @@ $conn->close();
     <?php if ($khachhang) : ?>
         <form method="POST" action="">
             <div class="form-group">
-                <label for="Ten">Tên Khách Hàng</label>
+                <label for="Ten" class="form-label">Tên Khách Hàng</label>
                 <input type="text" class="form-control" id="Ten" name="Ten" value="<?php echo htmlspecialchars($khachhang['Ten']); ?>" required>
             </div>
             <div class="form-group">

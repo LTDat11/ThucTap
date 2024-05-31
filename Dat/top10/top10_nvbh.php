@@ -141,7 +141,7 @@ $conn->close();
 <body>
     <div class="container"> -->
 <?php include '../menu.php'; ?>
-<div class="container">
+<div class="content container-fluid">
     <h2 class="mt-3">Top 10 Nhân Viên <?php echo "$message" ?></h2>
     <form action="" method="post">
 
@@ -233,8 +233,8 @@ $conn->close();
         <button type="submit" class="btn btn-primary bi bi-funnel"> Lọc</button>
     </form>
     <br>
-    <table class="table table-bordered" id="dataTable">
-        <thead>
+    <table class="table table-hover" id="dataTable">
+        <thead class="thead-light">
             <tr>
                 <th>Tên Nhân viên bán hàng</th>
                 <th>Số Điện Thoại</th>
