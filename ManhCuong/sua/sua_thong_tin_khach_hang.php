@@ -16,12 +16,30 @@ if ($conn->connect_error) {
 // Lấy ID Khách Hàng từ URL
 $ID_KhachHang = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
+// Truy vấn thông tin nhân viên đăng nhập
+$ID_NhanVien = $_SESSION['ID_NhanVien'];
+$sql_user = "SELECT TenNhanVien FROM NhanVien WHERE ID_NhanVien='$ID_NhanVien'";
+$result_user = $conn->query($sql_user);
+
+if ($result_user->num_rows == 1) {
+    $row_user = $result_user->fetch_assoc();
+    $nguoisua = $row_user['TenNhanVien'];
+} else {
+    // Xử lý khi không tìm thấy thông tin nhân viên
+    $nguoisua = "Không tìm thấy thông tin nhân viên";
+}
+
 // Kiểm tra nếu form đã submit để cập nhật thông tin khách hàng
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Lấy dữ liệu từ biểu mẫu
     $Ten = $conn->real_escape_string($_POST['Ten']);
     $SoDienThoai = $conn->real_escape_string($_POST['SoDienThoai']);
     $DiaChi = $conn->real_escape_string($_POST['DiaChi']);
+
+    // Đặt múi giờ Việt Nam
+    date_default_timezone_set('Asia/Ho_Chi_Minh');
+    // Lấy ngày hiện tại
+    $ngaysua = date("Y-m-d H:i:s");
 
     // Kiểm tra nếu số điện thoại đã tồn tại cho khách hàng khác
     $sql_check = "SELECT * FROM KhachHang WHERE SoDienThoai='$SoDienThoai' AND ID_KhachHang != $ID_KhachHang";
@@ -31,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<script>alert('Số điện thoại đã tồn tại.');</script>";
     } else {
         // Cập nhật thông tin khách hàng
-        $sql_update = "UPDATE KhachHang SET Ten='$Ten', SoDienThoai='$SoDienThoai', DiaChi='$DiaChi' WHERE ID_KhachHang=$ID_KhachHang";
+        $sql_update = "UPDATE KhachHang SET Ten='$Ten', SoDienThoai='$SoDienThoai', DiaChi='$DiaChi', nguoisua='$nguoisua', ngaysua='$ngaysua' WHERE ID_KhachHang=$ID_KhachHang";
 
         if ($conn->query($sql_update) === TRUE) {
             echo "<script>alert('Cập nhật thành công.');</script>";
@@ -66,7 +84,7 @@ $conn->close();
     <?php if ($khachhang) : ?>
         <form method="POST" action="">
             <div class="form-group">
-                <label for="Ten">Tên Khách Hàng</label>
+                <label for="Ten" class="form-label">Tên Khách Hàng</label>
                 <input type="text" class="form-control" id="Ten" name="Ten" value="<?php echo htmlspecialchars($khachhang['Ten']); ?>" required>
             </div>
             <div class="form-group">

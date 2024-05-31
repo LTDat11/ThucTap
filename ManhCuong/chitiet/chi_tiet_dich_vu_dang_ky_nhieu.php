@@ -1,12 +1,12 @@
 <?php
 session_start();
 
-// Kiểm tra nếu nhân viên đã đăng nhập
+// Check if the employee is logged in
 if (!isset($_SESSION['ID_NhanVien'])) {
-    header("Location: ../dangnhap_NV.php"); // Redirect đến trang đăng nhập nếu chưa đăng nhập
-    exit();
+    // Redirect to the login page or display an error message
+    header("Location: ../dangnhap_NV.php");
+    exit;
 }
-
 $conn = new mysqli('localhost', 'root', '', 'Congtyvienthong');
 if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
@@ -69,7 +69,6 @@ if (isset($_POST['sqlChitiet']) && isset($_POST['id'])) {
     // ";
     $result = $conn->query($sql);
     $conn->close();
-
 } else {
     echo "Không nhận được giá trị sqlChitiet";
 }
@@ -85,9 +84,10 @@ if (isset($_POST['sqlChitiet']) && isset($_POST['id'])) {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
-<body> -->
+<body>
+    <div class="container"> -->
 <?php include '../menu.php'; ?>
-<div class="container">
+<div class="content container-fluid">
     <?php
     // Fetch the result from the query
     $row = $result->fetch_assoc();
@@ -98,18 +98,20 @@ if (isset($_POST['sqlChitiet']) && isset($_POST['id'])) {
     <h2 class="mt-5">Chi tiết của dịch vụ <?php echo $tenDichVu; ?></h2>
     <p>Tổng số lượng bán được của dịch vụ: <?php echo $TongSoGoiDaBan; ?></p>
 
-    <table class="table table-bordered">
-        <thead>
+    <table class="table table-hover">
+        <thead class="thead-light">
             <tr>
+                <th>STT</th>
                 <th>Gói dịch vụ</th>
                 <th>Tổng số lượng bán được</th>
             </tr>
         </thead>
         <tbody>
-            <?php
+            <?php $count=1;
             if ($result1->num_rows > 0) {
                 while ($row1 = $result1->fetch_assoc()) {
                     echo "<tr>";
+                    echo "<td>" . $count++ ."</td>";
                     echo "<td>" . htmlspecialchars($row1['TenGoiDichVu']) . "</td>";
                     echo "<td>" . htmlspecialchars($row1['TongSoLuongBanDuoc']) . "</td>";
 
@@ -121,12 +123,12 @@ if (isset($_POST['sqlChitiet']) && isset($_POST['id'])) {
             ?>
         </tbody>
     </table>
-    <a href="../top10/dich_vu_dang_ky_nhieu.php" class="btn btn-secondary bi bi-backspace">Quay Lại</a>
+    <a href="../top10/dich_vu_dang_ky_nhieu.php" class="btn btn-secondary bi bi-backspace"> Quay Lại</a>
 </div>
 <?php include '../footer.php'; ?>
+<!-- </div>
 
-
-<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>

@@ -112,6 +112,27 @@ $conn->close();
         text-align: right;
         padding-left: 10px;
     }
+
+    /* Back to top */
+    #myBtn {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 30px;
+        z-index: 99;
+        font-size: 18px;
+        border: none;
+        outline: none;
+        background-color: red;
+        color: white;
+        cursor: pointer;
+        padding: 15px;
+        border-radius: 35%;
+    }
+
+    #myBtn:hover {
+        background-color: #555;
+    }
 </style>
 
 <body>
@@ -159,7 +180,7 @@ $conn->close();
             <ul class="list-group">
                 <a href="#" data-toggle="sidebar-colapse" class="bg-dark list-group-item list-group-item-action d-flex align-items-center">
                     <div class="d-flex w-100 justify-content-start align-items-center">
-                        <span id="collapse-icon" class="fa fa-2x mr-3"></span>
+                        <span id="collapse-icon" class="fa mr-3"></span>
                         <span id="collapse-text" class="menu-collapsed">Menu</span>
                     </div>
                 </a>
@@ -180,6 +201,20 @@ $conn->close();
                 <div id='submenu1' class="collapse sidebar-submenu">
                     <a href="khachhang.php" class="list-group-item list-group-item-action bg-dark text-white">
                         <span class="menu-collapsed">Dịch Vụ Đã Đăng Ký</span>
+                    </a>
+                </div>
+
+                <a href="#submenu2" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa-solid fa-gears fa-fw mr-3"></span>
+                        <span class="menu-collapsed">Tùy Chọn</span>
+                        <span class="submenu-icon ml-auto"></span>
+                    </div>
+                </a>
+                <!-- Submenu content -->
+                <div id='submenu2' class="collapse sidebar-submenu">
+                    <a href="sua_thong_tin_kh.php" class="list-group-item list-group-item-action bg-dark text-white">
+                        <span class="menu-collapsed">Sửa Thông Tin</span>
                     </a>
                 </div>
                 <!-- Separator without title -->

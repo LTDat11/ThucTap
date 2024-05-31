@@ -132,6 +132,11 @@ $conn->close();
     #myBtn:hover {
         background-color: #555;
     }
+    #myChart_nvbh_pie, #myChart_pie, #myChart_kh_dv_max_pie {
+        margin: 0 auto; 
+        max-width: 600px;
+        max-height: 600px;
+    }
 </style>
 
 <body id="top">
@@ -197,7 +202,7 @@ $conn->close();
             <ul class="list-group">
                 <a href="#" data-toggle="sidebar-colapse" class="bg-dark list-group-item list-group-item-action d-flex align-items-center">
                     <div class="d-flex w-100 justify-content-start align-items-center">
-                        <span id="collapse-icon" class="fa fa-2x mr-3"></span>
+                        <span id="collapse-icon" class="fa mr-3"></span>
                         <span id="collapse-text" class="menu-collapsed">Menu</span>
                     </div>
                 </a>

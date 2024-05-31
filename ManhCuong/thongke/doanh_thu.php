@@ -56,7 +56,7 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
         case 'week':
             $weekStartSelect = $_POST['weekStartSelect'];
             $weekEndSelect = $_POST['weekEndSelect'];
-            $message2 = "tuần này";
+            $message2 = "Tuần Này";
             $sql1 = "SELECT 
                 dv.ID_DichVu,
                 dv.TenDichVu,
@@ -141,7 +141,7 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
             if (isset($_POST['quarterSelect']) && isset($_POST['yearSelect'])) {
                 $year = $_POST['yearSelect'];
                 $quarter = $_POST['quarterSelect'];
-                $message2 = "quý $quarter năm $year";
+                $message2 = "Quý $quarter Năm $year";
                 $startMonth = ($quarter - 1) * 3 + 1;
                 $endMonth = $startMonth + 2;
                 $sql1 = "SELECT 
@@ -187,7 +187,7 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
             if (isset($_POST['monthSelect']) && isset($_POST['yearSelect'])) {
                 $year = $_POST['yearSelect'];
                 $month = $_POST['monthSelect'];
-                $message2 = "tháng $month năm $year";
+                $message2 = "Tháng $month Năm $year";
                 $sql1 = "SELECT 
                     dv.ID_DichVu,
                     dv.TenDichVu,
@@ -245,8 +245,8 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
 <body>
     <div class="container"> -->
 <?php include '../menu.php'; ?>
-<div class="container">
-    <h1>Doanh thu</h1>
+<div class=" content container-fluid">
+    <h1>Doanh thu <?php echo "$message $message2" ?></h1>
     <form action="" method="post">
         <div class="form-group">
             <label for="service">Chọn dịch vụ:</label>
@@ -283,7 +283,7 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
             </div>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="time" id="week" value="week">
-                <label class="form-check-label" for="week">Tuần</label>
+                <label class="form-check-label" for="week">Ngày</label>
             </div>
         </div>
 
@@ -353,16 +353,16 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
         </div>
 
         <div class="form-group">
-            <button type="submit" class="btn btn-primary">Lọc</button>
+            <button type="submit" class="btn btn-primary bi bi-funnel"> Lọc</button>
         </div>
         <!-- </form> -->
         <!-- </div> -->
     </form>
 </div>
 
-<div class="container">
+<div class="content container-fluid">
 
-    <table class="table table-bordered" id="dataTable">
+    <table class="table table-hover" id="dataTable">
 
         <?php
         if (isset($message) && isset($message2)) {
@@ -371,8 +371,9 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
             echo "<h2 class='mt-5'>Kết quả doanh thu</h2>";
         }
         ?>
-        <thead>
+        <thead class="thead-light">
             <tr>
+                <th>STT</th>
                 <th>Tên Gói Dịch Vụ</th>
                 <th>Giá Tiền</th>
                 <th>Số Lượng</th>
@@ -380,10 +381,11 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
             </tr>
         </thead>
         <tbody>
-            <?php
+            <?php $count = 1;
             if (isset($result2) && $result2->num_rows > 0) {
                 while ($row = $result2->fetch_assoc()) {
                     echo "<tr>";
+                    echo "<td>" . $count++ . "</td>";
                     echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['GiaTien']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['TongSoLuong']) . "</td>";
@@ -392,7 +394,7 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
                     echo "</tr>";
                 }
             } else {
-                echo "<tr><td colspan='4' class='text-center'>Không có dữ liệu</td></tr>";
+                echo "<tr><td colspan='5' class='text-center'>Không có dữ liệu</td></tr>";
             }
             ?>
         </tbody>
@@ -403,7 +405,7 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
             echo "<h3 class='mt-3'>Tổng
         doanh thu: " . htmlspecialchars($row['TongTienThuDuoc']) . "</h3>";
             // echo "<a href=\"xuat_excel_doanh_thu.php\" class=\"btn btn-success\">Xuất Excel</a>";
-            echo "<button onclick=\"exportTableToExcel()\" class=\"btn btn-success\">Xuất Excel</button>";
+            echo "<button onclick=\"exportTableToExcel()\" class=\"btn btn-success bi bi-file-earmark-arrow-down\"> Xuất Excel</button>";
         }
     }
     ?>

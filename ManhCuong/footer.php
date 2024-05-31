@@ -526,6 +526,67 @@
                 ChartDataLabels
             ]
         });
+
+        // Biểu đồ hình tròn
+        var ctx_pie = document.getElementById('myChart_pie').getContext('2d');
+        var myChart_pie = new Chart(ctx_pie, {
+            type: 'pie',
+            data: {
+                labels: <?php echo json_encode($labels); ?>,
+                datasets: [{
+                    label: 'Số lượng dịch vụ sử dụng',
+                    data: <?php echo json_encode($data); ?>,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 206, 86, 0.6)',
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(255, 159, 64, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                plugins: {
+                    datalabels: {
+                        color: 'white', // Màu chữ
+                        font: {
+                            weight: 'bold',
+                            size: 14
+                        },
+                        formatter: function (value, context) {
+                            return value;
+                        }
+                    },
+                    legend: {
+                        position: 'bottom',
+                        align: 'center',
+                        labels: {
+                            font: {
+                                size: 14
+                            }
+                        }
+                    }
+                },
+                layout: {
+                    padding: {
+                        bottom: 20
+                    }
+                }
+            },
+            plugins: [
+                ChartDataLabels
+            ]
+        });
     <?php } ?>
 </script>
 
@@ -593,9 +654,71 @@
                 ChartDataLabels
             ]
         });
+
+        // Biểu đồ hình tròn
+        var ctx_nvbh_pie = document.getElementById('myChart_nvbh_pie').getContext('2d');
+        var myChart_nvbh_pie = new Chart(ctx_nvbh_pie, {
+            type: 'pie',
+            data: {
+                labels: <?php echo json_encode($tenNhanVien); ?>,
+                datasets: [{
+                    label: 'Tổng số dịch vụ bán được',
+                    data: <?php echo json_encode($soLuongDichVu); ?>,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 206, 86, 0.6)',
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(255, 159, 64, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                plugins: {
+                    datalabels: {
+                        color: 'white', // Màu chữ
+                        font: {
+                            weight: 'bold',
+                            size: 14
+                        },
+                        formatter: function (value, context) {
+                            return value;
+                        }
+                    },
+                    legend: {
+                        position: 'bottom',
+                        align: 'center',
+                        labels: {
+                            font: {
+                                size: 14
+                            }
+                        }
+                    }
+                },
+                layout: {
+                    padding: {
+                        bottom: 20
+                    }
+                }
+            },
+            plugins: [
+                ChartDataLabels
+            ]
+        });
     <?php } ?>
 </script>
 
+<!-- Bieu do -->
 <script>
     <?php if (isset($tenKhachHang) && isset($soLuongDichVu)) { ?>
         var ctx = document.getElementById('myChart_kh_dv_max').getContext('2d');
@@ -653,6 +776,67 @@
                                 size: 14
                             }
                         }
+                    }
+                }
+            },
+            plugins: [
+                ChartDataLabels
+            ]
+        });
+
+        // Biểu đồ tròn
+        var ctx_pie = document.getElementById('myChart_kh_dv_max_pie').getContext('2d');
+        var myChart_pie = new Chart(ctx_pie, {
+            type: 'pie',
+            data: {
+                labels: <?php echo json_encode($tenKhachHang); ?>,
+                datasets: [{
+                    label: 'Số lượng dịch vụ sử dụng',
+                    data: <?php echo json_encode($soLuongDichVu); ?>,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 206, 86, 0.6)',
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(255, 159, 64, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                plugins: {
+                    datalabels: {
+                        color: 'white', // Màu chữ
+                        font: {
+                            weight: 'bold',
+                            size: 14
+                        },
+                        formatter: function (value, context) {
+                            return value;
+                        }
+                    },
+                    legend: {
+                        position: 'bottom',
+                        align: 'center',
+                        labels: {
+                            font: {
+                                size: 14
+                            }
+                        }
+                    }
+                },
+                layout: {
+                    padding: {
+                        bottom: 20
                     }
                 }
             },

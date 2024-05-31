@@ -68,11 +68,21 @@ $conn->close();
 
 <body> -->
 <?php include '../menu.php'; ?>
-<div class="container">
+<div class="container-fluid">
     <h2 class="mt-5">Chi Tiết Nhân Viên Bán Hàng </h2>
+    <br>
+    <div class="card mb-3">
+            <div class="card-header">
+                <h4><i class="fa-solid fa-user-tie"></i> <strong><?php echo htmlspecialchars($nhanvien['TenNhanVien']); ?></strong></h4>
+            </div>
+            <div class="card-body">
+                <p class="card-text"><strong>Số Điện Thoại:</strong> <?php echo htmlspecialchars($nhanvien['SoDienThoai']); ?></p>
+                <p class="card-text"><strong>Địa Chỉ:</strong> <?php echo htmlspecialchars($nhanvien['DiaChi']); ?></p>
+            </div>
+    </div>
 
-    <table class="table table-bordered">
-        <thead>
+    <!-- <table class="table table-hover">
+        <thead class="thead-light">
             <tr>
                 <th>Tên Nhân Viên</th>
                 <th>Số Điện Thoại</th>
@@ -86,11 +96,12 @@ $conn->close();
                 <td><?php echo htmlspecialchars($nhanvien['DiaChi']); ?></td>
             </tr>
         </tbody>
-    </table>
+    </table> -->
     <h3 class="mt-5">Các Dịch Vụ Bán Được:</h3>
-    <table class="table table-bordered">
-        <thead>
+    <table class="table table-hover">
+        <thead class="thead-light">
             <tr>
+                <th>STT</th>
                 <th>Ngày Đăng Ký</th>
                 <th>Tên Khách Hàng</th>
                 <th>Tên Dịch Vụ</th>
@@ -100,10 +111,11 @@ $conn->close();
             </tr>
         </thead>
         <tbody>
-            <?php
+            <?php $counter = 1;
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
+                    echo "<td>" . $counter++ . "</td>";
                     echo "<td>" . htmlspecialchars($row['NgayDangKy']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['TenKhachHang']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['TenDichVu']) . "</td>";

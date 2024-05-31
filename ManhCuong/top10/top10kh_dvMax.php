@@ -117,7 +117,7 @@ JOIN
     ";
         $sqlChitiet .= "WHERE
         ThongTinBanHang.NgayDangKy BETWEEN '$weekStartSelect' AND '$weekEndSelect' ";
-        $message = " Tuần Này";
+        $message = "Theo Tuần Từ $weekStartSelect Đến $weekEndSelect";
     }
     if ($time != '') {
         $result = $conn->query($sql);
@@ -142,7 +142,7 @@ $conn->close();
 <body>
     <div class="container"> -->
 <?php include '../menu.php'; ?>
-<div class="container">
+<div class="content container-fluid">
     <h2 class="mt-3">Danh Sách Top 10 Khách Hàng Sử Dụng Nhiều Dịch Vụ Nhất <?php echo "$message" ?></h2>
     <div class="container mt-5">
         <form action="" method="post">
@@ -163,7 +163,7 @@ $conn->close();
                 </div>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="time" id="week" value="week">
-                    <label class="form-check-label" for="week">Tuần</label>
+                    <label class="form-check-label" for="week">Ngày</label>
                 </div>
             </div>
 
@@ -233,13 +233,13 @@ $conn->close();
             </div>
 
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">Lọc</button>
+                <button type="submit" class="btn btn-primary bi bi-funnel"> Lọc</button>
             </div>
         </form>
     </div>
     <br>
-    <table class="table table-bordered" id="dataTable">
-        <thead>
+    <table class="table table-hover" id="dataTable">
+        <thead class="thead-light">
             <tr>
                 <th>Tên Khách Hàng</th>
                 <th>Số Điện Thoại</th>
@@ -285,6 +285,7 @@ $conn->close();
         echo '<div class="mt-5">
         <h2 class="mt-5 mb-5">Biểu đồ Top 10 Khách Hàng Sử Dụng Nhiều Dịch Vụ Nhất' . $message . ' </h2>
         <canvas id="myChart_kh_dv_max" class="mb-3"></canvas>
+        <canvas id="myChart_kh_dv_max_pie" width="500" height="500"></canvas>
     </div>';
         // }
     }

@@ -107,7 +107,7 @@ LIMIT 10;
     ";
         $sqlChitiet .= "WHERE 
         ttb.NgayDangKy BETWEEN '$weekStartSelect' AND '$weekEndSelect' ";
-        $message = " Tuần Này";
+        $message = "Theo Tuần Từ $weekStartSelect Đến $weekEndSelect";
     }
     if ($time != '') {
         $result = $conn->query($sql);
@@ -132,7 +132,7 @@ $conn->close();
 <body>
     <div class="container"> -->
 <?php include '../menu.php'; ?>
-<div class="container">
+<div class="content container-fluid">
     <h2 class="mt-3">Dịch Vụ Được Bán Nhiều Nhất <?php echo "$message" ?></h2>
     <div class="container mt-5">
         <form action="" method="post">
@@ -153,7 +153,7 @@ $conn->close();
                 </div>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="time" id="week" value="week">
-                    <label class="form-check-label" for="week">Tuần</label>
+                    <label class="form-check-label" for="week">Ngày</label>
                 </div>
             </div>
 
@@ -223,13 +223,13 @@ $conn->close();
             </div>
 
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">Lọc</button>
+                <button type="submit" class="btn btn-primary bi bi-funnel"> Lọc</button>
             </div>
         </form>
     </div>
     <br>
-    <table class="table table-bordered" id="dataTable">
-        <thead>
+    <table class="table table-hover" id="dataTable">
+        <thead class="thead-light">
             <tr>
                 <th>Tên Dịch Vụ</th>
                 <th>Số gói dịch vụ bán được</th>
@@ -271,6 +271,8 @@ $conn->close();
         echo '<div class="mt-5">
         <h2 class="mt-5 mb-5">Biểu đồ Dịch Vụ Được Bán Nhiều Nhất Trong ' . $message . ' </h2>
         <canvas id="myChart" class="mb-3"></canvas>
+        <canvas id="myChart_pie" width="500" height="500" class=""></canvas>
+        <canvas id="myChart_pie" width="500" height="500" class=""></canvas>
     </div>';
         // }
     }

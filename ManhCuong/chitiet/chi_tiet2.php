@@ -43,21 +43,24 @@ $conn->close();
 </head>
 <body> -->
 <?php include '../menu.php'; ?>
-<div class="container">
+<div class="container-fluid">
     <h2 class="mt-5">Thông Tin Chi Tiết Khách Hàng</h2>
     <?php if ($khachhang) : ?>
         <div class="card mb-3">
+            <div class="card-header">
+                <h4><i class="fa-regular fa-user"></i> <strong><?php echo htmlspecialchars($khachhang['Ten']); ?></strong></h4>
+            </div>
             <div class="card-body">
-                <h4 class="card-title"><?php echo htmlspecialchars($khachhang['Ten']); ?></h4>
                 <p class="card-text"><strong>Số Điện Thoại:</strong> <?php echo htmlspecialchars($khachhang['SoDienThoai']); ?></p>
                 <p class="card-text"><strong>Địa Chỉ:</strong> <?php echo htmlspecialchars($khachhang['DiaChi']); ?></p>
             </div>
         </div>
 
         <h3>Dịch Vụ Đã Đăng Ký</h3>
-        <table class="table table-bordered">
-            <thead>
+        <table class="table table-hover">
+            <thead class="thead-light">
                 <tr>
+                    <th>STT</th>
                     <th>Tên Dịch Vụ</th>
                     <th>Tên Gói Dịch Vụ</th>
                     <th>Giá</th>
@@ -68,8 +71,10 @@ $conn->close();
             </thead>
             <tbody>
                 <?php if ($result_dichvu->num_rows > 0) : ?>
-                    <?php while ($row = $result_dichvu->fetch_assoc()) : ?>
+                    <?php $counter = 1;  
+                        while ($row = $result_dichvu->fetch_assoc()) : ?>
                         <tr>
+                            <td><?php echo $counter++; ?></td>
                             <td><?php echo htmlspecialchars($row['TenDichVu']); ?></td>
                             <td><?php echo htmlspecialchars($row['TenGoiDichVu']); ?></td>
                             <td><?php echo htmlspecialchars($row['GiaTien']); ?></td>

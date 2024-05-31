@@ -116,7 +116,7 @@ JOIN
     ";
         $sqlChitiet .= "WHERE 
         ttb.NgayDangKy BETWEEN '$weekStartSelect' AND '$weekEndSelect' ";
-        $message = " Tuần Này";
+        $message = "Theo Tuần Từ $weekStartSelect Đến $weekEndSelect";
     }
     if ($time != '') {
         $result = $conn->query($sql);
@@ -141,9 +141,9 @@ $conn->close();
 <body>
     <div class="container"> -->
 <?php include '../menu.php'; ?>
-<div class="container">
+<div class="content container-fluid">
     <h2 class="mt-3">Top 10 Nhân Viên <?php echo "$message" ?></h2>
-    <div class="container mt-5">
+    <div class="">
         <form action="" method="post">
             <div class="form-group period">
                 <label for="period">Chọn kiểu thống kê:</label>
@@ -162,7 +162,7 @@ $conn->close();
                 </div>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="time" id="week" value="week">
-                    <label class="form-check-label" for="week">Tuần</label>
+                    <label class="form-check-label" for="week">Ngày</label>
                 </div>
             </div>
 
@@ -232,13 +232,13 @@ $conn->close();
             </div>
 
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">Lọc</button>
+                <button type="submit" class="btn btn-primary bi bi-funnel"> Lọc</button>
             </div>
         </form>
     </div>
     <br>
-    <table class="table table-bordered" id="dataTable">
-        <thead>
+    <table class="table table-hover" id="dataTable">
+        <thead class="thead-light">
             <tr>
                 <th>Tên Nhân viên bán hàng</th>
                 <th>Số Điện Thoại</th>
@@ -285,6 +285,7 @@ $conn->close();
         echo '<div class="mt-5">
             <h2 class="mt-5 mb-5">Biểu đồ TOP 10 Nhân Viên Bán Hàng Nhiều Nhất Trong ' . $message . ' </h2>
             <canvas id="myChart_nvbh" class="mb-3"></canvas>
+            <canvas id="myChart_nvbh_pie" width="500" height="500" class=""></canvas>
         </div>';
         // }
     }

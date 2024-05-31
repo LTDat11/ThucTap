@@ -15,7 +15,7 @@ if ($conn->connect_error) {
 
 // Pagination setup
 $limit = 10; // Number of entries to show in a page.
-$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
 $offset = ($page - 1) * $limit;
 
 // Prepare the search query if provided
@@ -52,8 +52,8 @@ $conn->close();
 <body>
 <div class="container"> -->
 <?php include '../menu.php'; ?>
-<div class="container">
-    <h2 class="mt-3">Danh Sách Thông Tin Khách Hàng</h2>
+<div class="content container-fluid">
+    <h2 class="mt-3">Danh Sách Thông Tin Khách Hàng</h2><br>
     <form action="" method="GET" class="mb-3">
         <div class="form-row">
             <div class="col">
@@ -64,8 +64,8 @@ $conn->close();
             </div>
         </div>
     </form>
-    <table class="table table-bordered">
-        <thead>
+    <table class="table table-hover">
+        <thead class="thead-light">
             <tr>
                 <th>Tên Khách Hàng</th>
                 <th>Số Điện Thoại</th>
@@ -99,16 +99,35 @@ $conn->close();
     <nav>
         <ul class="pagination justify-content-center">
             <?php
+            // Define the range of pages to display
+            $range = 2;
+            $start = max(1, $page - $range);
+            $end = min($total_pages, $page + $range);
+
             if ($page > 1) {
                 echo "<li class='page-item'><a class='page-link' href='?page=" . ($page - 1) . "&search_query=" . urlencode($search_query) . "'>Trước Đó</a></li>";
             }
 
-            for ($i = 1; $i <= $total_pages; $i++) {
+            if ($start > 1) {
+                echo "<li class='page-item'><a class='page-link' href='?page=1&search_query=" . urlencode($search_query) . "'>1</a></li>";
+                if ($start > 2) {
+                    echo "<li class='page-item'><span class='page-link'>...</span></li>";
+                }
+            }
+
+            for ($i = $start; $i <= $end; $i++) {
                 if ($i == $page) {
                     echo "<li class='page-item active'><a class='page-link' href='#'>$i</a></li>";
                 } else {
                     echo "<li class='page-item'><a class='page-link' href='?page=$i&search_query=" . urlencode($search_query) . "'>$i</a></li>";
                 }
+            }
+
+            if ($end < $total_pages) {
+                if ($end < $total_pages - 1) {
+                    echo "<li class='page-item'><span class='page-link'>...</span></li>";
+                }
+                echo "<li class='page-item'><a class='page-link' href='?page=$total_pages&search_query=" . urlencode($search_query) . "'>$total_pages</a></li>";
             }
 
             if ($page < $total_pages) {
@@ -119,11 +138,3 @@ $conn->close();
     </nav>
 </div>
 <?php include '../footer.php'; ?>
-<!-- <a href="them_thong_tin_ban_hang.php" class="btn btn-primary">Thêm Thông Tin Bán Hàng Mới</a> -->
-<!-- </div>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-
-</html> -->

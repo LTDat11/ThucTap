@@ -155,7 +155,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 ?>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Thêm Thông Tin Bán Hàng</button>
+        <button type="submit" class="btn btn-primary bi bi-plus-circle"> Thêm Thông Tin Bán Hàng</button>
     </form>
 </div>
 <?php include '../footer.php'; ?>

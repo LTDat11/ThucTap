@@ -51,6 +51,19 @@ $resultKhachHang = $conn->query($sqlKhachHang);
 $sqlGoiDichVu = "SELECT ID_GoiDichVu, TenGoiDichVu FROM GoiDichVu";
 $resultGoiDichVu = $conn->query($sqlGoiDichVu);
 
+// Truy vấn SQL để lấy tên nhân viên dựa trên ID_NhanVien
+$ID_NhanVien = $_SESSION['ID_NhanVien']; // Lấy ID_NhanVien từ session
+$sql_user = "SELECT TenNhanVien FROM NhanVien WHERE ID_NhanVien='$ID_NhanVien'";
+$result_user = $conn->query($sql_user);
+
+if ($result_user->num_rows == 1) {
+    $row_user = $result_user->fetch_assoc();
+    $tenNhanVien = $row_user['TenNhanVien'];
+} else {
+    // Xử lý khi không tìm thấy thông tin nhân viên
+    $tenNhanVien = "Không tìm thấy thông tin nhân viên";
+}
+
 // Cập nhật thông tin bán hàng
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $ID_TTNVBH = $_POST['ID_TTNVBH'];
@@ -58,9 +71,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $ID_GoiDichVu = $_POST['ID_GoiDichVu'];
     $NgayBan = $_POST['NgayBan'];
 
-    $sqlUpdate = "UPDATE ThongTinBanHang SET ID_TTNVBH = ?, ID_KhachHang = ?, ID_GoiDichVu = ?, NgayDangKy = ? WHERE ID_ThongTinBanHang = ?";
+    // Đặt múi giờ Việt Nam
+    date_default_timezone_set('Asia/Ho_Chi_Minh');
+    // Lấy ngày hiện tại
+    $ngaySua = date("Y-m-d H:i:s");
+
+    // Cập nhật thông tin bán hàng trong cơ sở dữ liệu
+    $sqlUpdate = "UPDATE ThongTinBanHang SET ID_TTNVBH = ?, ID_KhachHang = ?, ID_GoiDichVu = ?, NgayDangKy = ?, nguoisua = ?, ngaysua = ? WHERE ID_ThongTinBanHang = ?";
     $stmtUpdate = $conn->prepare($sqlUpdate);
-    $stmtUpdate->bind_param("iiisi", $ID_TTNVBH, $ID_KhachHang, $ID_GoiDichVu, $NgayBan, $id);
+    $stmtUpdate->bind_param("iiisssi", $ID_TTNVBH, $ID_KhachHang, $ID_GoiDichVu, $NgayBan, $tenNhanVien, $ngaySua, $id);
 
     if ($stmtUpdate->execute()) {
         echo "<script>alert('Cập nhật thành công.');</script>";
