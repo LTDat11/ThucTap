@@ -6,6 +6,11 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 
+<style>
+    .hidden {
+        display: none;
+    }
+</style>
 <script>
     // Hide submenus
     $('#body-row .collapse').collapse('hide');
@@ -14,7 +19,7 @@
     $('#collapse-icon').addClass('fa-angle-double-left');
 
     // Collapse click
-    $('[data-toggle=sidebar-colapse]').click(function() {
+    $('[data-toggle=sidebar-colapse]').click(function () {
         SidebarCollapse();
     });
 
@@ -42,7 +47,7 @@
     let mybutton = document.getElementById("myBtn");
 
     // When the user scrolls down 20px from the top of the document, show the button
-    window.onscroll = function() {
+    window.onscroll = function () {
         scrollFunction()
     };
 
@@ -67,7 +72,7 @@
         const file = input.files[0];
         const reader = new FileReader();
 
-        reader.onload = function(e) {
+        reader.onload = function (e) {
             preview.src = e.target.result;
             preview.style.display = 'block';
 
@@ -93,7 +98,7 @@
 </script>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('.select2').select2();
     });
 </script>
@@ -286,20 +291,50 @@
     }
 </script>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const yearForm = document.getElementById('yearForm');
+        const quarterForm = document.getElementById('quarterForm');
+        const monthForm = document.getElementById('monthForm');
+        const weekForm = document.getElementById('weekForm');
+
+        document.getElementsByName('time').forEach((radio) => {
+            radio.addEventListener('change', function () {
+                yearForm.classList.add('hidden');
+                quarterForm.classList.add('hidden');
+                monthForm.classList.add('hidden');
+                weekForm.classList.add('hidden');
+
+                if (this.value === 'year') {
+                    yearForm.classList.remove('hidden');
+                } else if (this.value === 'quarter') {
+                    yearForm.classList.remove('hidden');
+                    quarterForm.classList.remove('hidden');
+                } else if (this.value === 'month') {
+                    yearForm.classList.remove('hidden');
+                    monthForm.classList.remove('hidden');
+                } else if (this.value === 'week') {
+                    weekForm.classList.remove('hidden');
+                }
+            });
+        });
+    });
+</script>
+
 <!-- kiểm tra thống kê form -->
 <script>
-    function capNhatHienThiForm() {
-        const namDuocChon = document.getElementById('year').checked;
-        const quyDuocChon = document.getElementById('quarter').checked;
-        const thangDuocChon = document.getElementById('month').checked;
-        const tuanDuocChon = document.getElementById('week').checked;
+    // function capNhatHienThiForm() {
+    //     const namDuocChon = document.getElementById('year').checked;
+    //     const quyDuocChon = document.getElementById('quarter').checked;
+    //     const thangDuocChon = document.getElementById('month').checked;
+    //     const tuanDuocChon = document.getElementById('week').checked;
 
 
-        document.getElementById('yearForm').style.display = (namDuocChon || quyDuocChon || thangDuocChon) ? 'block' : 'none';
-        document.getElementById('quaterForm').style.display = quyDuocChon ? 'block' : 'none';
-        document.getElementById('monthForm').style.display = thangDuocChon ? 'block' : 'none';
-        document.getElementById('weekForm').style.display = tuanDuocChon ? 'block' : 'none';
-    }
+    //     document.getElementById('yearForm').style.display = (namDuocChon || quyDuocChon || thangDuocChon) ? 'block' : 'none';
+    //     document.getElementById('quaterForm').style.display = quyDuocChon ? 'block' : 'none';
+    //     document.getElementById('monthForm').style.display = thangDuocChon ? 'block' : 'none';
+    //     document.getElementById('weekForm').style.display = tuanDuocChon ? 'block' : 'none';
+    // }
 
     function kiemTraForm() {
         const namDuocChon = document.getElementById('year').checked;
@@ -355,28 +390,28 @@
         return true;
     }
 
-    document.getElementById('year').addEventListener('change', function() {
+    document.getElementById('year').addEventListener('change', function () {
         document.getElementById('quarterSelect').selectedIndex = 0;
         document.getElementById('monthSelect').selectedIndex = 0;
         document.getElementById('yearSelect').selectedIndex = 0;
         capNhatHienThiForm();
     });
 
-    document.getElementById('quarter').addEventListener('change', function() {
+    document.getElementById('quarter').addEventListener('change', function () {
         document.getElementById('quarterSelect').selectedIndex = 0;
         document.getElementById('monthSelect').selectedIndex = 0;
         document.getElementById('yearSelect').selectedIndex = 0;
         capNhatHienThiForm();
     });
 
-    document.getElementById('month').addEventListener('change', function() {
+    document.getElementById('month').addEventListener('change', function () {
         document.getElementById('quarterSelect').selectedIndex = 0;
         document.getElementById('monthSelect').selectedIndex = 0;
         document.getElementById('yearSelect').selectedIndex = 0;
         capNhatHienThiForm();
     });
 
-    document.getElementById('week').addEventListener('change', function() {
+    document.getElementById('week').addEventListener('change', function () {
         document.getElementById('quarterSelect').selectedIndex = 0;
         document.getElementById('monthSelect').selectedIndex = 0;
         document.getElementById('yearSelect').selectedIndex = 0;
@@ -384,7 +419,7 @@
     });
 
     // Đính kèm kiemTraForm vào sự kiện submit của biểu mẫu
-    document.querySelector('form').addEventListener('submit', function(e) {
+    document.querySelector('form').addEventListener('submit', function (e) {
         if (!kiemTraForm()) {
             e.preventDefault(); // Ngăn biểu mẫu gửi đi
         }
@@ -445,7 +480,7 @@
                 plugins: {
                     tooltip: {
                         callbacks: {
-                            label: function(context) {
+                            label: function (context) {
                                 let label = context.dataset.label || '';
                                 if (label) {
                                     label += ': ';
@@ -465,7 +500,7 @@
                             weight: 'bold',
                             size: 14
                         },
-                        formatter: function(value, context) {
+                        formatter: function (value, context) {
                             return value.toLocaleString();
                         }
                     },
@@ -526,7 +561,7 @@
                             weight: 'bold',
                             size: 14
                         },
-                        formatter: function(value, context) {
+                        formatter: function (value, context) {
                             return value;
                         }
                     },
@@ -580,7 +615,7 @@
                             weight: 'bold',
                             size: 14
                         },
-                        formatter: function(value, context) {
+                        formatter: function (value, context) {
                             return value;
                         }
                     },
@@ -618,7 +653,7 @@
             ]
         });
 
-         // Biểu đồ hình tròn
+        // Biểu đồ hình tròn
         var ctx_nvbh_pie = document.getElementById('myChart_nvbh_pie').getContext('2d');
         var myChart_nvbh_pie = new Chart(ctx_nvbh_pie, {
             type: 'pie',
@@ -654,7 +689,7 @@
                             weight: 'bold',
                             size: 14
                         },
-                        formatter: function(value, context) {
+                        formatter: function (value, context) {
                             return value;
                         }
                     },
@@ -722,7 +757,7 @@
                     datalabels: {
                         anchor: 'center',
                         align: 'top',
-                        formatter: function(value, context) {
+                        formatter: function (value, context) {
                             return value;
                         },
                         color: 'white', // Màu chữ
@@ -783,7 +818,7 @@
                             weight: 'bold',
                             size: 14
                         },
-                        formatter: function(value, context) {
+                        formatter: function (value, context) {
                             return value;
                         }
                     },
