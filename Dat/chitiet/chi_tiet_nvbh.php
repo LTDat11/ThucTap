@@ -77,17 +77,17 @@ if (isset($_POST['sqlChitiet']) && isset($_POST['id'])) {
             </tr>
         </thead>
         <tbody>
-            <?php $count=1;
+            <?php $count = 1;
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
-                    echo "<td>" . $count++ ."</td>";
-                    echo "<td>" . htmlspecialchars($row['NgayDangKy']) . "</td>";
+                    echo "<td>" . $count++ . "</td>";
+                    echo "<td>" . date("d/m/Y", strtotime($row['NgayDangKy'])) . "</td>";
                     echo "<td>" . htmlspecialchars($row['TenKhachHang']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['TenDichVu']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['SoLuong']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['TongTien']) . "</td>";
+                    echo "<td>" . number_format($row['TongTien'], 0, ',', '.') . "</td>";
                     echo "</tr>";
                 }
             } else {

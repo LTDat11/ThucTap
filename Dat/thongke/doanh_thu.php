@@ -387,9 +387,9 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
                     echo "<tr>";
                     echo "<td>" . $count++ . "</td>";
                     echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['GiaTien']) . "</td>";
+                    echo "<td>" . number_format($row['GiaTien'], 0, ',', '.') . "</td>";
                     echo "<td>" . htmlspecialchars($row['TongSoLuong']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['ThanhTien']) . "</td>";
+                    echo "<td>" . number_format($row['ThanhTien'], 0, ',', '.') . "</td>";
 
                     echo "</tr>";
                 }
@@ -403,7 +403,8 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
     if (isset($result1) && $result1->num_rows > 0) {
         while ($row = $result1->fetch_assoc()) {
             echo "<h3 class='mt-3'>Tổng
-        doanh thu: " . htmlspecialchars($row['TongTienThuDuoc']) . "</h3>";
+        doanh thu: " . number_format($row['TongTienThuDuoc'], 0, ',', '.') . "</h3>";
+
             // echo "<a href=\"xuat_excel_doanh_thu.php\" class=\"btn btn-success\">Xuất Excel</a>";
             echo "<button onclick=\"exportTableToExcel()\" class=\"btn btn-success bi bi-file-earmark-arrow-down\"> Xuất Excel</button>";
         }

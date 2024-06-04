@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 }
 
 // Lấy ID Khách Hàng từ URL
-$ID_KhachHang = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+$ID_KhachHang = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 
 // Truy vấn thông tin chi tiết của khách hàng
 $sql_khachhang = "SELECT * FROM KhachHang WHERE ID_KhachHang = $ID_KhachHang";
@@ -45,53 +45,53 @@ $conn->close();
 <?php include '../menu.php'; ?>
 <div class="container-fluid">
     <h2 class="mt-5">Thông Tin Chi Tiết Khách Hàng</h2>
-    <?php if ($khachhang) : ?>
-        <div class="card mb-3">
-            <div class="card-header">
-                <h4><i class="fa-regular fa-user"></i> <strong><?php echo htmlspecialchars($khachhang['Ten']); ?></strong></h4>
+    <?php if ($khachhang): ?>
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h4><i class="fa-regular fa-user"></i> <strong><?php echo htmlspecialchars($khachhang['Ten']); ?></strong></h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-text"><strong>Số Điện Thoại:</strong> <?php echo htmlspecialchars($khachhang['SoDienThoai']); ?></p>
+                    <p class="card-text"><strong>Địa Chỉ:</strong> <?php echo htmlspecialchars($khachhang['DiaChi']); ?></p>
+                </div>
             </div>
-            <div class="card-body">
-                <p class="card-text"><strong>Số Điện Thoại:</strong> <?php echo htmlspecialchars($khachhang['SoDienThoai']); ?></p>
-                <p class="card-text"><strong>Địa Chỉ:</strong> <?php echo htmlspecialchars($khachhang['DiaChi']); ?></p>
-            </div>
-        </div>
 
-        <h3>Dịch Vụ Đã Đăng Ký</h3>
-        <table class="table table-hover">
-            <thead class="thead-light">
-                <tr>
-                    <th>STT</th>
-                    <th>Tên Dịch Vụ</th>
-                    <th>Tên Gói Dịch Vụ</th>
-                    <th>Giá</th>
-                    <th>Số Lượng</th>
-                    <th>Ngày Đăng Ký</th>
-                    <th>Nhân Viên Bán</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php if ($result_dichvu->num_rows > 0) : ?>
-                    <?php $counter = 1;  
-                        while ($row = $result_dichvu->fetch_assoc()) : ?>
-                        <tr>
-                            <td><?php echo $counter++; ?></td>
-                            <td><?php echo htmlspecialchars($row['TenDichVu']); ?></td>
-                            <td><?php echo htmlspecialchars($row['TenGoiDichVu']); ?></td>
-                            <td><?php echo htmlspecialchars($row['GiaTien']); ?></td>
-                            <td><?php echo htmlspecialchars($row['SoLuong']); ?></td>
-                            <td><?php echo htmlspecialchars($row['NgayDangKy']); ?></td>
-                            <td><?php echo htmlspecialchars($row['TenNhanVien']); ?></td>
-                        </tr>
-                    <?php endwhile; ?>
-                <?php else : ?>
+            <h3>Dịch Vụ Đã Đăng Ký</h3>
+            <table class="table table-hover">
+                <thead class="thead-light">
                     <tr>
-                        <td colspan="6" class="text-center">Khách hàng chưa đăng ký dịch vụ nào.</td>
+                        <th>STT</th>
+                        <th>Tên Dịch Vụ</th>
+                        <th>Tên Gói Dịch Vụ</th>
+                        <th>Giá</th>
+                        <th>Số Lượng</th>
+                        <th>Ngày Đăng Ký</th>
+                        <th>Nhân Viên Bán</th>
                     </tr>
-                <?php endif; ?>
-            </tbody>
-        </table>
-    <?php else : ?>
-        <p class="text-center">Không tìm thấy thông tin khách hàng.</p>
+                </thead>
+                <tbody>
+                    <?php if ($result_dichvu->num_rows > 0): ?>
+                            <?php $counter = 1;
+                            while ($row = $result_dichvu->fetch_assoc()): ?>
+                                    <tr>
+                                        <td><?php echo $counter++; ?></td>
+                                        <td><?php echo htmlspecialchars($row['TenDichVu']); ?></td>
+                                        <td><?php echo htmlspecialchars($row['TenGoiDichVu']); ?></td>
+                                        <td><?php echo number_format($row['GiaTien'], 0, ',', '.'); ?></td>
+                                        <td><?php echo htmlspecialchars($row['SoLuong']); ?></td>
+                                        <td><?php echo date('d/m/Y', strtotime($row['NgayDangKy'])); ?></td>
+                                        <td><?php echo htmlspecialchars($row['TenNhanVien']); ?></td>
+                                    </tr>
+                            <?php endwhile; ?>
+                    <?php else: ?>
+                            <tr>
+                                <td colspan="6" class="text-center">Khách hàng chưa đăng ký dịch vụ nào.</td>
+                            </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+    <?php else: ?>
+            <p class="text-center">Không tìm thấy thông tin khách hàng.</p>
     <?php endif; ?>
     <a href="../danhsach/danh_sach_thong_tin_khach_hang.php" class="btn btn-secondary bi bi-backspace"> Quay Lại</a>
 </div>

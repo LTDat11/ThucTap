@@ -68,17 +68,18 @@ $conn->close();
             </tr>
         </thead>
         <tbody>
-            <?php $count=1;
+            <?php $count = 1;
             while ($row = $resultGoiDichVu->fetch_assoc()) {
                 echo "<tr>";
-                echo "<td>" . $count++ ."</td>";
+                echo "<td>" . $count++ . "</td>";
                 echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
                 if (!empty($row['TocDo']) && $row['TocDo'] != 0) {
-                    echo "<td>" . htmlspecialchars($row['TocDo']." Mbps") . "</td>";
+                    echo "<td>" . htmlspecialchars($row['TocDo'] . " Mbps") . "</td>";
                 } else {
                     echo "<td>0</td>";
                 }
-                echo "<td>" . htmlspecialchars($row['GiaTien']) . "</td>";
+                echo "<td>" . number_format($row['GiaTien'], 0, ',', '.') . "</td>";
+
                 echo "<td>" . htmlspecialchars($row['MoTa']) . "</td>";
                 echo "<td>
                     <a href='../sua/sua_goi_cuoc.php?id=" . $row['ID_GoiDichVu'] . "' class='btn btn-warning bi bi-pencil'> Sửa</a>
