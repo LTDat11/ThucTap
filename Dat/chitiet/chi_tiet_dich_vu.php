@@ -54,15 +54,17 @@ $conn->close();
     <div class="container"> -->
 <?php include '../menu.php'; ?>
 <div class="content container-fluid">
-    <h2 class="mt-5">Dịch Vụ <?php echo htmlspecialchars($dichVu['TenDichVu']); ?> Hiện Có Các Gói Cước:</h2> <br>
+    <h2 class="">Dịch Vụ <?php echo htmlspecialchars($dichVu['TenDichVu']); ?> Hiện Có Các Gói Cước:</h2> <br>
+    <a href="../danhsach/danh_sach_thong_tin_dich_vu.php" class="btn btn-secondary bi bi-backspace"> Quay Lại</a>
+    <a href="../them/them_goi_cuoc.php?idDichVu=<?php echo $id; ?>" class="btn btn-primary bi bi-plus-circle ml-1"> Thêm Gói Cước</a>
     <!-- <h4>Các Gói Cước Hiện Có:</h4> -->
-    <table class="table table-hover">
+    <table class="table table-hover mt-3">
         <thead class="thead-light"> 
             <tr>
                 <th>STT</th>
                 <th>Tên Gói Dịch Vụ</th>
                 <th>Tốc Độ</th>
-                <th>Giá Tiền</th>
+                <th>Giá</th>
                 <th>Mô Tả</th>
                 <th>Tùy Chọn</th>
             </tr>
@@ -82,7 +84,7 @@ $conn->close();
                 echo "<td>" . htmlspecialchars($row['MoTa']) . "</td>";
                 echo "<td>
                     <a href='../sua/sua_goi_cuoc.php?id=" . $row['ID_GoiDichVu'] . "' class='btn btn-warning bi bi-pencil'> Sửa</a>
-                    <a href='../xoa/xoa_goi_cuoc.php?id=" . $row['ID_GoiDichVu'] . "' class='btn btn-danger bi bi-trash ml-2'> Xóa</a>
+                    <a href='../xoa/xoa_goi_cuoc.php?id=" . $row['ID_GoiDichVu'] . "' class='btn btn-danger bi bi-trash mt-1'> Xóa</a>
                 </td>";
                     echo "</tr>";
                 }

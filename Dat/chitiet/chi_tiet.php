@@ -52,7 +52,8 @@ if (isset($_POST['sqlChitiet']) && isset($_POST['id'])) {
 <body> -->
 <?php include '../menu.php'; ?>
 <div class="content container-fluid">
-    <h2 class="mt-5">Thông Tin Chi Tiết Khách Hàng</h2> <br>
+    <h2 class="">Thông Tin Chi Tiết Khách Hàng</h2> <br>
+    <a href="../top10/top10kh_dvMax.php" class="btn btn-secondary bi bi-backspace mb-3"> Quay Lại</a>
     <?php if ($khachhang): ?>
             <div class="card mb-3">
                 <div class="card-header">
@@ -101,7 +102,7 @@ if (isset($_POST['sqlChitiet']) && isset($_POST['id'])) {
     <?php else: ?>
             <p class="text-center">Không tìm thấy thông tin khách hàng.</p>
     <?php endif; ?>
-    <a href="../top10/top10kh_dvMax.php" class="btn btn-secondary bi bi-backspace"> Quay Lại</a>
+    
 </div>
 <?php include '../footer.php'; ?>
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

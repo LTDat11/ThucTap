@@ -52,15 +52,16 @@ if (isset($_POST['sqlChitiet']) && isset($_POST['id'])) {
 <body> -->
 <?php include '../menu.php'; ?>
 <div class="content container-fluid">
-    <h2 class="mt-5">Chi Tiết Nhân Viên Bán Hàng </h2> <br>
+    <h2 class="">Chi Tiết Nhân Viên Bán Hàng </h2> <br>
+    <a href="../top10/top10_nvbh.php" class="btn btn-secondary bi bi-backspace mb-3"> Quay Lại</a>
     <div class="card mb-3">
-            <div class="card-header">
-                <h4><i class="fa-solid fa-user-tie"></i> <strong><?php echo htmlspecialchars($nhanvien['TenNhanVien']); ?></strong></h4>
-            </div>
-            <div class="card-body">
-                <p class="card-text"><strong>Số Điện Thoại:</strong> <?php echo htmlspecialchars($nhanvien['SoDienThoai']); ?></p>
-                <p class="card-text"><strong>Địa Chỉ:</strong> <?php echo htmlspecialchars($nhanvien['DiaChi']); ?></p>
-            </div>
+        <div class="card-header">
+            <h4><i class="fa-solid fa-user-tie"></i> <strong><?php echo htmlspecialchars($nhanvien['TenNhanVien']); ?></strong></h4>
+        </div>
+        <div class="card-body">
+            <p class="card-text"><strong>Số Điện Thoại:</strong> <?php echo htmlspecialchars($nhanvien['SoDienThoai']); ?></p>
+            <p class="card-text"><strong>Địa Chỉ:</strong> <?php echo htmlspecialchars($nhanvien['DiaChi']); ?></p>
+        </div>
     </div>
 
     <h3 class="mt-5">Các Dịch Vụ Bán Được</h3>
@@ -96,7 +97,7 @@ if (isset($_POST['sqlChitiet']) && isset($_POST['id'])) {
             ?>
         </tbody>
     </table>
-    <a href="../top10/top10_nvbh.php" class="btn btn-secondary bi bi-backspace"> Quay Lại</a>
+
 </div>
 <?php include '../footer.php'; ?>
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

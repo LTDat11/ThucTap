@@ -95,9 +95,9 @@ if (isset($_POST['sqlChitiet']) && isset($_POST['id'])) {
     $TongSoGoiDaBan = $row['TongSoGoiDaBan'];
     ?>
 
-    <h2 class="mt-5">Chi tiết của dịch vụ <?php echo $tenDichVu; ?></h2>
+    <h2 class="">Chi tiết của dịch vụ <?php echo $tenDichVu; ?></h2>
     <p>Tổng số lượng bán được của dịch vụ: <?php echo $TongSoGoiDaBan; ?></p>
-
+    <a href="../top10/dich_vu_dang_ky_nhieu.php" class="btn btn-secondary bi bi-backspace mb-3"> Quay Lại</a>
     <table class="table table-hover">
         <thead class="thead-light">
             <tr>
@@ -107,11 +107,11 @@ if (isset($_POST['sqlChitiet']) && isset($_POST['id'])) {
             </tr>
         </thead>
         <tbody>
-            <?php $count=1;
+            <?php $count = 1;
             if ($result1->num_rows > 0) {
                 while ($row1 = $result1->fetch_assoc()) {
                     echo "<tr>";
-                    echo "<td>" . $count++ ."</td>";
+                    echo "<td>" . $count++ . "</td>";
                     echo "<td>" . htmlspecialchars($row1['TenGoiDichVu']) . "</td>";
                     echo "<td>" . htmlspecialchars($row1['TongSoLuongBanDuoc']) . "</td>";
 
@@ -123,7 +123,7 @@ if (isset($_POST['sqlChitiet']) && isset($_POST['id'])) {
             ?>
         </tbody>
     </table>
-    <a href="../top10/dich_vu_dang_ky_nhieu.php" class="btn btn-secondary bi bi-backspace"> Quay Lại</a>
+
 </div>
 <?php include '../footer.php'; ?>
 <!-- </div>

@@ -69,16 +69,16 @@ $conn->close();
 <body> -->
 <?php include '../menu.php'; ?>
 <div class="container-fluid">
-    <h2 class="mt-5">Chi Tiết Nhân Viên Bán Hàng </h2>
-    <br>
+    <h2 class="">Chi Tiết Nhân Viên Bán Hàng </h2>
+    <a href="../danhsach/danh_sach_thong_tin_nhan_vien_ban_hang.php" class="btn btn-secondary bi bi-backspace"> Quay Lại</a>
     <div class="card mb-3">
-            <div class="card-header">
-                <h4><i class="fa-solid fa-user-tie"></i> <strong><?php echo htmlspecialchars($nhanvien['TenNhanVien']); ?></strong></h4>
-            </div>
-            <div class="card-body">
-                <p class="card-text"><strong>Số Điện Thoại:</strong> <?php echo htmlspecialchars($nhanvien['SoDienThoai']); ?></p>
-                <p class="card-text"><strong>Địa Chỉ:</strong> <?php echo htmlspecialchars($nhanvien['DiaChi']); ?></p>
-            </div>
+        <div class="card-header">
+            <h4><i class="fa-solid fa-user-tie"></i> <strong><?php echo htmlspecialchars($nhanvien['TenNhanVien']); ?></strong></h4>
+        </div>
+        <div class="card-body">
+            <p class="card-text"><strong>Số Điện Thoại:</strong> <?php echo htmlspecialchars($nhanvien['SoDienThoai']); ?></p>
+            <p class="card-text"><strong>Địa Chỉ:</strong> <?php echo htmlspecialchars($nhanvien['DiaChi']); ?></p>
+        </div>
     </div>
 
     <!-- <table class="table table-hover">
@@ -130,7 +130,7 @@ $conn->close();
             ?>
         </tbody>
     </table>
-    <a href="../danhsach/danh_sach_thong_tin_nhan_vien_ban_hang.php" class="btn btn-secondary bi bi-backspace"> Quay Lại</a>
+
 </div>
 <?php include '../footer.php'; ?>
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
