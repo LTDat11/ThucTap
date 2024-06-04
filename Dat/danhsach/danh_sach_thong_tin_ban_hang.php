@@ -102,7 +102,7 @@ $conn->close();
                     echo "<td>" . htmlspecialchars($row['TenNhanVien']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['TenKhachHang']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['NgayDangKy']) . "</td>";
+                    echo "<td>" . date('d/m/Y', strtotime($row['NgayDangKy'])) . "</td>";
                     echo "<td>
                             <a href='../sua/sua_thong_tin_ban_hang.php?id=" . $row['ID_ThongTinBanHang'] . "' class='btn btn-warning bi bi-pencil'> Sửa</a>
                             <a href='../xoa/xoa_thong_tin_ban_hang.php?id=" . $row['ID_ThongTinBanHang'] . "' class='btn btn-danger bi bi-trash ml-2' onclick='return confirm(\"Bạn có chắc chắn muốn xóa?\")'> Xóa</a>
