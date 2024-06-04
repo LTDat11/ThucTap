@@ -27,25 +27,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Lấy dữ liệu từ form
     $TenGoiDichVu = $_POST['TenGoiDichVu'];
     $TocDo = $_POST['TocDo'];
-    $GiaTien = $_POST['GiaTien'];
+    $GiaTien = str_replace('.', '', $_POST['GiaTien']); // Xóa dấu chấm trước khi lưu vào cơ sở dữ liệu
     $MoTa = $_POST['MoTa'];
-    // $hinhAnh = $_POST['ImgURL'];
-    //xu li hinh anh
+    // xử lý hình ảnh
     $target_dir = "./image/";
     $target_file = $target_dir . basename($_FILES["ImgURL"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
     $anhDV = $target_file;
 
-
     // Thêm thông tin gói dịch vụ vào CSDL
     $sqlInsert = "INSERT INTO GoiDichVu (ID_DichVu, TenGoiDichVu, TocDo, GiaTien, MoTa, ImgURL) VALUES (?, ?, ?, ?, ?, ?)";
     $stmtInsert = $conn->prepare($sqlInsert);
     $stmtInsert->bind_param("isisss", $idDichVu, $TenGoiDichVu, $TocDo, $GiaTien, $MoTa, $anhDV);
 
-
     if ($stmtInsert->execute()) {
-        // $message = "Thêm gói cước mới thành công.";
         echo "<script>alert('Thêm thành công.');</script>";
         header("refresh:0.5; url=../chitiet/chi_tiet_dich_vu.php?id=$idDichVu");
         exit();
@@ -60,24 +56,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $conn->close();
 ?>
 
-<!-- <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thêm Gói Cước</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .blurred {
-            filter: blur(5px);
-            max-width: 200px;
-            max-height: 200px;
-        }
-    </style>
-</head>
-
-<body> -->
 <?php include '../menu.php'; ?>
 <div class="container">
     <h2 class="mt-5">Thêm Gói Cước Mới</h2>
@@ -91,33 +69,29 @@ $conn->close();
             <input type="file" class="form-control" id="ImgURL" name="ImgURL" onchange="previewImage(this);">
             <img id="preview" src="#" alt="Preview Image" style="display: none;">
         </div>
-
         <div class="form-group">
             <label for="TocDo">Tốc Độ</label>
             <input type="number" class="form-control" id="TocDo" name="TocDo">
         </div>
         <div class="form-group">
             <label for="GiaTien">Giá Tiền</label>
-            <input type="number" class="form-control" id="GiaTien" name="GiaTien" required>
+            <input type="text" class="form-control" id="GiaTien" name="GiaTien" required oninput="formatCurrency(this)">
         </div>
         <div class="form-group">
             <label for="MoTa">Mô Tả</label>
             <textarea class="form-control" id="MoTa" name="MoTa" rows="3"></textarea>
         </div>
         <button type="submit" class="btn btn-primary bi bi-floppy mr-2"> Lưu</button>
-        <a href="../chitiet/chi_tiet_dich_vu.php?id=<?php echo htmlspecialchars($idDichVu); ?>" class="btn btn-secondary bi bi-backspace"> Quay
-            Lại</a>
+        <a href="../chitiet/chi_tiet_dich_vu.php?id=<?php echo htmlspecialchars($idDichVu); ?>" class="btn btn-secondary bi bi-backspace"> Quay Lại</a>
     </form>
-    <?php if (!empty($message)) : ?>
-        <div class="mt-3 alert alert-success"><?php echo htmlspecialchars($message); ?></div>
+    <?php if (!empty($message)): ?>
+            <div class="mt-3 alert alert-success"><?php echo htmlspecialchars($message); ?></div>
     <?php endif; ?>
 </div>
 <?php include '../footer.php'; ?>
-<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-
 <script>
     function previewImage(input) {
         const preview = document.getElementById('preview');
@@ -127,7 +101,6 @@ $conn->close();
         reader.onload = function(e) {
             preview.src = e.target.result;
             preview.style.display = 'block';
-
         }
 
         if (file) {
@@ -136,6 +109,13 @@ $conn->close();
             preview.style.display = 'none';
         }
     }
-</script>
 
-</html> -->
+    function formatCurrency(input) {
+        let value = input.value;
+        value = value.replace(/\D/g, '');
+        value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        input.value = value;
+    }
+</script>
+</body>
+</html>
