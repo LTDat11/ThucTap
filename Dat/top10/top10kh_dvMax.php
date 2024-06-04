@@ -143,7 +143,7 @@ $conn->close();
     <div class="container"> -->
 <?php include '../menu.php'; ?>
 <div class="content container-fluid">
-    <h2 class="mt-3">Danh Sách Top 10 Khách Hàng Sử Dụng Nhiều Dịch Vụ Nhất <?php echo "$message" ?></h2>
+    <h2 class="">Danh Sách Top 10 Khách Hàng Sử Dụng Nhiều Dịch Vụ Nhất <?php echo "$message" ?></h2>
     <div class="">
         <form action="" method="post">
             <div class="form-group period">

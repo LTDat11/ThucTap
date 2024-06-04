@@ -83,8 +83,8 @@ $conn->close();
                 echo "<td>" . htmlspecialchars($row['GiaTien']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['MoTa']) . "</td>";
                 echo "<td>
-                    <a href='../sua/sua_goi_cuoc.php?id=" . $row['ID_GoiDichVu'] . "' class='btn btn-warning bi bi-pencil'> Sửa</a>
-                    <a href='../xoa/xoa_goi_cuoc.php?id=" . $row['ID_GoiDichVu'] . "' class='btn btn-danger bi bi-trash mt-1'> Xóa</a>
+                    <a href='../sua/sua_goi_cuoc.php?id=" . $row['ID_GoiDichVu'] . "' class='btn btn-warning bi bi-pencil mb-1 mr-1'> Sửa</a>
+                    <a href='../xoa/xoa_goi_cuoc.php?id=" . $row['ID_GoiDichVu'] . "' class='btn btn-danger bi bi-trash mb-1'> Xóa</a>
                 </td>";
                     echo "</tr>";
                 }

@@ -53,7 +53,7 @@ $conn->close();
 <div class="container"> -->
 <?php include '../menu.php'; ?>
 <div class="content container-fluid">
-    <h2 class="mt-3">Danh Sách Thông Tin Khách Hàng</h2><br>
+    <h2 class="">Danh Sách Thông Tin Khách Hàng</h2><br>
     <form action="" method="GET" class="mb-3">
         <div class="form-row">
             <div class="col">

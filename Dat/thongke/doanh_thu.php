@@ -246,7 +246,7 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
     <div class="container"> -->
 <?php include '../menu.php'; ?>
 <div class=" content container-fluid">
-    <h1>Doanh thu <?php echo "$message $message2" ?></h1>
+    <h2>Doanh thu <?php echo "$message $message2" ?></h2>
     <form action="" method="post">
         <div class="form-group">
             <label for="service">Chọn dịch vụ:</label>

@@ -34,7 +34,7 @@ $conn->close();
     <div class="container"> -->
 <?php include '../menu.php'; ?>
 <div class="content container-fluid">
-    <h2 class="mt-3">Danh Sách Thông Tin Dịch Vụ</h2><br>
+    <h2 class="">Danh Sách Thông Tin Dịch Vụ</h2><br>
     <div class="form-row">
         <div class="col">
             <a href="../them/them_dich_vu.php" class="btn btn-primary bi bi-plus-circle mb-3"> Thêm Dịch Vụ</a>
