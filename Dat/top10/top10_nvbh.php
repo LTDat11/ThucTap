@@ -233,6 +233,13 @@ $conn->close();
 
             <div class="form-group">
                 <button type="submit" class="btn btn-primary bi bi-funnel"> Lọc</button>
+                <?php
+                if (isset($result) && $result->num_rows > 0) {
+                    // while ($row = $result->fetch_assoc()) {
+                    // echo "<input type='hidden' id='sqlChitiet' value='" . htmlspecialchars($sqlChitiet) . "'>";
+                    echo "<button onclick=\"exportTableToExcel1()\" class=\"btn btn-success bi bi-file-earmark-arrow-down\"> Xuất Excel</button>"; 
+                }
+                ?>
             </div>
         </form>
     </div>
@@ -281,7 +288,7 @@ $conn->close();
     if (isset($result) && $result->num_rows > 0) {
         // while ($row = $result->fetch_assoc()) {
         // echo "<input type='hidden' id='sqlChitiet' value='" . htmlspecialchars($sqlChitiet) . "'>";
-        echo "<button onclick=\"exportTableToExcel1()\" class=\"btn btn-success bi bi-file-earmark-arrow-down\"> Xuất Excel</button>";
+        // echo "<button onclick=\"exportTableToExcel1()\" class=\"btn btn-success bi bi-file-earmark-arrow-down\"> Xuất Excel</button>";
         echo '<div class="mt-5">
             <h2 class="mt-5 mb-5">Biểu đồ TOP 10 Nhân Viên Bán Hàng Nhiều Nhất Trong ' . $message . ' </h2>
             <canvas id="myChart_nvbh" class="mb-3"></canvas>

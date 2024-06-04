@@ -61,6 +61,7 @@ $conn->close();
             </div>
             <div class="col-auto">
                 <button type="submit" class="btn btn-primary bi bi-search"> Tìm Kiếm</button>
+                <a href="../them/them_nhan_vien_ban_hang.php" class="btn btn-primary bi bi-person-add"> Thêm Nhân Viên Bán Hàng Mới</a>
             </div>
         </div>
     </form>
@@ -94,7 +95,7 @@ $conn->close();
             ?>
         </tbody>
     </table>
-    <a href="../them/them_nhan_vien_ban_hang.php" class="btn btn-primary bi bi-person-add mb-3"> Thêm Nhân Viên Bán Hàng Mới</a>
+    
 
     <!-- Pagination Links -->
   

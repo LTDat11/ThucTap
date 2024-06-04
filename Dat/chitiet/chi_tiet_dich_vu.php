@@ -55,45 +55,49 @@ $conn->close();
 <?php include '../menu.php'; ?>
 <div class="content container-fluid">
     <h2 class="mt-5">Dịch Vụ <?php echo htmlspecialchars($dichVu['TenDichVu']); ?> Hiện Có Các Gói Cước:</h2> <br>
-    <!-- <h4>Các Gói Cước Hiện Có:</h4> -->
-    <table class="table table-hover">
-        <thead class="thead-light"> 
-            <tr>
-                <th>STT</th>
-                <th>Tên Gói Dịch Vụ</th>
-                <th>Tốc Độ</th>
-                <th>Giá Tiền</th>
-                <th>Mô Tả</th>
-                <th>Tùy Chọn</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php $count=1;
-            while ($row = $resultGoiDichVu->fetch_assoc()) {
-                echo "<tr>";
-                echo "<td>" . $count++ ."</td>";
-                echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
-                if (!empty($row['TocDo']) && $row['TocDo'] != 0) {
-                    echo "<td>" . htmlspecialchars($row['TocDo']." Mbps") . "</td>";
-                } else {
-                    echo "<td>0</td>";
-                }
-                echo "<td>" . htmlspecialchars($row['GiaTien']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['MoTa']) . "</td>";
-                echo "<td>
-                    <a href='../sua/sua_goi_cuoc.php?id=" . $row['ID_GoiDichVu'] . "' class='btn btn-warning bi bi-pencil'> Sửa</a>
-                    <a href='../xoa/xoa_goi_cuoc.php?id=" . $row['ID_GoiDichVu'] . "' class='btn btn-danger bi bi-trash ml-2'> Xóa</a>
+    <div class="form-row">
+        <div class="col-auto mb-3">
+            <a href="../danhsach/danh_sach_thong_tin_dich_vu.php" class="btn btn-secondary bi bi-backspace mr-2"> Quay Lại</a>
+            <a href="../them/them_goi_cuoc.php?idDichVu=<?php echo $id; ?>" class="btn btn-primary bi bi-plus-circle"> Thêm Gói Cước</a>
+        </div </div>
+        <!-- <h4>Các Gói Cước Hiện Có:</h4> -->
+        <table class="table table-hover">
+            <thead class="thead-light">
+                <tr>
+                    <th>STT</th>
+                    <th>Tên Gói Dịch Vụ</th>
+                    <th>Tốc Độ</th>
+                    <th>Giá</th>
+                    <th>Mô Tả</th>
+                    <th>Tùy Chọn</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php $count = 1;
+                while ($row = $resultGoiDichVu->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . $count++ . "</td>";
+                    echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
+                    if (!empty($row['TocDo']) && $row['TocDo'] != 0) {
+                        echo "<td>" . htmlspecialchars($row['TocDo'] . " Mbps") . "</td>";
+                    } else {
+                        echo "<td>0</td>";
+                    }
+                    echo "<td>" . htmlspecialchars($row['GiaTien']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['MoTa']) . "</td>";
+                    echo "<td>
+                    <a href='../sua/sua_goi_cuoc.php?id=" . $row['ID_GoiDichVu'] . "' class='btn btn-warning bi bi-pencil mb-1'> Sửa</a>
+                    <a href='../xoa/xoa_goi_cuoc.php?id=" . $row['ID_GoiDichVu'] . "' class='btn btn-danger bi bi-trash mb-1'> Xóa</a>
                 </td>";
-                echo "</tr>";
-            }
-            ?>
-        </tbody>
-    </table>
-    <a href="../them/them_goi_cuoc.php?idDichVu=<?php echo $id; ?>" class="btn btn-primary bi bi-plus-circle"> Thêm Gói Cước</a>
-    <a href="../danhsach/danh_sach_thong_tin_dich_vu.php" class="btn btn-secondary bi bi-backspace ml-2"> Quay Lại</a>
-</div>
-<?php include '../footer.php'; ?>
-<!-- </div>
+                    echo "</tr>";
+                }
+                ?>
+            </tbody>
+        </table>
+
+    </div>
+    <?php include '../footer.php'; ?>
+    <!-- </div>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

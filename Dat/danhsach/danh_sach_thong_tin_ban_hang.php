@@ -80,6 +80,7 @@ $conn->close();
             </div>
             <div class="col-auto">
                 <button type="submit" class="btn btn-primary bi bi-search"> Tìm Kiếm</button>
+                <a href="../them/them_thong_tin_ban_hang.php" class="btn btn-primary bi bi-plus-circle"> Thêm Thông Tin Bán Hàng Mới</a>
             </div>
         </div>
     </form>
@@ -114,7 +115,7 @@ $conn->close();
             ?>
         </tbody>
     </table>
-    <a href="../them/them_thong_tin_ban_hang.php" class="btn btn-primary bi bi-plus-circle mb-3"> Thêm Thông Tin Bán Hàng Mới</a>
+    
 
     <!-- Pagination Links -->
     <nav>

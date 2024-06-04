@@ -61,6 +61,7 @@ $conn->close();
             </div>
             <div class="col-auto">
                 <button type="submit" class="btn btn-primary bi bi-search"> Tìm Kiếm</button>
+                <a href="../xuat/xuat_excel_DS_thong_tin_khach_hang.php" class="btn btn-success bi bi-file-earmark-arrow-down "> Xuất Excel</a>
             </div>
         </div>
     </form>
@@ -93,7 +94,7 @@ $conn->close();
             ?>
         </tbody>
     </table>
-    <a href="../xuat/xuat_excel_DS_thong_tin_khach_hang.php" class="btn btn-success bi bi-file-earmark-arrow-down mb-3"> Xuất Excel</a>
+   
     
     <!-- Pagination Links -->
     <nav>

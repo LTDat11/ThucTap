@@ -45,8 +45,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     if ($stmtInsert->execute()) {
-        $message = "Thêm gói cước mới thành công.";
-        header("refresh:1; url=../chitiet/chi_tiet_dich_vu.php?id=$idDichVu");
+        // $message = "Thêm gói cước mới thành công.";
+        echo "<script>alert('Thêm thành công.');</script>";
+        header("refresh:0.5; url=../chitiet/chi_tiet_dich_vu.php?id=$idDichVu");
         exit();
     } else {
         $message = "Lỗi: " . $stmtInsert->error;

@@ -32,10 +32,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 VALUES ('$TenNhanVien', '$SoDienThoai', '$DiaChi', '$ID_NhanVien')";
 
         if ($conn->query($sql) === TRUE) {
-            header("Location: ../danhsach/danh_sach_thong_tin_nhan_vien_ban_hang.php"); // Redirect đến danh sách nhân viên bán hàng
+            echo "<script>alert('Thêm thành công.');</script>";
+            header("refresh:0.5; url=../danhsach/danh_sach_thong_tin_nhan_vien_ban_hang.php");// Redirect đến danh sách nhân viên bán hàng
             exit();
         } else {
-            echo "Lỗi: " . $sql . "<br>" . $conn->error;
+            echo "Lỗi: " . $sql . "" . $conn->error;
         }
     }
 
@@ -64,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         <div class="form-group">
             <label for="SoDienThoai">Số Điện Thoại</label>
-            <input type="text" class="form-control" id="SoDienThoai" name="SoDienThoai" required>
+            <input type="number" class="form-control" id="SoDienThoai" name="SoDienThoai" required>
         </div>
         <div class="form-group">
             <label for="DiaChi">Địa Chỉ</label>

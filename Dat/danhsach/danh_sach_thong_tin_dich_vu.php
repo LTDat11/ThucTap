@@ -35,6 +35,11 @@ $conn->close();
 <?php include '../menu.php'; ?>
 <div class="content container-fluid">
     <h2 class="mt-3">Danh Sách Thông Tin Dịch Vụ</h2><br>
+    <div class="form-row">
+        <div class="col">
+            <a href="../them/them_dich_vu.php" class="btn btn-primary bi bi-plus-circle mb-3"> Thêm Dịch Vụ</a>
+        </div>
+    </div>
     <table class="table table-hover">
         <thead class="thead-light">
             <tr>
@@ -61,7 +66,7 @@ $conn->close();
             ?>
         </tbody>
     </table>
-    <a href="../them/them_dich_vu.php" class="btn btn-primary bi bi-plus-circle mb-3"> Thêm Dịch Vụ</a>
+
 </div>
 <?php include '../footer.php'; ?>
 <!-- </div>

@@ -141,8 +141,8 @@ $conn->close();
             <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="#">
-            <img src="https://v4-alpha.getbootstrap.com/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-            <span class="menu-collapsed">Công Ty Viễn Thông</span>
+            <img src="https://upload.wikimedia.org/wikipedia/vi/thumb/6/65/VNPT_Logo.svg/304px-VNPT_Logo.svg.png?20200119073119" width="30" height="30" class="d-inline-block align-top" alt="">
+            <span class="menu-collapsed">VNPT Cần Thơ</span>
         </a>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
