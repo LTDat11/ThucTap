@@ -79,54 +79,60 @@ $conn->close();
 
 <body>
     <?php include 'menu_kh.php'; ?>
-    <div class="container">
-        <h2 class="mt-5">Sửa Thông Tin Khách Hàng</h2>
-        <?php if (isset($_SESSION['success_message'])) : ?>
-            <div class="alert alert-success">
-                <?php
-                echo $_SESSION['success_message'];
-                unset($_SESSION['success_message']);
-                ?>
-            </div>
-            <script>
-                setTimeout(function() {
-                    document.querySelector('.alert-success').style.display = 'none';
-                }, 3000);
-            </script>
-        <?php endif; ?>
+    <div class="content container-fluid mt-0">
+    <div class="card shadow-lg border-0 rounded-lg">
+        <div class="card-header bg-primary text-white text-center py-4">
+            <h2 class="mb-0"><i class="fas fa-edit"></i> Sửa Thông Tin Khách Hàng</h2>
+        </div>
+        <div class="card-body p-5">
+            <?php if (isset($_SESSION['success_message'])) : ?>
+                <div class="alert alert-success">
+                    <?php
+                    echo $_SESSION['success_message'];
+                    unset($_SESSION['success_message']);
+                    ?>
+                </div>
+                <script>
+                    setTimeout(function() {
+                        document.querySelector('.alert-success').style.display = 'none';
+                    }, 3000);
+                </script>
+            <?php endif; ?>
 
-        <?php if (isset($_SESSION['error_message'])) : ?>
-            <div class="alert alert-danger">
-                <?php
-                echo $_SESSION['error_message'];
-                unset($_SESSION['error_message']);
-                ?>
-            </div>
-            <script>
-                setTimeout(function() {
-                    document.querySelector('.alert-danger').style.display = 'none';
-                }, 3000);
-            </script>
-        <?php endif; ?>
+            <?php if (isset($_SESSION['error_message'])) : ?>
+                <div class="alert alert-danger">
+                    <?php
+                    echo $_SESSION['error_message'];
+                    unset($_SESSION['error_message']);
+                    ?>
+                </div>
+                <script>
+                    setTimeout(function() {
+                        document.querySelector('.alert-danger').style.display = 'none';
+                    }, 3000);
+                </script>
+            <?php endif; ?>
 
-        <?php if ($khachhang) : ?>
-            <form method="POST" action="">
-                <div class="form-group">
-                    <label for="Ten">Tên Khách Hàng</label>
-                    <input type="text" class="form-control" id="Ten" name="Ten" value="<?php echo htmlspecialchars($khachhang['Ten']); ?>" required>
-                </div>
-                <div class="form-group">
-                    <label for="SoDienThoai">Số Điện Thoại</label>
-                    <input type="text" class="form-control" id="SoDienThoai" name="SoDienThoai" value="<?php echo htmlspecialchars($khachhang['SoDienThoai']); ?>" required>
-                </div>
-                <div class="form-group">
-                    <label for="DiaChi">Địa Chỉ</label>
-                    <input type="text" class="form-control" id="DiaChi" name="DiaChi" value="<?php echo htmlspecialchars($khachhang['DiaChi']); ?>" required>
-                </div>
-                <button type="submit" class="btn btn-primary bi bi-floppy mr-2"> Lưu</button>
-            </form>
-        <?php else : ?>
-            <p class="text-center">Không tìm thấy thông tin khách hàng.</p>
-        <?php endif; ?>
+            <?php if ($khachhang) : ?>
+                <form method="POST" action="">
+                    <div class="form-group">
+                        <label for="Ten">Tên Khách Hàng</label>
+                        <input type="text" class="form-control" id="Ten" name="Ten" value="<?php echo htmlspecialchars($khachhang['Ten']); ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="SoDienThoai">Số Điện Thoại</label>
+                        <input type="text" class="form-control" id="SoDienThoai" name="SoDienThoai" value="<?php echo htmlspecialchars($khachhang['SoDienThoai']); ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="DiaChi">Địa Chỉ</label>
+                        <input type="text" class="form-control" id="DiaChi" name="DiaChi" value="<?php echo htmlspecialchars($khachhang['DiaChi']); ?>" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary bi bi-floppy mr-2"> Lưu</button>
+                </form>
+            <?php else : ?>
+                <p class="text-center">Không tìm thấy thông tin khách hàng.</p>
+            <?php endif; ?>
+        </div>
     </div>
-    <?php include 'footer.php'; ?>
+</div>
+<?php include 'footer.php'; ?>

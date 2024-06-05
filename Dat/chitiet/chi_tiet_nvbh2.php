@@ -68,71 +68,62 @@ $conn->close();
 
 <body> -->
 <?php include '../menu.php'; ?>
-<div class="container-fluid">
-    <h2 class="">Chi Tiết Nhân Viên Bán Hàng </h2>
-    <a href="../danhsach/danh_sach_thong_tin_nhan_vien_ban_hang.php" class="btn btn-secondary bi bi-backspace mb-3"> Quay Lại</a>
-    <div class="card mb-3">
-        <div class="card-header">
-            <h4><i class="fa-solid fa-user-tie"></i> <strong><?php echo htmlspecialchars($nhanvien['TenNhanVien']); ?></strong></h4>
+<div class="content container-fluid mt-0">
+    <div class="card shadow-lg border-0 rounded-lg">
+        <div class="card-header bg-primary text-white text-center py-4">
+            <h2 class="mb-0"><i class="fas fa-user-tie"></i> Chi Tiết Nhân Viên Bán Hàng</h2>
         </div>
-        <div class="card-body">
-            <p class="card-text"><strong>Số Điện Thoại:</strong> <?php echo htmlspecialchars($nhanvien['SoDienThoai']); ?></p>
-            <p class="card-text"><strong>Địa Chỉ:</strong> <?php echo htmlspecialchars($nhanvien['DiaChi']); ?></p>
+        <div class="card-body p-5">
+            <a href="../danhsach/danh_sach_thong_tin_nhan_vien_ban_hang.php" class="btn btn-secondary mr-2">
+                <i class="bi bi-backspace"></i> Quay Lại
+            </a>
+            <div class="card mb-3 mt-3">
+                <div class="card-header">
+                    <h4><i class="fas fa-user-tie"></i> <strong><?php echo htmlspecialchars($nhanvien['TenNhanVien']); ?></strong></h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-text"><strong>Số Điện Thoại:</strong> <?php echo htmlspecialchars($nhanvien['SoDienThoai']); ?></p>
+                    <p class="card-text"><strong>Địa Chỉ:</strong> <?php echo htmlspecialchars($nhanvien['DiaChi']); ?></p>
+                </div>
+            </div>
+            <h3 class="mt-5">Các Dịch Vụ Bán Được:</h3>
+            <table class="table table-hover table-responsive" >
+                <thead class="thead-light">
+                    <tr>
+                        <th>STT</th>
+                        <th>Ngày Đăng Ký</th>
+                        <th>Tên Khách Hàng</th>
+                        <th>Tên Dịch Vụ</th>
+                        <th>Tên Gói Dịch Vụ</th>
+                        <th>Số Lượng</th>
+                        <th>Tổng Tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $counter = 1;
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<tr>";
+                            echo "<td>" . $counter++ . "</td>";
+                            echo "<td>" . date("d/m/Y", strtotime($row['NgayDangKy'])) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['TenKhachHang']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['TenDichVu']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['SoLuong']) . "</td>";
+                            echo "<td>" . number_format($row['TongTien'], 0, ',', '.') . "</td>";
+                            echo "</tr>";
+                        }
+                    } else {
+                        echo "<tr><td colspan='6' class='text-center'>Không có dữ liệu</td></tr>";
+                    }
+                    ?>
+                </tbody>
+            </table>
         </div>
     </div>
-
-    <!-- <table class="table table-hover">
-        <thead class="thead-light">
-            <tr>
-                <th>Tên Nhân Viên</th>
-                <th>Số Điện Thoại</th>
-                <th>Địa Chỉ</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><?php echo htmlspecialchars($nhanvien['TenNhanVien']); ?></td>
-                <td><?php echo htmlspecialchars($nhanvien['SoDienThoai']); ?></td>
-                <td><?php echo htmlspecialchars($nhanvien['DiaChi']); ?></td>
-            </tr>
-        </tbody>
-    </table> -->
-    <h3 class="mt-5">Các Dịch Vụ Bán Được:</h3>
-    <table class="table table-hover">
-        <thead class="thead-light">
-            <tr>
-                <th>STT</th>
-                <th>Ngày Đăng Ký</th>
-                <th>Tên Khách Hàng</th>
-                <th>Tên Dịch Vụ</th>
-                <th>Tên Gói Dịch Vụ</th>
-                <th>Số Lượng</th>
-                <th>Tổng Tiền</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php $counter = 1;
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>" . $counter++ . "</td>";
-                    echo "<td>" . date("d/m/Y", strtotime($row['NgayDangKy'])) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['TenKhachHang']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['TenDichVu']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['SoLuong']) . "</td>";
-                    echo "<td>" . number_format($row['TongTien'], 0, ',', '.') . "</td>";
-                    echo "</tr>";
-                }
-            } else {
-                echo "<tr><td colspan='6' class='text-center'>Không có dữ liệu</td></tr>";
-            }
-            ?>
-        </tbody>
-    </table>
-
 </div>
 <?php include '../footer.php'; ?>
+
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

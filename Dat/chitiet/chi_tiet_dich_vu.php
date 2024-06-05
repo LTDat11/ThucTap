@@ -52,48 +52,63 @@ $conn->close();
 
 <body>
     <div class="container"> -->
-<?php include '../menu.php'; ?>
-<div class="content container-fluid">
-    <h2 class="">Dịch Vụ <?php echo htmlspecialchars($dichVu['TenDichVu']); ?> Hiện Có Các Gói Cước:</h2> <br>
-    <a href="../danhsach/danh_sach_thong_tin_dich_vu.php" class="btn btn-secondary bi bi-backspace"> Quay Lại</a>
-    <a href="../them/them_goi_cuoc.php?idDichVu=<?php echo $id; ?>" class="btn btn-primary bi bi-plus-circle ml-1"> Thêm Gói Cước</a>
-    <!-- <h4>Các Gói Cước Hiện Có:</h4> -->
-    <table class="table table-hover mt-3">
-        <thead class="thead-light"> 
-            <tr>
-                <th>STT</th>
-                <th>Tên Gói Dịch Vụ</th>
-                <th>Tốc Độ</th>
-                <th>Giá</th>
-                <th>Mô Tả</th>
-                <th>Tùy Chọn</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php $count = 1;
-            while ($row = $resultGoiDichVu->fetch_assoc()) {
-                echo "<tr>";
-                echo "<td>" . $count++ . "</td>";
-                echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
-                if (!empty($row['TocDo']) && $row['TocDo'] != 0) {
-                    echo "<td>" . htmlspecialchars($row['TocDo'] . " Mbps") . "</td>";
-                } else {
-                    echo "<td>0</td>";
-                }
-                echo "<td>" . number_format($row['GiaTien'], 0, ',', '.') . "</td>";
-                echo "<td>" . htmlspecialchars($row['MoTa']) . "</td>";
-                echo "<td>
-                    <a href='../sua/sua_goi_cuoc.php?id=" . $row['ID_GoiDichVu'] . "' class='btn btn-warning bi bi-pencil mb-1 mr-1'> Sửa</a>
-                    <a href='../xoa/xoa_goi_cuoc.php?id=" . $row['ID_GoiDichVu'] . "' class='btn btn-danger bi bi-trash mb-1'> Xóa</a>
-                </td>";
-                echo "</tr>";
-            }
-            ?>
-            </tbody>
-        </table>
-
+    <?php include '../menu.php'; ?>
+<div class="content container-fluid mt-0">
+    <div class="card shadow-lg border-0 rounded-lg">
+        <div class="card-header bg-primary text-white text-center py-4">
+            <h2 class="mb-0">Dịch Vụ <?php echo htmlspecialchars($dichVu['TenDichVu']); ?> Hiện Có Các Gói Cước</h2>
+        </div>
+        <div class="card-body p-5">
+            <a href="../danhsach/danh_sach_thong_tin_dich_vu.php" class="btn btn-secondary mb-4">
+                <i class="bi bi-backspace"></i> Quay Lại
+            </a>
+            <a href="../them/them_goi_cuoc.php?idDichVu=<?php echo $id; ?>" class="btn btn-primary mb-4 ml-2">
+                <i class="bi bi-plus-circle"></i> Thêm Gói Cước
+            </a>
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered table-striped mt-3">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>STT</th>
+                            <th>Tên Gói Dịch Vụ</th>
+                            <th>Tốc Độ</th>
+                            <th>Giá</th>
+                            <th>Mô Tả</th>
+                            <th>Tùy Chọn</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $count = 1;
+                        while ($row = $resultGoiDichVu->fetch_assoc()) {
+                            echo "<tr>";
+                            echo "<td>" . $count++ . "</td>";
+                            echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
+                            if (!empty($row['TocDo']) && $row['TocDo'] != 0) {
+                                echo "<td>" . htmlspecialchars($row['TocDo'] . " Mbps") . "</td>";
+                            } else {
+                                echo "<td>0</td>";
+                            }
+                            echo "<td>" . number_format($row['GiaTien'], 0, ',', '.') . "</td>";
+                            echo "<td>" . htmlspecialchars($row['MoTa']) . "</td>";
+                            echo "<td>
+                                <a href='../sua/sua_goi_cuoc.php?id=" . $row['ID_GoiDichVu'] . "' class='btn btn-warning mb-1 mr-1'>
+                                    <i class='bi bi-pencil'></i> Sửa
+                                </a>
+                                <a href='../xoa/xoa_goi_cuoc.php?id=" . $row['ID_GoiDichVu'] . "' class='btn btn-danger mb-1'>
+                                    <i class='bi bi-trash'></i> Xóa
+                                </a>
+                            </td>";
+                            echo "</tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-    <?php include '../footer.php'; ?>
+</div>
+<?php include '../footer.php'; ?>
+
     <!-- </div>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>

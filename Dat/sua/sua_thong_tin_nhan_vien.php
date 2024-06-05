@@ -80,31 +80,37 @@ $conn->close();
 </head>
 <body> -->
 <?php include '../menu.php'; ?>
-<div class="container">
-    <h2 class="">Sửa Thông Tin Nhân Viên Bán Hàng</h2>
-    <?php if ($nhanvien) : ?>
-        <form method="POST" action="">
-            <div class="form-group">
-                <label for="TenNhanVien">Tên Nhân Viên</label>
-                <input type="text" class="form-control" id="TenNhanVien" name="TenNhanVien" value="<?php echo htmlspecialchars($nhanvien['TenNhanVien']); ?>" required>
-            </div>
-            <div class="form-group">
-                <label for="SoDienThoai">Số Điện Thoại</label>
-                <input type="text" class="form-control" id="SoDienThoai" name="SoDienThoai" value="<?php echo htmlspecialchars($nhanvien['SoDienThoai']); ?>" required>
-            </div>
-            <div class="form-group">
-                <label for="DiaChi">Địa Chỉ</label>
-                <input type="text" class="form-control" id="DiaChi" name="DiaChi" value="<?php echo htmlspecialchars($nhanvien['DiaChi']); ?>" required>
-            </div>
-            <button type="submit" class="btn btn-primary bi bi-floppy mr-2"> Lưu</button>
-            <a href="../danhsach/danh_sach_thong_tin_nhan_vien_ban_hang.php" class="btn btn-secondary bi bi-backspace"> Quay Lại</a>
-        </form>
-    <?php else : ?>
-        <p class="text-center">Không tìm thấy thông tin nhân viên bán hàng.</p>
-    <?php endif; ?>
-
+<div class="content container-fluid mt-0">
+    <div class="card shadow-lg border-0 rounded-lg">
+        <div class="card-header bg-primary text-white text-center py-4">
+            <h2 class="mb-0"><i class="fas fa-user-edit"></i> Sửa Thông Tin Nhân Viên Bán Hàng</h2>
+        </div>
+        <div class="card-body p-5">
+            <?php if ($nhanvien) : ?>
+                <form method="POST" action="">
+                    <div class="form-group">
+                        <label for="TenNhanVien">Tên Nhân Viên</label>
+                        <input type="text" class="form-control" id="TenNhanVien" name="TenNhanVien" value="<?php echo htmlspecialchars($nhanvien['TenNhanVien']); ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="SoDienThoai">Số Điện Thoại</label>
+                        <input type="text" class="form-control" id="SoDienThoai" name="SoDienThoai" value="<?php echo htmlspecialchars($nhanvien['SoDienThoai']); ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="DiaChi">Địa Chỉ</label>
+                        <input type="text" class="form-control" id="DiaChi" name="DiaChi" value="<?php echo htmlspecialchars($nhanvien['DiaChi']); ?>" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Lưu</button>
+                    <a href="../danhsach/danh_sach_thong_tin_nhan_vien_ban_hang.php" class="btn btn-secondary ml-2"><i class="fas fa-arrow-left"></i> Quay Lại</a>
+                </form>
+            <?php else : ?>
+                <p class="text-center">Không tìm thấy thông tin nhân viên bán hàng.</p>
+            <?php endif; ?>
+        </div>
+    </div>
 </div>
 <?php include '../footer.php'; ?>
+
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

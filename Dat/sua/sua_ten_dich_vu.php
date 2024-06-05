@@ -83,18 +83,25 @@ $conn->close();
 
 <body> -->
 <?php include '../menu.php'; ?>
-<div class="container">
-    <h2 class="">Sửa Tên Dịch Vụ</h2>
-    <form method="post">
-        <div class="form-group">
-            <label for="tenMoi">Tên Dịch Vụ Mới</label>
-            <input type="text" class="form-control" id="tenMoi" name="tenMoi" value="<?php echo htmlspecialchars($dichVu['TenDichVu']); ?>" required>
+<div class="content container-fluid mt-0">
+    <div class="card shadow-lg border-0 rounded-lg">
+        <div class="card-header bg-primary text-white text-center py-4">
+            <h2 class="mb-0"><i class="fas fa-edit"></i> Sửa Tên Dịch Vụ</h2>
         </div>
-        <button type="submit" class="btn btn-primary bi bi-floppy mr-2"> Lưu</button>
-        <a href="../danhsach/danh_sach_thong_tin_dich_vu.php?id=<?php echo $id; ?>" class="btn btn-secondary bi bi-backspace"> Quay Lại</a>
-    </form>
+        <div class="card-body p-5">
+            <form method="post">
+                <div class="form-group">
+                    <label for="tenMoi">Tên Dịch Vụ Mới</label>
+                    <input type="text" class="form-control" id="tenMoi" name="tenMoi" value="<?php echo htmlspecialchars($dichVu['TenDichVu']); ?>" required>
+                </div>
+                <button type="submit" class="btn btn-primary bi bi-floppy mr-2"> Lưu</button>
+                <a href="../danhsach/danh_sach_thong_tin_dich_vu.php?id=<?php echo $id; ?>" class="btn btn-secondary bi bi-backspace"> Quay Lại</a>
+            </form>
+        </div>
+    </div>
 </div>
 <?php include '../footer.php'; ?>
+
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

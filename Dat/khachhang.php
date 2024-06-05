@@ -52,43 +52,48 @@ $conn->close();
 
 <body>
     <div class="container"> -->
-<?php include 'menu_kh.php'; ?>
-<div class="container">
-    <h2 class="mt-3">Danh Sách Dịch Vụ Bạn Đăng Kí</h2>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Tên Dịch Vụ</th>
-                <th>Tên Gói Dịch Vụ</th>
-                <th>Tốc Độ</th>
-                <th>Giá Tiền</th>
-                <th>Mô Tả</th>
-                <th>Ngày Đăng Kí</th>
-                <th>Số Lượng</th>
-
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>" . htmlspecialchars($row['TenDichVu']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['TocDo']) . "</td>";
-                    echo "<td>" . number_format($row['GiaTien'], 0, ',', '.') . "</td>";
-                    echo "<td>" . htmlspecialchars($row['MoTa']) . "</td>";
-                    echo "<td>" . date("d/m/Y", strtotime($row['NgayDangKy'])) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['SoLuong']) . "</td>";
-
-                    echo "</tr>";
-                }
-            } else {
-                echo "<tr><td colspan='7' class='text-center'>Không có dữ liệu</td></tr>";
-            }
-            ?>
-        </tbody>
-    </table>
-
+    <?php include 'menu_kh.php'; ?>
+<div class="content container-fluid mt-0">
+    <div class="card shadow-lg border-0 rounded-lg">
+        <div class="card-header bg-primary text-white text-center py-4">
+            <h2 class="mb-0"><i class="fas fa-list"></i> Danh Sách Dịch Vụ Bạn Đăng Kí</h2>
+        </div>
+        <div class="card-body p-5">
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Tên Dịch Vụ</th>
+                            <th>Tên Gói Dịch Vụ</th>
+                            <th>Tốc Độ</th>
+                            <th>Giá Tiền</th>
+                            <th>Mô Tả</th>
+                            <th>Ngày Đăng Kí</th>
+                            <th>Số Lượng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                echo "<tr>";
+                                echo "<td>" . htmlspecialchars($row['TenDichVu']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['TocDo']) . "</td>";
+                                echo "<td>" . number_format($row['GiaTien'], 0, ',', '.') . "</td>";
+                                echo "<td>" . htmlspecialchars($row['MoTa']) . "</td>";
+                                echo "<td>" . date("d/m/Y", strtotime($row['NgayDangKy'])) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['SoLuong']) . "</td>";
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "<tr><td colspan='7' class='text-center'>Không có dữ liệu</td></tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 <?php include 'footer.php'; ?>

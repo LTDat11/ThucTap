@@ -110,48 +110,59 @@ $result = $conn->query($sql);
 </head>
 <body>
     <div class="container"> -->
-<?php include '../menu.php'; ?>
-<div class="content container-fluid">
-    <h1>Chi Tiết Doanh Thu</h1>
-    <table class="table table-hover">
-        <thead class="thead-light">
-            <tr>
-                <th>Ngày Đăng Ký</th>
-                <th>Tên Dịch Vụ</th>
-                <th>Tên Gói Dịch Vụ</th>
-                <th>Giá Tiền</th>
-                <th>Số Lượng</th>
-                <th>Tên Nhân Viên</th>
-                <th>Tổng Tiền</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>" . htmlspecialchars($row['NgayDangKy']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['TenDichVu']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['GiaTien']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['SoLuong']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['TenNhanVien']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['TongTien']) . "</td>";
-                    echo "</tr>";
-                }
-            } else {
-                echo "<tr><td colspan='7' class='text-center'>Không có dữ liệu</td></tr>";
-            }
-            ?>
-        </tbody>
-    </table>
-    <form action="../xuat/xuat_excel_doanh_thu.php" method="post">
-        <input type="hidden" name="service" value="<?php echo htmlspecialchars($ID_DichVu); ?>">
-        <input type="hidden" name="period" value="<?php echo htmlspecialchars($period); ?>">
-        <button type="submit" class="btn btn-success bi bi-file-earmark-arrow-down"> Xuất Excel</button>
-    </form>
+    <?php include '../menu.php'; ?>
+<div class="content container-fluid mt-0">
+    <div class="card shadow-lg border-0 rounded-lg">
+        <div class="card-header bg-primary text-white text-center py-4">
+            <h2 class="mb-0"><i class="fas fa-chart-line"></i> Chi Tiết Doanh Thu</h2>
+        </div>
+        <div class="card-body p-5">
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered table-striped">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Ngày Đăng Ký</th>
+                            <th>Tên Dịch Vụ</th>
+                            <th>Tên Gói Dịch Vụ</th>
+                            <th>Giá Tiền</th>
+                            <th>Số Lượng</th>
+                            <th>Tên Nhân Viên</th>
+                            <th>Tổng Tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                echo "<tr>";
+                                echo "<td>" . htmlspecialchars($row['NgayDangKy']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['TenDichVu']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['GiaTien']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['SoLuong']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['TenNhanVien']) . "</td>";
+                                echo "<td>" . number_format($row['TongTien'], 0, ',', '.') . "</td>";
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "<tr><td colspan='7' class='text-center'>Không có dữ liệu</td></tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+            <form action="../xuat/xuat_excel_doanh_thu.php" method="post" class="mt-4">
+                <input type="hidden" name="service" value="<?php echo htmlspecialchars($ID_DichVu); ?>">
+                <input type="hidden" name="period" value="<?php echo htmlspecialchars($period); ?>">
+                <button type="submit" class="btn btn-success">
+                    <i class="fas fa-file-excel"></i> Xuất Excel
+                </button>
+            </form>
+        </div>
+    </div>
 </div>
 <?php include '../footer.php'; ?>
+
 <!-- </div>
 </body>
 

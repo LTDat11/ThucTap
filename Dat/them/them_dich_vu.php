@@ -48,18 +48,29 @@ $conn->close();
 
 <body> -->
 <?php include '../menu.php'; ?>
-<div class="container">
-    <h2 class="">Thêm Dịch Vụ Mới</h2>
-    <form action="../them/them_dich_vu.php" method="post">
-        <div class="form-group">
-            <label for="TenDichVu">Tên Dịch Vụ</label>
-            <input type="text" class="form-control" id="TenDichVu" name="TenDichVu" required>
+<div class="content container-fluid mt-0">
+    <div class="card shadow-lg border-0 rounded-lg">
+        <div class="card-header bg-primary text-white text-center py-4">
+            <h2 class="mb-0"><i class="fas fa-plus-circle"></i> Thêm Dịch Vụ Mới</h2>
         </div>
-        <button type="submit" class="btn btn-primary bi bi-floppy mr-2"> Lưu</button>
-        <a href="../danhsach/danh_sach_thong_tin_dich_vu.php" class="btn btn-secondary bi bi-backspace"> Quay Lại</a>
-    </form>
+        <div class="card-body p-5">
+            <form action="../them/them_dich_vu.php" method="post">
+                <div class="form-group">
+                    <label for="TenDichVu" class="form-label">Tên Dịch Vụ</label>
+                    <input type="text" class="form-control" id="TenDichVu" name="TenDichVu" required>
+                </div>
+                <button type="submit" class="btn btn-primary mr-2">
+                    <i class="bi bi-floppy"></i> Lưu
+                </button>
+                <a href="../danhsach/danh_sach_thong_tin_dich_vu.php" class="btn btn-secondary">
+                    <i class="bi bi-backspace"></i> Quay Lại
+                </a>
+            </form>
+        </div>
+    </div>
 </div>
 <?php include '../footer.php'; ?>
+
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

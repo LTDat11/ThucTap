@@ -89,43 +89,53 @@ $conn->close();
 ?>
 
 <?php include '../menu.php'; ?>
-<div class="container">
-    <h2 class="">Sửa Gói Cước</h2>
-    <form action="../sua/sua_goi_cuoc.php?id=<?php echo htmlspecialchars($id); ?>" method="post" enctype="multipart/form-data">
-        <div class="form-group">
-            <label for="TenGoiDichVu">Tên Gói Cước</label>
-            <input type="text" class="form-control" id="TenGoiDichVu" name="TenGoiDichVu" value="<?php echo htmlspecialchars($goiDichVu['TenGoiDichVu']); ?>" required>
+<div class="content container-fluid mt-0">
+    <div class="card shadow-lg border-0 rounded-lg">
+        <div class="card-header bg-primary text-white text-center py-4">
+            <h2 class="mb-0"><i class="fas fa-edit"></i> Sửa Gói Cước</h2>
         </div>
-        <div class="form-group">
-            <label for="ImgURL">Ảnh ban đầu</label> <br>
-            <!-- nối chuỗi cho link ảnh -->
-            <img src="<?php echo "." . htmlspecialchars($goiDichVu['ImgURL']); ?>" class="blurred" alt="Hình ảnh">
-            <br>
-            <label for="ImgURL" class="form-label">Chọn ảnh mới</label>
-            <br>
-            <input type="file" class="form-control" id="ImgURL" name="ImgURL" onchange="previewImage(this);">
-            <img id="preview" src="#" alt="Preview Image" style="display: none;">
-        </div>
-        <div class="form-group">
-            <label for="TocDo">Tốc Độ</label>
-            <input type="number" class="form-control" id="TocDo" name="TocDo" value="<?php echo htmlspecialchars($goiDichVu['TocDo']); ?>">
-        </div>
-        <div class="form-group">
-            <label for="GiaTien">Giá Tiền</label>
-            <input type="text" class="form-control" id="GiaTien" name="GiaTien" value="<?php echo number_format(htmlspecialchars($goiDichVu['GiaTien']), 0, ',', '.'); ?>" required oninput="formatCurrency(this)">
-        </div>
-        <div class="form-group">
-            <label for="MoTa">Mô Tả</label>
-            <textarea class="form-control" id="MoTa" name="MoTa" rows="3"><?php echo htmlspecialchars($goiDichVu['MoTa']); ?></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary bi bi-floppy mr-2"> Lưu</button>
-        <a href="../chitiet/chi_tiet_dich_vu.php?id=<?php echo htmlspecialchars($idDichVu); ?>" class="btn btn-secondary bi bi-backspace"> Quay Lại</a>
-    </form>
-    <?php if (!empty($message)): ?>
+        <div class="card-body p-5">
+            <form action="../sua/sua_goi_cuoc.php?id=<?php echo htmlspecialchars($id); ?>" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="TenGoiDichVu" class="form-label">Tên Gói Cước</label>
+                    <input type="text" class="form-control" id="TenGoiDichVu" name="TenGoiDichVu" value="<?php echo htmlspecialchars($goiDichVu['TenGoiDichVu']); ?>" required>
+                </div>
+                <div class="form-group">
+                    <label for="ImgURL" class="form-label">Ảnh ban đầu</label> <br>
+                    <!-- nối chuỗi cho link ảnh -->
+                    <img src="<?php echo "." . htmlspecialchars($goiDichVu['ImgURL']); ?>" class="blurred mb-3" alt="Hình ảnh">
+                    <br>
+                    <label for="ImgURL" class="form-label">Chọn ảnh mới</label>
+                    <input type="file" class="form-control" id="ImgURL" name="ImgURL" onchange="previewImage(this);">
+                    <img id="preview" src="#" alt="Preview Image" style="display: none;" class="mt-3">
+                </div>
+                <div class="form-group">
+                    <label for="TocDo" class="form-label">Tốc Độ</label>
+                    <input type="number" class="form-control" id="TocDo" name="TocDo" value="<?php echo htmlspecialchars($goiDichVu['TocDo']); ?>">
+                </div>
+                <div class="form-group">
+                    <label for="GiaTien" class="form-label">Giá Tiền</label>
+                    <input type="text" class="form-control" id="GiaTien" name="GiaTien" value="<?php echo number_format(htmlspecialchars($goiDichVu['GiaTien']), 0, ',', '.'); ?>" required oninput="formatCurrency(this)">
+                </div>
+                <div class="form-group">
+                    <label for="MoTa" class="form-label">Mô Tả</label>
+                    <textarea class="form-control" id="MoTa" name="MoTa" rows="3"><?php echo htmlspecialchars($goiDichVu['MoTa']); ?></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary mr-2">
+                    <i class="bi bi-floppy"></i> Lưu
+                </button>
+                <a href="../chitiet/chi_tiet_dich_vu.php?id=<?php echo htmlspecialchars($idDichVu); ?>" class="btn btn-secondary">
+                    <i class="bi bi-backspace"></i> Quay Lại
+                </a>
+            </form>
+            <?php if (!empty($message)): ?>
                 <div class="mt-3 alert alert-success"><?php echo htmlspecialchars($message); ?></div>
-    <?php endif; ?>
+            <?php endif; ?>
+        </div>
+    </div>
 </div>
 <?php include '../footer.php'; ?>
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

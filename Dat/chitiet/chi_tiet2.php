@@ -43,60 +43,70 @@ $conn->close();
 </head>
 <body> -->
 <?php include '../menu.php'; ?>
-<div class="container-fluid">
-    <h2 class="">Thông Tin Chi Tiết Khách Hàng</h2>
-    <a href="../danhsach/danh_sach_thong_tin_khach_hang.php" class="btn btn-secondary bi bi-backspace mb-3"> Quay Lại</a>
-    <?php if ($khachhang) : ?>
-        <div class="card mb-3">
-            <div class="card-header">
-                <h4><i class="fa-regular fa-user"></i> <strong><?php echo htmlspecialchars($khachhang['Ten']); ?></strong></h4>
-            </div>
-            <div class="card-body">
-                <p class="card-text"><strong>Số Điện Thoại:</strong> <?php echo htmlspecialchars($khachhang['SoDienThoai']); ?></p>
-                <p class="card-text"><strong>Địa Chỉ:</strong> <?php echo htmlspecialchars($khachhang['DiaChi']); ?></p>
-            </div>
+<div class="content container-fluid mt-0">
+    <div class="card shadow-lg border-0 rounded-lg">
+        <div class="card-header bg-primary text-white text-center py-4">
+            <h2 class="mb-0"><i class="fas fa-user"></i> Thông Tin Chi Tiết Khách Hàng</h2>
         </div>
+        <div class="card-body p-5">
+            <a href="../danhsach/danh_sach_thong_tin_khach_hang.php" class="btn btn-secondary mb-4">
+                <i class="bi bi-backspace"></i> Quay Lại
+            </a>
+            <?php if ($khachhang) : ?>
+                <div class="card mb-3">
+                    <div class="card-header bg-info text-white">
+                        <h4><i class="fa-regular fa-user"></i> <strong><?php echo htmlspecialchars($khachhang['Ten']); ?></strong></h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text"><strong>Số Điện Thoại:</strong> <?php echo htmlspecialchars($khachhang['SoDienThoai']); ?></p>
+                        <p class="card-text"><strong>Địa Chỉ:</strong> <?php echo htmlspecialchars($khachhang['DiaChi']); ?></p>
+                    </div>
+                </div>
 
-        <h3>Dịch Vụ Đã Đăng Ký</h3>
-        <table class="table table-hover">
-            <thead class="thead-light">
-                <tr>
-                    <th>STT</th>
-                    <th>Tên Dịch Vụ</th>
-                    <th>Tên Gói Dịch Vụ</th>
-                    <th>Giá</th>
-                    <th>Số Lượng</th>
-                    <th>Ngày Đăng Ký</th>
-                    <th>Nhân Viên Bán</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php if ($result_dichvu->num_rows > 0) : ?>
-                    <?php $counter = 1;
-                    while ($row = $result_dichvu->fetch_assoc()) : ?>
-                        <tr>
-                            <td><?php echo $counter++; ?></td>
-                            <td><?php echo htmlspecialchars($row['TenDichVu']); ?></td>
-                            <td><?php echo htmlspecialchars($row['TenGoiDichVu']); ?></td>
-                            <td><?php echo number_format($row['GiaTien'], 0, ',', '.'); ?></td>
-                            <td><?php echo htmlspecialchars($row['SoLuong']); ?></td>
-                            <td><?php echo date('d/m/Y', strtotime($row['NgayDangKy'])); ?></td>
-                            <td><?php echo htmlspecialchars($row['TenNhanVien']); ?></td>
-                        </tr>
-                    <?php endwhile; ?>
-                <?php else : ?>
-                    <tr>
-                        <td colspan="6" class="text-center">Khách hàng chưa đăng ký dịch vụ nào.</td>
-                    </tr>
-                <?php endif; ?>
-            </tbody>
-        </table>
-    <?php else : ?>
-        <p class="text-center">Không tìm thấy thông tin khách hàng.</p>
-    <?php endif; ?>
-
+                <h3>Dịch Vụ Đã Đăng Ký</h3>
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>STT</th>
+                                <th>Tên Dịch Vụ</th>
+                                <th>Tên Gói Dịch Vụ</th>
+                                <th>Giá</th>
+                                <th>Số Lượng</th>
+                                <th>Ngày Đăng Ký</th>
+                                <th>Nhân Viên Bán</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if ($result_dichvu->num_rows > 0) : ?>
+                                <?php $counter = 1;
+                                while ($row = $result_dichvu->fetch_assoc()) : ?>
+                                    <tr>
+                                        <td><?php echo $counter++; ?></td>
+                                        <td><?php echo htmlspecialchars($row['TenDichVu']); ?></td>
+                                        <td><?php echo htmlspecialchars($row['TenGoiDichVu']); ?></td>
+                                        <td><?php echo number_format($row['GiaTien'], 0, ',', '.'); ?></td>
+                                        <td><?php echo htmlspecialchars($row['SoLuong']); ?></td>
+                                        <td><?php echo date('d/m/Y', strtotime($row['NgayDangKy'])); ?></td>
+                                        <td><?php echo htmlspecialchars($row['TenNhanVien']); ?></td>
+                                    </tr>
+                                <?php endwhile; ?>
+                            <?php else : ?>
+                                <tr>
+                                    <td colspan="7" class="text-center">Khách hàng chưa đăng ký dịch vụ nào.</td>
+                                </tr>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
+                </div>
+            <?php else : ?>
+                <p class="text-center">Không tìm thấy thông tin khách hàng.</p>
+            <?php endif; ?>
+        </div>
+    </div>
 </div>
 <?php include '../footer.php'; ?>
+
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

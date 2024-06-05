@@ -86,8 +86,8 @@ if (isset($_POST['sqlChitiet']) && isset($_POST['id'])) {
 
 <body>
     <div class="container"> -->
-<?php include '../menu.php'; ?>
-<div class="content container-fluid">
+    <?php include '../menu.php'; ?>
+<div class="content container-fluid mt-0">
     <?php
     // Fetch the result from the query
     $row = $result->fetch_assoc();
@@ -95,37 +95,45 @@ if (isset($_POST['sqlChitiet']) && isset($_POST['id'])) {
     $TongSoGoiDaBan = $row['TongSoGoiDaBan'];
     ?>
 
-    <h2 class="">Chi tiết của dịch vụ <?php echo $tenDichVu; ?></h2>
-    <p>Tổng số lượng bán được của dịch vụ: <?php echo $TongSoGoiDaBan; ?></p>
-    <a href="../top10/dich_vu_dang_ky_nhieu.php" class="btn btn-secondary bi bi-backspace mb-3"> Quay Lại</a>
-    <table class="table table-hover">
-        <thead class="thead-light">
-            <tr>
-                <th>STT</th>
-                <th>Gói dịch vụ</th>
-                <th>Tổng số lượng bán được</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php $count = 1;
-            if ($result1->num_rows > 0) {
-                while ($row1 = $result1->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>" . $count++ . "</td>";
-                    echo "<td>" . htmlspecialchars($row1['TenGoiDichVu']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row1['TongSoLuongBanDuoc']) . "</td>";
-
-                    echo "</tr>";
-                }
-            } else {
-                echo "<tr><td colspan='7' class='text-center'>Không có dữ liệu</td></tr>";
-            }
-            ?>
-        </tbody>
-    </table>
-
+    <div class="card shadow-lg border-0 rounded-lg">
+        <div class="card-header bg-primary text-white text-center py-4">
+            <h2 class="mb-0"><i class="fas fa-info-circle"></i> Chi tiết của dịch vụ <?php echo htmlspecialchars($tenDichVu); ?></h2>
+        </div>
+        <div class="card-body p-5">
+            <p class="lead">Tổng số lượng bán được của dịch vụ: <strong><?php echo htmlspecialchars($TongSoGoiDaBan); ?></strong></p>
+            <a href="../top10/dich_vu_dang_ky_nhieu.php" class="btn btn-secondary bi bi-backspace mb-3"> Quay Lại</a>
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>STT</th>
+                            <th>Gói dịch vụ</th>
+                            <th>Tổng số lượng bán được</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $count = 1;
+                        if ($result1->num_rows > 0) {
+                            while ($row1 = $result1->fetch_assoc()) {
+                                echo "<tr>";
+                                echo "<td>" . $count++ . "</td>";
+                                echo "<td>" . htmlspecialchars($row1['TenGoiDichVu']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row1['TongSoLuongBanDuoc']) . "</td>";
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "<tr><td colspan='3' class='text-center'>Không có dữ liệu</td></tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 <?php include '../footer.php'; ?>
+
 <!-- </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
