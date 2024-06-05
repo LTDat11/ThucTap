@@ -24,8 +24,7 @@ if (isset($_POST['data']) && isset($_POST['h2Content'])) {
         // Đọc giá trị từ cột C và E
         $valueC = $sheet->getCell('C' . $row)->getValue();
     
-        // Thêm ',000' vào giá trị
-        $formattedValueC = $valueC . '000';
+        $formattedValueC = $valueC ;
 
         // Gán giá trị đã được định dạng lại vào các ô tương ứng
         $sheet->setCellValue('C' . $row, $formattedValueC);

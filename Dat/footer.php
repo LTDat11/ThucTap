@@ -106,39 +106,75 @@
 </script>
 <!-- excel Doanh Thu sql Chitiet-->
 <script>
+    // function exportTableToExcel() {
+    //     var table = document.getElementById("dataTable");
+    //     var rows = [];
+    //     for (var i = 0, row; row = table.rows[i]; i++) {
+    //         var cols = [];
+    //         for (var j = 0, col; col = row.cells[j]; j++) {
+    //             cols.push(col.innerText);
+    //         }
+    //         rows.push(cols);
+    //     }
+    //     var data = JSON.stringify(rows);
+
+    //     var h2Content = document.getElementById("Header").innerText;
+
+    //     var form = document.createElement("form");
+    //     form.method = "POST";
+    //     form.action = "../xuat/xuat_excel_doanh_thu.php";
+
+    //     var inputData = document.createElement("input");
+    //     inputData.type = "hidden";
+    //     inputData.name = "data";
+    //     inputData.value = data;
+
+    //     var inputH2 = document.createElement("input");
+    //     inputH2.type = "hidden";
+    //     inputH2.name = "h2Content";
+    //     inputH2.value = h2Content;
+
+    //     form.appendChild(inputData);
+    //     form.appendChild(inputH2);
+    //     document.body.appendChild(form);
+    //     form.submit();
+    // }
+
     function exportTableToExcel() {
-        var table = document.getElementById("dataTable");
-        var rows = [];
-        for (var i = 0, row; row = table.rows[i]; i++) {
-            var cols = [];
-            for (var j = 0, col; col = row.cells[j]; j++) {
-                cols.push(col.innerText);
-            }
-            rows.push(cols);
+    var table = document.getElementById("dataTable");
+    var rows = [];
+    for (var i = 0, row; row = table.rows[i]; i++) {
+        var cols = [];
+        for (var j = 0, col; col = row.cells[j]; j++) {
+            // Remove thousand separators for numbers
+            var cellText = col.innerText.replace(/\./g, '').replace(',', '.');
+            cols.push(cellText);
         }
-        var data = JSON.stringify(rows);
-
-        var h2Content = document.getElementById("Header").innerText;
-
-        var form = document.createElement("form");
-        form.method = "POST";
-        form.action = "../xuat/xuat_excel_doanh_thu.php";
-
-        var inputData = document.createElement("input");
-        inputData.type = "hidden";
-        inputData.name = "data";
-        inputData.value = data;
-
-        var inputH2 = document.createElement("input");
-        inputH2.type = "hidden";
-        inputH2.name = "h2Content";
-        inputH2.value = h2Content;
-
-        form.appendChild(inputData);
-        form.appendChild(inputH2);
-        document.body.appendChild(form);
-        form.submit();
+        rows.push(cols);
     }
+    var data = JSON.stringify(rows);
+
+    var h2Content = document.getElementById("Header").innerText;
+
+    var form = document.createElement("form");
+    form.method = "POST";
+    form.action = "../xuat/xuat_excel_doanh_thu.php";
+
+    var inputData = document.createElement("input");
+    inputData.type = "hidden";
+    inputData.name = "data";
+    inputData.value = data;
+
+    var inputH2 = document.createElement("input");
+    inputH2.type = "hidden";
+    inputH2.name = "h2Content";
+    inputH2.value = h2Content;
+
+    form.appendChild(inputData);
+    form.appendChild(inputH2);
+    document.body.appendChild(form);
+    form.submit();
+}
 </script>
 
 <!-- excel Top 10 nvbh và sql Chitiet-->
