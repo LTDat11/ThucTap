@@ -354,16 +354,16 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
 
         <div class="form-group">
             <button type="submit" class="btn btn-primary bi bi-funnel"> Lọc</button>
-            <?php
-            if (isset($result1) && $result1->num_rows > 0) {
-                // echo "<a href=\"xuat_excel_doanh_thu.php\" class=\"btn btn-success\">Xuất Excel</a>";
-                echo "<button onclick=\"exportTableToExcel()\" class=\"btn btn-success bi bi-file-earmark-arrow-down\"> Xuất Excel</button>";
-            }
-            ?>
         </div>
         <!-- </form> -->
         <!-- </div> -->
     </form>
+    <?php
+    if (isset($result1) && $result1->num_rows > 0) {
+        // echo "<a href=\"xuat_excel_doanh_thu.php\" class=\"btn btn-success\">Xuất Excel</a>";
+        echo "<button onclick=\"exportTableToExcel()\" class=\"btn btn-success bi bi-file-earmark-arrow-down\"> Xuất Excel</button>";
+    }
+    ?>
 </div>
 
 <div class="content container-fluid">

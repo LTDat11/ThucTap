@@ -233,15 +233,15 @@ $conn->close();
 
             <div class="form-group">
                 <button type="submit" class="btn btn-primary bi bi-funnel"> Lọc</button>
-                <?php
-                if (isset($result) && $result->num_rows > 0) {
-                    // while ($row = $result->fetch_assoc()) {
-                    // echo "<input type='hidden' id='sqlChitiet' value='" . htmlspecialchars($sqlChitiet) . "'>";
-                    echo "<button onclick=\"exportTableToExcel1()\" class=\"btn btn-success bi bi-file-earmark-arrow-down\"> Xuất Excel</button>"; 
-                }
-                ?>
             </div>
         </form>
+        <?php
+        if (isset($result) && $result->num_rows > 0) {
+            // while ($row = $result->fetch_assoc()) {
+            // echo "<input type='hidden' id='sqlChitiet' value='" . htmlspecialchars($sqlChitiet) . "'>";
+            echo "<button onclick=\"exportTableToExcel1()\" class=\"btn btn-success bi bi-file-earmark-arrow-down\"> Xuất Excel</button>";
+        }
+        ?>
     </div>
     <br>
     <table class="table table-hover" id="dataTable">

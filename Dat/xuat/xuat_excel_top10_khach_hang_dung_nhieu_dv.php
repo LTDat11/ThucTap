@@ -39,7 +39,7 @@ if (isset($_POST['data'])) {
 
     // Set Content-Type and file name for download
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-    header('Content-Disposition: attachment;filename="top10nv.xlsx"');
+    header('Content-Disposition: attachment;filename="top10_khach_hang.xlsx"');
     header('Cache-Control: max-age=0');
 
     $writer = new Xlsx($spreadsheet);
