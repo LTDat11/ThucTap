@@ -16,30 +16,26 @@ if (isset($_POST['data']) && isset($_POST['h2Content'])) {
     $sheet->mergeCells('A1:D1');
     $sheet->getStyle('A1')->getFont()->setBold(true);
 
-    // Set headers for the columns
-    $headers = ['TenGoiDichVu', 'GiaTien', 'TongSoLuong', 'ThanhTien'];
-    $sheet->fromArray($headers, NULL, 'A2');
-
     // Set data starting from row 3
     $sheet->fromArray($data, NULL, 'A3');
 
-    // Set number format for 'TongSoLuong' and 'ThanhTien' columns
-    $sheet->getStyle('C3:C' . (count($data) + 2))
-        ->getNumberFormat()
-        ->setFormatCode('#,##0.000');
-    $sheet->getStyle('E3:E' . (count($data) + 2))
-        ->getNumberFormat()
-        ->setFormatCode('#,##0.000');
+    // Calculate the E column values as C * D
+    for ($row = 4; $row <= count($data) + 2; $row++) {
+        // Đọc giá trị từ cột C và E
+        $valueC = $sheet->getCell('C' . $row)->getValue();
+    
+        // Thêm ',000' vào giá trị
+        $formattedValueC = $valueC . '000';
+
+        // Gán giá trị đã được định dạng lại vào các ô tương ứng
+        $sheet->setCellValue('C' . $row, $formattedValueC);
+        $sheet->setCellValue('E' . $row, '=C' . $row . '*D' . $row);
+    }
 
     // Calculate total
-    $totalRow = count($data) + 3; // Data starts at row 3
+    $totalRow = count($data) + 4; // Data starts at row 3
     $sheet->setCellValue('D' . $totalRow, 'Tổng tiền:');
     $sheet->setCellValue('E' . $totalRow, '=SUM(E3:E' . ($totalRow - 1) . ')');
-
-    // Set number format for total row
-    $sheet->getStyle('E' . $totalRow)
-        ->getNumberFormat()
-        ->setFormatCode('#,##0.000');
 
     // Set headers to be bold
     $headerStyle = [
@@ -47,7 +43,7 @@ if (isset($_POST['data']) && isset($_POST['h2Content'])) {
             'bold' => true,
         ],
     ];
-    $sheet->getStyle('A2:D2')->applyFromArray($headerStyle);
+    $sheet->getStyle('A2:E2')->applyFromArray($headerStyle);
     $sheet->getStyle('D' . $totalRow . ':E' . $totalRow)->applyFromArray($headerStyle);
 
     // Set Content-Type and file name for download
