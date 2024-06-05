@@ -52,96 +52,103 @@ $conn->close();
 <body>
 <div class="container"> -->
 <?php include '../menu.php'; ?>
-<div class="content container-fluid">
-    <h2 class="">Danh Sách Thông Tin Nhân Viên Bán Hàng</h2> <br>
-    <form action="" method="GET" class="mb-3">
-        <div class="form-row">
-            <div class="col">
-                <input type="text" class="form-control" placeholder="Tìm kiếm..." name="search_query" value="<?php echo htmlspecialchars($search_query); ?>">
-            </div>
-            <div class="col-auto">
-                <button type="submit" class="btn btn-primary bi bi-search"> Tìm Kiếm</button>
-                <a href="../them/them_nhan_vien_ban_hang.php" class="btn btn-primary bi bi-person-add"> Thêm Nhân Viên Bán Hàng Mới</a>
-            </div>
+<div class="content container-fluid mt-0">
+    <div class="card shadow-lg border-0 rounded-lg">
+        <div class="card-header bg-primary text-white text-center py-4">
+            <h2 class="mb-0"><i class="fas fa-user-friends"></i> Danh Sách Thông Tin Nhân Viên Bán Hàng</h2>
         </div>
-    </form>
-    <table class="table table-hover">
-        <thead class="thead-light">
-            <tr>
-                <th>Tên Nhân Viên</th>
-                <th>Số Điện Thoại</th>
-                <th>Địa Chỉ</th>
-                <th>Lựa Chọn</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>" . htmlspecialchars($row['TenNhanVien']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['SoDienThoai']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['DiaChi']) . "</td>";
-                    echo "<td>
-                        <a href='../chitiet/chi_tiet_nvbh2.php?id=" . $row['ID_TTNVBH'] . "' class='btn btn-info bi bi-info-circle'> Xem Chi Tiết</a>
-                        <a href='../sua/sua_thong_tin_nhan_vien.php?id=" . $row['ID_TTNVBH'] . "' class='btn btn-warning bi bi-pencil ml-2 mr-2'> Sửa</a>
-                        <a href='#' onclick='confirmDelete_ttnv(" . $row['ID_TTNVBH'] . ")' class='btn btn-danger bi bi-trash'> Xóa</a>
-                      </td>";
-                    echo "</tr>";
-                }
-            } else {
-                echo "<tr><td colspan='4' class='text-center'>Không có dữ liệu</td></tr>";
-            }
-            ?>
-        </tbody>
-    </table>
-    
+        <div class="card-body p-5">
+            <form action="" method="GET" class="mb-4">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Tìm kiếm..." name="search_query" value="<?php echo htmlspecialchars($search_query); ?>">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-search"></i> Tìm Kiếm
+                        </button>
+                        <a href="../them/them_nhan_vien_ban_hang.php" class="btn btn-primary ml-2" >
+                            <i class="bi bi-person-plus"></i> Thêm Nhân Viên Bán Hàng Mới
+                        </a>
+                    </div>
+                </div>
+            </form>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Tên Nhân Viên</th>
+                            <th>Số Điện Thoại</th>
+                            <th>Địa Chỉ</th>
+                            <th>Lựa Chọn</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                echo "<tr>";
+                                echo "<td>" . htmlspecialchars($row['TenNhanVien']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['SoDienThoai']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['DiaChi']) . "</td>";
+                                echo "<td>
+                                        <a href='../chitiet/chi_tiet_nvbh2.php?id=" . $row['ID_TTNVBH'] . "' class='btn btn-info bi bi-info-circle'> Xem Chi Tiết</a>
+                                        <a href='../sua/sua_thong_tin_nhan_vien.php?id=" . $row['ID_TTNVBH'] . "' class='btn btn-warning bi bi-pencil ml-2 mr-2'> Sửa</a>
+                                        <a href='#' onclick='confirmDelete_ttnv(" . $row['ID_TTNVBH'] . ")' class='btn btn-danger bi bi-trash'> Xóa</a>
+                                      </td>";
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "<tr><td colspan='4' class='text-center'>Không có dữ liệu</td></tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Pagination Links -->
+            <nav>
+                <ul class="pagination justify-content-center">
+                    <?php
+                    // Define the range of pages to display
+                    $range = 2;
+                    $start = max(1, $page - $range);
+                    $end = min($total_pages, $page + $range);
 
-    <!-- Pagination Links -->
-  
-    <nav>
-        <ul class="pagination justify-content-center">
-            <?php
-            // Define the range of pages to display
-            $range = 2;
-            $start = max(1, $page - $range);
-            $end = min($total_pages, $page + $range);
+                    if ($page > 1) {
+                        echo "<li class='page-item'><a class='page-link' href='?page=" . ($page - 1) . "&search_query=" . urlencode($search_query) . "'>Trước Đó</a></li>";
+                    }
 
-            if ($page > 1) {
-                echo "<li class='page-item'><a class='page-link' href='?page=" . ($page - 1) . "&search_query=" . urlencode($search_query) . "'>Trước Đó</a></li>";
-            }
+                    if ($start > 1) {
+                        echo "<li class='page-item'><a class='page-link' href='?page=1&search_query=" . urlencode($search_query) . "'>1</a></li>";
+                        if ($start > 2) {
+                            echo "<li class='page-item'><span class='page-link'>...</span></li>";
+                        }
+                    }
 
-            if ($start > 1) {
-                echo "<li class='page-item'><a class='page-link' href='?page=1&search_query=" . urlencode($search_query) . "'>1</a></li>";
-                if ($start > 2) {
-                    echo "<li class='page-item'><span class='page-link'>...</span></li>";
-                }
-            }
+                    for ($i = $start; $i <= $end; $i++) {
+                        if ($i == $page) {
+                            echo "<li class='page-item active'><a class='page-link' href='#'>$i</a></li>";
+                        } else {
+                            echo "<li class='page-item'><a class='page-link' href='?page=$i&search_query=" . urlencode($search_query) . "'>$i</a></li>";
+                        }
+                    }
 
-            for ($i = $start; $i <= $end; $i++) {
-                if ($i == $page) {
-                    echo "<li class='page-item active'><a class='page-link' href='#'>$i</a></li>";
-                } else {
-                    echo "<li class='page-item'><a class='page-link' href='?page=$i&search_query=" . urlencode($search_query) . "'>$i</a></li>";
-                }
-            }
+                    if ($end < $total_pages) {
+                        if ($end < $total_pages - 1) {
+                            echo "<li class='page-item'><span class='page-link'>...</span></li>";
+                        }
+                        echo "<li class='page-item'><a class='page-link' href='?page=$total_pages&search_query=" . urlencode($search_query) . "'>$total_pages</a></li>";
+                    }
 
-            if ($end < $total_pages) {
-                if ($end < $total_pages - 1) {
-                    echo "<li class='page-item'><span class='page-link'>...</span></li>";
-                }
-                echo "<li class='page-item'><a class='page-link' href='?page=$total_pages&search_query=" . urlencode($search_query) . "'>$total_pages</a></li>";
-            }
-
-            if ($page < $total_pages) {
-                echo "<li class='page-item'><a class='page-link' href='?page=" . ($page + 1) . "&search_query=" . urlencode($search_query) . "'>Kế Tiếp</a></li>";
-            }
-            ?>
-        </ul>
-    </nav>
-
+                    if ($page < $total_pages) {
+                        echo "<li class='page-item'><a class='page-link' href='?page=" . ($page + 1) . "&search_query=" . urlencode($search_query) . "'>Kế Tiếp</a></li>";
+                    }
+                    ?>
+                </ul>
+            </nav>
+        </div>
+    </div>
 </div>
 <?php include '../footer.php'; ?>
+
 <!-- </div>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
