@@ -76,9 +76,9 @@ $conn->close();
                     echo "<td>" . htmlspecialchars($row['TenDichVu']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['TocDo']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['GiaTien']) . "</td>";
+                    echo "<td>" . number_format($row['GiaTien'], 0, ',', '.') . "</td>";
                     echo "<td>" . htmlspecialchars($row['MoTa']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['NgayDangKy']) . "</td>";
+                    echo "<td>" . date("d/m/Y", strtotime($row['NgayDangKy'])) . "</td>";
                     echo "<td>" . htmlspecialchars($row['SoLuong']) . "</td>";
 
                     echo "</tr>";

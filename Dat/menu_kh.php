@@ -133,6 +133,29 @@ $conn->close();
     #myBtn:hover {
         background-color: #555;
     }
+
+    .navbar-brand {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #333;
+            font-family: 'Arial', sans-serif;
+            font-size: 1.5rem; /* Tăng kích thước chữ */
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .navbar-brand img {
+            margin-right: 10px; /* Khoảng cách giữa logo và chữ */
+        }
+
+        .navbar-brand .menu-collapsed {
+            color: #fff; /* Màu chữ */
+        }
+
+        .navbar-brand:hover .menu-collapsed {
+            color: blue; /* Màu chữ khi hover */
+        }
 </style>
 
 <body>
@@ -141,7 +164,7 @@ $conn->close();
             <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="#">
-            <img src="https://pco.vn/shoop_vn/uploads/2019/08/logo-VNPT.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            <img src="https://pco.vn/shoop_vn/uploads/2019/08/logo-VNPT.png" width="40" height="40" class="d-inline-block align-top" alt="">
             <span class="menu-collapsed">VNPT Cần Thơ</span>
         </a>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
