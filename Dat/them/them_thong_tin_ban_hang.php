@@ -88,11 +88,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if ($conn->connect_error) {
                     die("Kết nối thất bại: " . $conn->connect_error);
                 }
-                $sql = "SELECT ID_KhachHang, Ten FROM KhachHang";
+                $sql = "SELECT ID_KhachHang, Ten, SoDienThoai FROM KhachHang";
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
-                        echo "<option value='" . $row['ID_KhachHang'] . "'>" . htmlspecialchars($row['Ten']) . "</option>";
+                        echo "<option value='" . $row['ID_KhachHang'] . "'>" . htmlspecialchars($row['Ten']) . " - " . htmlspecialchars($row['SoDienThoai']) . "</option>";
                     }
                 } else {
                     echo "<option></option>";
@@ -142,11 +142,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if ($conn->connect_error) {
                     die("Kết nối thất bại: " . $conn->connect_error);
                 }
-                $sql = "SELECT ID_TTNVBH, TenNhanVien FROM TTNhanVienBanHang";
+                $sql = "SELECT ID_TTNVBH, TenNhanVien, SoDienThoai FROM TTNhanVienBanHang";
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
-                        echo "<option value='" . $row['ID_TTNVBH'] . "'>" . htmlspecialchars($row['TenNhanVien']) . "</option>";
+                        echo "<option value='" . $row['ID_TTNVBH'] . "'>" . htmlspecialchars($row['TenNhanVien']). " - " . htmlspecialchars($row['SoDienThoai']) . "</option>";
                     }
                 } else {
                     echo "<option></ption>";
