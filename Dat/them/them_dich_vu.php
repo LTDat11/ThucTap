@@ -49,7 +49,7 @@ $conn->close();
 <body> -->
 <?php include '../menu.php'; ?>
 <div class="container">
-    <h2 class="mt-5">Thêm Dịch Vụ Mới</h2>
+    <h2 class="">Thêm Dịch Vụ Mới</h2>
     <form action="../them/them_dich_vu.php" method="post">
         <div class="form-group">
             <label for="TenDichVu">Tên Dịch Vụ</label>

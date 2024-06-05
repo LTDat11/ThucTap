@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body> -->
 <?php include '../menu.php'; ?>
 <div class="container">
-    <h2 class="mt-5">Thêm Nhân Viên Bán Hàng Mới</h2>
+    <h2 class="">Thêm Nhân Viên Bán Hàng Mới</h2>
     <form method="POST" action="">
         <div class="form-group">
             <label for="TenNhanVien">Tên Nhân Viên</label>

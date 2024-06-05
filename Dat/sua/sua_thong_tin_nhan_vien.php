@@ -81,7 +81,7 @@ $conn->close();
 <body> -->
 <?php include '../menu.php'; ?>
 <div class="container">
-    <h2 class="mt-5">Sửa Thông Tin Nhân Viên Bán Hàng</h2>
+    <h2 class="">Sửa Thông Tin Nhân Viên Bán Hàng</h2>
     <?php if ($nhanvien) : ?>
         <form method="POST" action="">
             <div class="form-group">

@@ -84,7 +84,7 @@ $conn->close();
 <body> -->
 <?php include '../menu.php'; ?>
 <div class="container">
-    <h2 class="mt-5">Sửa Tên Dịch Vụ</h2>
+    <h2 class="">Sửa Tên Dịch Vụ</h2>
     <form method="post">
         <div class="form-group">
             <label for="tenMoi">Tên Dịch Vụ Mới</label>

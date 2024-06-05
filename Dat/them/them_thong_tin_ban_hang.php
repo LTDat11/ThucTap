@@ -77,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body onload="handleSuccess('<?php echo $message; ?>')">
 <?php include '../menu.php'; ?>
 <div class="container">
-    <h2 class="mt-5">Thêm Thông Tin Bán Hàng</h2>
+    <h2 class="">Thêm Thông Tin Bán Hàng</h2>
     <form action="../them/them_thong_tin_ban_hang.php" method="post">
         <div class="form-group">
             <label for="khachHang">Khách Hàng</label>

@@ -90,7 +90,7 @@ $conn->close();
 
 <?php include '../menu.php'; ?>
 <div class="container">
-    <h2 class="mt-5">Sửa Gói Cước</h2>
+    <h2 class="">Sửa Gói Cước</h2>
     <form action="../sua/sua_goi_cuoc.php?id=<?php echo htmlspecialchars($id); ?>" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="TenGoiDichVu">Tên Gói Cước</label>

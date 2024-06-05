@@ -107,7 +107,7 @@ $conn->close();
 <body>
 <?php include '../menu.php'; ?>
 <div class="container">
-    <h2 class="mt-5">Sửa Thông Tin Bán Hàng</h2>
+    <h2 class="">Sửa Thông Tin Bán Hàng</h2>
     <form action="../sua/sua_thong_tin_ban_hang.php?id=<?php echo htmlspecialchars($id); ?>" method="post">
         <div class="form-group">
             <label for="ID_TTNVBH">Nhân viên bán hàng</label>

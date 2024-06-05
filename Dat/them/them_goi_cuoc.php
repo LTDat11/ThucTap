@@ -58,7 +58,7 @@ $conn->close();
 
 <?php include '../menu.php'; ?>
 <div class="container">
-    <h2 class="mt-5">Thêm Gói Cước Mới</h2>
+    <h2 class="">Thêm Gói Cước Mới</h2>
     <form action="../them/them_goi_cuoc.php?idDichVu=<?php echo htmlspecialchars($idDichVu); ?>" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="TenGoiDichVu">Tên Gói Cước</label>
