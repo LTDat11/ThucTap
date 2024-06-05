@@ -110,7 +110,7 @@
                 echo '<li><strong>Tốc Độ</strong>: ' . $row["TocDo"] . '</li>';
               }
               echo '
-                      <li><strong>Giá Tiền</strong>: ' . $row["GiaTien"] . ' VND</li>
+                      <li><strong>Giá Tiền</strong>: ' . number_format($row['GiaTien'], 0, ',', '.') . ' VND</li>
                     </ul>
                   </div>
                   <div class="portfolio-description">

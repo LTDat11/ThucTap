@@ -406,7 +406,7 @@
                 echo '<p>Tốc độ: ' . $row["TocDo"] . '</p>';
               }
               echo '
-                <p>Giá tiền: ' . $row["GiaTien"] . ' VND</p>
+                <p>Giá tiền: ' . number_format($row['GiaTien'], 0, ',', '.') . ' VND</p>
                 <div>
                   <a href="assets/img/portfolio/app2.jpg" data-gallery="portfolioGallery" title="' . $row["TenGoiDichVu"] . '" class="portfolio-lightbox link-preview"><i class="bi bi-plus"></i></a>
                   <a href="portfolio-details.php?id=' . $row["ID_GoiDichVu"] . '" class="link-details" title="Chi Tiết"><i class="bi bi-link"></i></a>

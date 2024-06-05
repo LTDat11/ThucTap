@@ -70,7 +70,7 @@ $conn->close();
 <?php include '../menu.php'; ?>
 <div class="container-fluid">
     <h2 class="">Chi Tiết Nhân Viên Bán Hàng </h2>
-    <a href="../danhsach/danh_sach_thong_tin_nhan_vien_ban_hang.php" class="btn btn-secondary bi bi-backspace"> Quay Lại</a>
+    <a href="../danhsach/danh_sach_thong_tin_nhan_vien_ban_hang.php" class="btn btn-secondary bi bi-backspace mb-3"> Quay Lại</a>
     <div class="card mb-3">
         <div class="card-header">
             <h4><i class="fa-solid fa-user-tie"></i> <strong><?php echo htmlspecialchars($nhanvien['TenNhanVien']); ?></strong></h4>
