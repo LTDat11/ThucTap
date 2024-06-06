@@ -305,7 +305,25 @@
         <div class="row counters" data-aos="fade-up" data-aos-delay="100">
 
           <div class="col-lg-3 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
+            <?php
+            include 'connect.php';
+            // Query the database to get the number of customers
+            $sql = "SELECT COUNT(*) AS total_customers FROM khachhang";
+            $result = $conn->query($sql);
+
+            // Check if there is a result
+            if ($result->num_rows > 0) {
+              // Fetch the result as an associative array
+              $row = $result->fetch_assoc();
+              // Output the total number of customers
+              echo '<span data-purecounter-start="0" data-purecounter-end="' . $row["total_customers"] . '" data-purecounter-duration="1" class="purecounter"></span>';
+            } else {
+              echo "No customers found.";
+            }
+
+            // Close the database connection
+            $conn->close();
+            ?>
             <p>Khách Hàng</p>
           </div>
 
@@ -320,7 +338,11 @@
           </div>
 
           <div class="col-lg-3 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="42" data-purecounter-duration="1" class="purecounter"></span>
+            <!-- <span data-purecounter-start="0" data-purecounter-end="42" data-purecounter-duration="1" class="purecounter"></span> -->
+            <?php
+            $randomNumber = rand(180, 1000);
+            echo '<span data-purecounter-start="0" data-purecounter-end="' . $randomNumber . '" data-purecounter-duration="1" class="purecounter"></span>';
+            ?>
             <p>Nhân Viên Chăm Chỉ</p>
           </div>
 
@@ -345,17 +367,7 @@
               <li data-filter="*" class="filter-active">Tất Cả</li>
               <?php
               // Connect to the database
-              $servername = "localhost";
-              $username = "root";
-              $password = "";
-              $dbname = "Congtyvienthong";
-
-              $conn = new mysqli($servername, $username, $password, $dbname);
-
-              // Check connection
-              if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-              }
+              include 'connect.php';
 
               // Query the database to get the service names
               $sql = "SELECT * FROM dichvu";
@@ -426,7 +438,6 @@
 
       </div>
     </section>
-
 
     <!-- End Portfolio Section -->
 
