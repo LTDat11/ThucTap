@@ -21,8 +21,10 @@ if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
 }
 
-// Kiểm tra xem có ràng buộc khóa ngoại nào đang sử dụng dịch vụ này không
-$sqlCheck = "SELECT * FROM ThongTinBanHang WHERE ID_GoiDichVu = ?";
+// Kiểm tra xem có gói dịch vụ nào sử dụng dịch vụ này không
+$sqlCheck = "
+    SELECT * FROM GoiDichVu WHERE ID_DichVu = ?
+";
 $stmtCheck = $conn->prepare($sqlCheck);
 $stmtCheck->bind_param("i", $id);
 $stmtCheck->execute();
@@ -50,3 +52,4 @@ if ($resultCheck->num_rows > 0) {
 }
 
 $conn->close();
+?>
