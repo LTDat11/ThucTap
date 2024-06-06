@@ -244,7 +244,7 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
 
 <body>
     <div class="container"> -->
-    <?php include '../menu.php'; ?>
+<?php include '../menu.php'; ?>
 <div class="content container-fluid mt-0">
     <div class="card shadow-lg border-0 rounded-lg">
         <div class="card-header bg-primary text-white text-center py-4">
@@ -364,7 +364,7 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
             ?>
 
             <div class="table-responsive mt-4">
-                <table class="table table-hover table-bordered table-striped">
+                <table class="table table-hover table-bordered table-striped" id="dataTable">
                     <thead class="thead-dark">
                         <tr>
                             <th scope="col">STT</th>
