@@ -40,7 +40,7 @@ $conn->close();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Menu</title>
-    <link href="assets/img/vnpt.png" rel="icon">
+    <link rel="icon" type="image/x-icon" href="/ThucTap/Dat/assets/img/vnpt.png">
 </head>
 <style>
     #body-row {
@@ -168,7 +168,7 @@ $conn->close();
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="">
             <img src="https://pco.vn/shoop_vn/uploads/2019/08/logo-VNPT.png" width="40" height="40" class="d-inline-block align-top" alt="">
             <span class="menu-collapsed">VNPT Cần Thơ</span>
         </a>
