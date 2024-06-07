@@ -91,14 +91,14 @@ $conn->close();
                 </div>
             </form>
             <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead class="thead-light">
+                <table class="table table-hover table-bordered table-striped">
+                    <thead class="thead-dark">
                         <tr>
-                            <th>Tên Nhân Viên</th>
-                            <th>Tên Khách Hàng</th>
-                            <th>Tên Gói Dịch Vụ</th>
-                            <th>Ngày Bán</th>
-                            <th>Lựa Chọn</th>
+                            <th scope="col" class="text-center">Tên Nhân Viên</th>
+                            <th scope="col" class="text-center">Tên Khách Hàng</th>
+                            <th scope="col" class="text-center">Tên Gói Dịch Vụ</th>
+                            <th scope="col" class="text-center">Ngày Bán</th>
+                            <th scope="col" class="text-center">Lựa Chọn</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -111,8 +111,8 @@ $conn->close();
                                 echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
                                 echo "<td>" . date('d/m/Y', strtotime($row['NgayDangKy'])) . "</td>";
                                 echo "<td>
-                                        <a href='../sua/sua_thong_tin_ban_hang.php?id=" . $row['ID_ThongTinBanHang'] . "' class='btn btn-warning bi bi-pencil'> Sửa</a>
-                                        <a href='../xoa/xoa_thong_tin_ban_hang.php?id=" . $row['ID_ThongTinBanHang'] . "' class='btn btn-danger bi bi-trash ml-2' onclick='return confirm(\"Bạn có chắc chắn muốn xóa?\")'> Xóa</a>
+                                        <a href='../sua/sua_thong_tin_ban_hang.php?id=" . $row['ID_ThongTinBanHang'] . "' class='btn btn-warning bi bi-pencil btn-sm'> Sửa</a>
+                                        <a href='../xoa/xoa_thong_tin_ban_hang.php?id=" . $row['ID_ThongTinBanHang'] . "' class='btn btn-danger bi bi-trash ml-2 btn-sm' onclick='return confirm(\"Bạn có chắc chắn muốn xóa?\")'> Xóa</a>
                                         </td>";
                                 echo "</tr>";
                             }

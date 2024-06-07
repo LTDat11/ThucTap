@@ -63,7 +63,7 @@ $conn->close();
                     </div>
                 </div>
 
-                <h3>Dịch Vụ Đã Đăng Ký</h3>
+                <h3 class="mt-5 bg-primary text-white text-center py-4">Dịch Vụ Đã Đăng Ký</h3>
                 <div class="table-responsive">
                     <table class="table table-hover table-bordered table-striped">
                         <thead class="thead-dark">

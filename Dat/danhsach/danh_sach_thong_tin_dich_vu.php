@@ -36,7 +36,7 @@ $conn->close();
                 <table class="table table-hover table-bordered table-striped">
                     <thead class="thead-dark">
                         <tr>
-                            <th scope="col">Tên Dịch Vụ</th>
+                            <th scope="col" class="text-center">Tên Dịch Vụ</th>
                             <th scope="col" class="text-center">Tùy Chọn</th>
                         </tr>
                     </thead>

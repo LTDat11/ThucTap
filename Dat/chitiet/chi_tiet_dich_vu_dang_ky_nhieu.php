@@ -106,9 +106,9 @@ if (isset($_POST['sqlChitiet']) && isset($_POST['id'])) {
                 <table class="table table-hover table-bordered table-striped">
                     <thead class="thead-dark">
                         <tr>
-                            <th>STT</th>
-                            <th>Gói dịch vụ</th>
-                            <th>Tổng số lượng bán được</th>
+                            <th scope="col" class="text-center">STT</th>
+                            <th scope="col" class="text-center">Gói dịch vụ</th>
+                            <th scope="col" class="text-center">Tổng số lượng bán được</th>
                         </tr>
                     </thead>
                     <tbody>

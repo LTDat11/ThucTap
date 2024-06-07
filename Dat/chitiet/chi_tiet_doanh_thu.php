@@ -121,13 +121,13 @@ $result = $conn->query($sql);
                 <table class="table table-hover table-bordered table-striped">
                     <thead class="thead-light">
                         <tr>
-                            <th>Ngày Đăng Ký</th>
-                            <th>Tên Dịch Vụ</th>
-                            <th>Tên Gói Dịch Vụ</th>
-                            <th>Giá Tiền</th>
-                            <th>Số Lượng</th>
-                            <th>Tên Nhân Viên</th>
-                            <th>Tổng Tiền</th>
+                            <th scope="col" class="text-center">Ngày Đăng Ký</th>
+                            <th scope="col" class="text-center">Tên Dịch Vụ</th>
+                            <th scope="col" class="text-center">Tên Gói Dịch Vụ</th>
+                            <th scope="col" class="text-center">Giá Tiền</th>
+                            <th scope="col" class="text-center">Số Lượng</th>
+                            <th scope="col" class="text-center">Tên Nhân Viên</th>
+                            <th scope="col" class="text-center">Tổng Tiền</th>
                         </tr>
                     </thead>
                     <tbody>

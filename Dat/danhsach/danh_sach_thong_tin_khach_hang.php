@@ -76,9 +76,9 @@ $conn->close();
                 <table class="table table-hover table-bordered table-striped">
                     <thead class="thead-dark">
                         <tr>
-                            <th scope="col">Tên Khách Hàng</th>
-                            <th scope="col">Số Điện Thoại</th>
-                            <th scope="col">Địa Chỉ</th>
+                            <th scope="col" class="text-center">Tên Khách Hàng</th>
+                            <th scope="col" class="text-center">Số Điện Thoại</th>
+                            <th scope="col" class="text-center">Địa Chỉ</th>
                             <th scope="col" class="text-center">Lựa Chọn</th>
                         </tr>
                     </thead>

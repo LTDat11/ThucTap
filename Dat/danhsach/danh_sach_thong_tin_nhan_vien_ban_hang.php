@@ -72,13 +72,13 @@ $conn->close();
                 </div>
             </form>
             <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead class="thead-light">
+                <table class="table table-hover table-bordered table-striped">
+                    <thead class="thead-dark">
                         <tr>
-                            <th>Tên Nhân Viên</th>
-                            <th>Số Điện Thoại</th>
-                            <th>Địa Chỉ</th>
-                            <th>Lựa Chọn</th>
+                            <th scope="col" class="text-center">Tên Nhân Viên</th>
+                            <th scope="col" class="text-center">Số Điện Thoại</th>
+                            <th scope="col" class="text-center">Địa Chỉ</th>
+                            <th scope="col" class="text-center">Lựa Chọn</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -90,9 +90,9 @@ $conn->close();
                                 echo "<td>" . htmlspecialchars($row['SoDienThoai']) . "</td>";
                                 echo "<td>" . htmlspecialchars($row['DiaChi']) . "</td>";
                                 echo "<td>
-                                        <a href='../chitiet/chi_tiet_nvbh2.php?id=" . $row['ID_TTNVBH'] . "' class='btn btn-info bi bi-info-circle'> Xem Chi Tiết</a>
-                                        <a href='../sua/sua_thong_tin_nhan_vien.php?id=" . $row['ID_TTNVBH'] . "' class='btn btn-warning bi bi-pencil ml-2 mr-2'> Sửa</a>
-                                        <a href='#' onclick='confirmDelete_ttnv(" . $row['ID_TTNVBH'] . ")' class='btn btn-danger bi bi-trash'> Xóa</a>
+                                        <a href='../chitiet/chi_tiet_nvbh2.php?id=" . $row['ID_TTNVBH'] . "' class='btn btn-info bi bi-info-circle btn-sm'> Xem Chi Tiết</a>
+                                        <a href='../sua/sua_thong_tin_nhan_vien.php?id=" . $row['ID_TTNVBH'] . "' class='btn btn-warning bi bi-pencil ml-2 mr-2 btn-sm'> Sửa</a>
+                                        <a href='#' onclick='confirmDelete_ttnv(" . $row['ID_TTNVBH'] . ")' class='btn btn-danger bi bi-trash btn-sm'> Xóa</a>
                                       </td>";
                                 echo "</tr>";
                             }

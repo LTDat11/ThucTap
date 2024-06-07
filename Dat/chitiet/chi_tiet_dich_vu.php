@@ -69,12 +69,12 @@ $conn->close();
                 <table class="table table-hover table-bordered table-striped mt-3">
                     <thead class="thead-dark">
                         <tr>
-                            <th>STT</th>
-                            <th>Tên Gói Dịch Vụ</th>
-                            <th>Tốc Độ</th>
-                            <th>Giá</th>
-                            <th>Mô Tả</th>
-                            <th>Tùy Chọn</th>
+                            <th scope="col" class="text-center">STT</th>
+                            <th scope="col" class="text-center">Tên Gói Dịch Vụ</th>
+                            <th scope="col" class="text-center">Tốc Độ</th>
+                            <th scope="col" class="text-center">Giá</th>
+                            <th scope="col" class="text-center">Mô Tả</th>
+                            <th scope="col" class="text-center">Tùy Chọn</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -91,10 +91,10 @@ $conn->close();
                             echo "<td>" . number_format($row['GiaTien'], 0, ',', '.') . "</td>";
                             echo "<td>" . htmlspecialchars($row['MoTa']) . "</td>";
                             echo "<td>
-                                <a href='../sua/sua_goi_cuoc.php?id=" . $row['ID_GoiDichVu'] . "' class='btn btn-warning mb-1 mr-1'>
+                                <a href='../sua/sua_goi_cuoc.php?id=" . $row['ID_GoiDichVu'] . "' class='btn btn-warning mb-1 mr-1 btn-sm'>
                                     <i class='bi bi-pencil'></i> Sửa
                                 </a>
-                                <a href='../xoa/xoa_goi_cuoc.php?id=" . $row['ID_GoiDichVu'] . "' class='btn btn-danger mb-1'>
+                                <a href='../xoa/xoa_goi_cuoc.php?id=" . $row['ID_GoiDichVu'] . "' class='btn btn-danger mb-1 btn-sm'>
                                     <i class='bi bi-trash'></i> Xóa
                                 </a>
                             </td>";

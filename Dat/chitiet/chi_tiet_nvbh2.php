@@ -78,7 +78,7 @@ $conn->close();
                 <i class="bi bi-backspace"></i> Quay Lại
             </a>
             <div class="card mb-3 mt-3">
-                <div class="card-header">
+                <div class="card-header bg-info text-white">
                     <h4><i class="fas fa-user-tie"></i> <strong><?php echo htmlspecialchars($nhanvien['TenNhanVien']); ?></strong></h4>
                 </div>
                 <div class="card-body">
@@ -86,17 +86,17 @@ $conn->close();
                     <p class="card-text"><strong>Địa Chỉ:</strong> <?php echo htmlspecialchars($nhanvien['DiaChi']); ?></p>
                 </div>
             </div>
-            <h3 class="mt-5">Các Dịch Vụ Bán Được:</h3>
-            <table class="table table-hover table-responsive" >
-                <thead class="thead-light">
+            <h3 class="mt-5 bg-primary text-white text-center py-4">Các Dịch Vụ Bán Được:</h3>
+            <table class="table table-hover table-bordered table-striped table-responsive" >
+                <thead class="thead-dark">
                     <tr>
-                        <th>STT</th>
-                        <th>Ngày Đăng Ký</th>
-                        <th>Tên Khách Hàng</th>
-                        <th>Tên Dịch Vụ</th>
-                        <th>Tên Gói Dịch Vụ</th>
-                        <th>Số Lượng</th>
-                        <th>Tổng Tiền</th>
+                        <th scope="col" class="text-center">STT</th>
+                        <th scope="col" class="text-center">Ngày Đăng Ký</th>
+                        <th scope="col" class="text-center">Tên Khách Hàng</th>
+                        <th scope="col" class="text-center">Tên Dịch Vụ</th>
+                        <th scope="col" class="text-center">Tên Gói Dịch Vụ</th>
+                        <th scope="col" class="text-center">Số Lượng</th>
+                        <th scope="col" class="text-center">Tổng Tiền</th>
                     </tr>
                 </thead>
                 <tbody>

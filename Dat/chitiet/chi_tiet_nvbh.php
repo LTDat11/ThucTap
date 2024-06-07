@@ -70,18 +70,18 @@ if (isset($_POST['sqlChitiet']) && isset($_POST['id'])) {
                 </div>
             </div>
 
-            <h3 class="mt-5">Các Dịch Vụ Bán Được</h3>
+            <h3 class="mt-5 bg-primary text-white text-center py-4">Các Dịch Vụ Bán Được</h3>
             <div class="table-responsive">
                 <table class="table table-hover table-bordered table-striped">
                     <thead class="thead-light">
                         <tr>
-                            <th>STT</th>
-                            <th>Ngày Đăng Ký</th>
-                            <th>Tên Khách Hàng</th>
-                            <th>Tên Dịch Vụ</th>
-                            <th>Tên Gói Dịch Vụ</th>
-                            <th>Số Lượng</th>
-                            <th>Tổng Tiền</th>
+                            <th scope="col" class="text-center">STT</th>
+                            <th scope="col" class="text-center">Ngày Đăng Ký</th>
+                            <th scope="col" class="text-center">Tên Khách Hàng</th>
+                            <th scope="col" class="text-center">Tên Dịch Vụ</th>
+                            <th scope="col" class="text-center">Tên Gói Dịch Vụ</th>
+                            <th scope="col" class="text-center">Số Lượng</th>
+                            <th scope="col" class="text-center">Tổng Tiền</th>
                         </tr>
                     </thead>
                     <tbody>
