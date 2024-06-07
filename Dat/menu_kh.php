@@ -191,8 +191,12 @@ $conn->close();
                 <!-- Smaller devices menu END -->
             </ul>
         </div>
-        <span class="navbar-text">
-            Xin chào <?php echo $tenKhachHang; ?> | <a href="dang_xuat_nv.php" class="btn btn-dark bi bi-box-arrow-left"> Đăng Xuất</a>
+        <span class="navbar-text text-white font-weight-bold d-flex align-items-center ml-auto">
+            <i class="bi bi-person-circle mr-2"></i> <!-- Thêm biểu tượng người dùng -->
+            <span class="mr-3">Xin chào <?php echo $tenKhachHang; ?></span>
+            <a href="dang_xuat_nv.php" class="btn btn-light text-primary font-weight-bold border-primary rounded-pill px-3">
+                <i class="bi bi-box-arrow-left mr-1"></i> Đăng Xuất
+            </a>
         </span>
     </nav><!-- NavBar END -->
     <!-- Bootstrap row -->
