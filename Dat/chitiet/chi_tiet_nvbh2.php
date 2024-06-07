@@ -87,38 +87,41 @@ $conn->close();
                 </div>
             </div>
             <h3 class="mt-5 bg-primary text-white text-center py-4">Các Dịch Vụ Bán Được:</h3>
-            <table class="table table-hover table-bordered table-striped table-responsive" >
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col" class="text-center">STT</th>
-                        <th scope="col" class="text-center">Ngày Đăng Ký</th>
-                        <th scope="col" class="text-center">Tên Khách Hàng</th>
-                        <th scope="col" class="text-center">Tên Dịch Vụ</th>
-                        <th scope="col" class="text-center">Tên Gói Dịch Vụ</th>
-                        <th scope="col" class="text-center">Số Lượng</th>
-                        <th scope="col" class="text-center">Tổng Tiền</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php $counter = 1;
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            echo "<tr>";
-                            echo "<td>" . $counter++ . "</td>";
-                            echo "<td>" . date("d/m/Y", strtotime($row['NgayDangKy'])) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['TenKhachHang']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['TenDichVu']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['SoLuong']) . "</td>";
-                            echo "<td>" . number_format($row['TongTien'], 0, ',', '.') . "</td>";
-                            echo "</tr>";
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col" class="text-center">STT</th>
+                            <th scope="col" class="text-center">Ngày Đăng Ký</th>
+                            <th scope="col" class="text-center">Tên Khách Hàng</th>
+                            <th scope="col" class="text-center">Tên Dịch Vụ</th>
+                            <th scope="col" class="text-center">Tên Gói Dịch Vụ</th>
+                            <th scope="col" class="text-center">Số Lượng</th>
+                            <th scope="col" class="text-center">Tổng Tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $counter = 1;
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                echo "<tr>";
+                                echo "<td>" . $counter++ . "</td>";
+                                echo "<td>" . date("d/m/Y", strtotime($row['NgayDangKy'])) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['TenKhachHang']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['TenDichVu']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['SoLuong']) . "</td>";
+                                echo "<td>" . number_format($row['TongTien'], 0, ',', '.') . "</td>";
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "<tr><td colspan='6' class='text-center'>Không có dữ liệu</td></tr>";
                         }
-                    } else {
-                        echo "<tr><td colspan='6' class='text-center'>Không có dữ liệu</td></tr>";
-                    }
-                    ?>
-                </tbody>
-            </table>
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </div>
 </div>
