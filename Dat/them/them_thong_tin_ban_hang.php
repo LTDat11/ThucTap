@@ -131,7 +131,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_POST['ajax'])) {
                     </div>
 
                     <!-- kiểm tra id dịch vụ đã chọn -->
-                    <div id="selected-id"></div>
+                    <!-- <div id="selected-id"></div> -->
 
                     <div class="form-group">
                         <label for="goiDichVu">Gói Dịch Vụ</label>
