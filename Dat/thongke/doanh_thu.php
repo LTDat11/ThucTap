@@ -367,7 +367,7 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
                 <table class="table table-hover table-bordered table-striped" id="dataTable">
                     <?php
                     if (isset($message) && isset($message2)) {
-                        echo "<h2 class='mt-1' id='Header'>Kết quả doanh thu $message $message2</h2>";
+                        echo "<h2 class='mt-1 bg-primary text-white text-center py-4' id='Header'>Kết quả doanh thu $message $message2</h2>";
                     } else {
                         echo "<h2 class='mt-1'>Kết quả doanh thu</h2>";
                     }
