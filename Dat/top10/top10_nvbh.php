@@ -226,7 +226,8 @@ $conn->close();
                                 <div class="form-row">
                                     <div class="col">
                                         <label for="weekStartSelect">Ngày bắt đầu</label>
-                                        <input type="date" class="form-control" id="weekStartSelect" name="weekStartSelect">
+                                        <input type="date" class="form-control" id="weekStartSelect"
+                                            name="weekStartSelect">
                                     </div>
                                     <div class="col">
                                         <label for="weekEndSelect">Ngày kết thúc</label>
@@ -287,6 +288,8 @@ $conn->close();
                     echo '<div class="mt-1">
                         <h2 class="mt-3 mb-3">Biểu đồ TOP 10 Nhân Viên Bán Hàng Nhiều Nhất Trong ' . $message . ' </h2>
                         <canvas id="myChart_nvbh"></canvas>
+                    </div>';
+                    echo '<div class="d-flex flex-column justify-content-center align-items-center text-center">
                         <canvas id="myChart_nvbh_pie"></canvas>
                     </div>';
                 }
