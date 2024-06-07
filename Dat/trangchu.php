@@ -458,7 +458,7 @@
 
                 <div class="swiper-slide">
                   <div class="testimonial-item">
-                    <img src="assets/img/testimonial-1.jpg" class="testimonial-img" alt="">
+                    <img src="assets/img/testimonial-1.png" class="testimonial-img" alt="">
                     <h3>Ông Tô Dũng Thái</h3>
                     <h4>Bí thư Đảng ủy, Chủ tịch HĐTV
                       Tập đoàn</h4>
