@@ -142,7 +142,7 @@ $conn->close();
 <body>
     <div class="container"> -->
 <?php include '../menu.php'; ?>
-<div class="content container-fluid mt-0">
+<div class="content container container-fluid mt-0">
     <div class="card shadow-lg border-0 rounded-lg">
         <div class="card-header bg-primary text-white text-center py-4">
             <h2 class="mb-0"><i class="fas fa-users"></i> Danh Sách Top 10 Khách Hàng Sử Dụng Nhiều Dịch Vụ Nhất <?php echo "$message" ?></h2>
@@ -287,10 +287,10 @@ $conn->close();
 
             <?php
             if (isset($result) && $result->num_rows > 0) {
-                echo '<div class="mt-5">
-                        <h2 class="mt-5 mb-5">Biểu đồ Top 10 Khách Hàng Sử Dụng Nhiều Dịch Vụ Nhất ' . $message . ' </h2>
-                        <canvas id="myChart_kh_dv_max" class="mb-3"></canvas>
-                        <canvas id="myChart_kh_dv_max_pie" width="500" height="500"></canvas>
+                echo '<div class="mt-1">
+                        <h2 class="mt-3 mb-3">Biểu đồ Top 10 Khách Hàng Sử Dụng Nhiều Dịch Vụ Nhất ' . $message . ' </h2>
+                        <canvas id="myChart_kh_dv_max"></canvas>
+                        <canvas id="myChart_kh_dv_max_pie"></canvas>
                     </div>';
             }
             ?>

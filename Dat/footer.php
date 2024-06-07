@@ -11,7 +11,7 @@
         display: none;
     }
 </style>
-<script>
+<script>    
     // Hide submenus
     $('#body-row .collapse').collapse('hide');
 
@@ -615,7 +615,7 @@
                         }
                     },
                     legend: {
-                        position: 'bottom',
+                        position: 'left',
                         align: 'center',
                         labels: {
                             font: {
@@ -743,7 +743,7 @@
                         }
                     },
                     legend: {
-                        position: 'bottom',
+                        position: 'left',
                         align: 'center',
                         labels: {
                             font: {
@@ -872,7 +872,7 @@
                         }
                     },
                     legend: {
-                        position: 'bottom',
+                        position: 'left',
                         align: 'center',
                         labels: {
                             font: {

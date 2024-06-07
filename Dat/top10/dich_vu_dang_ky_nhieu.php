@@ -131,9 +131,9 @@ $conn->close();
 
 <body>
     <div class="container"> -->
-    <?php include '../menu.php'; ?>
-<div class="content container-fluid mt-0">
-    <div class="card shadow-lg border-0 rounded-lg">
+<?php include '../menu.php'; ?>
+<div class="content container container-fluid mt-0">
+    <div class="card  shadow-lg border-0 rounded-lg">
         <div class="card-header bg-primary text-white text-center py-4">
             <h2 class="mb-0"><i class="fas fa-concierge-bell"></i> Dịch Vụ Được Bán Nhiều Nhất <?php echo "$message" ?></h2>
         </div>
@@ -265,13 +265,12 @@ $conn->close();
                     </tbody>
                 </table>
             </div>
-
             <?php
             if (isset($result) && $result->num_rows > 0) {
-                echo '<div class="mt-5">
-                        <h2 class="mt-5 mb-5">Biểu đồ Dịch Vụ Được Bán Nhiều Nhất Trong ' . $message . ' </h2>
-                        <canvas id="myChart" class="mb-3"></canvas>
-                        <canvas id="myChart_pie" width="500" height="500" class=""></canvas>
+                echo '<div class="mt-1">
+                        <h2 class="mt-3 mb-3">Biểu đồ Dịch Vụ Được Bán Nhiều Nhất Trong ' . $message . ' </h2>
+                        <canvas id="myChart" class=""></canvas>
+                        <canvas id="myChart_pie" class=""></canvas>
                     </div>';
             }
             ?>
