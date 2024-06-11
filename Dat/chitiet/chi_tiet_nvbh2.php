@@ -105,8 +105,8 @@ $conn->close();
             </div>
             <h3 class="mt-5 bg-primary text-white text-center py-4">Các Dịch Vụ Bán Được:</h3>
             <div class="table-responsive">
-                <table class="table table-hover table-bordered table-striped">
-                    <thead class="thead-dark">
+                <table class="table table-hover table-bordered table-striped rounded shadow-sm">
+                    <thead class="bg-primary text-white text-center rounded-top">
                         <tr>
                             <th scope="col" class="text-center">STT</th>
                             <th scope="col" class="text-center">Ngày Đăng Ký</th>

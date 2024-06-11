@@ -60,8 +60,8 @@ $conn->close();
         </div>
         <div class="card-body p-5">
             <div class="table-responsive">
-                <table class="table table-hover table-bordered table-striped">
-                    <thead class="thead-dark">
+                <table class="table table-hover table-bordered table-striped rounded shadow-sm">
+                    <thead class="bg-primary text-white text-center rounded-top">
                         <tr>
                             <th>Tên Dịch Vụ</th>
                             <th>Tên Gói Dịch Vụ</th>

@@ -72,8 +72,8 @@ $conn->close();
                 </div>
             </form>
             <div class="table-responsive">
-                <table class="table table-hover table-bordered table-striped">
-                    <thead class="thead-custom">
+                <table class="table table-hover table-bordered table-striped rounded shadow-sm">
+                    <thead class="bg-primary text-white text-center rounded-top">
                         <tr>
                             <th scope="col" class="text-center">Tên Nhân Viên</th>
                             <th scope="col" class="text-center">Số Điện Thoại</th>

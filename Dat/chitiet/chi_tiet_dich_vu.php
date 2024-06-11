@@ -66,8 +66,8 @@ $conn->close();
                 <i class="bi bi-plus-circle"></i> Thêm Gói Cước
             </a>
             <div class="table-responsive">
-                <table class="table table-hover table-bordered table-striped mt-3">
-                    <thead class="thead-dark">
+                <table class="table table-hover table-bordered table-striped mt-3 rounded shadow-sm">
+                    <thead class="bg-primary text-white text-center rounded-top">
                         <tr>
                             <th scope="col" class="text-center">STT</th>
                             <th scope="col" class="text-center">Tên Gói Dịch Vụ</th>

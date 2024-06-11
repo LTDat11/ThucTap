@@ -236,8 +236,8 @@ $conn->close();
                 </div>
             </div>
             <div class="table-responsive">
-                <table class="table table-hover table-bordered table-striped">
-                    <thead class="thead-custom">
+                <table class="table table-hover table-bordered table-striped rounded shadow-sm">
+                    <thead class="bg-primary text-white text-center rounded-top">
                         <tr>
                             <th scope="col">Tên Dịch Vụ</th>
                             <th scope="col">Số gói dịch vụ bán được</th>
@@ -253,7 +253,7 @@ $conn->close();
                                 echo "<tr>";
                                 echo "<td>" . htmlspecialchars($row['TenDichVu']) . "</td>";
                                 echo "<td>" . htmlspecialchars($row['TongSoGoiDaBan']) . "</td>";
-                                echo '<td><a class="btn btn-info bi bi-info-circle" href="#" onclick="event.preventDefault(); exportQueryToFile3(' . $row["ID_DichVu"] . ')"> Xem Chi Tiết</a></td>';
+                                echo '<td><a class="btn btn-info bi bi-info-circle btn-sm" href="#" onclick="event.preventDefault(); exportQueryToFile3(' . $row["ID_DichVu"] . ')"> Xem Chi Tiết</a></td>';
                                 echo "</tr>";
 
                                 // Thêm dữ liệu vào mảng

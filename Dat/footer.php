@@ -502,13 +502,13 @@
             data: {
                 labels: <?php echo json_encode($labels); ?>,
                 datasets: [{
-                    label: 'Số lượng dịch vụ sử dụng',
-                    data: <?php echo json_encode($data); ?>,
-                    backgroundColor: 'rgba(141, 182, 205)', // Thay đổi màu nền
-                    borderColor: 'rgba(92, 147, 180, 1)', // Thay đổi màu viền
-                    borderWidth: 1,
-                    borderRadius: 5, // Thêm bo góc cho thanh
-                    hoverBackgroundColor: 'rgba(92, 147, 180, 0.8)' // Thay đổi màu khi di chuột qua
+                label: 'Số lượng dịch vụ sử dụng',
+                data: <?php echo json_encode($data); ?>,
+                backgroundColor: 'rgba(30, 144, 255, 0.9)', // Màu nền xanh dương đậm hơn
+                borderColor: 'rgba(0, 0, 139, 1)', // Màu viền xanh đậm hơn
+                borderWidth: 1,
+                borderRadius: 5, // Bo góc cho thanh
+                hoverBackgroundColor: 'rgba(0, 0, 139, 1)' // Màu khi di chuột qua đậm hơn
                 }]
             },
             options: {
@@ -644,13 +644,13 @@
             data: {
                 labels: <?php echo json_encode($tenNhanVien); ?>,
                 datasets: [{
-                    label: 'Tổng số gói dịch vụ bán được',
-                    data: <?php echo json_encode($soLuongDichVu); ?>,
-                    backgroundColor: 'rgba(141, 182, 205)', // Thay đổi màu nền
-                    borderColor: 'rgba(92, 147, 180, 1)', // Thay đổi màu viền
-                    borderWidth: 1,
-                    borderRadius: 5,
-                    hoverBackgroundColor: 'rgba(92, 147, 180, 0.8)' // Thay đổi màu khi di chuột qua
+                label: 'Tổng số gói dịch vụ bán được',
+                data: <?php echo json_encode($soLuongDichVu); ?>,
+                backgroundColor: 'rgba(30, 144, 255, 0.9)', // Màu nền xanh dương đậm hơn
+                borderColor: 'rgba(0, 0, 139, 1)', // Màu viền xanh đậm hơn
+                borderWidth: 1,
+                borderRadius: 5, // Bo góc cho thanh
+                hoverBackgroundColor: 'rgba(0, 0, 139, 1)' // Màu khi di chuột qua đậm hơn
                 }]
             },
             options: {
@@ -773,13 +773,13 @@
             data: {
                 labels: <?php echo json_encode($tenKhachHang); ?>,
                 datasets: [{
-                    label: 'Số lượng dịch vụ sử dụng',
-                    data: <?php echo json_encode($soLuongDichVu); ?>,
-                    backgroundColor: 'rgba(205, 160, 141)', // Thay đổi màu nền
-                    borderColor: 'rgba(180, 119, 92, 1)', // Thay đổi màu viền
-                    borderWidth: 1,
-                    borderRadius: 5,
-                    hoverBackgroundColor: 'rgba(180, 119, 92, 0.8)' // Thay đổi màu khi di chuột qua
+                label: 'Số lượng dịch vụ sử dụng',
+                data: <?php echo json_encode($soLuongDichVu); ?>,
+                backgroundColor: 'rgba(30, 144, 255, 0.9)', // Màu nền xanh dương đậm hơn
+                borderColor: 'rgba(0, 0, 139, 1)', // Màu viền xanh đậm hơn
+                borderWidth: 1,
+                borderRadius: 5, // Bo góc cho thanh
+                hoverBackgroundColor: 'rgba(0, 0, 139, 1)' // Màu khi di chuột qua đậm hơn
                 }]
             },
             options: {

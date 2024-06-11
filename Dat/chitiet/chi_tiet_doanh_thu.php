@@ -118,8 +118,8 @@ $result = $conn->query($sql);
         </div>
         <div class="card-body p-5">
             <div class="table-responsive">
-                <table class="table table-hover table-bordered table-striped">
-                    <thead class="thead-light">
+                <table class="table table-hover table-bordered table-striped rounded shadow-sm">
+                    <thead class="bg-primary text-white text-center rounded-top">
                         <tr>
                             <th scope="col" class="text-center">Ngày Đăng Ký</th>
                             <th scope="col" class="text-center">Tên Dịch Vụ</th>

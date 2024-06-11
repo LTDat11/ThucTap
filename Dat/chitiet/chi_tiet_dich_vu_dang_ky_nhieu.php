@@ -103,8 +103,8 @@ if (isset($_POST['sqlChitiet']) && isset($_POST['id'])) {
             <p class="lead">Tổng số lượng bán được của dịch vụ: <strong><?php echo htmlspecialchars($TongSoGoiDaBan); ?></strong></p>
             <a href="../top10/dich_vu_dang_ky_nhieu.php" class="btn btn-secondary bi bi-backspace mb-3"> Quay Lại</a>
             <div class="table-responsive">
-                <table class="table table-hover table-bordered table-striped">
-                    <thead class="thead-dark">
+                <table class="table table-hover table-bordered table-striped rounded shadow-sm">
+                    <thead class="bg-primary text-white text-center rounded-top">
                         <tr>
                             <th scope="col" class="text-center">STT</th>
                             <th scope="col" class="text-center">Gói dịch vụ</th>

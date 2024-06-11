@@ -364,7 +364,7 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
             ?>
 
             <div class="table-responsive mt-4">
-                <table class="table table-hover table-bordered table-striped" id="dataTable">
+                <table class="table table-hover table-bordered table-striped rounded shadow-sm" id="dataTable">
                     <?php
                     if (isset($message) && isset($message2)) {
                         echo "<h2 class='mt-1 bg-primary text-white text-center py-4' id='Header'>Kết quả doanh thu $message $message2</h2>";
@@ -372,7 +372,7 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
                         echo "<h2 class='mt-1'>Kết quả doanh thu</h2>";
                     }
                     ?>
-                    <thead class="thead-custom">
+                    <thead class="bg-primary text-white text-center rounded-top">
                         <tr>
                             <th scope="col">STT</th>
                             <th scope="col">Tên Gói Dịch Vụ</th>
