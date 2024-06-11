@@ -19,7 +19,7 @@
     $('#collapse-icon').addClass('fa-angle-double-left');
 
     // Collapse click
-    $('[data-toggle=sidebar-colapse]').click(function() {
+    $('[data-toggle=sidebar-colapse]').click(function () {
         SidebarCollapse();
     });
 
@@ -47,7 +47,7 @@
     let mybutton = document.getElementById("myBtn");
 
     // When the user scrolls down 20px from the top of the document, show the button
-    window.onscroll = function() {
+    window.onscroll = function () {
         scrollFunction()
     };
 
@@ -74,7 +74,7 @@
         const file = input.files[0];
         const reader = new FileReader();
 
-        reader.onload = function(e) {
+        reader.onload = function (e) {
             preview.src = e.target.result;
             preview.style.display = 'block';
 
@@ -100,7 +100,7 @@
 </script>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('.select2').select2();
     });
 </script>
@@ -141,40 +141,40 @@
     // }
 
     function exportTableToExcel() {
-    var table = document.getElementById("dataTable");
-    var rows = [];
-    for (var i = 0, row; row = table.rows[i]; i++) {
-        var cols = [];
-        for (var j = 0, col; col = row.cells[j]; j++) {
-            // Remove thousand separators for numbers
-            var cellText = col.innerText.replace(/\./g, '').replace(',', '.');
-            cols.push(cellText);
+        var table = document.getElementById("dataTable");
+        var rows = [];
+        for (var i = 0, row; row = table.rows[i]; i++) {
+            var cols = [];
+            for (var j = 0, col; col = row.cells[j]; j++) {
+                // Remove thousand separators for numbers
+                var cellText = col.innerText.replace(/\./g, '').replace(',', '.');
+                cols.push(cellText);
+            }
+            rows.push(cols);
         }
-        rows.push(cols);
+        var data = JSON.stringify(rows);
+
+        var h2Content = document.getElementById("Header").innerText;
+
+        var form = document.createElement("form");
+        form.method = "POST";
+        form.action = "../xuat/xuat_excel_doanh_thu.php";
+
+        var inputData = document.createElement("input");
+        inputData.type = "hidden";
+        inputData.name = "data";
+        inputData.value = data;
+
+        var inputH2 = document.createElement("input");
+        inputH2.type = "hidden";
+        inputH2.name = "h2Content";
+        inputH2.value = h2Content;
+
+        form.appendChild(inputData);
+        form.appendChild(inputH2);
+        document.body.appendChild(form);
+        form.submit();
     }
-    var data = JSON.stringify(rows);
-
-    var h2Content = document.getElementById("Header").innerText;
-
-    var form = document.createElement("form");
-    form.method = "POST";
-    form.action = "../xuat/xuat_excel_doanh_thu.php";
-
-    var inputData = document.createElement("input");
-    inputData.type = "hidden";
-    inputData.name = "data";
-    inputData.value = data;
-
-    var inputH2 = document.createElement("input");
-    inputH2.type = "hidden";
-    inputH2.name = "h2Content";
-    inputH2.value = h2Content;
-
-    form.appendChild(inputData);
-    form.appendChild(inputH2);
-    document.body.appendChild(form);
-    form.submit();
-}
 </script>
 
 <!-- excel Top 10 nvbh và sql Chitiet-->
@@ -330,7 +330,7 @@
 </script>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         const yearForm = document.getElementById('yearForm');
         const quarterForm = document.getElementById('quarterForm');
         const monthForm = document.getElementById('monthForm');
@@ -346,7 +346,7 @@
 
         // Xử lý sự kiện khi radio button thay đổi
         document.getElementsByName('time').forEach((radio) => {
-            radio.addEventListener('change', function() {
+            radio.addEventListener('change', function () {
                 hideAllForms(); // Ẩn tất cả các form trước khi hiển thị form tương ứng
 
                 if (this.value === 'year') {
@@ -364,7 +364,7 @@
         });
 
         // Đặt lại trạng thái của radio button từ Local Storage khi tải lại trang
-        document.querySelectorAll('input[type="radio"]').forEach(function(radio) {
+        document.querySelectorAll('input[type="radio"]').forEach(function (radio) {
             var storedValue = localStorage.getItem(radio.name);
             if (storedValue === radio.value) {
                 radio.checked = true;
@@ -377,8 +377,8 @@
 
 <script>
     // Lưu trạng thái của radio button vào Local Storage khi thay đổi
-    document.querySelectorAll('input[type="radio"]').forEach(function(radio) {
-        radio.addEventListener('change', function() {
+    document.querySelectorAll('input[type="radio"]').forEach(function (radio) {
+        radio.addEventListener('change', function () {
             localStorage.setItem(this.name, this.value);
         });
     });
@@ -386,15 +386,15 @@
 
 <script>
     // Lưu trạng thái của dropdown vào Local Storage khi thay đổi
-    document.querySelectorAll('select').forEach(function(select) {
-        select.addEventListener('change', function() {
+    document.querySelectorAll('select').forEach(function (select) {
+        select.addEventListener('change', function () {
             localStorage.setItem(this.id, this.value);
         });
     });
 
     // Đặt lại trạng thái của dropdown từ Local Storage khi tải lại trang
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('select').forEach(function(select) {
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('select').forEach(function (select) {
             var storedValue = localStorage.getItem(select.id);
             if (storedValue) {
                 select.value = storedValue;
@@ -402,7 +402,7 @@
         });
     });
 </script>
-    
+
 <!-- kiểm tra thống kê form -->
 <script>
     // function capNhatHienThiForm() {
@@ -472,28 +472,28 @@
         return true;
     }
 
-    document.getElementById('year').addEventListener('change', function() {
+    document.getElementById('year').addEventListener('change', function () {
         document.getElementById('quarterSelect').selectedIndex = 0;
         document.getElementById('monthSelect').selectedIndex = 0;
         document.getElementById('yearSelect').selectedIndex = 0;
         capNhatHienThiForm();
     });
 
-    document.getElementById('quarter').addEventListener('change', function() {
+    document.getElementById('quarter').addEventListener('change', function () {
         document.getElementById('quarterSelect').selectedIndex = 0;
         document.getElementById('monthSelect').selectedIndex = 0;
         document.getElementById('yearSelect').selectedIndex = 0;
         capNhatHienThiForm();
     });
 
-    document.getElementById('month').addEventListener('change', function() {
+    document.getElementById('month').addEventListener('change', function () {
         document.getElementById('quarterSelect').selectedIndex = 0;
         document.getElementById('monthSelect').selectedIndex = 0;
         document.getElementById('yearSelect').selectedIndex = 0;
         capNhatHienThiForm();
     });
 
-    document.getElementById('week').addEventListener('change', function() {
+    document.getElementById('week').addEventListener('change', function () {
         document.getElementById('quarterSelect').selectedIndex = 0;
         document.getElementById('monthSelect').selectedIndex = 0;
         document.getElementById('yearSelect').selectedIndex = 0;
@@ -501,7 +501,7 @@
     });
 
     // Đính kèm kiemTraForm vào sự kiện submit của biểu mẫu
-    document.querySelector('form').addEventListener('submit', function(e) {
+    document.querySelector('form').addEventListener('submit', function (e) {
         if (!kiemTraForm()) {
             e.preventDefault(); // Ngăn biểu mẫu gửi đi
         }
@@ -562,7 +562,7 @@
                 plugins: {
                     tooltip: {
                         callbacks: {
-                            label: function(context) {
+                            label: function (context) {
                                 let label = context.dataset.label || '';
                                 if (label) {
                                     label += ': ';
@@ -582,7 +582,7 @@
                             weight: 'bold',
                             size: 14
                         },
-                        formatter: function(value, context) {
+                        formatter: function (value, context) {
                             return value.toLocaleString();
                         }
                     },
@@ -643,7 +643,7 @@
                             weight: 'bold',
                             size: 14
                         },
-                        formatter: function(value, context) {
+                        formatter: function (value, context) {
                             return value;
                         }
                     },
@@ -678,7 +678,7 @@
             data: {
                 labels: <?php echo json_encode($tenNhanVien); ?>,
                 datasets: [{
-                    label: 'Tổng số dịch vụ bán được',
+                    label: 'Tổng số gói dịch vụ bán được',
                     data: <?php echo json_encode($soLuongDichVu); ?>,
                     backgroundColor: 'rgba(141, 182, 205, 0.6)', // Thay đổi màu nền
                     borderColor: 'rgba(92, 147, 180, 1)', // Thay đổi màu viền
@@ -697,7 +697,7 @@
                             weight: 'bold',
                             size: 14
                         },
-                        formatter: function(value, context) {
+                        formatter: function (value, context) {
                             return value;
                         }
                     },
@@ -742,7 +742,7 @@
             data: {
                 labels: <?php echo json_encode($tenNhanVien); ?>,
                 datasets: [{
-                    label: 'Tổng số dịch vụ bán được',
+                    label: 'Tổng số gói dịch vụ bán được',
                     data: <?php echo json_encode($soLuongDichVu); ?>,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.6)',
@@ -771,7 +771,7 @@
                             weight: 'bold',
                             size: 14
                         },
-                        formatter: function(value, context) {
+                        formatter: function (value, context) {
                             return value;
                         }
                     },
@@ -839,7 +839,7 @@
                     datalabels: {
                         anchor: 'center',
                         align: 'top',
-                        formatter: function(value, context) {
+                        formatter: function (value, context) {
                             return value;
                         },
                         color: 'white', // Màu chữ
@@ -900,7 +900,7 @@
                             weight: 'bold',
                             size: 14
                         },
-                        formatter: function(value, context) {
+                        formatter: function (value, context) {
                             return value;
                         }
                     },
