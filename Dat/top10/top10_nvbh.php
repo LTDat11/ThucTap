@@ -40,10 +40,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     ttbh.TenNhanVien,
     ttbh.SoDienThoai,
     ttbh.DiaChi,
-    COUNT(ttb.ID_TTNVBH) AS TongSoLuongDichVuBanDuoc
-    FROM 
+    SUM(ttb.SoLuong) AS TongSoGoiDichVuBanDuoc
+FROM 
     ThongTinBanHang AS ttb
-    JOIN 
+JOIN 
     TTNhanVienBanHang AS ttbh ON ttb.ID_TTNVBH = ttbh.ID_TTNVBH ";
     //dành cho chi tiết các khách hàng
     $sqlChitiet = "SELECT 
@@ -71,7 +71,7 @@ JOIN
         GROUP BY 
         ttbh.ID_TTNVBH, ttbh.TenNhanVien, ttbh.SoDienThoai, ttbh.DiaChi
         ORDER BY 
-        TongSoLuongDichVuBanDuoc DESC
+    TongSoGoiDichVuBanDuoc DESC
         LIMIT 10;
     ";
         $sqlChitiet .= "WHERE 
@@ -84,7 +84,7 @@ JOIN
         GROUP BY 
         ttbh.ID_TTNVBH, ttbh.TenNhanVien, ttbh.SoDienThoai, ttbh.DiaChi
         ORDER BY 
-        TongSoLuongDichVuBanDuoc DESC
+    TongSoGoiDichVuBanDuoc DESC
         LIMIT 10;
     ";
         $sqlChitiet .= "WHERE 
@@ -98,7 +98,7 @@ JOIN
         GROUP BY 
         ttbh.ID_TTNVBH, ttbh.TenNhanVien, ttbh.SoDienThoai, ttbh.DiaChi
         ORDER BY 
-        TongSoLuongDichVuBanDuoc DESC
+    TongSoGoiDichVuBanDuoc DESC
         LIMIT 10;
     ";
         $sqlChitiet .= "WHERE 
@@ -111,7 +111,7 @@ JOIN
         GROUP BY 
         ttbh.ID_TTNVBH, ttbh.TenNhanVien, ttbh.SoDienThoai, ttbh.DiaChi
         ORDER BY 
-        TongSoLuongDichVuBanDuoc DESC
+    TongSoGoiDichVuBanDuoc DESC
         LIMIT 10;
     ";
         $sqlChitiet .= "WHERE 
@@ -255,7 +255,7 @@ $conn->close();
                             <th scope="col">Tên Nhân viên bán hàng</th>
                             <th scope="col">Số Điện Thoại</th>
                             <th scope="col">Địa Chỉ</th>
-                            <th scope="col">Tổng số dịch vụ bán được</th>
+                            <th scope="col">Tổng số gói dịch vụ bán được</th>
                             <th scope="col">Tùy Chọn</th>
                         </tr>
                     </thead>
@@ -269,13 +269,13 @@ $conn->close();
                                 echo "<td>" . htmlspecialchars($row['TenNhanVien']) . "</td>";
                                 echo "<td>" . htmlspecialchars($row['SoDienThoai']) . "</td>";
                                 echo "<td>" . htmlspecialchars($row['DiaChi']) . "</td>";
-                                echo "<td>" . htmlspecialchars($row['TongSoLuongDichVuBanDuoc']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['TongSoGoiDichVuBanDuoc']) . "</td>";
                                 echo '<td><a class="btn btn-info bi bi-info-circle" href="#" onclick="event.preventDefault(); exportQueryToFile1(' . $row["ID_TTNVBH"] . ')"> Xem Chi Tiết</a></td>';
                                 echo "</tr>";
 
                                 // Thêm dữ liệu vào mảng
                                 $tenNhanVien[] = $row['TenNhanVien'];
-                                $soLuongDichVu[] = $row['TongSoLuongDichVuBanDuoc'];
+                                $soLuongDichVu[] = $row['TongSoGoiDichVuBanDuoc'];
                             }
                         } else {
                             echo "<tr><td colspan='5' class='text-center'>Không có dữ liệu</td></tr>";
