@@ -12,32 +12,50 @@ if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
 }
 
-// Kiểm tra và nhận giá trị sqlChitiet
+$records_per_page = 10; // Số lượng bản ghi trên mỗi trang
+
+// Lấy trang hiện tại từ GET, nếu không có thì mặc định là trang 1
+$current_page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$offset = ($current_page - 1) * $records_per_page;
+
+// Kiểm tra và nhận giá trị sqlChitiet và ID_TTNVBH từ session hoặc form post
 if (isset($_POST['sqlChitiet']) && isset($_POST['id'])) {
     $sqlChitiet = $_POST['sqlChitiet'];
     $ID_TTNVBH = $_POST['id'];
-    $noiString = "AND ttb.ID_TTNVBH = $ID_TTNVBH";
-    // echo "Giá trị sqlChitiet nhận được: " . htmlspecialchars($sqlChitiet);
-    // echo "Giá trị id nhân viên nhận được: " . htmlspecialchars($ID_TTNVBH);
-    // Thực hiện truy vấn với giá trị sqlChitiet ở đây
-    $sqlChitietFull = $sqlChitiet . $noiString;
-    $result = $conn->query($sqlChitietFull);
-    // Truy vấn chi tiết nhân viên bán hàng
-    $sql_nhanvien = "SELECT TenNhanVien, SoDienThoai, DiaChi FROM TTNhanVienBanHang WHERE ID_TTNVBH = $ID_TTNVBH";
-    $result_nhanvien = $conn->query($sql_nhanvien);
-
-    if ($result_nhanvien->num_rows == 0) {
-        die("Nhân viên không tồn tại.");
-    }
-    $nhanvien = $result_nhanvien->fetch_assoc();
-
-
-
-    $conn->close();
+    $_SESSION['sqlChitiet'] = $sqlChitiet; // Lưu giá trị sqlChitiet vào session
+    $_SESSION['ID_TTNVBH'] = $ID_TTNVBH; // Lưu giá trị ID_TTNVBH vào session
+} elseif (isset($_SESSION['sqlChitiet']) && isset($_SESSION['ID_TTNVBH'])) {
+    $sqlChitiet = $_SESSION['sqlChitiet'];
+    $ID_TTNVBH = $_SESSION['ID_TTNVBH'];
 } else {
-    echo "Không nhận được giá trị sqlChitiet";
+    echo "Không nhận được giá trị sqlChitiet hoặc ID_TTNVBH";
+    exit();
 }
+
+$noiString = "AND ttb.ID_TTNVBH = $ID_TTNVBH";
+
+// Truy vấn để lấy tổng số bản ghi
+$sqlCount = "SELECT COUNT(*) as total FROM (" . $sqlChitiet . " " . $noiString . ") as t";
+$resultCount = $conn->query($sqlCount);
+$total_records = $resultCount->fetch_assoc()['total'];
+$total_pages = ceil($total_records / $records_per_page);
+
+// Truy vấn để lấy dữ liệu theo trang
+$sqlChitietFull = $sqlChitiet . $noiString . " LIMIT $records_per_page OFFSET $offset";
+$result = $conn->query($sqlChitietFull);
+
+// Truy vấn chi tiết nhân viên bán hàng
+$sql_nhanvien = "SELECT TenNhanVien, SoDienThoai, DiaChi FROM TTNhanVienBanHang WHERE ID_TTNVBH = $ID_TTNVBH";
+$result_nhanvien = $conn->query($sql_nhanvien);
+
+if ($result_nhanvien->num_rows == 0) {
+    die("Nhân viên không tồn tại.");
+}
+$nhanvien = $result_nhanvien->fetch_assoc();
+
+$conn->close();
 ?>
+
 
 <!-- <!DOCTYPE html>
 <html lang="en">
@@ -85,7 +103,7 @@ if (isset($_POST['sqlChitiet']) && isset($_POST['id'])) {
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $count = 1;
+                        <?php $count = 1 + $offset;
                         if ($result->num_rows > 0) {
                             while ($row = $result->fetch_assoc()) {
                                 echo "<tr>";
@@ -105,14 +123,48 @@ if (isset($_POST['sqlChitiet']) && isset($_POST['id'])) {
                     </tbody>
                 </table>
             </div>
+            <nav>
+                <ul class="pagination justify-content-center">
+                    <?php
+                    // Define the range of pages to display
+                    $range = 2;
+                    $start = max(1, $current_page - $range);
+                    $end = min($total_pages, $current_page + $range);
+
+                    if ($current_page > 1) {
+                        echo "<li class='page-item'><a class='page-link' href='?page=" . ($current_page - 1) . "'>Trước Đó</a></li>";
+                    }
+
+                    if ($start > 1) {
+                        echo "<li class='page-item'><a class='page-link' href='?page=1'>1</a></li>";
+                        if ($start > 2) {
+                            echo "<li class='page-item'><span class='page-link'>...</span></li>";
+                        }
+                    }
+
+                    for ($i = $start; $i <= $end; $i++) {
+                        if ($i == $current_page) {
+                            echo "<li class='page-item active'><a class='page-link' href='#'>$i</a></li>";
+                        } else {
+                            echo "<li class='page-item'><a class='page-link' href='?page=$i'>$i</a></li>";
+                        }
+                    }
+
+                    if ($end < $total_pages) {
+                        if ($end < $total_pages - 1) {
+                            echo "<li class='page-item'><span class='page-link'>...</span></li>";
+                        }
+                        echo "<li class='page-item'><a class='page-link' href='?page=$total_pages'>$total_pages</a></li>";
+                    }
+
+                    if ($current_page < $total_pages) {
+                        echo "<li class='page-item'><a class='page-link' href='?page=" . ($current_page + 1) . "'>Kế Tiếp</a></li>";
+                    }
+                    ?>
+                </ul>
+            </nav>
+
         </div>
     </div>
 </div>
 <?php include '../footer.php'; ?>
-
-<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-
-</html> -->

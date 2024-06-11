@@ -29,7 +29,12 @@ if ($result_nhanvien->num_rows == 0) {
 
 $nhanvien = $result_nhanvien->fetch_assoc();
 
-// Truy vấn chi tiết nhân viên bán hàng
+// Pagination setup
+$limit = 10; // Số bản ghi hiển thị trên mỗi trang.
+$page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+$offset = ($page - 1) * $limit;
+
+// Truy vấn chi tiết các dịch vụ bán được của nhân viên
 $sql = "SELECT 
     ttb.ID_ThongTinBanHang,
     ttb.NgayDangKy,
@@ -49,9 +54,21 @@ JOIN
 JOIN 
     DichVu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
 WHERE 
-    ttb.ID_TTNVBH = $ID_TTNVBH";
+    ttb.ID_TTNVBH = $ID_TTNVBH
+ORDER BY 
+    ttb.NgayDangKy DESC
+LIMIT $limit OFFSET $offset";
 
 $result = $conn->query($sql);
+
+// Fetch total number of rows in the table
+$sql_total = "SELECT COUNT(*) AS total FROM ThongTinBanHang WHERE ID_TTNVBH = $ID_TTNVBH";
+$total_result = $conn->query($sql_total);
+$total_row = $total_result->fetch_assoc();
+$total_rows = $total_row['total'];
+
+// Tính tổng số trang
+$total_pages = ceil($total_rows / $limit);
 
 $conn->close();
 ?>
@@ -101,7 +118,7 @@ $conn->close();
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $counter = 1;
+                        <?php $counter = ($page - 1) * $limit + 1;
                         if ($result->num_rows > 0) {
                             while ($row = $result->fetch_assoc()) {
                                 echo "<tr>";
@@ -121,6 +138,48 @@ $conn->close();
                     </tbody>
                 </table>
             </div>
+            <!-- Pagination Links -->
+            <nav>
+                <ul class="pagination justify-content-center">
+                    <?php
+                    // Define the range of pages to display
+                    $range = 2;
+                    $start = max(1, $page - $range);
+                    $end = min($total_pages, $page + $range);
+
+                    if ($page > 1) {
+                        echo "<li class='page-item'><a class='page-link' href='?id=$ID_TTNVBH&page=" . ($page - 1) . "'>Trước</a></li>";
+                    }
+
+                    if ($start > 1) {
+                        echo "<li class='page-item'><a class='page-link' href='?id=$ID_TTNVBH&page=1'>1</a></li>";
+                        if ($start > 2) {
+                            echo "<li class='page-item'><span class='page-link'>...</span></li>";
+                        }
+                    }
+
+                    for ($i = $start; $i <= $end; $i++) {
+                        if ($i == $page) {
+                            echo "<li class='page-item active'><a class='page-link' href='#'>$i</a></li>";
+                        } else {
+                            echo "<li class='page-item'><a class='page-link' href='?id=$ID_TTNVBH&page=$i'>$i</a></li>";
+                        }
+                    }
+
+                    if ($end < $total_pages) {
+                        if ($end < $total_pages - 1) {
+                            echo "<li class='page-item'><span class='page-link'>...</span></li>";
+                        }
+                        echo "<li class='page-item'><a class='page-link' href='?id=$ID_TTNVBH&page=$total_pages'>$total_pages</a></li>";
+                    }
+
+                    if ($page < $total_pages) {
+                        echo "<li class='page-item'><a class='page-link' href='?id=$ID_TTNVBH&page=" . ($page + 1) . "'>Tiếp</a></li>";
+                    }
+                    ?>
+                </ul>
+            </nav>
+
 
         </div>
     </div>

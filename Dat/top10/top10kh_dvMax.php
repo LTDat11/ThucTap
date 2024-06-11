@@ -253,7 +253,7 @@ $conn->close();
             </div>
             <div class="table-responsive">
                 <table class="table table-hover table-bordered table-striped" id="dataTable">
-                    <thead class="thead-dark">
+                    <thead class="thead-custom">
                         <tr>
                             <th scope="col">Tên Khách Hàng</th>
                             <th scope="col">Số Điện Thoại</th>

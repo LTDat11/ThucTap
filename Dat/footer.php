@@ -11,7 +11,7 @@
         display: none;
     }
 </style>
-<script>    
+<script>
     // Hide submenus
     $('#body-row .collapse').collapse('hide');
 
@@ -106,42 +106,41 @@
 </script>
 <!-- excel Doanh Thu sql Chitiet-->
 <script>
-    
     function exportTableToExcel() {
-    var table = document.getElementById("dataTable");
-    var rows = [];
-    for (var i = 0, row; row = table.rows[i]; i++) {
-        var cols = [];
-        for (var j = 0, col; col = row.cells[j]; j++) {
-            // Remove thousand separators for numbers
-            var cellText = col.innerText.replace(/\./g, '').replace(',', '.');
-            cols.push(cellText);
+        var table = document.getElementById("dataTable");
+        var rows = [];
+        for (var i = 0, row; row = table.rows[i]; i++) {
+            var cols = [];
+            for (var j = 0, col; col = row.cells[j]; j++) {
+                // Remove thousand separators for numbers
+                var cellText = col.innerText.replace(/\./g, '').replace(',', '.');
+                cols.push(cellText);
+            }
+            rows.push(cols);
         }
-        rows.push(cols);
+        var data = JSON.stringify(rows);
+
+        var h2Content = document.getElementById("Header").innerText;
+
+        var form = document.createElement("form");
+        form.method = "POST";
+        form.action = "../xuat/xuat_excel_doanh_thu.php";
+
+        var inputData = document.createElement("input");
+        inputData.type = "hidden";
+        inputData.name = "data";
+        inputData.value = data;
+
+        var inputH2 = document.createElement("input");
+        inputH2.type = "hidden";
+        inputH2.name = "h2Content";
+        inputH2.value = h2Content;
+
+        form.appendChild(inputData);
+        form.appendChild(inputH2);
+        document.body.appendChild(form);
+        form.submit();
     }
-    var data = JSON.stringify(rows);
-
-    var h2Content = document.getElementById("Header").innerText;
-
-    var form = document.createElement("form");
-    form.method = "POST";
-    form.action = "../xuat/xuat_excel_doanh_thu.php";
-
-    var inputData = document.createElement("input");
-    inputData.type = "hidden";
-    inputData.name = "data";
-    inputData.value = data;
-
-    var inputH2 = document.createElement("input");
-    inputH2.type = "hidden";
-    inputH2.name = "h2Content";
-    inputH2.value = h2Content;
-
-    form.appendChild(inputData);
-    form.appendChild(inputH2);
-    document.body.appendChild(form);
-    form.submit();
-}
 </script>
 
 <!-- excel Top 10 nvbh và sql Chitiet-->
@@ -369,7 +368,7 @@
         });
     });
 </script>
-    
+
 <!-- kiểm tra thống kê form -->
 <script>
     // function capNhatHienThiForm() {
@@ -505,7 +504,7 @@
                 datasets: [{
                     label: 'Số lượng dịch vụ sử dụng',
                     data: <?php echo json_encode($data); ?>,
-                    backgroundColor: 'rgba(141, 182, 205, 0.6)', // Thay đổi màu nền
+                    backgroundColor: 'rgba(141, 182, 205)', // Thay đổi màu nền
                     borderColor: 'rgba(92, 147, 180, 1)', // Thay đổi màu viền
                     borderWidth: 1,
                     borderRadius: 5, // Thêm bo góc cho thanh
@@ -647,7 +646,7 @@
                 datasets: [{
                     label: 'Tổng số dịch vụ bán được',
                     data: <?php echo json_encode($soLuongDichVu); ?>,
-                    backgroundColor: 'rgba(141, 182, 205, 0.6)', // Thay đổi màu nền
+                    backgroundColor: 'rgba(141, 182, 205)', // Thay đổi màu nền
                     borderColor: 'rgba(92, 147, 180, 1)', // Thay đổi màu viền
                     borderWidth: 1,
                     borderRadius: 5,
@@ -776,7 +775,7 @@
                 datasets: [{
                     label: 'Số lượng dịch vụ sử dụng',
                     data: <?php echo json_encode($soLuongDichVu); ?>,
-                    backgroundColor: 'rgba(205, 160, 141, 0.6)', // Thay đổi màu nền
+                    backgroundColor: 'rgba(205, 160, 141)', // Thay đổi màu nền
                     borderColor: 'rgba(180, 119, 92, 1)', // Thay đổi màu viền
                     borderWidth: 1,
                     borderRadius: 5,

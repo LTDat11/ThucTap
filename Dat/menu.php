@@ -133,34 +133,51 @@ $conn->close();
     #myBtn:hover {
         background-color: #555;
     }
-    #myChart_nvbh_pie, #myChart_pie, #myChart_kh_dv_max_pie {
+
+    /* Chart */
+    #myChart_nvbh_pie,
+    #myChart_pie,
+    #myChart_kh_dv_max_pie {
         /* margin: 0 auto;  */
         max-width: 600px;
         max-height: 600px;
     }
 
+    /* Thread color */
+    .thead-custom {
+        background-color: #3498db;
+        /* Màu nền */
+        color: #fff;
+        /* Màu chữ */
+    }
+
+
     .navbar-brand {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            color: #333;
-            font-family: 'Arial', sans-serif;
-            font-size: 1.5rem; /* Tăng kích thước chữ */
-            font-weight: bold;
-            transition: color 0.3s;
-        }
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: #333;
+        font-family: 'Arial', sans-serif;
+        font-size: 1.5rem;
+        /* Tăng kích thước chữ */
+        font-weight: bold;
+        transition: color 0.3s;
+    }
 
-        .navbar-brand img {
-            margin-right: 10px; /* Khoảng cách giữa logo và chữ */
-        }
+    .navbar-brand img {
+        margin-right: 10px;
+        /* Khoảng cách giữa logo và chữ */
+    }
 
-        .navbar-brand .menu-collapsed {
-            color: #fff; /* Màu chữ */
-        }
+    .navbar-brand .menu-collapsed {
+        color: #fff;
+        /* Màu chữ */
+    }
 
-        .navbar-brand:hover .menu-collapsed {
-            color: blue; /* Màu chữ khi hover */
-        }
+    .navbar-brand:hover .menu-collapsed {
+        color: blue;
+        /* Màu chữ khi hover */
+    }
 </style>
 
 <body id="top">

@@ -372,7 +372,7 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
                         echo "<h2 class='mt-1'>Kết quả doanh thu</h2>";
                     }
                     ?>
-                    <thead class="thead-dark">
+                    <thead class="thead-custom">
                         <tr>
                             <th scope="col">STT</th>
                             <th scope="col">Tên Gói Dịch Vụ</th>
