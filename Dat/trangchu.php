@@ -26,6 +26,7 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
+
   <!-- =======================================================
   * Template Name: NewBiz
   * Template URL: https://bootstrapmade.com/newbiz-bootstrap-business-template/
@@ -439,6 +440,8 @@
       </div>
     </section>
 
+
+
     <!-- End Portfolio Section -->
 
 
@@ -706,20 +709,16 @@
     <!-- ======= Phần Liên Hệ ======= -->
     <section id="contact">
       <div class="container-fluid" data-aos="fade-up">
-
         <div class="section-header">
           <h3>Liên Hệ</h3>
         </div>
-
         <div class="row">
-
-          <div class="col-lg-6">
+          <div class="col-md-6 col-12">
             <div class="map mb-4 mb-lg-0">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.78690915797!2d105.78477097354128!3d10.03443547244429!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a062a1859790c1%3A0xfc202c352c71386a!2zVmnDqsyDbiB0aMO0bmcgQ8OizIBuIFRoxqEgKFZOUFQgQ2FuIFRobyk!5e0!3m2!1svi!2s!4v1716202299916!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.78690915797!2d105.78477097354128!3d10.03443547244429!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a062a1859790c1%3A0xfc202c352c71386a!2zVmnDqsyDbiB0aMO0bmcgQ8OizIBuIFRoxqEgKFZOUFQgQ2FuIFRobyk!5e0!3m2!1svi!2s!4v1716202299916!5m2!1svi!2s" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
           </div>
-
-          <div class="col-lg-6">
+          <div class="col-md-6 col-12">
             <div class="row">
               <div class="col-md-5 info">
                 <i class="bi bi-geo-alt"></i>
@@ -734,8 +733,7 @@
                 <p>0913 737 475</p>
               </div>
             </div>
-
-            <div class="form">
+            <div class="form mt-4">
               <form action="forms/contact.php" method="post" role="form" class="php-email-form">
                 <div class="row">
                   <div class="form-group col-lg-6">
@@ -756,15 +754,16 @@
                   <div class="error-message"></div>
                   <div class="sent-message">Tin nhắn của bạn đã được gửi đi. Cảm ơn bạn!</div>
                 </div>
-                <div class="text-center"><button type="submit" title="Gửi tin nhắn">Gửi tin nhắn</button></div>
+                <div class="text-center">
+                  <button type="submit" title="Gửi tin nhắn">Gửi tin nhắn</button>
+                </div>
               </form>
             </div>
           </div>
-
         </div>
-
       </div>
     </section>
+
     <!-- Kết Thúc Phần Liên Hệ -->
 
 
