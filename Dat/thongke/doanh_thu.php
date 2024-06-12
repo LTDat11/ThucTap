@@ -389,9 +389,9 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
                                 echo "<tr>";
                                 echo "<td class='text-center'>" . $count++ . "</td>";
                                 echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
-                                echo "<td>" . number_format($row['GiaTien'], 0, ',', '.') . "</td>";
+                                echo "<td class='text-center'>" . number_format($row['GiaTien'], 0, ',', '.') . "</td>";
                                 echo "<td class='text-center'>" . htmlspecialchars($row['TongSoLuong']) . "</td>";
-                                echo "<td>" . number_format($row['ThanhTien'], 0, ',', '.') . "</td>";
+                                echo "<td class='text-center'>" . number_format($row['ThanhTien'], 0, ',', '.') . "</td>";
                                 echo "</tr>";
                             }
                         } else {
