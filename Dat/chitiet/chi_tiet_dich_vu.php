@@ -81,7 +81,7 @@ $conn->close();
                         <?php $count = 1;
                         while ($row = $resultGoiDichVu->fetch_assoc()) {
                             echo "<tr>";
-                            echo "<td>" . $count++ . "</td>";
+                            echo "<td class='text-center'>" . $count++ . "</td>";
                             echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
                             if (!empty($row['TocDo']) && $row['TocDo'] != 0) {
                                 echo "<td>" . htmlspecialchars($row['TocDo'] . " Mbps") . "</td>";

@@ -122,12 +122,12 @@ $conn->close();
                         if ($result->num_rows > 0) {
                             while ($row = $result->fetch_assoc()) {
                                 echo "<tr>";
-                                echo "<td>" . $counter++ . "</td>";
+                                echo "<td class='text-center'>" . $counter++ . "</td>";
                                 echo "<td>" . date("d/m/Y", strtotime($row['NgayDangKy'])) . "</td>";
                                 echo "<td>" . htmlspecialchars($row['TenKhachHang']) . "</td>";
                                 echo "<td>" . htmlspecialchars($row['TenDichVu']) . "</td>";
                                 echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
-                                echo "<td>" . htmlspecialchars($row['SoLuong']) . "</td>";
+                                echo "<td class='text-center'>" . htmlspecialchars($row['SoLuong']) . "</td>";
                                 echo "<td>" . number_format($row['TongTien'], 0, ',', '.') . "</td>";
                                 echo "</tr>";
                             }

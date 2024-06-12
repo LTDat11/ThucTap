@@ -119,7 +119,7 @@ if (isset($_POST['sqlChitiet']) && isset($_POST['id'])) {
                                 echo "<tr>";
                                 echo "<td>" . $count++ . "</td>";
                                 echo "<td>" . htmlspecialchars($row1['TenGoiDichVu']) . "</td>";
-                                echo "<td>" . htmlspecialchars($row1['TongSoLuongBanDuoc']) . "</td>";
+                                echo "<td class='text-center'>" . htmlspecialchars($row1['TongSoLuongBanDuoc']) . "</td>";
                                 echo "</tr>";
                             }
                         } else {

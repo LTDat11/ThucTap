@@ -86,7 +86,7 @@ $conn->close();
                                         <td><?php echo htmlspecialchars($row['TenDichVu']); ?></td>
                                         <td><?php echo htmlspecialchars($row['TenGoiDichVu']); ?></td>
                                         <td><?php echo number_format($row['GiaTien'], 0, ',', '.'); ?></td>
-                                        <td><?php echo htmlspecialchars($row['SoLuong']); ?></td>
+                                        <td class="text-center"><?php echo htmlspecialchars($row['SoLuong']); ?></td>
                                         <td><?php echo date('d/m/Y', strtotime($row['NgayDangKy'])); ?></td>
                                         <td><?php echo htmlspecialchars($row['TenNhanVien']); ?></td>
                                     </tr>

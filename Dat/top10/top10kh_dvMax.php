@@ -272,7 +272,7 @@ $conn->close();
                                 echo "<td>" . htmlspecialchars($row['Ten']) . "</td>";
                                 echo "<td>" . htmlspecialchars($row['SoDienThoai']) . "</td>";
                                 echo "<td>" . htmlspecialchars($row['DiaChi']) . "</td>";
-                                echo "<td>" . htmlspecialchars($row['SoLuongLoaiDichVu']) . "</td>";
+                                echo "<td class='text-center'>" . htmlspecialchars($row['SoLuongLoaiDichVu']) . "</td>";
                                 echo '<td><a class="btn btn-info bi bi-info-circle btn-sm" href="#" onclick="event.preventDefault(); exportQueryToFile2(' . $row["ID_KhachHang"] . ')"> Xem Chi Tiết</a></td>';
                                 echo "</tr>";
 

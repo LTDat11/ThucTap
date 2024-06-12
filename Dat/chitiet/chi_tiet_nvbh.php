@@ -107,7 +107,7 @@ $conn->close();
                         if ($result->num_rows > 0) {
                             while ($row = $result->fetch_assoc()) {
                                 echo "<tr>";
-                                echo "<td>" . $count++ . "</td>";
+                                echo "<td class='text-center'>" . $count++ . "</td>";
                                 echo "<td>" . date("d/m/Y", strtotime($row['NgayDangKy'])) . "</td>";
                                 echo "<td>" . htmlspecialchars($row['TenKhachHang']) . "</td>";
                                 echo "<td>" . htmlspecialchars($row['TenDichVu']) . "</td>";

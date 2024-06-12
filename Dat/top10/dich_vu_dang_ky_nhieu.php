@@ -252,7 +252,7 @@ $conn->close();
                             while ($row = $result->fetch_assoc()) {
                                 echo "<tr>";
                                 echo "<td>" . htmlspecialchars($row['TenDichVu']) . "</td>";
-                                echo "<td>" . htmlspecialchars($row['TongSoGoiDaBan']) . "</td>";
+                                echo "<td class='text-center'>" . htmlspecialchars($row['TongSoGoiDaBan']) . "</td>";
                                 echo '<td><a class="btn btn-info bi bi-info-circle btn-sm" href="#" onclick="event.preventDefault(); exportQueryToFile3(' . $row["ID_DichVu"] . ')"> Xem Chi Tiết</a></td>';
                                 echo "</tr>";
 
