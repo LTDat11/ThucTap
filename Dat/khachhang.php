@@ -83,7 +83,7 @@ $conn->close();
                                 echo "<td>" . number_format($row['GiaTien'], 0, ',', '.') . "</td>";
                                 echo "<td>" . htmlspecialchars($row['MoTa']) . "</td>";
                                 echo "<td>" . date("d/m/Y", strtotime($row['NgayDangKy'])) . "</td>";
-                                echo "<td>" . htmlspecialchars($row['SoLuong']) . "</td>";
+                                echo "<td class='text-center'>" . htmlspecialchars($row['SoLuong']) . "</td>";
                                 echo "</tr>";
                             }
                         } else {

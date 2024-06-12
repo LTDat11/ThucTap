@@ -82,7 +82,7 @@ $conn->close();
                                 <?php $counter = 1;
                                 while ($row = $result_dichvu->fetch_assoc()) : ?>
                                     <tr>
-                                        <td><?php echo $counter++; ?></td>
+                                        <td class="text-center"><?php echo $counter++; ?></td>
                                         <td><?php echo htmlspecialchars($row['TenDichVu']); ?></td>
                                         <td><?php echo htmlspecialchars($row['TenGoiDichVu']); ?></td>
                                         <td><?php echo number_format($row['GiaTien'], 0, ',', '.'); ?></td>

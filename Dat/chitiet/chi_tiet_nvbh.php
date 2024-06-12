@@ -112,7 +112,7 @@ $conn->close();
                                 echo "<td>" . htmlspecialchars($row['TenKhachHang']) . "</td>";
                                 echo "<td>" . htmlspecialchars($row['TenDichVu']) . "</td>";
                                 echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
-                                echo "<td>" . htmlspecialchars($row['SoLuong']) . "</td>";
+                                echo "<td class='text-center'>" . htmlspecialchars($row['SoLuong']) . "</td>";
                                 echo "<td>" . number_format($row['TongTien'], 0, ',', '.') . "</td>";
                                 echo "</tr>";
                             }

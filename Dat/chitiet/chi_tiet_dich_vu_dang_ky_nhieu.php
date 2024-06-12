@@ -117,7 +117,7 @@ if (isset($_POST['sqlChitiet']) && isset($_POST['id'])) {
                         if ($result1->num_rows > 0) {
                             while ($row1 = $result1->fetch_assoc()) {
                                 echo "<tr>";
-                                echo "<td>" . $count++ . "</td>";
+                                echo "<td class='text-center'>" . $count++ . "</td>";
                                 echo "<td>" . htmlspecialchars($row1['TenGoiDichVu']) . "</td>";
                                 echo "<td class='text-center'>" . htmlspecialchars($row1['TongSoLuongBanDuoc']) . "</td>";
                                 echo "</tr>";
