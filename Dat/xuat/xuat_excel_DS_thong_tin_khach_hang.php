@@ -5,10 +5,7 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 // Kết nối cơ sở dữ liệu
-$conn = new mysqli('localhost', 'root', '', 'Congtyvienthong');
-if ($conn->connect_error) {
-    die("Kết nối thất bại: " . $conn->connect_error);
-}
+include('../connect.php');
 
 // Truy vấn thông tin khách hàng
 $sql = "SELECT * FROM KhachHang";

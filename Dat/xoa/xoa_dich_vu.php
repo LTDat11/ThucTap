@@ -16,10 +16,7 @@ if (!isset($_GET['id'])) {
 $id = $_GET['id'];
 
 // Kết nối cơ sở dữ liệu
-$conn = new mysqli('localhost', 'root', '', 'Congtyvienthong');
-if ($conn->connect_error) {
-    die("Kết nối thất bại: " . $conn->connect_error);
-}
+include('../connect.php');
 
 // Kiểm tra xem có gói dịch vụ nào sử dụng dịch vụ này không
 $sqlCheck = "
@@ -31,7 +28,7 @@ $stmtCheck->execute();
 $resultCheck = $stmtCheck->get_result();
 
 if ($resultCheck->num_rows > 0) {
-    echo "<script>alert('Không thể xóa dịch vụ này vì có các gói dịch vụ đang được sử dụng.');</script>";
+    echo "<script>alert('Không thể xóa dịch vụ này vì có các gói dịch vụ bên trong có thể đang được sử dụng.');</script>";
     header("refresh:0.5; url=../danhsach/danh_sach_thong_tin_dich_vu.php");
     exit();
 } else {

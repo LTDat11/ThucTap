@@ -7,10 +7,7 @@ if (!isset($_SESSION['ID_KhachHang'])) {
 }
 
 // Kết nối cơ sở dữ liệu
-$conn = new mysqli('localhost', 'root', '', 'Congtyvienthong');
-if ($conn->connect_error) {
-    die("Kết nối thất bại: " . $conn->connect_error);
-}
+include('connect.php');
 
 // Lấy ID_KhachHang từ session
 $ID_KhachHang = $_SESSION['ID_KhachHang'];

@@ -49,18 +49,8 @@
           $id = $_GET['id'];
 
           // Connect to the database
-          $servername = "localhost";
-          $username = "root";
-          $password = "";
-          $dbname = "Congtyvienthong";
-
-          $conn = new mysqli($servername, $username, $password, $dbname);
-
-          // Check connection
-          if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-          }
-
+          include('connect.php');
+          
           // Query the database to get the service package details
           $sql = "SELECT goidichvu.TenGoiDichVu, goidichvu.MoTa, goidichvu.TocDo, goidichvu.GiaTien, goidichvu.ImgURL, dichvu.TenDichVu
                   FROM goidichvu

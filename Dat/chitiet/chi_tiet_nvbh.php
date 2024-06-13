@@ -6,11 +6,8 @@ if (!isset($_SESSION['ID_NhanVien'])) {
     header("Location: ../dangnhap_NV.php"); // Redirect đến trang đăng nhập nếu chưa đăng nhập
     exit();
 }
-
-$conn = new mysqli('localhost', 'root', '', 'Congtyvienthong');
-if ($conn->connect_error) {
-    die("Kết nối thất bại: " . $conn->connect_error);
-}
+// kết nối csdl
+include('../connect.php');
 
 $records_per_page = 10; // Số lượng bản ghi trên mỗi trang
 

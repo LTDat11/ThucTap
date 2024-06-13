@@ -14,10 +14,7 @@ if (!isset($_GET['id'])) {
 }
 
 // Kết nối cơ sở dữ liệu
-$conn = new mysqli('localhost', 'root', '', 'Congtyvienthong');
-if ($conn->connect_error) {
-    die("Kết nối thất bại: " . $conn->connect_error);
-}
+include('../connect.php');
 
 // Truy vấn SQL để lấy tên nhân viên dựa trên ID_NhanVien
 $ID_NhanVien = $_SESSION['ID_NhanVien']; // Lấy ID_NhanVien từ session

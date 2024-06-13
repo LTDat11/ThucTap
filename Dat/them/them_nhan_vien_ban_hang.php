@@ -9,10 +9,7 @@ if (!isset($_SESSION['ID_NhanVien'])) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Kết nối cơ sở dữ liệu
-    $conn = new mysqli('localhost', 'root', '', 'Congtyvienthong');
-    if ($conn->connect_error) {
-        die("Kết nối thất bại: " . $conn->connect_error);
-    }
+    include('../connect.php');
 
     // Lấy dữ liệu từ biểu mẫu
     $TenNhanVien = $conn->real_escape_string($_POST['TenNhanVien']);

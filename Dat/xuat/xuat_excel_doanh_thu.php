@@ -13,7 +13,7 @@ if (isset($_POST['data']) && isset($_POST['h2Content'])) {
 
     // Set the header (H2 content) and make it bold
     $sheet->setCellValue('A1', $h2Content);
-    $sheet->mergeCells('A1:D1');
+    $sheet->mergeCells('A1:E1');
     $sheet->getStyle('A1')->getFont()->setBold(true);
 
     // Set data starting from row 3

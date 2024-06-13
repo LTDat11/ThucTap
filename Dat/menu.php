@@ -6,10 +6,7 @@ if (!isset($_SESSION['ID_NhanVien'])) {
 }
 
 // Kết nối cơ sở dữ liệu
-$conn = new mysqli('localhost', 'root', '', 'Congtyvienthong');
-if ($conn->connect_error) {
-    die("Kết nối thất bại: " . $conn->connect_error);
-}
+include('connect.php');
 
 // Lấy ID_NhanVien từ session
 $ID_NhanVien = $_SESSION['ID_NhanVien'];
@@ -315,6 +312,19 @@ $conn->close();
                     </a>
                 </div>
 
+                <a href="#submenu4" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa-solid fa-gear fa-fw mr-3"></span>
+                        <span class="menu-collapsed">Tùy Chọn</span>
+                        <span class="submenu-icon ml-auto"></span>
+                    </div>
+                </a>
+                <!-- Submenu content -->
+                <div id='submenu4' class="collapse sidebar-submenu">
+                    <a href="../tuychon/dangkykh.php" class="list-group-item list-group-item-action bg-dark text-white">
+                        <span class="menu-collapsed">Đăng ký Khách Hàng</span>
+                    </a>
+                </div>
 
                 <!-- <a href="../danhsach/doanh_thu.php" class="bg-dark list-group-item list-group-item-action">
                     <div class="d-flex w-100 justify-content-start align-items-center">

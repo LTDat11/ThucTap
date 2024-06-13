@@ -8,10 +8,7 @@ if (!isset($_SESSION['ID_NhanVien'])) {
 }
 
 // Kết nối cơ sở dữ liệu
-$conn = new mysqli('localhost', 'root', '', 'Congtyvienthong');
-if ($conn->connect_error) {
-    die("Kết nối thất bại: " . $conn->connect_error);
-}
+include('../connect.php');
 
 // Lấy ID Khách Hàng từ URL
 $ID_KhachHang = isset($_GET['id']) ? (int)$_GET['id'] : 0;

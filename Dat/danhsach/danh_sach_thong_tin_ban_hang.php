@@ -8,10 +8,7 @@ if (!isset($_SESSION['ID_NhanVien'])) {
 }
 
 // Kết nối cơ sở dữ liệu
-$conn = new mysqli('localhost', 'root', '', 'Congtyvienthong');
-if ($conn->connect_error) {
-    die("Kết nối thất bại: " . $conn->connect_error);
-}
+include('../connect.php');
 
 // Pagination setup
 $limit = 10; // Number of entries to show in a page.

@@ -16,10 +16,7 @@ if (!isset($_GET['id'])) {
 $id = $_GET['id'];
 
 // Kết nối cơ sở dữ liệu
-$conn = new mysqli('localhost', 'root', '', 'Congtyvienthong');
-if ($conn->connect_error) {
-    die("Kết nối thất bại: " . $conn->connect_error);
-}
+include('../connect.php');
 
 // Kiểm tra xem có ràng buộc khóa ngoại nào đang sử dụng nhân viên này không
 $sqlCheck = "SELECT * FROM ThongTinBanHang WHERE ID_TTNVBH = ?";

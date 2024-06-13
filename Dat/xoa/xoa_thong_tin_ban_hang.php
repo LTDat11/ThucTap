@@ -16,10 +16,7 @@ if (!isset($_GET['id'])) {
 $id = $_GET['id'];
 
 // Kết nối cơ sở dữ liệu
-$conn = new mysqli('localhost', 'root', '', 'Congtyvienthong');
-if ($conn->connect_error) {
-    die("Kết nối thất bại: " . $conn->connect_error);
-}
+include('../connect.php');
 
 // Bắt đầu một giao dịch
 $conn->begin_transaction();

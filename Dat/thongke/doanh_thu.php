@@ -9,17 +9,7 @@ if (!isset($_SESSION['ID_NhanVien'])) {
 }
 
 // Connect to the database
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "Congtyvienthong";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include('../connect.php');
 
 // Thực hiện truy vấn dịch vụ
 $sql = "SELECT ID_DichVu, TenDichVu FROM DichVu";

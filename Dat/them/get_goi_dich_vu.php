@@ -1,10 +1,6 @@
 <?php
 // Kết nối đến cơ sở dữ liệu
-$db = new mysqli('localhost', 'root', '', 'Congtyvienthong');
-
-if ($db->connect_error) {
-    die("Connection failed: " . $db->connect_error);
-}
+include('../connect.php');
 
 // Lấy id_dich_vu từ yêu cầu
 $id_dich_vu = $_GET['id_dich_vu'];

@@ -6,11 +6,8 @@ if (!isset($_SESSION['ID_NhanVien'])) {
     header("Location: ../dangnhap_NV.php"); // Redirect đến trang đăng nhập nếu chưa đăng nhập
     exit();
 }
-
-$conn = new mysqli('localhost', 'root', '', 'Congtyvienthong');
-if ($conn->connect_error) {
-    die("Kết nối thất bại: " . $conn->connect_error);
-}
+// Kết nối csdl
+include('../connect.php');
 
 $message = "";
 

@@ -7,10 +7,8 @@ if (!isset($_SESSION['ID_NhanVien'])) {
     header("Location: ../dangnhap_NV.php");
     exit;
 }
-$conn = new mysqli('localhost', 'root', '', 'Congtyvienthong');
-if ($conn->connect_error) {
-    die("Kết nối thất bại: " . $conn->connect_error);
-}
+// kết nối csdl
+include('../connect.php');
 
 // Kiểm tra và nhận giá trị sqlChitiet
 if (isset($_POST['sqlChitiet']) && isset($_POST['id'])) {

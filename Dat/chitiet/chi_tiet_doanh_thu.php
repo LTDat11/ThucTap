@@ -17,17 +17,7 @@ $ID_DichVu = $_GET['service'];
 $period = $_GET['period'];
 
 // Connect to the database
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "Congtyvienthong";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include('../connect.php');
 
 // Tạo truy vấn SQL tương ứng với khoảng thời gian
 switch ($period) {
