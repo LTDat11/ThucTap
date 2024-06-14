@@ -74,6 +74,7 @@ $conn->close();
 ?>
 
 <?php include '../menu.php'; ?>
+<link rel="stylesheet" href="../assets/css/dangkykh.css">
 <div class="content container-fluid mt-0">
     <div class="card shadow-lg border-0 rounded-lg">
         <div class="card-header bg-primary text-white text-center py-4">
@@ -92,34 +93,66 @@ $conn->close();
             <?php endif; ?>
             <form method="POST" action="">
                 <div class="form-row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-6 input-with-icon">
                         <label for="fullname">Họ tên</label>
                         <input type="text" class="form-control" id="fullname" name="fullname" value="<?php echo htmlspecialchars($fullname); ?>" required>
+                        <i class="fas fa-user form-icon"></i>
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-6 input-with-icon">
                         <label for="phone">Số điện thoại</label>
                         <input type="tel" class="form-control" id="phone" name="phone" value="<?php echo htmlspecialchars($phone); ?>" required>
+                        <i class="fas fa-phone form-icon"></i>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group input-with-icon">
                     <label for="address">Địa chỉ</label>
                     <input type="text" class="form-control" id="address" name="address" value="<?php echo htmlspecialchars($address); ?>" required>
+                    <i class="fas fa-map-marker-alt form-icon"></i>
                 </div>
-                <div class="form-group">
+                <div class="form-group input-with-icon">
                     <label for="username">Tên đăng nhập</label>
                     <input type="text" class="form-control" id="username" name="username" value="<?php echo htmlspecialchars($username); ?>" required>
+                    <i class="fas fa-user-circle form-icon"></i>
                 </div>
-                <div class="form-group">
-                    <label for="password">Mật khẩu</label>
-                    <input type="password" class="form-control" id="password" name="password" value="<?php echo htmlspecialchars($password); ?>" required>
+                <div class="form-row">
+                    <div class="form-group col-md-6 input-with-icon">
+                        <label for="password">Mật khẩu</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                        <!-- <i class="fas fa-lock form-icon"></i> -->
+                        <i class="fas fa-eye toggle-password" onclick="togglePassword('password')"></i>
+                    </div>
+                    <div class="form-group col-md-6 input-with-icon">
+                        <label for="re_password">Nhập lại mật khẩu</label>
+                        <input type="password" class="form-control" id="re_password" name="re_password" required>
+                        <!-- <i class="fas fa-lock form-icon"></i> -->
+                        <i class="fas fa-eye toggle-password" onclick="togglePassword('re_password')"></i>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="re_password">Nhập lại mật khẩu</label>
-                    <input type="password" class="form-control" id="re_password" name="re_password" value="<?php echo htmlspecialchars($re_password); ?>" required>
+                
+                <div class="d-flex justify-content-center">
+                    <button type="submit" name="register" class="btn btn-primary">Đăng Ký</button>
                 </div>
-                <button type="submit" name="register" class="btn btn-primary">Đăng Ký</button>
             </form>
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    function togglePassword(id) {
+        const input = document.getElementById(id);
+        const eyeIcon = input.nextElementSibling;
+        if (input.type === 'password') {
+            input.type = 'text';
+            eyeIcon.classList.remove('fa-eye');
+            eyeIcon.classList.add('fa-eye-slash');
+        } else {
+            input.type = 'password';
+            eyeIcon.classList.remove('fa-eye-slash');
+            eyeIcon.classList.add('fa-eye');
+        }
+    }
+</script>
+
 <?php include '../footer.php'; ?>
