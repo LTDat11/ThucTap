@@ -2,7 +2,7 @@
 session_start();
 
 // Kết nối cơ sở dữ liệu
-include('../connect.php');
+include ('../connect.php');
 
 // Check if the employee is logged in
 if (!isset($_SESSION['ID_NhanVien'])) {
@@ -26,7 +26,7 @@ if ($result_user->num_rows == 1) {
     $tenNhanVien = "Không tìm thấy thông tin nhân viên";
 }
 
-$fullname = $phone = $address = $username = $password = $re_password = "";
+$fullname = $phone = $address = $username1 = $password = $re_password = "";
 $error = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
     $fullname = $_POST['fullname'];
     $phone = $_POST['phone'];
     $address = $_POST['address'];
-    $username = $_POST['username'];
+    $username1 = $_POST['username1'];
     $password = $_POST['password'];
     $re_password = $_POST['re_password'];
 
@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
 
             // Chèn dữ liệu vào bảng khachhang
             $stmt = $conn->prepare("INSERT INTO khachhang (Ten, SoDienThoai, DiaChi, Username, Password, nguoitao) VALUES (?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("ssssss", $fullname, $phone, $address, $username, $password, $tenNhanVien);
+            $stmt->bind_param("ssssss", $fullname, $phone, $address, $username1, $password, $tenNhanVien);
 
             if ($stmt->execute()) {
                 $success = "Đăng ký thành công!";
@@ -80,12 +80,12 @@ $conn->close();
             <h2 class="mb-0"><i class="fas fa-address-card"></i> Đăng Ký Khách Hàng</h2>
         </div>
         <div class="card-body p-5">
-            <?php if ($error) : ?>
+            <?php if ($error): ?>
                 <div class="alert alert-danger" role="alert">
                     <?php echo $error; ?>
                 </div>
                 <script>
-                    setTimeout(function() {
+                    setTimeout(function () {
                         document.querySelector('.alert').style.display = 'none';
                     }, 3000);
                 </script>
@@ -94,28 +94,34 @@ $conn->close();
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="fullname">Họ tên</label>
-                        <input type="text" class="form-control" id="fullname" name="fullname" value="<?php echo htmlspecialchars($fullname); ?>" required>
+                        <input type="text" class="form-control" id="fullname" name="fullname"
+                            value="<?php echo htmlspecialchars($fullname); ?>" required>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="phone">Số điện thoại</label>
-                        <input type="tel" class="form-control" id="phone" name="phone" value="<?php echo htmlspecialchars($phone); ?>" required>
+                        <input type="tel" class="form-control" id="phone" name="phone"
+                            value="<?php echo htmlspecialchars($phone); ?>" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="address">Địa chỉ</label>
-                    <input type="text" class="form-control" id="address" name="address" value="<?php echo htmlspecialchars($address); ?>" required>
+                    <input type="text" class="form-control" id="address" name="address"
+                        value="<?php echo htmlspecialchars($address); ?>" required>
                 </div>
                 <div class="form-group">
-                    <label for="username">Tên đăng nhập</label>
-                    <input type="text" class="form-control" id="username" name="username" value="<?php echo htmlspecialchars($username); ?>" required>
+                    <label for="username1">Tên đăng nhập</label>
+                    <input type="text" class="form-control" id="username1" name="username1"
+                        value="<?php echo htmlspecialchars($username1); ?>" required>
                 </div>
                 <div class="form-group">
                     <label for="password">Mật khẩu</label>
-                    <input type="password" class="form-control" id="password" name="password" value="<?php echo htmlspecialchars($password); ?>" required>
+                    <input type="password" class="form-control" id="password" name="password"
+                        value="<?php echo htmlspecialchars($password); ?>" required>
                 </div>
                 <div class="form-group">
                     <label for="re_password">Nhập lại mật khẩu</label>
-                    <input type="password" class="form-control" id="re_password" name="re_password" value="<?php echo htmlspecialchars($re_password); ?>" required>
+                    <input type="password" class="form-control" id="re_password" name="re_password"
+                        value="<?php echo htmlspecialchars($re_password); ?>" required>
                 </div>
                 <button type="submit" name="register" class="btn btn-primary">Đăng Ký</button>
             </form>
