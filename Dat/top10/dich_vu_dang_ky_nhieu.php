@@ -238,7 +238,7 @@ $conn->close();
                         <tr>
                             <th scope="col">Tên Dịch Vụ</th>
                             <th scope="col">Số gói dịch vụ bán được</th>
-                            <th scope="col">Tùy chọn</th>
+                            <th scope="col" class='text-center'>Tùy chọn</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -250,7 +250,7 @@ $conn->close();
                                 echo "<tr>";
                                 echo "<td>" . htmlspecialchars($row['TenDichVu']) . "</td>";
                                 echo "<td class='text-center'>" . htmlspecialchars($row['TongSoGoiDaBan']) . "</td>";
-                                echo '<td><a class="btn btn-info bi bi-info-circle btn-sm" href="#" onclick="event.preventDefault(); exportQueryToFile3(' . $row["ID_DichVu"] . ')"> Xem Chi Tiết</a></td>';
+                                echo '<td class="text-center"><a class="btn btn-info bi bi-info-circle btn-sm" href="#" onclick="event.preventDefault(); exportQueryToFile3(' . $row["ID_DichVu"] . ')"> Xem Chi Tiết</a></td>';
                                 echo "</tr>";
 
                                 // Thêm dữ liệu vào mảng

@@ -69,7 +69,7 @@ $conn->close();
                             <th scope="col" class="text-center">STT</th>
                             <th scope="col" class="text-center">Tên Gói Dịch Vụ</th>
                             <th scope="col" class="text-center">Tốc Độ</th>
-                            <th scope="col" class="text-center">Giá</th>
+                            <th scope="col" class="text-right">Giá</th>
                             <th scope="col" class="text-center">Mô Tả</th>
                             <th scope="col" class="text-center">Tùy Chọn</th>
                         </tr>
@@ -85,9 +85,9 @@ $conn->close();
                             } else {
                                 echo "<td>0</td>";
                             }
-                            echo "<td>" . number_format($row['GiaTien'], 0, ',', '.') . "</td>";
+                            echo "<td class='text-right'>" . number_format($row['GiaTien'], 0, ',', '.') . "</td>";
                             echo "<td>" . htmlspecialchars($row['MoTa']) . "</td>";
-                            echo "<td>
+                            echo "<td class='text-center'>
                                 <a href='../sua/sua_goi_cuoc.php?id=" . $row['ID_GoiDichVu'] . "' class='btn btn-warning mb-1 mr-1 btn-sm'>
                                     <i class='bi bi-pencil'></i> Sửa
                                 </a>

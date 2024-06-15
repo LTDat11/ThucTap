@@ -73,7 +73,7 @@ $conn->close();
                     <thead class="bg-primary text-white text-center rounded-top">
                         <tr>
                             <th scope="col" class="text-center">Tên Nhân Viên</th>
-                            <th scope="col" class="text-center">Số Điện Thoại</th>
+                            <th scope="col" class="text-right">Số Điện Thoại</th>
                             <th scope="col" class="text-center">Địa Chỉ</th>
                             <th scope="col" class="text-center">Lựa Chọn</th>
                         </tr>
@@ -84,9 +84,9 @@ $conn->close();
                             while ($row = $result->fetch_assoc()) {
                                 echo "<tr>";
                                 echo "<td>" . htmlspecialchars($row['TenNhanVien']) . "</td>";
-                                echo "<td>" . htmlspecialchars($row['SoDienThoai']) . "</td>";
+                                echo "<td class='text-right'>" . htmlspecialchars($row['SoDienThoai']) . "</td>";
                                 echo "<td>" . htmlspecialchars($row['DiaChi']) . "</td>";
-                                echo "<td>
+                                echo "<td class='text-center'>
                                         <a href='../chitiet/chi_tiet_nvbh2.php?id=" . $row['ID_TTNVBH'] . "' class='btn btn-info bi bi-info-circle btn-sm'> Xem Chi Tiết</a>
                                         <a href='../sua/sua_thong_tin_nhan_vien.php?id=" . $row['ID_TTNVBH'] . "' class='btn btn-warning bi bi-pencil ml-2 mr-2 btn-sm'> Sửa</a>
                                         <a href='#' onclick='confirmDelete_ttnv(" . $row['ID_TTNVBH'] . ")' class='btn btn-danger bi bi-trash btn-sm'> Xóa</a>

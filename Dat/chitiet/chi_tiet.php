@@ -76,9 +76,9 @@ if (isset($_POST['sqlChitiet']) && isset($_POST['id'])) {
                                 <th>STT</th>
                                 <th>Tên Dịch Vụ</th>
                                 <th>Tên Gói Dịch Vụ</th>
-                                <th>Giá</th>
+                                <th class='text-right'>Giá</th>
                                 <th>Số Lượng</th>
-                                <th>Ngày Đăng Ký</th>
+                                <th class='text-right'>Ngày Đăng Ký</th>
                                 <th>Nhân Viên Bán</th>
                             </tr>
                         </thead>
@@ -90,9 +90,9 @@ if (isset($_POST['sqlChitiet']) && isset($_POST['id'])) {
                                         <td class="text-center"><?php echo $counter++; ?></td>
                                         <td><?php echo htmlspecialchars($row['TenDichVu']); ?></td>
                                         <td><?php echo htmlspecialchars($row['TenGoiDichVu']); ?></td>
-                                        <td><?php echo number_format($row['GiaTien'], 0, ',', '.'); ?></td>
+                                        <td class='text-right'><?php echo number_format($row['GiaTien'], 0, ',', '.'); ?></td>
                                         <td class="text-center"><?php echo htmlspecialchars($row['SoLuong']); ?></td>
-                                        <td><?php echo date('d/m/Y', strtotime($row['NgayDangKy'])); ?></td>
+                                        <td class='text-right'><?php echo date('d/m/Y', strtotime($row['NgayDangKy'])); ?></td>
                                         <td><?php echo htmlspecialchars($row['TenNhanVien']); ?></td>
                                     </tr>
                                 <?php endwhile; ?>

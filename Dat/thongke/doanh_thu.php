@@ -366,9 +366,9 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
                         <tr>
                             <th scope="col">STT</th>
                             <th scope="col">Tên Gói Dịch Vụ</th>
-                            <th scope="col">Giá Tiền</th>
+                            <th scope="col" class='text-right'>Giá Tiền</th>
                             <th scope="col">Số Lượng</th>
-                            <th scope="col">Thành Tiền</th>
+                            <th scope="col" class='text-right'>Thành Tiền</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -379,9 +379,9 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
                                 echo "<tr>";
                                 echo "<td class='text-center'>" . $count++ . "</td>";
                                 echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
-                                echo "<td class='text-center'>" . number_format($row['GiaTien'], 0, ',', '.') . "</td>";
+                                echo "<td class='text-right'>" . number_format($row['GiaTien'], 0, ',', '.') . "</td>";
                                 echo "<td class='text-center'>" . htmlspecialchars($row['TongSoLuong']) . "</td>";
-                                echo "<td class='text-center'>" . number_format($row['ThanhTien'], 0, ',', '.') . "</td>";
+                                echo "<td class='text-right'>" . number_format($row['ThanhTien'], 0, ',', '.') . "</td>";
                                 echo "</tr>";
                             }
                         } else {

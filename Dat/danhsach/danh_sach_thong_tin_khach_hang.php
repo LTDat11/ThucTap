@@ -74,7 +74,7 @@ $conn->close();
                     <thead class="bg-primary text-white text-center rounded-top">
                         <tr>
                             <th scope="col" class="text-center">Tên Khách Hàng</th>
-                            <th scope="col" class="text-center">Số Điện Thoại</th>
+                            <th scope="col" class="text-right">Số Điện Thoại</th>
                             <th scope="col" class="text-center">Địa Chỉ</th>
                             <th scope="col" class="text-center">Lựa Chọn</th>
                         </tr>
@@ -85,7 +85,7 @@ $conn->close();
                             while ($row = $result->fetch_assoc()) {
                                 echo "<tr>";
                                 echo "<td>" . htmlspecialchars($row['Ten']) . "</td>";
-                                echo "<td>" . htmlspecialchars($row['SoDienThoai']) . "</td>";
+                                echo "<td class='text-right'>" . htmlspecialchars($row['SoDienThoai']) . "</td>";
                                 echo "<td>" . htmlspecialchars($row['DiaChi']) . "</td>";
                                 echo "<td class='text-center'>
                                     <a href='../chitiet/chi_tiet2.php?id=" . $row['ID_KhachHang'] . "' class='btn btn-info btn-sm'><i class='fas fa-info-circle'></i> Xem Chi Tiết</a>

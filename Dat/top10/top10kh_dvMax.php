@@ -253,10 +253,10 @@ $conn->close();
                     <thead class="bg-primary text-white text-center rounded-top">
                         <tr>
                             <th scope="col">Tên Khách Hàng</th>
-                            <th scope="col">Số Điện Thoại</th>
+                            <th scope="col" class="text-right">Số Điện Thoại</th>
                             <th scope="col">Địa Chỉ</th>
                             <th scope="col">Số Dịch Vụ Sử Dụng</th>
-                            <th scope="col">Tùy Chọn</th>
+                            <th scope="col" class="text-center">Tùy Chọn</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -267,10 +267,10 @@ $conn->close();
                             while ($row = $result->fetch_assoc()) {
                                 echo "<tr>";
                                 echo "<td>" . htmlspecialchars($row['Ten']) . "</td>";
-                                echo "<td>" . htmlspecialchars($row['SoDienThoai']) . "</td>";
+                                echo "<td class='text-right'>" . htmlspecialchars($row['SoDienThoai']) . "</td>";
                                 echo "<td>" . htmlspecialchars($row['DiaChi']) . "</td>";
                                 echo "<td class='text-center'>" . htmlspecialchars($row['SoLuongLoaiDichVu']) . "</td>";
-                                echo '<td><a class="btn btn-info bi bi-info-circle btn-sm" href="#" onclick="event.preventDefault(); exportQueryToFile2(' . $row["ID_KhachHang"] . ')"> Xem Chi Tiết</a></td>';
+                                echo '<td class="text-center"><a class="btn btn-info bi bi-info-circle btn-sm" href="#" onclick="event.preventDefault(); exportQueryToFile2(' . $row["ID_KhachHang"] . ')"> Xem Chi Tiết</a></td>';
                                 echo "</tr>";
 
                                 // Thêm dữ liệu vào mảng

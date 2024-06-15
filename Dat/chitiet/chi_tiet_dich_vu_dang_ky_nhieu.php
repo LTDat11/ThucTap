@@ -98,7 +98,7 @@ if (isset($_POST['sqlChitiet']) && isset($_POST['id'])) {
             <h2 class="mb-0"><i class="fas fa-info-circle"></i> Chi tiết của dịch vụ <?php echo htmlspecialchars($tenDichVu); ?></h2>
         </div>
         <div class="card-body p-5">
-            <p class="lead">Tổng số lượng bán được của dịch vụ: <strong><?php echo htmlspecialchars($TongSoGoiDaBan); ?></strong></p>
+            <!-- <p class="lead">Tổng số lượng bán được của dịch vụ: <strong><?php echo htmlspecialchars($TongSoGoiDaBan); ?></strong></p> -->
             <a href="../top10/dich_vu_dang_ky_nhieu.php" class="btn btn-secondary bi bi-backspace mb-3"> Quay Lại</a>
             <div class="table-responsive">
                 <table class="table table-hover table-bordered table-striped rounded shadow-sm">
@@ -126,6 +126,7 @@ if (isset($_POST['sqlChitiet']) && isset($_POST['id'])) {
                         ?>
                     </tbody>
                 </table>
+                <p class="lead">Tổng số lượng bán được của dịch vụ: <strong><?php echo htmlspecialchars($TongSoGoiDaBan); ?></strong></p>
             </div>
         </div>
     </div>
