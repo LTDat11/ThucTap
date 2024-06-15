@@ -12,22 +12,22 @@ include('../connect.php');
 $message = "";
 
 // Truy vấn khách hàng
-$sqlKhachHang = "SELECT ID_KhachHang, Ten, SoDienThoai FROM KhachHang";
+$sqlKhachHang = "SELECT ID_KhachHang, Ten, SoDienThoai FROM khachhang";
 $resultKhachHang = $conn->query($sqlKhachHang);
 
 // Truy vấn thông tin dịch vụ
-$sqlDichVu = "SELECT ID_DichVu, TenDichVu FROM DichVu";
+$sqlDichVu = "SELECT ID_DichVu, TenDichVu FROM dichvu";
 $resultDichVu = $conn->query($sqlDichVu);
 
 // Lấy ID của dịch vụ "Internet"
 $defaultServiceId = 1; // Giả định ID của dịch vụ Internet là 1
 
 // Truy vấn gói dịch vụ ban đầu cho dịch vụ có ID 1 (mặc định là dịch vụ Internet)
-$sqlGoiDV = "SELECT ID_GoiDichVu, TenGoiDichVu FROM GoiDichVu WHERE ID_DichVu = $defaultServiceId";
+$sqlGoiDV = "SELECT ID_GoiDichVu, TenGoiDichVu FROM goidichvu WHERE ID_DichVu = $defaultServiceId";
 $resultGoiDV = $conn->query($sqlGoiDV);
 
 // Truy vấn thông tin nhân viên bán hàng
-$sqlTTnvbh = "SELECT ID_TTNVBH, TenNhanVien, SoDienThoai FROM TTNhanVienBanHang";
+$sqlTTnvbh = "SELECT ID_TTNVBH, TenNhanVien, SoDienThoai FROM ttnhanvienbanhang";
 $resultTTnvbh = $conn->query($sqlTTnvbh);
 
 
@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_POST['ajax'])) {
     $NgayDangKy = $conn->real_escape_string($_POST['NgayDangKy']);
 
     // Lấy giá tiền từ bảng GoiDichVu
-    $sqlGiaTien = "SELECT GiaTien FROM GoiDichVu WHERE ID_GoiDichVu = $ID_GoiDichVu";
+    $sqlGiaTien = "SELECT GiaTien FROM goidichvu WHERE ID_GoiDichVu = $ID_GoiDichVu";
     $resultGiaTien = $conn->query($sqlGiaTien);
     $rowGiaTien = $resultGiaTien->fetch_assoc();
     $GiaTien = $rowGiaTien['GiaTien'];
@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_POST['ajax'])) {
     $SoTien = $SoLuong * $GiaTien;
 
     // Chèn dữ liệu vào bảng ThongTinBanHang
-    $sql = "INSERT INTO ThongTinBanHang (ID_KhachHang, ID_GoiDichVu, ID_TTNVBH, NgayDangKy, SoLuong) 
+    $sql = "INSERT INTO thongtinbanhang (ID_KhachHang, ID_GoiDichVu, ID_TTNVBH, NgayDangKy, SoLuong) 
             VALUES ('$ID_KhachHang', '$ID_GoiDichVu', '$ID_TTNVBH', '$NgayDangKy', '$SoLuong')";
 
     if ($conn->query($sql) === TRUE) {
@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_POST['ajax'])) {
         $ID_ThongTinBanHang = $conn->insert_id;
 
         // Thêm thông tin vào bảng DoanhThu
-        $sqlInsertDoanhThu = "INSERT INTO DoanhThu (ID_ThongTinBanHang, ThoiGian, SoTien) 
+        $sqlInsertDoanhThu = "INSERT INTO doanhthu (ID_ThongTinBanHang, ThoiGian, SoTien) 
                             VALUES ('$ID_ThongTinBanHang', '$NgayDangKy', '$SoTien')";
         if ($conn->query($sqlInsertDoanhThu) === TRUE) {
             $message = "Thêm thông tin bán hàng thành công.";

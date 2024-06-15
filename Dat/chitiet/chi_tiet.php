@@ -22,7 +22,7 @@ if (isset($_POST['sqlChitiet']) && isset($_POST['id'])) {
     $result_dichvu = $conn->query($sqlChitietFull);
 
     // Truy vấn thông tin chi tiết của khách hàng
-    $sql_khachhang = "SELECT * FROM KhachHang WHERE ID_KhachHang = $ID_KhachHang";
+    $sql_khachhang = "SELECT * FROM khachhang WHERE ID_KhachHang = $ID_KhachHang";
     $result_khachhang = $conn->query($sql_khachhang);
     $khachhang = $result_khachhang->fetch_assoc();
     // if ($result_nhanvien->num_rows == 0) {

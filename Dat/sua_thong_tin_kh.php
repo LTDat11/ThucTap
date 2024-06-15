@@ -13,7 +13,7 @@ include('connect.php');
 $ID_KhachHang = $_SESSION['ID_KhachHang'];
 
 // Truy vấn SQL để lấy thông tin khách hàng dựa trên ID_KhachHang
-$sql_user = "SELECT * FROM KhachHang WHERE ID_KhachHang='$ID_KhachHang'";
+$sql_user = "SELECT * FROM khachhang WHERE ID_KhachHang='$ID_KhachHang'";
 $result_user = $conn->query($sql_user);
 
 if ($result_user->num_rows == 1) {
@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $diaChi = $_POST['DiaChi'];
 
     // Kiểm tra số điện thoại có bị trùng hay không
-    $sql_check_phone = "SELECT * FROM KhachHang WHERE SoDienThoai=? AND ID_KhachHang!=?";
+    $sql_check_phone = "SELECT * FROM khachhang WHERE SoDienThoai=? AND ID_KhachHang!=?";
     $stmt_check_phone = $conn->prepare($sql_check_phone);
     $stmt_check_phone->bind_param("si", $soDienThoai, $ID_KhachHang);
     $stmt_check_phone->execute();
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['error_message'] = "Số điện thoại đã tồn tại, vui lòng chọn số điện thoại khác!";
     } else {
         // Cập nhật thông tin khách hàng trong cơ sở dữ liệu
-        $sql_update = "UPDATE KhachHang SET Ten=?, SoDienThoai=?, DiaChi=? WHERE ID_KhachHang=?";
+        $sql_update = "UPDATE khachhang SET Ten=?, SoDienThoai=?, DiaChi=? WHERE ID_KhachHang=?";
         $stmt = $conn->prepare($sql_update);
         $stmt->bind_param("sssi", $ten, $soDienThoai, $diaChi, $ID_KhachHang);
 

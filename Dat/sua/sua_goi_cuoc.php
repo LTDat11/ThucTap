@@ -12,7 +12,7 @@ include('../connect.php');
 
 // Truy vấn SQL để lấy tên nhân viên dựa trên ID_NhanVien
 $ID_NhanVien = $_SESSION['ID_NhanVien']; // Lấy ID_NhanVien từ session
-$sql_user = "SELECT TenNhanVien FROM NhanVien WHERE ID_NhanVien='$ID_NhanVien'";
+$sql_user = "SELECT TenNhanVien FROM nhanvien WHERE ID_NhanVien='$ID_NhanVien'";
 $result_user = $conn->query($sql_user);
 
 if ($result_user->num_rows == 1) {
@@ -32,7 +32,7 @@ if (!isset($_GET['id'])) {
 $id = $_GET['id'];
 
 // Lấy thông tin gói dịch vụ từ CSDL
-$sql = "SELECT * FROM GoiDichVu WHERE ID_GoiDichVu = ?";
+$sql = "SELECT * FROM goidichvu WHERE ID_GoiDichVu = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $id);
 $stmt->execute();
@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $ngaySua = date("Y-m-d H:i:s");
 
     // Cập nhật thông tin gói dịch vụ vào CSDL
-    $sqlUpdate = "UPDATE GoiDichVu SET TenGoiDichVu = ?, TocDo = ?, GiaTien = ?, MoTa = ?, ImgURL = ?, nguoisua = ?, ngaysua = ? WHERE ID_GoiDichVu = ?";
+    $sqlUpdate = "UPDATE goidichvu SET TenGoiDichVu = ?, TocDo = ?, GiaTien = ?, MoTa = ?, ImgURL = ?, nguoisua = ?, ngaysua = ? WHERE ID_GoiDichVu = ?";
     $stmtUpdate = $conn->prepare($sqlUpdate);
     $stmtUpdate->bind_param("sisssssi", $TenGoiDichVu, $TocDo, $GiaTien, $MoTa, $anhCapNhap, $tenNhanVien, $ngaySua, $id);
 

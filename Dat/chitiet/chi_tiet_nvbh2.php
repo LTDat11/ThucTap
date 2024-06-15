@@ -17,7 +17,7 @@ $ID_TTNVBH = intval($_GET['id']);
 include('../connect.php');
 
 // Truy vấn chi tiết nhân viên bán hàng
-$sql_nhanvien = "SELECT TenNhanVien, SoDienThoai, DiaChi FROM TTNhanVienBanHang WHERE ID_TTNVBH = $ID_TTNVBH";
+$sql_nhanvien = "SELECT TenNhanVien, SoDienThoai, DiaChi FROM ttnhanvienbanhang WHERE ID_TTNVBH = $ID_TTNVBH";
 $result_nhanvien = $conn->query($sql_nhanvien);
 
 if ($result_nhanvien->num_rows == 0) {
@@ -41,15 +41,15 @@ $sql = "SELECT
     ttb.SoLuong,
     (gdv.GiaTien * ttb.SoLuong) AS TongTien
 FROM 
-    ThongTinBanHang AS ttb
+    thongtinbanhang AS ttb
 JOIN 
-    TTNhanVienBanHang AS nv ON ttb.ID_TTNVBH = nv.ID_TTNVBH
+    ttnhanvienbanhang AS nv ON ttb.ID_TTNVBH = nv.ID_TTNVBH
 JOIN 
-    KhachHang AS kh ON ttb.ID_KhachHang = kh.ID_KhachHang
+    khachhang AS kh ON ttb.ID_KhachHang = kh.ID_KhachHang
 JOIN 
-    GoiDichVu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
+    goidichvu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
 JOIN 
-    DichVu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
+    dichvu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
 WHERE 
     ttb.ID_TTNVBH = $ID_TTNVBH
 ORDER BY 
@@ -59,7 +59,7 @@ LIMIT $limit OFFSET $offset";
 $result = $conn->query($sql);
 
 // Fetch total number of rows in the table
-$sql_total = "SELECT COUNT(*) AS total FROM ThongTinBanHang WHERE ID_TTNVBH = $ID_TTNVBH";
+$sql_total = "SELECT COUNT(*) AS total FROM thongtinbanhang WHERE ID_TTNVBH = $ID_TTNVBH";
 $total_result = $conn->query($sql_total);
 $total_row = $total_result->fetch_assoc();
 $total_rows = $total_row['total'];

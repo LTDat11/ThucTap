@@ -12,7 +12,7 @@ include('connect.php');
 $ID_KhachHang = $_SESSION['ID_KhachHang'];
 
 // Truy vấn SQL để lấy tên nhân viên dựa trên ID_NhanVien
-$sql_user = "SELECT Ten FROM KhachHang WHERE ID_KhachHang='$ID_KhachHang'";
+$sql_user = "SELECT Ten FROM khachhang WHERE ID_KhachHang='$ID_KhachHang'";
 $result_user = $conn->query($sql_user);
 
 if ($result_user->num_rows == 1) {

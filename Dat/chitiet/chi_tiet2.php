@@ -14,17 +14,17 @@ include('../connect.php');
 $ID_KhachHang = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 
 // Truy vấn thông tin chi tiết của khách hàng
-$sql_khachhang = "SELECT * FROM KhachHang WHERE ID_KhachHang = $ID_KhachHang";
+$sql_khachhang = "SELECT * FROM khachhang WHERE ID_KhachHang = $ID_KhachHang";
 $result_khachhang = $conn->query($sql_khachhang);
 $khachhang = $result_khachhang->fetch_assoc();
 
 // Truy vấn thông tin các dịch vụ mà khách hàng đã đăng ký
-$sql_dichvu = "SELECT DichVu.TenDichVu, GoiDichVu.TenGoiDichVu, GoiDichVu.GiaTien, ThongTinBanHang.SoLuong, ThongTinBanHang.NgayDangKy, TTNhanVienBanHang.TenNhanVien
-               FROM ThongTinBanHang
-               JOIN GoiDichVu ON ThongTinBanHang.ID_GoiDichVu = GoiDichVu.ID_GoiDichVu
-               JOIN DichVu ON GoiDichVu.ID_DichVu = DichVu.ID_DichVu
-               JOIN TTNhanVienBanHang ON ThongTinBanHang.ID_TTNVBH = TTNhanVienBanHang.ID_TTNVBH
-               WHERE ThongTinBanHang.ID_KhachHang = $ID_KhachHang";
+$sql_dichvu = "SELECT dichvu.TenDichVu, goidichvu.TenGoiDichVu, goidichvu.GiaTien, thongtinbanhang.SoLuong, thongtinbanhang.NgayDangKy, ttnhanvienbanhang.TenNhanVien
+               FROM thongtinbanhang
+               JOIN goidichvu ON thongtinbanhang.ID_GoiDichVu = goidichvu.ID_GoiDichVu
+               JOIN dichvu ON goidichvu.ID_DichVu = dichvu.ID_DichVu
+               JOIN ttnhanvienbanhang ON thongtinbanhang.ID_TTNVBH = ttnhanvienbanhang.ID_TTNVBH
+               WHERE thongtinbanhang.ID_KhachHang = $ID_KhachHang";
 $result_dichvu = $conn->query($sql_dichvu);
 
 $conn->close();

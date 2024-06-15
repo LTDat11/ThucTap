@@ -23,13 +23,13 @@ if (!empty($search_query)) {
 }
 
 // Fetch total number of rows in the table
-$sql_total = "SELECT COUNT(*) AS total FROM KhachHang" . $sql_search;
+$sql_total = "SELECT COUNT(*) AS total FROM khachhang" . $sql_search;
 $total_result = $conn->query($sql_total);
 $total_row = $total_result->fetch_assoc();
 $total_rows = $total_row['total'];
 
 // Fetch the data for the current page
-$sql = "SELECT * FROM KhachHang" . $sql_search . " ORDER BY Ten ASC LIMIT $limit OFFSET $offset";
+$sql = "SELECT * FROM khachhang" . $sql_search . " ORDER BY Ten ASC LIMIT $limit OFFSET $offset";
 $result = $conn->query($sql);
 
 // Calculate total pages

@@ -12,7 +12,7 @@ if (!isset($_SESSION['ID_NhanVien'])) {
 include('../connect.php');
 
 // Thực hiện truy vấn dịch vụ
-$sql = "SELECT ID_DichVu, TenDichVu FROM DichVu";
+$sql = "SELECT ID_DichVu, TenDichVu FROM dichvu";
 $result = $conn->query($sql);
 
 // Truy vấn năm đăng ký
@@ -20,7 +20,7 @@ $sqlNam = "SELECT
 MIN(YEAR(NgayDangKy)) AS NamDangKyXaNhat,
 MAX(YEAR(NgayDangKy)) AS NamDangKyGanNhat
 FROM 
-ThongTinBanHang";
+thongtinbanhang";
 $resultNam = $conn->query($sqlNam);
 
 // Truy vấn doanh thu
@@ -30,7 +30,7 @@ $message2 = "";
 
 if (isset($_POST['service']) && isset($_POST['time'])) {
     $ID_DichVu = $_POST['service'];
-    $sqlTenDichVu = "SELECT TenDichVu FROM DichVu WHERE ID_DichVu = $ID_DichVu";
+    $sqlTenDichVu = "SELECT TenDichVu FROM dichvu WHERE ID_DichVu = $ID_DichVu";
     $resultTenDichVu = $conn->query($sqlTenDichVu);
 
     if ($resultTenDichVu->num_rows > 0) {
@@ -52,11 +52,11 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
                 dv.TenDichVu,
                 SUM(gdv.GiaTien * ttb.SoLuong) AS TongTienThuDuoc
             FROM 
-                ThongTinBanHang AS ttb
+                thongtinbanhang AS ttb
             JOIN 
-                GoiDichVu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
+                goidichvu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
             JOIN 
-                DichVu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
+                dichvu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
             WHERE 
                 dv.ID_DichVu = $ID_DichVu
                 AND ttb.NgayDangKy BETWEEN '$weekStartSelect' AND '$weekEndSelect' 
@@ -70,11 +70,11 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
             SUM(ttb.SoLuong) AS TongSoLuong,
             (gdv.GiaTien * SUM(ttb.SoLuong)) AS ThanhTien
         FROM 
-            ThongTinBanHang AS ttb
+            thongtinbanhang AS ttb
         JOIN 
-            GoiDichVu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
+            goidichvu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
         JOIN 
-            DichVu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
+            dichvu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
         WHERE 
             dv.ID_DichVu = $ID_DichVu
             AND ttb.NgayDangKy BETWEEN '$weekStartSelect' AND '$weekEndSelect'
@@ -93,11 +93,11 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
                     dv.TenDichVu,
                     SUM(gdv.GiaTien * ttb.SoLuong) AS TongTienThuDuoc
                 FROM 
-                    ThongTinBanHang AS ttb
+                    thongtinbanhang AS ttb
                 JOIN 
-                    GoiDichVu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
+                    goidichvu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
                 JOIN 
-                    DichVu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
+                    dichvu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
                 WHERE 
                     dv.ID_DichVu = $ID_DichVu
                     AND YEAR(ttb.NgayDangKy) = $year
@@ -111,11 +111,11 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
                     SUM(ttb.SoLuong) AS TongSoLuong,
                     (gdv.GiaTien * SUM(ttb.SoLuong)) AS ThanhTien
                 FROM
-                    ThongTinBanHang AS ttb
+                    thongtinbanhang AS ttb
                 JOIN
-                    GoiDichVu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
+                    goidichvu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
                 JOIN
-                    DichVu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
+                    dichvu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
                 WHERE
                     dv.ID_DichVu = $ID_DichVu
                     AND YEAR(ttb.NgayDangKy) = $year
@@ -139,11 +139,11 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
                         dv.TenDichVu,
                         SUM(gdv.GiaTien * ttb.SoLuong) AS TongTienThuDuoc
                     FROM 
-                        ThongTinBanHang AS ttb
+                        thongtinbanhang AS ttb
                     JOIN 
-                        GoiDichVu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
+                        goidichvu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
                     JOIN 
-                        DichVu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
+                        dichvu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
                     WHERE 
                         dv.ID_DichVu = $ID_DichVu
                         AND YEAR(ttb.NgayDangKy) = $year
@@ -158,11 +158,11 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
                     SUM(ttb.SoLuong) AS TongSoLuong,
                     (gdv.GiaTien * SUM(ttb.SoLuong)) AS ThanhTien
                 FROM
-                    ThongTinBanHang AS ttb
+                    thongtinbanhang AS ttb
                 JOIN
-                    GoiDichVu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
+                    goidichvu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
                 JOIN
-                    DichVu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
+                    dichvu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
                 WHERE
                     dv.ID_DichVu = $ID_DichVu
                     AND YEAR(ttb.NgayDangKy) = $year
@@ -183,11 +183,11 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
                     dv.TenDichVu,
                     SUM(gdv.GiaTien * ttb.SoLuong) AS TongTienThuDuoc
                 FROM 
-                    ThongTinBanHang AS ttb
+                    thongtinbanhang AS ttb
                 JOIN 
-                    GoiDichVu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
+                    goidichvu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
                 JOIN 
-                    DichVu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
+                    dichvu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
                 WHERE 
                     dv.ID_DichVu = $ID_DichVu
                     AND YEAR(ttb.NgayDangKy) = $year
@@ -202,11 +202,11 @@ if (isset($_POST['service']) && isset($_POST['time'])) {
                     SUM(ttb.SoLuong) AS TongSoLuong,
                     (gdv.GiaTien * SUM(ttb.SoLuong)) AS ThanhTien
                 FROM
-                    ThongTinBanHang AS ttb
+                    thongtinbanhang AS ttb
                 JOIN
-                    GoiDichVu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
+                    goidichvu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
                 JOIN
-                    DichVu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
+                    dichvu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
                 WHERE
                     dv.ID_DichVu = $ID_DichVu
                     AND YEAR(ttb.NgayDangKy) = $year

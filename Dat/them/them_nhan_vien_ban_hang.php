@@ -18,14 +18,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $ID_NhanVien = $_SESSION['ID_NhanVien']; // Sử dụng ID_NhanVien từ session
 
     // Kiểm tra số điện thoại đã tồn tại hay chưa
-    $check_sql = "SELECT * FROM TTNhanVienBanHang WHERE SoDienThoai = '$SoDienThoai'";
+    $check_sql = "SELECT * FROM ttnhanvienbanhang WHERE SoDienThoai = '$SoDienThoai'";
     $check_result = $conn->query($check_sql);
     if ($check_result->num_rows > 0) {
         // Nếu số điện thoại đã tồn tại, hiển thị thông báo lỗi
         echo "<div class='alert alert-danger' role='alert'>Số điện thoại đã tồn tại trong cơ sở dữ liệu!</div>";
     } else {
         // Nếu số điện thoại chưa tồn tại, tiến hành thêm nhân viên vào cơ sở dữ liệu
-        $sql = "INSERT INTO TTNhanVienBanHang (TenNhanVien, SoDienThoai, DiaChi, ID_NhanVien) 
+        $sql = "INSERT INTO ttnhanvienbanhang (TenNhanVien, SoDienThoai, DiaChi, ID_NhanVien) 
                 VALUES ('$TenNhanVien', '$SoDienThoai', '$DiaChi', '$ID_NhanVien')";
 
         if ($conn->query($sql) === TRUE) {

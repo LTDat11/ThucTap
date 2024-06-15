@@ -31,13 +31,13 @@ switch ($period) {
                 nv.TenNhanVien,
                 (gdv.GiaTien * ttb.SoLuong) AS TongTien
             FROM 
-                ThongTinBanHang AS ttb
+                thongtinbanhang AS ttb
             JOIN 
-                GoiDichVu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
+                goidichvu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
             JOIN 
-                DichVu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
+                dichvu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
             JOIN 
-                TTNhanVienBanHang AS nv ON ttb.ID_TTNVBH = nv.ID_TTNVBH
+                ttnhanvienbanhang AS nv ON ttb.ID_TTNVBH = nv.ID_TTNVBH
             WHERE 
                 dv.ID_DichVu = $ID_DichVu
                 AND ttb.NgayDangKy BETWEEN DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY) 
@@ -53,13 +53,13 @@ switch ($period) {
                 nv.TenNhanVien,
                 (gdv.GiaTien * ttb.SoLuong) AS TongTien
             FROM 
-                ThongTinBanHang AS ttb
+                thongtinbanhang AS ttb
             JOIN 
-                GoiDichVu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
+                goidichvu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
             JOIN 
-                DichVu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
+                dichvu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
             JOIN 
-                TTNhanVienBanHang AS nv ON ttb.ID_TTNVBH = nv.ID_TTNVBH
+                ttnhanvienbanhang AS nv ON ttb.ID_TTNVBH = nv.ID_TTNVBH
             WHERE 
                 dv.ID_DichVu = $ID_DichVu
                 AND MONTH(ttb.NgayDangKy) = MONTH(CURDATE())
@@ -75,13 +75,13 @@ switch ($period) {
                 nv.TenNhanVien,
                 (gdv.GiaTien * ttb.SoLuong) AS TongTien
             FROM 
-                ThongTinBanHang AS ttb
+                thongtinbanhang AS ttb
             JOIN 
-                GoiDichVu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
+                goidichvu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
             JOIN 
-                DichVu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
+                dichvu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
             JOIN 
-                TTNhanVienBanHang AS nv ON ttb.ID_TTNVBH = nv.ID_TTNVBH
+                ttnhanvienbanhang AS nv ON ttb.ID_TTNVBH = nv.ID_TTNVBH
             WHERE 
                 dv.ID_DichVu = $ID_DichVu
                 AND YEAR(ttb.NgayDangKy) = YEAR(CURDATE());";

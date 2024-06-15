@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $anhDV = $target_file;
 
     // Thêm thông tin gói dịch vụ vào CSDL
-    $sqlInsert = "INSERT INTO GoiDichVu (ID_DichVu, TenGoiDichVu, TocDo, GiaTien, MoTa, ImgURL) VALUES (?, ?, ?, ?, ?, ?)";
+    $sqlInsert = "INSERT INTO goidichvu (ID_DichVu, TenGoiDichVu, TocDo, GiaTien, MoTa, ImgURL) VALUES (?, ?, ?, ?, ?, ?)";
     $stmtInsert = $conn->prepare($sqlInsert);
     $stmtInsert->bind_param("isisss", $idDichVu, $TenGoiDichVu, $TocDo, $GiaTien, $MoTa, $anhDV);
 

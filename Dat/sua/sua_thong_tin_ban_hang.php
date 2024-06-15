@@ -20,11 +20,11 @@ $id = $_GET['id'];
 
 // Truy vấn thông tin bán hàng theo ID
 $sql = "SELECT ThongTinBanHang.*, NhanVien.TenNhanVien AS TenNhanVien, KhachHang.Ten AS TenKhachHang, GoiDichVu.TenGoiDichVu AS TenGoiDichVu
-        FROM ThongTinBanHang
-        LEFT JOIN NhanVien ON ThongTinBanHang.ID_TTNVBH = NhanVien.ID_NhanVien
-        LEFT JOIN KhachHang ON ThongTinBanHang.ID_KhachHang = KhachHang.ID_KhachHang
-        LEFT JOIN GoiDichVu ON ThongTinBanHang.ID_GoiDichVu = GoiDichVu.ID_GoiDichVu
-        WHERE ThongTinBanHang.ID_ThongTinBanHang = ?";
+        FROM thongtinbanhang
+        LEFT JOIN nhanvien ON thongtinbanhang.ID_TTNVBH = nhanvien.ID_NhanVien
+        LEFT JOIN khachhang ON thongtinbanhang.ID_KhachHang = khachhang.ID_KhachHang
+        LEFT JOIN goidichvu ON thongtinbanhang.ID_GoiDichVu = goidichvu.ID_GoiDichVu
+        WHERE thongtinbanhang.ID_ThongTinBanHang = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $id);
 $stmt->execute();
@@ -37,20 +37,20 @@ if (!$thongTinBanHang) {
 }
 
 // Lấy danh sách nhân viên từ cơ sở dữ liệu
-$sqlNhanVien = "SELECT ID_NhanVien, TenNhanVien FROM NhanVien";
+$sqlNhanVien = "SELECT ID_NhanVien, TenNhanVien FROM nhanvien";
 $resultNhanVien = $conn->query($sqlNhanVien);
 
 // Lấy danh sách khách hàng từ cơ sở dữ liệu
-$sqlKhachHang = "SELECT ID_KhachHang, Ten FROM KhachHang";
+$sqlKhachHang = "SELECT ID_KhachHang, Ten FROM khachhang";
 $resultKhachHang = $conn->query($sqlKhachHang);
 
 // Lấy danh sách gói dịch vụ từ cơ sở dữ liệu
-$sqlGoiDichVu = "SELECT ID_GoiDichVu, TenGoiDichVu FROM GoiDichVu";
+$sqlGoiDichVu = "SELECT ID_GoiDichVu, TenGoiDichVu FROM goidichvu";
 $resultGoiDichVu = $conn->query($sqlGoiDichVu);
 
 // Truy vấn SQL để lấy tên nhân viên dựa trên ID_NhanVien
 $ID_NhanVien = $_SESSION['ID_NhanVien']; // Lấy ID_NhanVien từ session
-$sql_user = "SELECT TenNhanVien FROM NhanVien WHERE ID_NhanVien='$ID_NhanVien'";
+$sql_user = "SELECT TenNhanVien FROM nhanvien WHERE ID_NhanVien='$ID_NhanVien'";
 $result_user = $conn->query($sql_user);
 
 if ($result_user->num_rows == 1) {
@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $ngaySua = date("Y-m-d H:i:s");
 
     // Cập nhật thông tin bán hàng trong cơ sở dữ liệu
-    $sqlUpdate = "UPDATE ThongTinBanHang SET ID_TTNVBH = ?, ID_KhachHang = ?, ID_GoiDichVu = ?, NgayDangKy = ?, nguoisua = ?, ngaysua = ? WHERE ID_ThongTinBanHang = ?";
+    $sqlUpdate = "UPDATE thongtinbanhang SET ID_TTNVBH = ?, ID_KhachHang = ?, ID_GoiDichVu = ?, NgayDangKy = ?, nguoisua = ?, ngaysua = ? WHERE ID_ThongTinBanHang = ?";
     $stmtUpdate = $conn->prepare($sqlUpdate);
     $stmtUpdate->bind_param("iiisssi", $ID_TTNVBH, $ID_KhachHang, $ID_GoiDichVu, $NgayBan, $tenNhanVien, $ngaySua, $id);
 

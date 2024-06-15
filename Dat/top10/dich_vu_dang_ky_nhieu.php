@@ -16,7 +16,7 @@ $sqlNam = "SELECT
 MIN(YEAR(NgayDangKy)) AS NamDangKyXaNhat,
 MAX(YEAR(NgayDangKy)) AS NamDangKyGanNhat
 FROM 
-ThongTinBanHang";
+thongtinbanhang";
 $resultNam = $conn->query($sqlNam);
 
 $message = '';
@@ -37,20 +37,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     dv.TenDichVu,
     SUM(ttb.SoLuong) AS TongSoGoiDaBan
     FROM 
-    ThongTinBanHang AS ttb
+    thongtinbanhang AS ttb
     JOIN 
-    GoiDichVu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
+    goidichvu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
     JOIN 
-    DichVu AS dv ON gdv.ID_DichVu = dv.ID_DichVu ";
+    dichvu AS dv ON gdv.ID_DichVu = dv.ID_DichVu ";
     //dành cho chi tiết các khách hàng
     $sqlChitiet = "SELECT 
     gdv.ID_GoiDichVu,
     gdv.TenGoiDichVu,
     SUM(ttb.SoLuong) AS TongSoLuongBanDuoc
     FROM 
-    ThongTinBanHang AS ttb
+    thongtinbanhang AS ttb
     JOIN 
-    GoiDichVu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu ";
+    goidichvu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu ";
 
     if ($time == 'year') {               //năm
         $sql .= "WHERE 

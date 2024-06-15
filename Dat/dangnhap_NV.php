@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $conn->real_escape_string($_POST['password']);
 
     // Truy vấn kiểm tra thông tin đăng nhập
-    $sql = "SELECT ID_NhanVien, Password FROM NhanVien WHERE Username='$username'";
+    $sql = "SELECT ID_NhanVien, Password FROM nhanvien WHERE Username='$username'";
     $result = $conn->query($sql);
 
     if ($result->num_rows == 1) {

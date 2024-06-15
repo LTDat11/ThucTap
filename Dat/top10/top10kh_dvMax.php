@@ -16,7 +16,7 @@ $sqlNam = "SELECT
 MIN(YEAR(NgayDangKy)) AS NamDangKyXaNhat,
 MAX(YEAR(NgayDangKy)) AS NamDangKyGanNhat
 FROM 
-ThongTinBanHang";
+thongtinbanhang";
 $resultNam = $conn->query($sqlNam);
 
 $message = '';
@@ -39,29 +39,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     kh.DiaChi,
     COUNT(DISTINCT dv.ID_DichVu) AS SoLuongLoaiDichVu
 FROM
-    ThongTinBanHang AS ttb
+    thongtinbanhang AS ttb
 JOIN
-    KhachHang AS kh ON ttb.ID_KhachHang = kh.ID_KhachHang
+    khachhang AS kh ON ttb.ID_KhachHang = kh.ID_KhachHang
 JOIN
-    GoiDichVu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
+    goidichvu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
 JOIN
-    DichVu AS dv ON gdv.ID_DichVu = dv.ID_DichVu ";
+    dichvu AS dv ON gdv.ID_DichVu = dv.ID_DichVu ";
     //dành cho chi tiết các khách hàng
     $sqlChitiet = "SELECT 
-    DichVu.TenDichVu, 
-    GoiDichVu.TenGoiDichVu, 
-    GoiDichVu.GiaTien, 
-    ThongTinBanHang.SoLuong, 
-    ThongTinBanHang.NgayDangKy, 
-    TTNhanVienBanHang.TenNhanVien
+    dichvu.TenDichVu, 
+    goidichvu.TenGoiDichVu, 
+    goidichvu.GiaTien, 
+    thongtinbanhang.SoLuong, 
+    thongtinbanhang.NgayDangKy, 
+    ttnhanvienbanhang.TenNhanVien
 FROM 
-    ThongTinBanHang
+    thongtinbanhang
 JOIN 
-    GoiDichVu ON ThongTinBanHang.ID_GoiDichVu = GoiDichVu.ID_GoiDichVu
+    goidichvu ON thongtinbanhang.ID_GoiDichVu = goidichvu.ID_GoiDichVu
 JOIN 
-    DichVu ON GoiDichVu.ID_DichVu = DichVu.ID_DichVu
+    dichvu ON goidichvu.ID_DichVu = dichvu.ID_DichVu
 JOIN 
-    TTNhanVienBanHang ON ThongTinBanHang.ID_TTNVBH = TTNhanVienBanHang.ID_TTNVBH ";
+    ttnhanvienbanhang ON thongtinbanhang.ID_TTNVBH = ttnhanvienbanhang.ID_TTNVBH ";
 
     if ($time == 'year') {               //năm
         $sql .= "WHERE
@@ -73,7 +73,7 @@ JOIN
     LIMIT 10;
     ";
         $sqlChitiet .= "WHERE
-        YEAR(ThongTinBanHang.NgayDangKy) = $yearSelect ";
+        YEAR(thongtinbanhang.NgayDangKy) = $yearSelect ";
         $message = " Năm $yearSelect";
     } elseif ($time == 'quarter') {     //quý
         $sql .= "WHERE
@@ -86,8 +86,8 @@ JOIN
     LIMIT 10;
     ";
         $sqlChitiet .= "WHERE
-        YEAR(ThongTinBanHang.NgayDangKy) = $yearSelect
-        AND QUARTER(ThongTinBanHang.NgayDangKy) = $quarterSelect ";
+        YEAR(thongtinbanhang.NgayDangKy) = $yearSelect
+        AND QUARTER(thongtinbanhang.NgayDangKy) = $quarterSelect ";
         $message = " Quý $quarterSelect Năm $yearSelect";
     } elseif ($time == 'month') {       //tháng
         $sql .= "WHERE
@@ -100,8 +100,8 @@ JOIN
     LIMIT 10;
     ";
         $sqlChitiet .= "WHERE
-        YEAR(ThongTinBanHang.NgayDangKy) = $yearSelect
-         AND MONTH(ThongTinBanHang.NgayDangKy) = $monthSelect ";
+        YEAR(thongtinbanhang.NgayDangKy) = $yearSelect
+         AND MONTH(thongtinbanhang.NgayDangKy) = $monthSelect ";
         $message = " Tháng $monthSelect Năm $yearSelect";
     } elseif ($time == 'week') {        //tuần
         $sql .= "WHERE
@@ -113,7 +113,7 @@ JOIN
     LIMIT 10;
     ";
         $sqlChitiet .= "WHERE
-        ThongTinBanHang.NgayDangKy BETWEEN '$weekStartSelect' AND '$weekEndSelect' ";
+        thongtinbanhang.NgayDangKy BETWEEN '$weekStartSelect' AND '$weekEndSelect' ";
         $message = "Theo Tuần Từ $weekStartSelect Đến $weekEndSelect";
     }
     if ($time != '') {

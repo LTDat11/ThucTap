@@ -15,7 +15,7 @@ $ID_KhachHang = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
 // Truy vấn thông tin nhân viên đăng nhập
 $ID_NhanVien = $_SESSION['ID_NhanVien'];
-$sql_user = "SELECT TenNhanVien FROM NhanVien WHERE ID_NhanVien='$ID_NhanVien'";
+$sql_user = "SELECT TenNhanVien FROM nhanvien WHERE ID_NhanVien='$ID_NhanVien'";
 $result_user = $conn->query($sql_user);
 
 if ($result_user->num_rows == 1) {
@@ -39,14 +39,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $ngaysua = date("Y-m-d H:i:s");
 
     // Kiểm tra nếu số điện thoại đã tồn tại cho khách hàng khác
-    $sql_check = "SELECT * FROM KhachHang WHERE SoDienThoai='$SoDienThoai' AND ID_KhachHang != $ID_KhachHang";
+    $sql_check = "SELECT * FROM khachhang WHERE SoDienThoai='$SoDienThoai' AND ID_KhachHang != $ID_KhachHang";
     $result_check = $conn->query($sql_check);
 
     if ($result_check->num_rows > 0) {
         echo "<script>alert('Số điện thoại đã tồn tại.');</script>";
     } else {
         // Cập nhật thông tin khách hàng
-        $sql_update = "UPDATE KhachHang SET Ten='$Ten', SoDienThoai='$SoDienThoai', DiaChi='$DiaChi', nguoisua='$nguoisua', ngaysua='$ngaysua' WHERE ID_KhachHang=$ID_KhachHang";
+        $sql_update = "UPDATE khachhang SET Ten='$Ten', SoDienThoai='$SoDienThoai', DiaChi='$DiaChi', nguoisua='$nguoisua', ngaysua='$ngaysua' WHERE ID_KhachHang=$ID_KhachHang";
 
         if ($conn->query($sql_update) === TRUE) {
             echo "<script>alert('Cập nhật thành công.');</script>";
@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Truy vấn thông tin chi tiết của khách hàng
-$sql_khachhang = "SELECT * FROM KhachHang WHERE ID_KhachHang = $ID_KhachHang";
+$sql_khachhang = "SELECT * FROM khachhang WHERE ID_KhachHang = $ID_KhachHang";
 $result_khachhang = $conn->query($sql_khachhang);
 $khachhang = $result_khachhang->fetch_assoc();
 

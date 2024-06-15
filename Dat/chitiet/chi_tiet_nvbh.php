@@ -42,7 +42,7 @@ $sqlChitietFull = $sqlChitiet . $noiString . " LIMIT $records_per_page OFFSET $o
 $result = $conn->query($sqlChitietFull);
 
 // Truy vấn chi tiết nhân viên bán hàng
-$sql_nhanvien = "SELECT TenNhanVien, SoDienThoai, DiaChi FROM TTNhanVienBanHang WHERE ID_TTNVBH = $ID_TTNVBH";
+$sql_nhanvien = "SELECT TenNhanVien, SoDienThoai, DiaChi FROM ttnhanvienbanhang WHERE ID_TTNVBH = $ID_TTNVBH";
 $result_nhanvien = $conn->query($sql_nhanvien);
 
 if ($result_nhanvien->num_rows == 0) {

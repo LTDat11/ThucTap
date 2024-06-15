@@ -23,13 +23,13 @@ $conn->begin_transaction();
 
 try {
     // Truy vấn xóa doanh thu tương ứng
-    $sql_delete_doanhthu = "DELETE FROM DoanhThu WHERE ID_ThongTinBanHang = ?";
+    $sql_delete_doanhthu = "DELETE FROM doanhthu WHERE ID_ThongTinBanHang = ?";
     $stmt_delete_doanhthu = $conn->prepare($sql_delete_doanhthu);
     $stmt_delete_doanhthu->bind_param("i", $id);
     $stmt_delete_doanhthu->execute();
     
     // Truy vấn xóa thông tin bán hàng
-    $sql_delete_thongtinbanhang = "DELETE FROM ThongTinBanHang WHERE ID_ThongTinBanHang = ?";
+    $sql_delete_thongtinbanhang = "DELETE FROM thongtinbanhang WHERE ID_ThongTinBanHang = ?";
     $stmt_delete_thongtinbanhang = $conn->prepare($sql_delete_thongtinbanhang);
     $stmt_delete_thongtinbanhang->bind_param("i", $id);
     $stmt_delete_thongtinbanhang->execute();

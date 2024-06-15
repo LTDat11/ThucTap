@@ -19,7 +19,7 @@ $idGoiDichVu = $_GET['id'];
 include('../connect.php');
 
 // Truy vấn để lấy ID_DichVu từ ID_GoiDichVu
-$sqlGetDichVu = "SELECT ID_DichVu FROM GoiDichVu WHERE ID_GoiDichVu = ?";
+$sqlGetDichVu = "SELECT ID_DichVu FROM goidichvu WHERE ID_GoiDichVu = ?";
 $stmtGetDichVu = $conn->prepare($sqlGetDichVu);
 $stmtGetDichVu->bind_param("i", $idGoiDichVu);
 $stmtGetDichVu->execute();
@@ -37,7 +37,7 @@ $idDichVu = $row['ID_DichVu'];
 $stmtGetDichVu->close();
 
 // Kiểm tra xem có ràng buộc khóa ngoại nào đang sử dụng gói dịch vụ này không
-$sqlCheck = "SELECT * FROM ThongTinBanHang WHERE ID_GoiDichVu = ?";
+$sqlCheck = "SELECT * FROM thongtinbanhang WHERE ID_GoiDichVu = ?";
 $stmtCheck = $conn->prepare($sqlCheck);
 $stmtCheck->bind_param("i", $idGoiDichVu);
 $stmtCheck->execute();
@@ -49,7 +49,7 @@ if ($resultCheck->num_rows > 0) {
     exit();
 } else {
     // Nếu không có ràng buộc khóa ngoại, tiến hành xóa gói dịch vụ
-    $sqlDelete = "DELETE FROM GoiDichVu WHERE ID_GoiDichVu = ?";
+    $sqlDelete = "DELETE FROM goidichvu WHERE ID_GoiDichVu = ?";
     $stmtDelete = $conn->prepare($sqlDelete);
     $stmtDelete->bind_param("i", $idGoiDichVu);
 

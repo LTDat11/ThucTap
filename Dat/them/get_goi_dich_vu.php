@@ -6,7 +6,7 @@ include('../connect.php');
 $id_dich_vu = $_GET['id_dich_vu'];
 
 // Thực hiện truy vấn để lấy thông tin về các gói dịch vụ
-$query = "SELECT ID_GoiDichVu, TenGoiDichVu FROM GoiDichVu WHERE ID_DichVu = ?";
+$query = "SELECT ID_GoiDichVu, TenGoiDichVu FROM goidichvu WHERE ID_DichVu = ?";
 $stmt = $db->prepare($query);
 $stmt->bind_param('i', $id_dich_vu);
 $stmt->execute();

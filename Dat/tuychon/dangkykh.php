@@ -15,7 +15,7 @@ if (!isset($_SESSION['ID_NhanVien'])) {
 $ID_NhanVien = $_SESSION['ID_NhanVien'];
 
 // Truy vấn SQL để lấy tên nhân viên dựa trên ID_NhanVien
-$sql_user = "SELECT TenNhanVien FROM NhanVien WHERE ID_NhanVien='$ID_NhanVien'";
+$sql_user = "SELECT TenNhanVien FROM nhanvien WHERE ID_NhanVien='$ID_NhanVien'";
 $result_user = $conn->query($sql_user);
 
 if ($result_user->num_rows == 1) {

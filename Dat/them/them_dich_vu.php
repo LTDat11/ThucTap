@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $tenDichVu = $_POST['TenDichVu'];
 
     // Chuẩn bị câu lệnh SQL để chèn dữ liệu
-    $stmt = $conn->prepare("INSERT INTO DichVu (TenDichVu) VALUES (?)");
+    $stmt = $conn->prepare("INSERT INTO dichvu (TenDichVu) VALUES (?)");
     $stmt->bind_param("s", $tenDichVu);
 
     if ($stmt->execute()) {

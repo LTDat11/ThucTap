@@ -23,10 +23,10 @@ if (!empty($search_query)) {
 }
 
 // Fetch total number of rows in the table
-$sql_total = "SELECT COUNT(*) AS total FROM ThongTinBanHang AS ttb
-JOIN TTNhanVienBanHang AS nv ON ttb.ID_TTNVBH = nv.ID_TTNVBH
-JOIN KhachHang AS kh ON ttb.ID_KhachHang = kh.ID_KhachHang
-JOIN GoiDichVu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu" . $sql_search;
+$sql_total = "SELECT COUNT(*) AS total FROM thongtinbanhang AS ttb
+JOIN ttnhanvienbanhang AS nv ON ttb.ID_TTNVBH = nv.ID_TTNVBH
+JOIN khachhang AS kh ON ttb.ID_KhachHang = kh.ID_KhachHang
+JOIN goidichvu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu" . $sql_search;
 $total_result = $conn->query($sql_total);
 $total_row = $total_result->fetch_assoc();
 $total_rows = $total_row['total'];
@@ -41,10 +41,10 @@ $sql = "SELECT
     nv.TenNhanVien,
     kh.Ten AS TenKhachHang,
     gdv.TenGoiDichVu
-FROM ThongTinBanHang AS ttb
-JOIN TTNhanVienBanHang AS nv ON ttb.ID_TTNVBH = nv.ID_TTNVBH
-JOIN KhachHang AS kh ON ttb.ID_KhachHang = kh.ID_KhachHang
-JOIN GoiDichVu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu" . $sql_search . "
+FROM thongtinbanhang AS ttb
+JOIN ttnhanvienbanhang AS nv ON ttb.ID_TTNVBH = nv.ID_TTNVBH
+JOIN khachhang AS kh ON ttb.ID_KhachHang = kh.ID_KhachHang
+JOIN goidichvu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu" . $sql_search . "
 ORDER BY ttb.NgayDangKy DESC
 LIMIT $limit OFFSET $offset";
 $result = $conn->query($sql);

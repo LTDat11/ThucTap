@@ -19,7 +19,7 @@ $id = $_GET['id'];
 include('../connect.php');
 
 // Kiểm tra xem có ràng buộc khóa ngoại nào đang sử dụng nhân viên này không
-$sqlCheck = "SELECT * FROM ThongTinBanHang WHERE ID_TTNVBH = ?";
+$sqlCheck = "SELECT * FROM thongtinbanhang WHERE ID_TTNVBH = ?";
 $stmtCheck = $conn->prepare($sqlCheck);
 $stmtCheck->bind_param("i", $id);
 $stmtCheck->execute();
@@ -31,7 +31,7 @@ if ($resultCheck->num_rows > 0) {
     exit();
 } else {
     // Nếu không có ràng buộc khóa ngoại, tiến hành xóa nhân viên
-    $sqlDelete = "DELETE FROM TTNhanVienBanHang WHERE ID_TTNVBH = ?";
+    $sqlDelete = "DELETE FROM ttnhanvienbanhang WHERE ID_TTNVBH = ?";
     $stmtDelete = $conn->prepare($sqlDelete);
     $stmtDelete->bind_param("i", $id);
 

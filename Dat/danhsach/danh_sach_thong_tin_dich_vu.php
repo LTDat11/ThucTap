@@ -11,7 +11,7 @@ if (!isset($_SESSION['ID_NhanVien'])) {
 include('../connect.php');
 
 // Truy vấn thông tin dịch vụ
-$sql = "SELECT * FROM DichVu";
+$sql = "SELECT * FROM dichvu";
 $result = $conn->query($sql);
 
 $conn->close();

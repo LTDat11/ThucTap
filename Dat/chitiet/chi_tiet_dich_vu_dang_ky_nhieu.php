@@ -37,11 +37,11 @@ if (isset($_POST['sqlChitiet']) && isset($_POST['id'])) {
     dv.TenDichVu,
     SUM(ttb.SoLuong) AS TongSoGoiDaBan
     FROM 
-    ThongTinBanHang AS ttb
+    thongtinbanhang AS ttb
     JOIN 
-    GoiDichVu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
+    goidichvu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
     JOIN 
-    DichVu AS dv ON gdv.ID_DichVu = dv.ID_DichVu ";
+    dichvu AS dv ON gdv.ID_DichVu = dv.ID_DichVu ";
     //NỐI STRING DV
     $noiStringDV = "AND dv.ID_DichVu = $ID_DichVu -- Thay 1 bằng ID của dịch vụ bạn muốn hiển thị thông tin
     GROUP BY 

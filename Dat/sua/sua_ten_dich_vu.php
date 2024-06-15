@@ -18,7 +18,7 @@ include('../connect.php');
 
 // Truy vấn SQL để lấy tên nhân viên dựa trên ID_NhanVien
 $ID_NhanVien = $_SESSION['ID_NhanVien']; // Lấy ID_NhanVien từ session
-$sql_user = "SELECT TenNhanVien FROM NhanVien WHERE ID_NhanVien='$ID_NhanVien'";
+$sql_user = "SELECT TenNhanVien FROM nhanvien WHERE ID_NhanVien='$ID_NhanVien'";
 $result_user = $conn->query($sql_user);
 
 if ($result_user->num_rows == 1) {
@@ -33,7 +33,7 @@ if ($result_user->num_rows == 1) {
 $id = $_GET['id'];
 
 // Truy vấn thông tin dịch vụ dựa trên ID
-$sqlDichVu = "SELECT * FROM DichVu WHERE ID_DichVu = ?";
+$sqlDichVu = "SELECT * FROM dichvu WHERE ID_DichVu = ?";
 $stmtDichVu = $conn->prepare($sqlDichVu);
 $stmtDichVu->bind_param("i", $id);
 $stmtDichVu->execute();
@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $ngaySua = date("Y-m-d H:i:s");
 
     // Cập nhật tên dịch vụ trong cơ sở dữ liệu
-    $sqlUpdate = "UPDATE DichVu SET TenDichVu = ?, nguoisua = ?, ngaysua = ? WHERE ID_DichVu = ?";
+    $sqlUpdate = "UPDATE dichvu SET TenDichVu = ?, nguoisua = ?, ngaysua = ? WHERE ID_DichVu = ?";
     $stmtUpdate = $conn->prepare($sqlUpdate);
     $stmtUpdate->bind_param("sssi", $tenMoi, $tenNhanVien, $ngaySua, $id);
 

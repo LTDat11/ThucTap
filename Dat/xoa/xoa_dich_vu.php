@@ -20,7 +20,7 @@ include('../connect.php');
 
 // Kiểm tra xem có gói dịch vụ nào sử dụng dịch vụ này không
 $sqlCheck = "
-    SELECT * FROM GoiDichVu WHERE ID_DichVu = ?
+    SELECT * FROM goidichvu WHERE ID_DichVu = ?
 ";
 $stmtCheck = $conn->prepare($sqlCheck);
 $stmtCheck->bind_param("i", $id);
@@ -33,7 +33,7 @@ if ($resultCheck->num_rows > 0) {
     exit();
 } else {
     // Nếu không có ràng buộc khóa ngoại, tiến hành xóa dịch vụ
-    $sqlDelete = "DELETE FROM DichVu WHERE ID_DichVu = ?";
+    $sqlDelete = "DELETE FROM dichvu WHERE ID_DichVu = ?";
     $stmtDelete = $conn->prepare($sqlDelete);
     $stmtDelete->bind_param("i", $id);
 

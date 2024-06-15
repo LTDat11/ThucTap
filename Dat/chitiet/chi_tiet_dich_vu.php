@@ -20,7 +20,7 @@ include('../connect.php');
 $id = $_GET['id'];
 
 // Truy vấn thông tin dịch vụ dựa trên ID
-$sqlDichVu = "SELECT * FROM DichVu WHERE ID_DichVu = ?";
+$sqlDichVu = "SELECT * FROM dichvu WHERE ID_DichVu = ?";
 $stmtDichVu = $conn->prepare($sqlDichVu);
 $stmtDichVu->bind_param("i", $id);
 $stmtDichVu->execute();
@@ -28,7 +28,7 @@ $resultDichVu = $stmtDichVu->get_result();
 $dichVu = $resultDichVu->fetch_assoc();
 
 // Truy vấn thông tin các gói dịch vụ thuộc dịch vụ tương ứng
-$sqlGoiDichVu = "SELECT * FROM GoiDichVu WHERE ID_DichVu = ?";
+$sqlGoiDichVu = "SELECT * FROM goidichvu WHERE ID_DichVu = ?";
 $stmtGoiDichVu = $conn->prepare($sqlGoiDichVu);
 $stmtGoiDichVu->bind_param("i", $id);
 $stmtGoiDichVu->execute();

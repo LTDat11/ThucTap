@@ -16,7 +16,7 @@ $sqlNam = "SELECT
 MIN(YEAR(NgayDangKy)) AS NamDangKyXaNhat,
 MAX(YEAR(NgayDangKy)) AS NamDangKyGanNhat
 FROM 
-ThongTinBanHang";
+thongtinbanhang";
 $resultNam = $conn->query($sqlNam);
 
 $message = '';
@@ -39,9 +39,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     ttbh.DiaChi,
     SUM(ttb.SoLuong) AS TongSoGoiDichVuBanDuoc
 FROM 
-    ThongTinBanHang AS ttb
+    thongtinbanhang AS ttb
 JOIN 
-    TTNhanVienBanHang AS ttbh ON ttb.ID_TTNVBH = ttbh.ID_TTNVBH ";
+    ttnhanvienbanhang AS ttbh ON ttb.ID_TTNVBH = ttbh.ID_TTNVBH ";
     //dành cho chi tiết các khách hàng
     $sqlChitiet = "SELECT 
     ttb.ID_ThongTinBanHang,
@@ -52,15 +52,15 @@ JOIN
     ttb.SoLuong,
     (gdv.GiaTien * ttb.SoLuong) AS TongTien
 FROM 
-    ThongTinBanHang AS ttb
+    thongtinbanhang AS ttb
 JOIN 
-    TTNhanVienBanHang AS nv ON ttb.ID_TTNVBH = nv.ID_TTNVBH
+    ttnhanvienbanhang AS nv ON ttb.ID_TTNVBH = nv.ID_TTNVBH
 JOIN 
-    KhachHang AS kh ON ttb.ID_KhachHang = kh.ID_KhachHang
+    khachhang AS kh ON ttb.ID_KhachHang = kh.ID_KhachHang
 JOIN 
-    GoiDichVu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
+    goidichvu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
 JOIN 
-    DichVu AS dv ON gdv.ID_DichVu = dv.ID_DichVu ";
+    dichvu AS dv ON gdv.ID_DichVu = dv.ID_DichVu ";
 
     if ($time == 'year') {               //năm
         $sql .= "WHERE 

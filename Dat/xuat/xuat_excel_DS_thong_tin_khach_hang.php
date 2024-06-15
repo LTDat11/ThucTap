@@ -8,7 +8,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 include('../connect.php');
 
 // Truy vấn thông tin khách hàng
-$sql = "SELECT * FROM KhachHang";
+$sql = "SELECT * FROM khachhang";
 $result = $conn->query($sql);
 
 // Tạo đối tượng Spreadsheet mới

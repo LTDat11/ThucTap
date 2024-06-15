@@ -19,13 +19,13 @@ gdv.MoTa,
 ttb.NgayDangKy,
 ttb.SoLuong
 FROM 
-KhachHang AS kh
+khachhang AS kh
 JOIN 
-ThongTinBanHang AS ttb ON kh.ID_KhachHang = ttb.ID_KhachHang
+thongtinbanhang AS ttb ON kh.ID_KhachHang = ttb.ID_KhachHang
 JOIN 
-GoiDichVu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
+goidichvu AS gdv ON ttb.ID_GoiDichVu = gdv.ID_GoiDichVu
 JOIN 
-DichVu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
+dichvu AS dv ON gdv.ID_DichVu = dv.ID_DichVu
 WHERE 
 kh.ID_KhachHang = $ID_KhachHang
 ORDER BY 
