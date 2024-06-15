@@ -224,6 +224,13 @@ $conn->close();
                     <div class="dropdown-menu" aria-labelledby="smallerscreenmenu">
                         <a class="dropdown-item" href="../thongke/doanh_thu.php">Doanh Thu</a>
                     </div>
+                </li>
+                <!-- dropdown Tuy chon -->
+                <li class="nav-item dropdown d-sm-block d-md-none">
+                    <a class="nav-link dropdown-toggle" href="#" id="smallerscreenmenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Tùy Chọn </a>
+                    <div class="dropdown-menu" aria-labelledby="smallerscreenmenu">
+                        <a class="dropdown-item" href="../tuychon/dangkykh.php">Đăng Ký Khách Hàng</a>
+                    </div>
                 </li><!-- Smaller devices menu END -->
             </ul>
         </div>
