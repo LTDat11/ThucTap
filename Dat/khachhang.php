@@ -62,11 +62,11 @@ $conn->close();
                         <tr>
                             <th>Tên Dịch Vụ</th>
                             <th>Tên Gói Dịch Vụ</th>
-                            <th>Tốc Độ</th>
-                            <th>Giá Tiền</th>
+                            <th class="text-center">Tốc Độ</th>
+                            <th class="text-right">Giá Tiền</th>
                             <th>Mô Tả</th>
-                            <th>Ngày Đăng Kí</th>
-                            <th>Số Lượng</th>
+                            <th class="text-right">Ngày Đăng Kí</th>
+                            <th class="text-center">Số Lượng</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -76,10 +76,10 @@ $conn->close();
                                 echo "<tr>";
                                 echo "<td>" . htmlspecialchars($row['TenDichVu']) . "</td>";
                                 echo "<td>" . htmlspecialchars($row['TenGoiDichVu']) . "</td>";
-                                echo "<td>" . htmlspecialchars($row['TocDo']) . "</td>";
-                                echo "<td>" . number_format($row['GiaTien'], 0, ',', '.') . "</td>";
+                                echo "<td class='text-center'>" . htmlspecialchars($row['TocDo']) . "</td>";
+                                echo "<td class='text-right'>" . number_format($row['GiaTien'], 0, ',', '.') . "</td>";
                                 echo "<td>" . htmlspecialchars($row['MoTa']) . "</td>";
-                                echo "<td>" . date("d/m/Y", strtotime($row['NgayDangKy'])) . "</td>";
+                                echo "<td class='text-right'>" . date("d/m/Y", strtotime($row['NgayDangKy'])) . "</td>";
                                 echo "<td class='text-center'>" . htmlspecialchars($row['SoLuong']) . "</td>";
                                 echo "</tr>";
                             }
