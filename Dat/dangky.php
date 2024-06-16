@@ -171,7 +171,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
 
                             <div class="form-group">
                                 <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" required />
-                                <label for="agree-term" class="label-agree-term">
+                                <label for="agree-term" class="label-agree-term mt-2">
                                     <span class="custom-checkbox">
                                         <span class="checkbox-inner"></span>
                                     </span>
@@ -180,7 +180,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
                             </div>
 
                             <div class="form-group form-button">
-                                <button type="submit" name="register" id="signup" class="form-submit">Đăng Ký</button>
+                                <button type="submit" name="register" id="signup" class="form-submit mt-3">Đăng Ký</button>
                             </div>
                         </form>
                     </div>
