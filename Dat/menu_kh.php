@@ -48,7 +48,7 @@ $conn->close();
 
     #sidebar-container {
         min-height: 100vh;
-        background-color: #333;
+        background-color: #d7d5d5;
         padding: 0;
     }
 
@@ -79,12 +79,12 @@ $conn->close();
 
     /* Separators */
     .sidebar-separator-title {
-        background-color: #333;
+        background-color: #d7d5d5;
         height: 35px;
     }
 
     .sidebar-separator {
-        background-color: #333;
+        background-color: #d7d5d5;
         height: 25px;
     }
 
@@ -243,7 +243,7 @@ $conn->close();
                     </a>
                 </div>
                 <!-- Separator without title -->
-                <li class="list-group-item sidebar-separator menu-collapsed"></li>
+                <!-- <li class="list-group-item sidebar-separator menu-collapsed"></li> -->
                 <!-- /END Separator -->
 
             </ul><!-- List Group END-->

@@ -19,7 +19,7 @@ if (!isset($_GET['id'])) {
 $id = $_GET['id'];
 
 // Truy vấn thông tin bán hàng theo ID
-$sql = "SELECT ThongTinBanHang.*, NhanVien.TenNhanVien AS TenNhanVien, KhachHang.Ten AS TenKhachHang, GoiDichVu.TenGoiDichVu AS TenGoiDichVu
+$sql = "SELECT thongtinbanhang.*, nhanvien.TenNhanVien AS TenNhanVien, khachhang.Ten AS TenKhachHang, goidichvu.TenGoiDichVu AS TenGoiDichVu
         FROM thongtinbanhang
         LEFT JOIN nhanvien ON thongtinbanhang.ID_TTNVBH = nhanvien.ID_NhanVien
         LEFT JOIN khachhang ON thongtinbanhang.ID_KhachHang = khachhang.ID_KhachHang
