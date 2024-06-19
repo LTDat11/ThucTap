@@ -47,7 +47,7 @@ $conn->close();
 
     #sidebar-container {
         min-height: 100vh;
-        background-color: #d7d5d5;
+        background-color: white;
         padding: 0;
     }
 
@@ -79,17 +79,17 @@ $conn->close();
 
     /* Separators */
     .sidebar-separator-title {
-        background-color: #d7d5d5;
+        background-color: white;
         height: 35px;
     }
 
     .sidebar-separator {
-        background-color: #d7d5d5;
+        background-color: white;
         height: 25px;
     }
 
     .logo-separator {
-        background-color: grey;
+        background-color: white;
         height: 60px;
     }
 

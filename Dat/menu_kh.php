@@ -48,7 +48,7 @@ $conn->close();
 
     #sidebar-container {
         min-height: 100vh;
-        background-color: #d7d5d5;
+        background-color: white;
         padding: 0;
     }
 
@@ -64,7 +64,7 @@ $conn->close();
     /* Menu item*/
     #sidebar-container .list-group a {
         height: 50px;
-        color: white;
+        color: black;
     }
 
     /* Submenu item*/
@@ -79,12 +79,12 @@ $conn->close();
 
     /* Separators */
     .sidebar-separator-title {
-        background-color: #d7d5d5;
+        background-color: white;
         height: 35px;
     }
 
     .sidebar-separator {
-        background-color: #d7d5d5;
+        background-color: white;
         height: 25px;
     }
 
@@ -203,7 +203,7 @@ $conn->close();
             <!-- d-* hiddens the Sidebar in smaller devices. Its itens can be kept on the Navbar 'Menu' -->
             <!-- Bootstrap List Group -->
             <ul class="list-group">
-                <a href="#" data-toggle="sidebar-colapse" class="bg-dark list-group-item list-group-item-action d-flex align-items-center">
+                <a href="#" data-toggle="sidebar-colapse" class="bg-light list-group-item list-group-item-action d-flex align-items-center">
                     <div class="d-flex w-100 justify-content-start align-items-center">
                         <span id="collapse-icon" class="fa mr-3"></span>
                         <span id="collapse-text" class="menu-collapsed">Menu</span>
@@ -215,7 +215,7 @@ $conn->close();
                 </li>
                 <!-- /END Separator -->
                 <!-- Menu with submenu -->
-                <a href="#submenu1" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                <a href="#submenu1" data-toggle="collapse" aria-expanded="false" class="bg-light list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa-solid fa-list-ul fa-fw mr-3"></span>
                         <span class="menu-collapsed">Danh Sách</span>
@@ -224,12 +224,12 @@ $conn->close();
                 </a>
                 <!-- Submenu content -->
                 <div id='submenu1' class="collapse sidebar-submenu">
-                    <a href="khachhang.php" class="list-group-item list-group-item-action bg-dark text-white">
+                    <a href="khachhang.php" class="list-group-item list-group-item-action bg-light text-black">
                         <span class="menu-collapsed">Dịch Vụ Đã Đăng Ký</span>
                     </a>
                 </div>
 
-                <a href="#submenu2" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                <a href="#submenu2" data-toggle="collapse" aria-expanded="false" class="bg-light list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa-solid fa-gears fa-fw mr-3"></span>
                         <span class="menu-collapsed">Tùy Chọn</span>
@@ -238,7 +238,7 @@ $conn->close();
                 </a>
                 <!-- Submenu content -->
                 <div id='submenu2' class="collapse sidebar-submenu">
-                    <a href="sua_thong_tin_kh.php" class="list-group-item list-group-item-action bg-dark text-white">
+                    <a href="sua_thong_tin_kh.php" class="list-group-item list-group-item-action bg-light text-black">
                         <span class="menu-collapsed">Sửa Thông Tin</span>
                     </a>
                 </div>
