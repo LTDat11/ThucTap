@@ -7,7 +7,7 @@ if (!isset($_SESSION['ID_NhanVien'])) {
     exit();
 }
 // Kết nối csdl
-include('../connect.php');
+include ('../connect.php');
 
 $message = "";
 
@@ -93,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_POST['ajax'])) {
                 <h2 class="mb-0"><i class="fas fa-plus-circle"></i> Thêm Thông Tin Bán Hàng</h2>
             </div>
             <div class="card-body p-5">
-                <form action="../them/them_thong_tin_ban_hang.php" method="post">
+                <form id="salesForm" action="../them/them_thong_tin_ban_hang.php" method="post">
                     <div class="form-group">
                         <label for="khachHang">Khách Hàng</label>
                         <select class="form-control select2" id="khachHang" name="ID_KhachHang" required>
@@ -208,6 +208,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_POST['ajax'])) {
                 let serviceId = $(this).val();
                 loadPackages(serviceId); // Gọi hàm loadPackages khi giá trị thay đổi
             });
+
+            // Kiểm tra ngày đăng ký không được vượt quá ngày hiện tại
+            $('#salesForm').submit(function (event) {
+                var today = new Date();
+                var registrationDate = new Date($('#ngayDangKy').val());
+
+                // So sánh ngày đăng ký với ngày hiện tại
+                if (registrationDate > today) {
+                    alert('Ngày đăng ký không được vượt quá ngày hiện tại. Vui lòng nhập lại.');
+                    event.preventDefault(); // Ngăn chặn việc gửi biểu mẫu
+                }
+            });
+
         });
 
         function handleSuccess(message) {
