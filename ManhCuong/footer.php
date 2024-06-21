@@ -1,10 +1,24 @@
 <button onclick="topFunction()" id="myBtn" title="Go to top" class="bi bi-arrow-up-circle"></button>
 </div> <!-- Đóng thẻ div của container -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+<!-- Bao gồm jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<!-- Bao gồm Popper.js -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+
+<!-- Bao gồm Bootstrap JavaScript -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Bao gồm Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Bao gồm plugin Chart.js DataLabels -->
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
+<!-- Bao gồm Select2 -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 
 <style>
     .hidden {
@@ -92,7 +106,7 @@
         if (message) {
             let continueAdding = confirm(message + "\nBạn có muốn tiếp tục thêm thông tin mới không?");
             if (!continueAdding) {
-                window.location.href = '../danhsach/danh_sach_thong_tin_khach_hang.php';
+                window.location.href = '../danhsach/danh_sach_thong_tin_ban_hang.php';
             }
         }
     }
@@ -100,9 +114,68 @@
 
 <script>
     $(document).ready(function () {
+        // Khởi tạo Select2 cho các thẻ select
+        $('.select2').select2();
+
+        //kiểm tra id dịch vụ đã chọn
+        $('#service').change(function () {
+            var selectedID = $(this).val();
+            $('#selected-id').text("ID dịch vụ đã chọn: " + selectedID);
+
+        });
+
+        // Mặc định tải gói dịch vụ của dịch vụ có ID 1
+        loadPackages('<?php echo $defaultServiceId; ?>');
+
+        $('#service').change(function () {
+            let serviceId = $(this).val();
+            loadPackages(serviceId); // Gọi hàm loadPackages khi giá trị thay đổi
+        });
+    });
+
+    // function handleSuccess(message) {
+    //     if (message) {
+    //         let continueAdding = confirm(message + "\nBạn có muốn tiếp tục thêm thông tin mới không?");
+    //         if (!continueAdding) {
+    //             window.location.href = '../danhsach/danh_sach_thong_tin_ban_hang.php';
+    //         }
+    //     }
+    // }
+
+    function loadPackages(serviceId) {
+        $.ajax({
+            url: 'get_goi_dich_vu.php', // URL của script PHP để lấy thông tin về các gói dịch vụ
+            type: 'GET',
+            data: { id_dich_vu: serviceId },
+            dataType: 'json',
+            success: function (data) {
+                var goiDichVuSelect = $('#goiDichVu');
+                goiDichVuSelect.empty(); // Xóa các option hiện tại
+
+                // Kiểm tra nếu không có gói dịch vụ nào
+                if (data.length === 0) {
+                    alert('Không có gói dịch vụ nào cho dịch vụ đã chọn');
+                    return;
+                }
+
+                goiDichVuSelect.append('<option value="">Chọn gói dịch vụ</option>'); // Thêm tùy chọn mặc định
+                data.forEach(function (goiDichVu) {
+                    // Thêm một option mới cho mỗi gói dịch vụ
+                    goiDichVuSelect.append('<option value="' + goiDichVu.id + '">' + goiDichVu.ten + '</option>');
+                });
+            },
+            error: function () {
+                alert('Lỗi khi lấy thông tin về các gói dịch vụ');
+            }
+        });
+    }
+</script>
+
+<!-- <script>
+    $(document).ready(function () {
         $('.select2').select2();
     });
-</script>
+</script> -->
 <!-- excel Doanh Thu sql Chitiet-->
 <script>
     function exportTableToExcel() {
@@ -846,6 +919,9 @@
         });
     <?php } ?>
 </script>
+
+
+
 </body>
 
 </html>

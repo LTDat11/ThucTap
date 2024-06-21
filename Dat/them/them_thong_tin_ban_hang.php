@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_POST['ajax'])) {
 }
 ?>
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="vi">
 
 <head>
@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_POST['ajax'])) {
     <title>Thêm Thông Tin Bán Hàng</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-</head>
+</head> -->
 
 <body onload="handleSuccess('<?php echo $message; ?>')">
     <?php include '../menu.php'; ?>
@@ -177,89 +177,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_POST['ajax'])) {
         </div>
     </div>
     <?php include '../footer.php'; ?>
-
-    <!-- Bao gồm jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <!-- Bao gồm Select2 -->
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <!-- Bao gồm Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            // Khởi tạo Select2 cho các thẻ select
-            $('.select2').select2();
-
-            //kiểm tra id dịch vụ đã chọn
-            $('#service').change(function () {
-                var selectedID = $(this).val();
-                $('#selected-id').text("ID dịch vụ đã chọn: " + selectedID);
-
-            });
-
-            //reload web
-            $('#service').prop('selectedIndex', 0); // Đặt lại giá trị mặc định cho thẻ select #service
-            loadPackages($('#service').val()); // Tải lại các gói dịch vụ tương ứng với dịch vụ mặc định
-
-            // Mặc định tải gói dịch vụ của dịch vụ có ID 1
-            loadPackages('<?php echo $defaultServiceId; ?>');
-
-            $('#service').change(function () {
-                let serviceId = $(this).val();
-                loadPackages(serviceId); // Gọi hàm loadPackages khi giá trị thay đổi
-            });
-
-            // Kiểm tra ngày đăng ký không được vượt quá ngày hiện tại
-            $('#salesForm').submit(function (event) {
-                var today = new Date();
-                var registrationDate = new Date($('#ngayDangKy').val());
-
-                // So sánh ngày đăng ký với ngày hiện tại
-                if (registrationDate > today) {
-                    alert('Ngày đăng ký không được vượt quá ngày hiện tại. Vui lòng nhập lại.');
-                    event.preventDefault(); // Ngăn chặn việc gửi biểu mẫu
-                }
-            });
-
-        });
-
-        function handleSuccess(message) {
-            if (message) {
-                let continueAdding = confirm(message + "\nBạn có muốn tiếp tục thêm thông tin mới không?");
-                if (!continueAdding) {
-                    window.location.href = '../danhsach/danh_sach_thong_tin_ban_hang.php';
-                }
-            }
-        }
-
-        function loadPackages(serviceId) {
-            $.ajax({
-                url: 'get_goi_dich_vu.php', // URL của script PHP để lấy thông tin về các gói dịch vụ
-                type: 'GET',
-                data: { id_dich_vu: serviceId },
-                dataType: 'json',
-                success: function (data) {
-                    var goiDichVuSelect = $('#goiDichVu');
-                    goiDichVuSelect.empty(); // Xóa các option hiện tại
-
-                    // Kiểm tra nếu không có gói dịch vụ nào
-                    if (data.length === 0) {
-                        alert('Không có gói dịch vụ nào cho dịch vụ đã chọn');
-                        return;
-                    }
-
-                    goiDichVuSelect.append('<option value="">Chọn gói dịch vụ</option>'); // Thêm tùy chọn mặc định
-                    data.forEach(function (goiDichVu) {
-                        // Thêm một option mới cho mỗi gói dịch vụ
-                        goiDichVuSelect.append('<option value="' + goiDichVu.id + '">' + goiDichVu.ten + '</option>');
-                    });
-                },
-                error: function () {
-                    alert('Lỗi khi lấy thông tin về các gói dịch vụ');
-                }
-            });
-        }
-    </script>
-</body>
-
-</html>

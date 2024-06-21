@@ -6,7 +6,7 @@ if (!isset($_SESSION['ID_NhanVien'])) {
 }
 
 // Kết nối cơ sở dữ liệu
-include('connect.php');
+include ('connect.php');
 
 // Lấy ID_NhanVien từ session
 $ID_NhanVien = $_SESSION['ID_NhanVien'];
@@ -35,6 +35,7 @@ $conn->close();
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Menu</title>
     <link rel="icon" type="image/x-icon" href="/ThucTap/Dat/assets/img/vnpt.png">
@@ -180,11 +181,13 @@ $conn->close();
 
 <body id="top">
     <nav class="navbar navbar-expand-md navbar-dark bg-primary">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="">
-            <img src="https://pco.vn/shoop_vn/uploads/2019/08/logo-VNPT.png" width="40" height="40" class="d-inline-block align-top" alt="">
+            <img src="https://pco.vn/shoop_vn/uploads/2019/08/logo-VNPT.png" width="40" height="40"
+                class="d-inline-block align-top" alt="">
             <span class="menu-collapsed">VNPT Cần Thơ</span>
         </a>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -202,17 +205,23 @@ $conn->close();
            The sidebar isn't proper for smaller screens imo, so this dropdown menu can keep all the useful sidebar itens exclusively for smaller screens  -->
                 <!-- dropdown Danh Sach -->
                 <li class="nav-item dropdown d-sm-block d-md-none">
-                    <a class="nav-link dropdown-toggle" href="#" id="smallerscreenmenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Danh Sách </a>
+                    <a class="nav-link dropdown-toggle" href="#" id="smallerscreenmenu" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false"> Danh Sách </a>
                     <div class="dropdown-menu" aria-labelledby="smallerscreenmenu">
-                        <a class="dropdown-item" href="../danhsach/danh_sach_thong_tin_khach_hang.php">Thông Tin Khách Hàng </a>
-                        <a class="dropdown-item" href="../danhsach/danh_sach_thong_tin_dich_vu.php">Thông Tin Dịch Vụ</a>
-                        <a class="dropdown-item" href="../danhsach/danh_sach_thong_tin_nhan_vien_ban_hang.php">Thông Tin Nhân Viên</a>
-                        <a class="dropdown-item" href="../danhsach/danh_sach_thong_tin_ban_hang.php">Thông Tin Bán Hàng</a>
+                        <a class="dropdown-item" href="../danhsach/danh_sach_thong_tin_khach_hang.php">Thông Tin Khách
+                            Hàng </a>
+                        <a class="dropdown-item" href="../danhsach/danh_sach_thong_tin_dich_vu.php">Thông Tin Dịch
+                            Vụ</a>
+                        <a class="dropdown-item" href="../danhsach/danh_sach_thong_tin_nhan_vien_ban_hang.php">Thông Tin
+                            Nhân Viên</a>
+                        <a class="dropdown-item" href="../danhsach/danh_sach_thong_tin_ban_hang.php">Thông Tin Bán
+                            Hàng</a>
                     </div>
                 </li>
                 <!-- dropdown Top 10 -->
                 <li class="nav-item dropdown d-sm-block d-md-none">
-                    <a class="nav-link dropdown-toggle" href="#" id="smallerscreenmenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Top 10 </a>
+                    <a class="nav-link dropdown-toggle" href="#" id="smallerscreenmenu" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false"> Top 10 </a>
                     <div class="dropdown-menu" aria-labelledby="smallerscreenmenu">
                         <a class="dropdown-item" href="../top10/top10_nvbh.php">Nhân Viên Bán Hàng Nhiều</a>
                         <a class="dropdown-item" href="../top10/top10kh_dvMax.php">Khách Hàng Dùng Nhiều Dịch Vụ</a>
@@ -221,14 +230,16 @@ $conn->close();
                 </li>
                 <!-- dropdown Thong ke -->
                 <li class="nav-item dropdown d-sm-block d-md-none">
-                    <a class="nav-link dropdown-toggle" href="#" id="smallerscreenmenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Thống Kê </a>
+                    <a class="nav-link dropdown-toggle" href="#" id="smallerscreenmenu" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false"> Thống Kê </a>
                     <div class="dropdown-menu" aria-labelledby="smallerscreenmenu">
                         <a class="dropdown-item" href="../thongke/doanh_thu.php">Doanh Thu</a>
                     </div>
                 </li>
                 <!-- dropdown Tuy chon -->
                 <li class="nav-item dropdown d-sm-block d-md-none">
-                    <a class="nav-link dropdown-toggle" href="#" id="smallerscreenmenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Tùy Chọn </a>
+                    <a class="nav-link dropdown-toggle" href="#" id="smallerscreenmenu" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false"> Tùy Chọn </a>
                     <div class="dropdown-menu" aria-labelledby="smallerscreenmenu">
                         <a class="dropdown-item" href="../tuychon/dangkykh.php">Đăng Ký Khách Hàng</a>
                     </div>
@@ -238,7 +249,8 @@ $conn->close();
         <span class="navbar-text text-white font-weight-bold d-flex align-items-center ml-auto">
             <i class="bi bi-person-circle mr-2"></i> <!-- Thêm biểu tượng người dùng -->
             <span class="mr-3">Xin chào <?php echo $tenNhanVien; ?></span>
-            <a href="../dang_xuat_nv.php" class="btn btn-light text-primary font-weight-bold border-primary rounded-pill px-3">
+            <a href="../dang_xuat_nv.php"
+                class="btn btn-light text-primary font-weight-bold border-primary rounded-pill px-3">
                 <i class="bi bi-box-arrow-left mr-1"></i> Đăng Xuất
             </a>
         </span>
@@ -251,7 +263,8 @@ $conn->close();
             <!-- d-* hiddens the Sidebar in smaller devices. Its itens can be kept on the Navbar 'Menu' -->
             <!-- Bootstrap List Group -->
             <ul class="list-group">
-                <a href="#" data-toggle="sidebar-colapse" class="bg-light list-group-item list-group-item-action d-flex align-items-center">
+                <a href="#" data-toggle="sidebar-colapse"
+                    class="bg-light list-group-item list-group-item-action d-flex align-items-center">
                     <div class="d-flex w-100 justify-content-start align-items-center">
                         <span id="collapse-icon" class="fa mr-3"></span>
                         <span id="collapse-text" class="menu-collapsed">Menu</span>
@@ -263,7 +276,8 @@ $conn->close();
                 </li>
                 <!-- /END Separator -->
                 <!-- Menu with submenu -->
-                <a href="#submenu1" data-toggle="collapse" aria-expanded="false" class="bg-light list-group-item list-group-item-action flex-column align-items-start">
+                <a href="#submenu1" data-toggle="collapse" aria-expanded="false"
+                    class="bg-light list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa-solid fa-list-ul fa-fw mr-3"></span>
                         <span class="menu-collapsed">Danh Sách</span>
@@ -272,21 +286,26 @@ $conn->close();
                 </a>
                 <!-- Submenu content -->
                 <div id='submenu1' class="collapse sidebar-submenu">
-                    <a href="../danhsach/danh_sach_thong_tin_khach_hang.php" class="list-group-item list-group-item-action bg-light text-black">
+                    <a href="../danhsach/danh_sach_thong_tin_khach_hang.php"
+                        class="list-group-item list-group-item-action bg-light text-black">
                         <span class="menu-collapsed">Thông Tin Khách Hàng</span>
                     </a>
-                    <a href="../danhsach/danh_sach_thong_tin_dich_vu.php" class="list-group-item list-group-item-action bg-light text-black">
+                    <a href="../danhsach/danh_sach_thong_tin_dich_vu.php"
+                        class="list-group-item list-group-item-action bg-light text-black">
                         <span class="menu-collapsed">Thông Tin Dịch Vụ</span>
                     </a>
-                    <a href="../danhsach/danh_sach_thong_tin_nhan_vien_ban_hang.php" class="list-group-item list-group-item-action bg-light text-black">
+                    <a href="../danhsach/danh_sach_thong_tin_nhan_vien_ban_hang.php"
+                        class="list-group-item list-group-item-action bg-light text-black">
                         <span class="menu-collapsed">Thông Tin Nhân Viên</span>
                     </a>
-                    <a href="../danhsach/danh_sach_thong_tin_ban_hang.php" class="list-group-item list-group-item-action bg-light text-black">
+                    <a href="../danhsach/danh_sach_thong_tin_ban_hang.php"
+                        class="list-group-item list-group-item-action bg-light text-black">
                         <span class="menu-collapsed">Thông Tin Bán Hàng</span>
                     </a>
                 </div>
 
-                <a href="#submenu2" data-toggle="collapse" aria-expanded="false" class="bg-light list-group-item list-group-item-action flex-column align-items-start">
+                <a href="#submenu2" data-toggle="collapse" aria-expanded="false"
+                    class="bg-light list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa-solid fa-ranking-star fa-fw mr-3"></span>
                         <span class="menu-collapsed">Top 10</span>
@@ -295,18 +314,22 @@ $conn->close();
                 </a>
                 <!-- Submenu content -->
                 <div id='submenu2' class="collapse sidebar-submenu">
-                    <a href="../top10/top10_nvbh.php" class="list-group-item list-group-item-action bg-light text-black">
+                    <a href="../top10/top10_nvbh.php"
+                        class="list-group-item list-group-item-action bg-light text-black">
                         <span class="menu-collapsed">Nhân Viên Bán Hàng Nhiều</span>
                     </a>
-                    <a href="../top10/top10kh_dvMax.php" class="list-group-item list-group-item-action bg-light text-black">
+                    <a href="../top10/top10kh_dvMax.php"
+                        class="list-group-item list-group-item-action bg-light text-black">
                         <span class="menu-collapsed">Khách Dụng Nhiều Dịch Vụ</span>
                     </a>
-                    <a href="../top10/dich_vu_dang_ky_nhieu.php" class="list-group-item list-group-item-action bg-light text-black">
+                    <a href="../top10/dich_vu_dang_ky_nhieu.php"
+                        class="list-group-item list-group-item-action bg-light text-black">
                         <span class="menu-collapsed">Dịch Vụ Đăng Ký Nhiều</span>
                     </a>
                 </div>
 
-                <a href="#submenu3" data-toggle="collapse" aria-expanded="false" class="bg-light list-group-item list-group-item-action flex-column align-items-start">
+                <a href="#submenu3" data-toggle="collapse" aria-expanded="false"
+                    class="bg-light list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa-solid fa-hand-holding-dollar fa-fw mr-3"></span>
                         <span class="menu-collapsed">Thống Kê</span>
@@ -315,12 +338,14 @@ $conn->close();
                 </a>
                 <!-- Submenu content -->
                 <div id='submenu3' class="collapse sidebar-submenu">
-                    <a href="../thongke/doanh_thu.php" class="list-group-item list-group-item-action bg-light text-black">
+                    <a href="../thongke/doanh_thu.php"
+                        class="list-group-item list-group-item-action bg-light text-black">
                         <span class="menu-collapsed">Doanh Thu</span>
                     </a>
                 </div>
 
-                <a href="#submenu4" data-toggle="collapse" aria-expanded="false" class="bg-light list-group-item list-group-item-action flex-column align-items-start">
+                <a href="#submenu4" data-toggle="collapse" aria-expanded="false"
+                    class="bg-light list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa-solid fa-gear fa-fw mr-3"></span>
                         <span class="menu-collapsed">Tùy Chọn</span>
@@ -329,7 +354,8 @@ $conn->close();
                 </a>
                 <!-- Submenu content -->
                 <div id='submenu4' class="collapse sidebar-submenu">
-                    <a href="../tuychon/dangkykh.php" class="list-group-item list-group-item-action bg-light text-black">
+                    <a href="../tuychon/dangkykh.php"
+                        class="list-group-item list-group-item-action bg-light text-black">
                         <span class="menu-collapsed">Đăng ký Khách Hàng</span>
                     </a>
                 </div>
